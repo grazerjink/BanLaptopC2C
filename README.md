@@ -1,2 +1,1 @@
-# BanLaptopC2C
-Đồ án TMĐT: Xây dựng website theo mô hình C2C - Sản phẩm chính: Laptop
+# Đồ án TMĐT: Xây dựng website bán laptop theo mô hình C2C
