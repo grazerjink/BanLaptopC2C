@@ -10,6 +10,10 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Folders
+build/
+dist/
+
 # Package Files #
 *.war
 *.ear
