@@ -11,12 +11,8 @@
 .mtj.tmp/
 
 # Folders
-build/**
-dist/**
-BanLaptopC2C-ejb/build/**
-BanLaptopC2C-ejb/dist/**
-BanLaptopC2C-war/build/**
-BanLaptopC2C-war/dist/**
+**/build/**
+**/dist/**
 
 # Package Files #
 *.war
@@ -27,3 +23,5 @@ BanLaptopC2C-war/dist/**
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/build/
+/dist/
