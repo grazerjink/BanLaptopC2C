@@ -5,7 +5,7 @@
  */
 package ejb.sessions;
 
-import ejb.entities.ManHinh;
+import ejb.entities.LoaiManHinh;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author Winson Mac
  */
 @Local
-public interface ManHinhFacadeLocal {
+public interface LoaiManHinhFacadeLocal {
 
-    void create(ManHinh manHinh);
+    void create(LoaiManHinh loaiManHinh);
 
-    void edit(ManHinh manHinh);
+    void edit(LoaiManHinh loaiManHinh);
 
-    void remove(ManHinh manHinh);
+    void remove(LoaiManHinh loaiManHinh);
 
-    ManHinh find(Object id);
+    LoaiManHinh find(Object id);
 
-    List<ManHinh> findAll();
+    List<LoaiManHinh> findAll();
 
-    List<ManHinh> findRange(int[] range);
+    List<LoaiManHinh> findRange(int[] range);
 
     int count();
     

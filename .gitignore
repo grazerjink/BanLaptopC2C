@@ -13,6 +13,10 @@
 # Folders
 build/
 dist/
+BanLaptopC2C-ejb/build/
+BanLaptopC2C-ejb/dist/
+BanLaptopC2C-war/build/
+BanLaptopC2C-war/dist/
 
 # Package Files #
 *.war

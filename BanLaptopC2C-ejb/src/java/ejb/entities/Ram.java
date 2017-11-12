@@ -52,9 +52,8 @@ public class Ram implements Serializable {
     private String loaiRam;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "dung_luong")
-    private String dungLuong;
+    private int dungLuong;
     @Basic(optional = false)
     @NotNull
     @Column(name = "an_hien")
@@ -69,7 +68,7 @@ public class Ram implements Serializable {
         this.id = id;
     }
 
-    public Ram(Integer id, String loaiRam, String dungLuong, boolean anHien) {
+    public Ram(Integer id, String loaiRam, int dungLuong, boolean anHien) {
         this.id = id;
         this.loaiRam = loaiRam;
         this.dungLuong = dungLuong;
@@ -92,11 +91,11 @@ public class Ram implements Serializable {
         this.loaiRam = loaiRam;
     }
 
-    public String getDungLuong() {
+    public int getDungLuong() {
         return dungLuong;
     }
 
-    public void setDungLuong(String dungLuong) {
+    public void setDungLuong(int dungLuong) {
         this.dungLuong = dungLuong;
     }
 

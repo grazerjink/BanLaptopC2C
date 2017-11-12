@@ -29,16 +29,15 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Winson Mac
  */
 @Entity
-@Table(name = "man_hinh")
+@Table(name = "do_phan_giai")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ManHinh.findAll", query = "SELECT m FROM ManHinh m")
-    , @NamedQuery(name = "ManHinh.findById", query = "SELECT m FROM ManHinh m WHERE m.id = :id")
-    , @NamedQuery(name = "ManHinh.findByLoaiManHinh", query = "SELECT m FROM ManHinh m WHERE m.loaiManHinh = :loaiManHinh")
-    , @NamedQuery(name = "ManHinh.findByKichThuoc", query = "SELECT m FROM ManHinh m WHERE m.kichThuoc = :kichThuoc")
-    , @NamedQuery(name = "ManHinh.findByDoPhanGiai", query = "SELECT m FROM ManHinh m WHERE m.doPhanGiai = :doPhanGiai")
-    , @NamedQuery(name = "ManHinh.findByAnHien", query = "SELECT m FROM ManHinh m WHERE m.anHien = :anHien")})
-public class ManHinh implements Serializable {
+    @NamedQuery(name = "DoPhanGiai.findAll", query = "SELECT d FROM DoPhanGiai d")
+    , @NamedQuery(name = "DoPhanGiai.findById", query = "SELECT d FROM DoPhanGiai d WHERE d.id = :id")
+    , @NamedQuery(name = "DoPhanGiai.findByTenDoPhanGiai", query = "SELECT d FROM DoPhanGiai d WHERE d.tenDoPhanGiai = :tenDoPhanGiai")
+    , @NamedQuery(name = "DoPhanGiai.findByChieuRong", query = "SELECT d FROM DoPhanGiai d WHERE d.chieuRong = :chieuRong")
+    , @NamedQuery(name = "DoPhanGiai.findByChieuDai", query = "SELECT d FROM DoPhanGiai d WHERE d.chieuDai = :chieuDai")})
+public class DoPhanGiai implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,38 +48,31 @@ public class ManHinh implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 250)
-    @Column(name = "loai_man_hinh")
-    private String loaiManHinh;
+    @Column(name = "ten_do_phan_giai")
+    private String tenDoPhanGiai;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
-    @Column(name = "kich_thuoc")
-    private String kichThuoc;
+    @Column(name = "chieu_rong")
+    private int chieuRong;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
-    @Column(name = "do_phan_giai")
-    private String doPhanGiai;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "an_hien")
-    private boolean anHien;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idManHinh", fetch = FetchType.LAZY)
+    @Column(name = "chieu_dai")
+    private int chieuDai;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDoPhanGiai", fetch = FetchType.LAZY)
     private List<ThongSoKiThuat> thongSoKiThuatList;
 
-    public ManHinh() {
+    public DoPhanGiai() {
     }
 
-    public ManHinh(Integer id) {
+    public DoPhanGiai(Integer id) {
         this.id = id;
     }
 
-    public ManHinh(Integer id, String loaiManHinh, String kichThuoc, String doPhanGiai, boolean anHien) {
+    public DoPhanGiai(Integer id, String tenDoPhanGiai, int chieuRong, int chieuDai) {
         this.id = id;
-        this.loaiManHinh = loaiManHinh;
-        this.kichThuoc = kichThuoc;
-        this.doPhanGiai = doPhanGiai;
-        this.anHien = anHien;
+        this.tenDoPhanGiai = tenDoPhanGiai;
+        this.chieuRong = chieuRong;
+        this.chieuDai = chieuDai;
     }
 
     public Integer getId() {
@@ -91,36 +83,28 @@ public class ManHinh implements Serializable {
         this.id = id;
     }
 
-    public String getLoaiManHinh() {
-        return loaiManHinh;
+    public String getTenDoPhanGiai() {
+        return tenDoPhanGiai;
     }
 
-    public void setLoaiManHinh(String loaiManHinh) {
-        this.loaiManHinh = loaiManHinh;
+    public void setTenDoPhanGiai(String tenDoPhanGiai) {
+        this.tenDoPhanGiai = tenDoPhanGiai;
     }
 
-    public String getKichThuoc() {
-        return kichThuoc;
+    public int getChieuRong() {
+        return chieuRong;
     }
 
-    public void setKichThuoc(String kichThuoc) {
-        this.kichThuoc = kichThuoc;
+    public void setChieuRong(int chieuRong) {
+        this.chieuRong = chieuRong;
     }
 
-    public String getDoPhanGiai() {
-        return doPhanGiai;
+    public int getChieuDai() {
+        return chieuDai;
     }
 
-    public void setDoPhanGiai(String doPhanGiai) {
-        this.doPhanGiai = doPhanGiai;
-    }
-
-    public boolean getAnHien() {
-        return anHien;
-    }
-
-    public void setAnHien(boolean anHien) {
-        this.anHien = anHien;
+    public void setChieuDai(int chieuDai) {
+        this.chieuDai = chieuDai;
     }
 
     @XmlTransient
@@ -142,10 +126,10 @@ public class ManHinh implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ManHinh)) {
+        if (!(object instanceof DoPhanGiai)) {
             return false;
         }
-        ManHinh other = (ManHinh) object;
+        DoPhanGiai other = (DoPhanGiai) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -154,7 +138,7 @@ public class ManHinh implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.entities.ManHinh[ id=" + id + " ]";
+        return "ejb.entities.DoPhanGiai[ id=" + id + " ]";
     }
     
 }

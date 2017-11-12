@@ -5,7 +5,7 @@
  */
 package ejb.sessions;
 
-import ejb.entities.ManHinh;
+import ejb.entities.LoaiManHinh;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class ManHinhFacade extends AbstractFacade<ManHinh> implements ManHinhFacadeLocal {
+public class LoaiManHinhFacade extends AbstractFacade<LoaiManHinh> implements LoaiManHinhFacadeLocal {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class ManHinhFacade extends AbstractFacade<ManHinh> implements ManHinhFac
         return em;
     }
 
-    public ManHinhFacade() {
-        super(ManHinh.class);
+    public LoaiManHinhFacade() {
+        super(LoaiManHinh.class);
     }
     
 }

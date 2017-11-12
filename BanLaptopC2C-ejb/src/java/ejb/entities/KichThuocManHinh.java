@@ -20,7 +20,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -29,15 +28,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Winson Mac
  */
 @Entity
-@Table(name = "card_man_hinh")
+@Table(name = "kich_thuoc_man_hinh")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CardManHinh.findAll", query = "SELECT c FROM CardManHinh c")
-    , @NamedQuery(name = "CardManHinh.findById", query = "SELECT c FROM CardManHinh c WHERE c.id = :id")
-    , @NamedQuery(name = "CardManHinh.findByTenCard", query = "SELECT c FROM CardManHinh c WHERE c.tenCard = :tenCard")
-    , @NamedQuery(name = "CardManHinh.findByDungLuong", query = "SELECT c FROM CardManHinh c WHERE c.dungLuong = :dungLuong")
-    , @NamedQuery(name = "CardManHinh.findByAnHien", query = "SELECT c FROM CardManHinh c WHERE c.anHien = :anHien")})
-public class CardManHinh implements Serializable {
+    @NamedQuery(name = "KichThuocManHinh.findAll", query = "SELECT k FROM KichThuocManHinh k")
+    , @NamedQuery(name = "KichThuocManHinh.findById", query = "SELECT k FROM KichThuocManHinh k WHERE k.id = :id")
+    , @NamedQuery(name = "KichThuocManHinh.findByLoaiKichThuoc", query = "SELECT k FROM KichThuocManHinh k WHERE k.loaiKichThuoc = :loaiKichThuoc")})
+public class KichThuocManHinh implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,32 +44,21 @@ public class CardManHinh implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
-    @Column(name = "ten_card")
-    private String tenCard;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "dung_luong")
-    private int dungLuong;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "an_hien")
-    private boolean anHien;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCardManHinh", fetch = FetchType.LAZY)
+    @Column(name = "loai_kich_thuoc")
+    private float loaiKichThuoc;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKichThuocManHinh", fetch = FetchType.LAZY)
     private List<ThongSoKiThuat> thongSoKiThuatList;
 
-    public CardManHinh() {
+    public KichThuocManHinh() {
     }
 
-    public CardManHinh(Integer id) {
+    public KichThuocManHinh(Integer id) {
         this.id = id;
     }
 
-    public CardManHinh(Integer id, String tenCard, int dungLuong, boolean anHien) {
+    public KichThuocManHinh(Integer id, float loaiKichThuoc) {
         this.id = id;
-        this.tenCard = tenCard;
-        this.dungLuong = dungLuong;
-        this.anHien = anHien;
+        this.loaiKichThuoc = loaiKichThuoc;
     }
 
     public Integer getId() {
@@ -83,28 +69,12 @@ public class CardManHinh implements Serializable {
         this.id = id;
     }
 
-    public String getTenCard() {
-        return tenCard;
+    public float getLoaiKichThuoc() {
+        return loaiKichThuoc;
     }
 
-    public void setTenCard(String tenCard) {
-        this.tenCard = tenCard;
-    }
-
-    public int getDungLuong() {
-        return dungLuong;
-    }
-
-    public void setDungLuong(int dungLuong) {
-        this.dungLuong = dungLuong;
-    }
-
-    public boolean getAnHien() {
-        return anHien;
-    }
-
-    public void setAnHien(boolean anHien) {
-        this.anHien = anHien;
+    public void setLoaiKichThuoc(float loaiKichThuoc) {
+        this.loaiKichThuoc = loaiKichThuoc;
     }
 
     @XmlTransient
@@ -126,10 +96,10 @@ public class CardManHinh implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CardManHinh)) {
+        if (!(object instanceof KichThuocManHinh)) {
             return false;
         }
-        CardManHinh other = (CardManHinh) object;
+        KichThuocManHinh other = (KichThuocManHinh) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -138,7 +108,7 @@ public class CardManHinh implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.entities.CardManHinh[ id=" + id + " ]";
+        return "ejb.entities.KichThuocManHinh[ id=" + id + " ]";
     }
     
 }

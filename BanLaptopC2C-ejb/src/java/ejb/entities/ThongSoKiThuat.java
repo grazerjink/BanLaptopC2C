@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ThongSoKiThuat.findAll", query = "SELECT t FROM ThongSoKiThuat t")
     , @NamedQuery(name = "ThongSoKiThuat.findById", query = "SELECT t FROM ThongSoKiThuat t WHERE t.id = :id")
+    , @NamedQuery(name = "ThongSoKiThuat.findByCardTichHop", query = "SELECT t FROM ThongSoKiThuat t WHERE t.cardTichHop = :cardTichHop")
     , @NamedQuery(name = "ThongSoKiThuat.findByKetNoiWifi", query = "SELECT t FROM ThongSoKiThuat t WHERE t.ketNoiWifi = :ketNoiWifi")
     , @NamedQuery(name = "ThongSoKiThuat.findByThoiLuongPin", query = "SELECT t FROM ThongSoKiThuat t WHERE t.thoiLuongPin = :thoiLuongPin")})
 public class ThongSoKiThuat implements Serializable {
@@ -44,6 +45,10 @@ public class ThongSoKiThuat implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "card_tich_hop")
+    private boolean cardTichHop;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "ket_noi_wifi")
     private boolean ketNoiWifi;
     @Basic(optional = false)
@@ -54,9 +59,15 @@ public class ThongSoKiThuat implements Serializable {
     @JoinColumn(name = "id_cpu", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Cpu idCpu;
-    @JoinColumn(name = "id_man_hinh", referencedColumnName = "id")
+    @JoinColumn(name = "id_do_phan_giai", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private ManHinh idManHinh;
+    private DoPhanGiai idDoPhanGiai;
+    @JoinColumn(name = "id_kich_thuoc_man_hinh", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private KichThuocManHinh idKichThuocManHinh;
+    @JoinColumn(name = "id_loai_man_hinh", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private LoaiManHinh idLoaiManHinh;
     @JoinColumn(name = "id_o_cung", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private OCung idOCung;
@@ -77,8 +88,9 @@ public class ThongSoKiThuat implements Serializable {
         this.id = id;
     }
 
-    public ThongSoKiThuat(Integer id, boolean ketNoiWifi, String thoiLuongPin) {
+    public ThongSoKiThuat(Integer id, boolean cardTichHop, boolean ketNoiWifi, String thoiLuongPin) {
         this.id = id;
+        this.cardTichHop = cardTichHop;
         this.ketNoiWifi = ketNoiWifi;
         this.thoiLuongPin = thoiLuongPin;
     }
@@ -89,6 +101,14 @@ public class ThongSoKiThuat implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public boolean getCardTichHop() {
+        return cardTichHop;
+    }
+
+    public void setCardTichHop(boolean cardTichHop) {
+        this.cardTichHop = cardTichHop;
     }
 
     public boolean getKetNoiWifi() {
@@ -115,12 +135,28 @@ public class ThongSoKiThuat implements Serializable {
         this.idCpu = idCpu;
     }
 
-    public ManHinh getIdManHinh() {
-        return idManHinh;
+    public DoPhanGiai getIdDoPhanGiai() {
+        return idDoPhanGiai;
     }
 
-    public void setIdManHinh(ManHinh idManHinh) {
-        this.idManHinh = idManHinh;
+    public void setIdDoPhanGiai(DoPhanGiai idDoPhanGiai) {
+        this.idDoPhanGiai = idDoPhanGiai;
+    }
+
+    public KichThuocManHinh getIdKichThuocManHinh() {
+        return idKichThuocManHinh;
+    }
+
+    public void setIdKichThuocManHinh(KichThuocManHinh idKichThuocManHinh) {
+        this.idKichThuocManHinh = idKichThuocManHinh;
+    }
+
+    public LoaiManHinh getIdLoaiManHinh() {
+        return idLoaiManHinh;
+    }
+
+    public void setIdLoaiManHinh(LoaiManHinh idLoaiManHinh) {
+        this.idLoaiManHinh = idLoaiManHinh;
     }
 
     public OCung getIdOCung() {

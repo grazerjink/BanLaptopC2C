@@ -50,6 +50,8 @@ public class KhuVuc implements Serializable {
     private String tenKhuVuc;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKhuVuc", fetch = FetchType.LAZY)
     private List<PhieuMuaHang> phieuMuaHangList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKhuVuc", fetch = FetchType.LAZY)
+    private List<QuanHuyen> quanHuyenList;
 
     public KhuVuc() {
     }
@@ -86,6 +88,15 @@ public class KhuVuc implements Serializable {
 
     public void setPhieuMuaHangList(List<PhieuMuaHang> phieuMuaHangList) {
         this.phieuMuaHangList = phieuMuaHangList;
+    }
+
+    @XmlTransient
+    public List<QuanHuyen> getQuanHuyenList() {
+        return quanHuyenList;
+    }
+
+    public void setQuanHuyenList(List<QuanHuyen> quanHuyenList) {
+        this.quanHuyenList = quanHuyenList;
     }
 
     @Override

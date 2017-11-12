@@ -35,7 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cpu.findAll", query = "SELECT c FROM Cpu c")
     , @NamedQuery(name = "Cpu.findById", query = "SELECT c FROM Cpu c WHERE c.id = :id")
     , @NamedQuery(name = "Cpu.findByTenCpu", query = "SELECT c FROM Cpu c WHERE c.tenCpu = :tenCpu")
+    , @NamedQuery(name = "Cpu.findBySoNhan", query = "SELECT c FROM Cpu c WHERE c.soNhan = :soNhan")
     , @NamedQuery(name = "Cpu.findByTocDo", query = "SELECT c FROM Cpu c WHERE c.tocDo = :tocDo")
+    , @NamedQuery(name = "Cpu.findByL3Cache", query = "SELECT c FROM Cpu c WHERE c.l3Cache = :l3Cache")
     , @NamedQuery(name = "Cpu.findByAnHien", query = "SELECT c FROM Cpu c WHERE c.anHien = :anHien")})
 public class Cpu implements Serializable {
 
@@ -52,9 +54,16 @@ public class Cpu implements Serializable {
     private String tenCpu;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
+    @Column(name = "so_nhan")
+    private int soNhan;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "toc_do")
-    private String tocDo;
+    private float tocDo;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "l3_cache")
+    private int l3Cache;
     @Basic(optional = false)
     @NotNull
     @Column(name = "an_hien")
@@ -69,10 +78,12 @@ public class Cpu implements Serializable {
         this.id = id;
     }
 
-    public Cpu(Integer id, String tenCpu, String tocDo, boolean anHien) {
+    public Cpu(Integer id, String tenCpu, int soNhan, float tocDo, int l3Cache, boolean anHien) {
         this.id = id;
         this.tenCpu = tenCpu;
+        this.soNhan = soNhan;
         this.tocDo = tocDo;
+        this.l3Cache = l3Cache;
         this.anHien = anHien;
     }
 
@@ -92,12 +103,28 @@ public class Cpu implements Serializable {
         this.tenCpu = tenCpu;
     }
 
-    public String getTocDo() {
+    public int getSoNhan() {
+        return soNhan;
+    }
+
+    public void setSoNhan(int soNhan) {
+        this.soNhan = soNhan;
+    }
+
+    public float getTocDo() {
         return tocDo;
     }
 
-    public void setTocDo(String tocDo) {
+    public void setTocDo(float tocDo) {
         this.tocDo = tocDo;
+    }
+
+    public int getL3Cache() {
+        return l3Cache;
+    }
+
+    public void setL3Cache(int l3Cache) {
+        this.l3Cache = l3Cache;
     }
 
     public boolean getAnHien() {

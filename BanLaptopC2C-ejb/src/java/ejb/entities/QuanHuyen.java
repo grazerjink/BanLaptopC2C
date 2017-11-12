@@ -15,6 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -50,6 +52,9 @@ public class QuanHuyen implements Serializable {
     private String tenQuanHuyen;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
     private List<PhieuMuaHang> phieuMuaHangList;
+    @JoinColumn(name = "id_khu_vuc", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private KhuVuc idKhuVuc;
 
     public QuanHuyen() {
     }
@@ -86,6 +91,14 @@ public class QuanHuyen implements Serializable {
 
     public void setPhieuMuaHangList(List<PhieuMuaHang> phieuMuaHangList) {
         this.phieuMuaHangList = phieuMuaHangList;
+    }
+
+    public KhuVuc getIdKhuVuc() {
+        return idKhuVuc;
+    }
+
+    public void setIdKhuVuc(KhuVuc idKhuVuc) {
+        this.idKhuVuc = idKhuVuc;
     }
 
     @Override

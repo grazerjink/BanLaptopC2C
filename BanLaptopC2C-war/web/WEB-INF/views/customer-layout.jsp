@@ -37,22 +37,22 @@
     </head>
     <body>
         <!-- header -->
-        <jsp:include page="user/layout/header.jsp"/>
+        <jsp:include page="customer/layout/header.jsp"/>
         <!-- //header -->
         <!-- banner top -->
-        <jsp:include page="user/layout/banner-top.jsp"/>
+        <jsp:include page="customer/layout/banner-top.jsp"/>
         <!-- //banner-top -->
         <!-- main content -->
         <jsp:include page="${param.view}"/>
         <!-- //main content -->
         <!-- coupon -->
-        <jsp:include page="user/layout/coupon.jsp"/>
+        <jsp:include page="customer/layout/coupon.jsp"/>
         <!-- //coupon -->
         <!-- footer -->
-        <jsp:include page="user/layout/footer.jsp"/>
+        <jsp:include page="customer/layout/footer.jsp"/>
         <!-- //footer -->
         <!-- login -->
-        <jsp:include page="user/layout/login.jsp"/>
+        <jsp:include page="customer/layout/login.jsp"/>
         <!-- //login -->
     </body>
 </html>
