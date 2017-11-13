@@ -9,4 +9,3 @@ servlet but should be the only JSP outside of WEB-INF.
 <%
     pageContext.forward("/index/");
 %>
-
