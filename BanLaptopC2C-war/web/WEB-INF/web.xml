@@ -36,15 +36,21 @@
         <session-timeout> 30 </session-timeout>
     </session-config>
     <ejb-local-ref>
-        <ejb-ref-name>HangSanXuatFacade</ejb-ref-name>
+        <ejb-ref-name>ThanhPhoFacade</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local>ejb.sessions.HangSanXuatFacadeLocal</local>
-        <ejb-link>BanLaptopC2C-ejb.jar#HangSanXuatFacade</ejb-link>
+        <local>ejb.sessions.ThanhPhoFacadeLocal</local>
+        <ejb-link>BanLaptopC2C-ejb.jar#ThanhPhoFacade</ejb-link>
     </ejb-local-ref>
     <ejb-local-ref>
-        <ejb-ref-name>HangSanXuatFacade1</ejb-ref-name>
+        <ejb-ref-name>PhuongXaFacade</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local>ejb.sessions.HangSanXuatFacadeLocal</local>
-        <ejb-link>BanLaptopC2C-ejb.jar#HangSanXuatFacade</ejb-link>
+        <local>ejb.sessions.PhuongXaFacadeLocal</local>
+        <ejb-link>BanLaptopC2C-ejb.jar#PhuongXaFacade</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>QuanHuyenFacade</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>ejb.sessions.QuanHuyenFacadeLocal</local>
+        <ejb-link>BanLaptopC2C-ejb.jar#QuanHuyenFacade</ejb-link>
     </ejb-local-ref>
 </web-app>

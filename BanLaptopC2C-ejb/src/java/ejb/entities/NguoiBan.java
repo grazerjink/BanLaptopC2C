@@ -99,6 +99,8 @@ public class NguoiBan implements Serializable {
     @Column(name = "trang_thai")
     private boolean trangThai;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
+    private List<SanPham> sanPhamList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
     private List<CtPhieuMuaHang> ctPhieuMuaHangList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
     private List<PhieuMuaTin> phieuMuaTinList;
@@ -205,6 +207,15 @@ public class NguoiBan implements Serializable {
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
+    }
+
+    @XmlTransient
+    public List<SanPham> getSanPhamList() {
+        return sanPhamList;
+    }
+
+    public void setSanPhamList(List<SanPham> sanPhamList) {
+        this.sanPhamList = sanPhamList;
     }
 
     @XmlTransient

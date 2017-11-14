@@ -116,6 +116,9 @@ public class SanPham implements Serializable {
     @JoinColumn(name = "id_hang_san_xuat", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private HangSanXuat idHangSanXuat;
+    @JoinColumn(name = "id_nguoi_ban", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private NguoiBan idNguoiBan;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSanPham", fetch = FetchType.LAZY)
     private List<ThongSoKiThuat> thongSoKiThuatList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSanPham", fetch = FetchType.LAZY)
@@ -254,6 +257,14 @@ public class SanPham implements Serializable {
 
     public void setIdHangSanXuat(HangSanXuat idHangSanXuat) {
         this.idHangSanXuat = idHangSanXuat;
+    }
+
+    public NguoiBan getIdNguoiBan() {
+        return idNguoiBan;
+    }
+
+    public void setIdNguoiBan(NguoiBan idNguoiBan) {
+        this.idNguoiBan = idNguoiBan;
     }
 
     @XmlTransient

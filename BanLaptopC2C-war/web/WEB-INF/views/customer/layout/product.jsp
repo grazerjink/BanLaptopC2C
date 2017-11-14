@@ -8,7 +8,7 @@
 <div class="product-easy">
     <div class="container">
 
-        <script src="assets/js/easyResponsiveTabs.js" type="text/javascript"></script>
+        <script src="assets/customer/js/easyResponsiveTabs.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#horizontalTab').easyResponsiveTabs({
@@ -35,8 +35,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/a1.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/a1.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/a1.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/a1.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -71,8 +71,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/a8.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/a8.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/a8.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/a8.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -108,8 +108,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/a3.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/a3.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/a3.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/a3.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -145,8 +145,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/a4.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/a4.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/a4.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/a4.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -182,8 +182,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/a5.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/a5.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/a5.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/a5.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -219,8 +219,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/a6.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/a6.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/a6.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/a6.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -256,8 +256,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/a7.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/a7.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/a7.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/a7.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -293,8 +293,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/a2.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/a2.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/a2.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/a2.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -330,8 +330,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/g1.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/g1.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/g1.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/g1.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -367,8 +367,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/g2.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/g2.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/g2.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/g2.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -404,8 +404,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/g3.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/g3.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/g3.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/g3.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -441,8 +441,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/mw2.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/mw2.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/mw2.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/mw2.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -481,8 +481,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/w1.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/w1.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/w1.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/w1.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -518,8 +518,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/w2.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/w2.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/w2.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/w2.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -555,8 +555,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/mw1.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/mw1.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/mw1.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/mw1.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -592,8 +592,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/mw3.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/mw3.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/mw3.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/mw3.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -629,8 +629,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/ep2.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/ep2.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/ep2.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/ep2.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -666,8 +666,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/ep3.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/ep3.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/ep3.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/ep3.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -707,8 +707,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/g1.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/g1.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/g1.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/g1.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -743,8 +743,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/g2.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/g2.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/g2.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/g2.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -780,8 +780,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/g3.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/g3.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/g3.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/g3.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -817,8 +817,8 @@
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/mw2.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/mw2.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/mw2.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/mw2.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -854,8 +854,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/w4.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/w4.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/w4.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/w4.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>
@@ -891,8 +891,8 @@
                         <div class="col-md-3 product-men yes-marg">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="assets/images/w3.png" alt="" class="pro-image-front">
-                                    <img src="assets/images/w3.png" alt="" class="pro-image-back">
+                                    <img src="assets/customer/images/w3.png" alt="" class="pro-image-front">
+                                    <img src="assets/customer/images/w3.png" alt="" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="single/" class="link-product-add-cart">Quick View</a>

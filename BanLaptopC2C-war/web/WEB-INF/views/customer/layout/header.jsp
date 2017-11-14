@@ -19,7 +19,7 @@
 <div class="header-bot">
     <div class="container">
         <div class="col-md-3 header-left">
-            <h1><a href="index/"><img src="assets/images/logo3.jpg"></a></h1>
+            <h1><a href="index/"><img src="assets/customer/images/logo3.jpg"></a></h1>
         </div>
         <div class="col-md-6 header-middle">
             <form>

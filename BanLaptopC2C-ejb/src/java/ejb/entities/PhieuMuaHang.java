@@ -94,15 +94,18 @@ public class PhieuMuaHang implements Serializable {
     @NotNull
     @Column(name = "trang_thai")
     private boolean trangThai;
-    @JoinColumn(name = "id_khu_vuc", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private KhuVuc idKhuVuc;
     @JoinColumn(name = "id_nguoi_mua", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private NguoiMua idNguoiMua;
+    @JoinColumn(name = "id_phuong_xa", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private PhuongXa idPhuongXa;
     @JoinColumn(name = "id_quan_huyen", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private QuanHuyen idQuanHuyen;
+    @JoinColumn(name = "id_thanh_pho", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private ThanhPho idThanhPho;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPhieuMuaHang", fetch = FetchType.LAZY)
     private List<CtPhieuMuaHang> ctPhieuMuaHangList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDonHang", fetch = FetchType.LAZY)
@@ -199,14 +202,6 @@ public class PhieuMuaHang implements Serializable {
         this.trangThai = trangThai;
     }
 
-    public KhuVuc getIdKhuVuc() {
-        return idKhuVuc;
-    }
-
-    public void setIdKhuVuc(KhuVuc idKhuVuc) {
-        this.idKhuVuc = idKhuVuc;
-    }
-
     public NguoiMua getIdNguoiMua() {
         return idNguoiMua;
     }
@@ -215,12 +210,28 @@ public class PhieuMuaHang implements Serializable {
         this.idNguoiMua = idNguoiMua;
     }
 
+    public PhuongXa getIdPhuongXa() {
+        return idPhuongXa;
+    }
+
+    public void setIdPhuongXa(PhuongXa idPhuongXa) {
+        this.idPhuongXa = idPhuongXa;
+    }
+
     public QuanHuyen getIdQuanHuyen() {
         return idQuanHuyen;
     }
 
     public void setIdQuanHuyen(QuanHuyen idQuanHuyen) {
         this.idQuanHuyen = idQuanHuyen;
+    }
+
+    public ThanhPho getIdThanhPho() {
+        return idThanhPho;
+    }
+
+    public void setIdThanhPho(ThanhPho idThanhPho) {
+        this.idThanhPho = idThanhPho;
     }
 
     @XmlTransient
