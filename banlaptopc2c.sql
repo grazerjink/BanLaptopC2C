@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 13, 2017 at 06:16 AM
+-- Generation Time: Nov 14, 2017 at 06:06 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -573,6 +573,19 @@ INSERT INTO `hang_san_xuat` (`id`, `ten_hang`, `logo_hang`, `an_hien`) VALUES
 ('LE', 'Lenovo', 'lenovo.png', b'1'),
 ('LG', 'LG', 'lg.png', b'1'),
 ('SS', 'Samsung', 'samsung.png', b'1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `khu_vuc`
+--
+
+DROP TABLE IF EXISTS `khu_vuc`;
+CREATE TABLE IF NOT EXISTS `khu_vuc` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ten_khu_vuc` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -12724,6 +12737,7 @@ CREATE TABLE IF NOT EXISTS `san_pham` (
   `ghi_chu` varchar(250) NOT NULL,
   `mo_ta` varchar(500) NOT NULL,
   `ton_kho` int(11) NOT NULL,
+  `id_nguoi_ban` int(11) NOT NULL,
   `ngay_dang` datetime NOT NULL,
   `so_lan_xem` int(11) NOT NULL,
   `so_lan_mua` int(11) NOT NULL,
@@ -12731,7 +12745,8 @@ CREATE TABLE IF NOT EXISTS `san_pham` (
   `trang_thai` bit(1) NOT NULL,
   `an_hien` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_sanpham_hangsanxuat` (`id_hang_san_xuat`)
+  KEY `fk_sanpham_hangsanxuat` (`id_hang_san_xuat`),
+  KEY `fk_sanpham_nguoiban` (`id_nguoi_ban`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12942,7 +12957,8 @@ ALTER TABLE `quan_huyen`
 -- Constraints for table `san_pham`
 --
 ALTER TABLE `san_pham`
-  ADD CONSTRAINT `fk_sanpham_hangsanxuat` FOREIGN KEY (`id_hang_san_xuat`) REFERENCES `hang_san_xuat` (`id`);
+  ADD CONSTRAINT `fk_sanpham_hangsanxuat` FOREIGN KEY (`id_hang_san_xuat`) REFERENCES `hang_san_xuat` (`id`),
+  ADD CONSTRAINT `fk_sanpham_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`);
 
 --
 -- Constraints for table `so_tin_ton`
