@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 13, 2017 at 06:16 AM
+-- Generation Time: Nov 15, 2017 at 07:11 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -469,6 +469,7 @@ CREATE TABLE IF NOT EXISTS `ct_phieu_mua_hang` (
   `id_san_pham` int(11) NOT NULL,
   `gia_ban` float NOT NULL,
   `so_luong_ban` int(11) NOT NULL,
+  `ngay_giao_hang` datetime NOT NULL,
   `id_tinh_trang` char(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_ctpm_nguoiban` (`id_nguoi_ban`),
@@ -573,6 +574,19 @@ INSERT INTO `hang_san_xuat` (`id`, `ten_hang`, `logo_hang`, `an_hien`) VALUES
 ('LE', 'Lenovo', 'lenovo.png', b'1'),
 ('LG', 'LG', 'lg.png', b'1'),
 ('SS', 'Samsung', 'samsung.png', b'1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `khu_vuc`
+--
+
+DROP TABLE IF EXISTS `khu_vuc`;
+CREATE TABLE IF NOT EXISTS `khu_vuc` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ten_khu_vuc` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -707,9 +721,7 @@ CREATE TABLE IF NOT EXISTS `phieu_mua_hang` (
   `id_quan_huyen` int(11) NOT NULL,
   `id_thanh_pho` int(11) NOT NULL,
   `ghi_chu` varchar(250) NOT NULL,
-  `ngay_dat_hang` datetime NOT NULL,
-  `ngay_giao_hang` datetime NOT NULL,
-  `trang_thai` bit(1) NOT NULL,
+  `ngay_dat_hang` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_phieumuahang_khuvuc` (`id_thanh_pho`),
   KEY `fk_phieumuahang_nguoimua` (`id_nguoi_mua`),
@@ -729,12 +741,13 @@ CREATE TABLE IF NOT EXISTS `phieu_mua_tin` (
   `id_nguoi_ban` int(11) NOT NULL,
   `id_goi_tin` char(3) NOT NULL,
   `gia_ban` float NOT NULL,
-  `ngay_giao_dich` datetime NOT NULL,
+  `ngay_giao_dich` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `phuong_thuc_thanh_toan` int(11) NOT NULL,
-  `trang_thai` bit(1) NOT NULL,
+  `id_tinh_trang` char(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_phieumuatin_goitin` (`id_goi_tin`),
-  KEY `fk_phieumuatin_nguoiban` (`id_nguoi_ban`)
+  KEY `fk_phieumuatin_nguoiban` (`id_nguoi_ban`),
+  KEY `fk_phieumuatin_tinhtrang` (`id_tinh_trang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12724,6 +12737,7 @@ CREATE TABLE IF NOT EXISTS `san_pham` (
   `ghi_chu` varchar(250) NOT NULL,
   `mo_ta` varchar(500) NOT NULL,
   `ton_kho` int(11) NOT NULL,
+  `id_nguoi_ban` int(11) NOT NULL,
   `ngay_dang` datetime NOT NULL,
   `so_lan_xem` int(11) NOT NULL,
   `so_lan_mua` int(11) NOT NULL,
@@ -12731,7 +12745,8 @@ CREATE TABLE IF NOT EXISTS `san_pham` (
   `trang_thai` bit(1) NOT NULL,
   `an_hien` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_sanpham_hangsanxuat` (`id_hang_san_xuat`)
+  KEY `fk_sanpham_hangsanxuat` (`id_hang_san_xuat`),
+  KEY `fk_sanpham_nguoiban` (`id_nguoi_ban`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12885,10 +12900,11 @@ CREATE TABLE IF NOT EXISTS `tinh_trang` (
 --
 
 INSERT INTO `tinh_trang` (`id`, `ten_mo_ta`) VALUES
-('DH', 'Đơn hàng bị huỷ'),
-('XL', 'Đơn hàng chờ xử lý'),
-('TT', 'Đơn hàng đã thanh toán thành công'),
-('DG', 'Đơn hàng đã tiến hành giao');
+('TC', 'Giao dịch thành công'),
+('TB', 'Giao dịch thất bại'),
+('DH', 'Đã hủy'),
+('DG', 'Đang giao hàng'),
+('XL', 'Đang xử lý');
 
 --
 -- Constraints for dumped tables
@@ -12924,7 +12940,8 @@ ALTER TABLE `phieu_mua_hang`
 --
 ALTER TABLE `phieu_mua_tin`
   ADD CONSTRAINT `fk_phieumuatin_goitin` FOREIGN KEY (`id_goi_tin`) REFERENCES `goi_tin` (`id`),
-  ADD CONSTRAINT `fk_phieumuatin_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`);
+  ADD CONSTRAINT `fk_phieumuatin_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`),
+  ADD CONSTRAINT `fk_phieumuatin_tinhtrang` FOREIGN KEY (`id_tinh_trang`) REFERENCES `tinh_trang` (`id`);
 
 --
 -- Constraints for table `phuong_xa`
@@ -12942,7 +12959,8 @@ ALTER TABLE `quan_huyen`
 -- Constraints for table `san_pham`
 --
 ALTER TABLE `san_pham`
-  ADD CONSTRAINT `fk_sanpham_hangsanxuat` FOREIGN KEY (`id_hang_san_xuat`) REFERENCES `hang_san_xuat` (`id`);
+  ADD CONSTRAINT `fk_sanpham_hangsanxuat` FOREIGN KEY (`id_hang_san_xuat`) REFERENCES `hang_san_xuat` (`id`),
+  ADD CONSTRAINT `fk_sanpham_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`);
 
 --
 -- Constraints for table `so_tin_ton`
