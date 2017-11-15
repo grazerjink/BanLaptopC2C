@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 14, 2017 at 06:06 AM
+-- Generation Time: Nov 15, 2017 at 07:11 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -469,6 +469,7 @@ CREATE TABLE IF NOT EXISTS `ct_phieu_mua_hang` (
   `id_san_pham` int(11) NOT NULL,
   `gia_ban` float NOT NULL,
   `so_luong_ban` int(11) NOT NULL,
+  `ngay_giao_hang` datetime NOT NULL,
   `id_tinh_trang` char(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_ctpm_nguoiban` (`id_nguoi_ban`),
@@ -720,9 +721,7 @@ CREATE TABLE IF NOT EXISTS `phieu_mua_hang` (
   `id_quan_huyen` int(11) NOT NULL,
   `id_thanh_pho` int(11) NOT NULL,
   `ghi_chu` varchar(250) NOT NULL,
-  `ngay_dat_hang` datetime NOT NULL,
-  `ngay_giao_hang` datetime NOT NULL,
-  `trang_thai` bit(1) NOT NULL,
+  `ngay_dat_hang` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_phieumuahang_khuvuc` (`id_thanh_pho`),
   KEY `fk_phieumuahang_nguoimua` (`id_nguoi_mua`),
@@ -742,12 +741,13 @@ CREATE TABLE IF NOT EXISTS `phieu_mua_tin` (
   `id_nguoi_ban` int(11) NOT NULL,
   `id_goi_tin` char(3) NOT NULL,
   `gia_ban` float NOT NULL,
-  `ngay_giao_dich` datetime NOT NULL,
+  `ngay_giao_dich` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `phuong_thuc_thanh_toan` int(11) NOT NULL,
-  `trang_thai` bit(1) NOT NULL,
+  `id_tinh_trang` char(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_phieumuatin_goitin` (`id_goi_tin`),
-  KEY `fk_phieumuatin_nguoiban` (`id_nguoi_ban`)
+  KEY `fk_phieumuatin_nguoiban` (`id_nguoi_ban`),
+  KEY `fk_phieumuatin_tinhtrang` (`id_tinh_trang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12900,10 +12900,11 @@ CREATE TABLE IF NOT EXISTS `tinh_trang` (
 --
 
 INSERT INTO `tinh_trang` (`id`, `ten_mo_ta`) VALUES
-('DH', 'Đơn hàng bị huỷ'),
-('XL', 'Đơn hàng chờ xử lý'),
-('TT', 'Đơn hàng đã thanh toán thành công'),
-('DG', 'Đơn hàng đã tiến hành giao');
+('TC', 'Giao dịch thành công'),
+('TB', 'Giao dịch thất bại'),
+('DH', 'Đã hủy'),
+('DG', 'Đang giao hàng'),
+('XL', 'Đang xử lý');
 
 --
 -- Constraints for dumped tables
@@ -12939,7 +12940,8 @@ ALTER TABLE `phieu_mua_hang`
 --
 ALTER TABLE `phieu_mua_tin`
   ADD CONSTRAINT `fk_phieumuatin_goitin` FOREIGN KEY (`id_goi_tin`) REFERENCES `goi_tin` (`id`),
-  ADD CONSTRAINT `fk_phieumuatin_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`);
+  ADD CONSTRAINT `fk_phieumuatin_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`),
+  ADD CONSTRAINT `fk_phieumuatin_tinhtrang` FOREIGN KEY (`id_tinh_trang`) REFERENCES `tinh_trang` (`id`);
 
 --
 -- Constraints for table `phuong_xa`
