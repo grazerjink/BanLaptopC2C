@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 15, 2017 at 07:11 AM
+-- Generation Time: Nov 16, 2017 at 06:20 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -468,7 +468,8 @@ CREATE TABLE IF NOT EXISTS `ct_phieu_mua_hang` (
   `id_nguoi_ban` int(11) NOT NULL,
   `id_san_pham` int(11) NOT NULL,
   `gia_ban` float NOT NULL,
-  `so_luong_ban` int(11) NOT NULL,
+  `so_luong_mua` int(11) NOT NULL,
+  `thanh_tien` float NOT NULL,
   `ngay_giao_hang` datetime NOT NULL,
   `id_tinh_trang` char(2) NOT NULL,
   PRIMARY KEY (`id`),
@@ -721,6 +722,7 @@ CREATE TABLE IF NOT EXISTS `phieu_mua_hang` (
   `id_quan_huyen` int(11) NOT NULL,
   `id_thanh_pho` int(11) NOT NULL,
   `ghi_chu` varchar(250) NOT NULL,
+  `tong_tien` float NOT NULL,
   `ngay_dat_hang` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_phieumuahang_khuvuc` (`id_thanh_pho`),
