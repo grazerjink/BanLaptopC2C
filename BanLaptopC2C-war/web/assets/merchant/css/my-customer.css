@@ -21,13 +21,13 @@ a:hover {
 }
 
 .ks-header {  
-    height: 50px;
+    height: 60px;
     background-color: #FDA30E;
 }
 
 .ks-page>.ks-header>.v2q-logo {
     color: #fff;
-    line-height: 50px;
+    line-height: 60px;
     font-family: 'Cabin', sans-serif;    
     margin-left: 60px;
     font-size: 20px;

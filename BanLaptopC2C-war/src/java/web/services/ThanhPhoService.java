@@ -5,6 +5,7 @@
  */
 package web.services;
 
+import ejb.business.ThanhPhoBusinessLocal;
 import ejb.entities.ThanhPho;
 import ejb.sessions.ThanhPhoFacadeLocal;
 import java.util.List;
@@ -22,14 +23,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ThanhPhoService {
 
+    ThanhPhoBusinessLocal thanhPhoBusiness = lookupThanhPhoBusinessLocal();
     ThanhPhoFacadeLocal thanhPhoFacade = lookupThanhPhoFacadeLocal();
-
-    public List<ThanhPho> layDanhSachThanhPho() {
-        return thanhPhoFacade.findAll();
-    }
-    
-    
-    
     
     private ThanhPhoFacadeLocal lookupThanhPhoFacadeLocal() {
         try {
@@ -39,6 +34,20 @@ public class ThanhPhoService {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
+    }
+
+    private ThanhPhoBusinessLocal lookupThanhPhoBusinessLocal() {
+        try {
+            Context c = new InitialContext();
+            return (ThanhPhoBusinessLocal) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/ThanhPhoBusiness!ejb.business.ThanhPhoBusinessLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+    
+    public List<ThanhPho> layDanhSachThanhPho() {
+        return thanhPhoBusiness.layDanhSachThanhPho();
     }
     
 }

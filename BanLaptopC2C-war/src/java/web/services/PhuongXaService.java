@@ -5,8 +5,10 @@
  */
 package web.services;
 
+import ejb.business.PhuongXaBusinessLocal;
 import ejb.entities.PhuongXa;
 import ejb.sessions.PhuongXaFacadeLocal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,13 +24,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class PhuongXaService {
 
-    PhuongXaFacadeLocal phuongXaFacade = lookupPhuongXaFacadeLocal();
+    PhuongXaBusinessLocal phuongXaBusiness = lookupPhuongXaBusinessLocal();
 
-    public List<PhuongXa> layDanhSachPhuongXa() {
-        return phuongXaFacade.findAll();
-    }
-    
-    
+    PhuongXaFacadeLocal phuongXaFacade = lookupPhuongXaFacadeLocal();
     
     private PhuongXaFacadeLocal lookupPhuongXaFacadeLocal() {
         try {
@@ -38,6 +36,27 @@ public class PhuongXaService {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
+    }
+
+    private PhuongXaBusinessLocal lookupPhuongXaBusinessLocal() {
+        try {
+            Context c = new InitialContext();
+            return (PhuongXaBusinessLocal) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/PhuongXaBusiness!ejb.business.PhuongXaBusinessLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    public List<String> layDanhSachTheoQuanHuyen(Integer id) {
+        List<String> dsTenPhuongXa = new ArrayList<>();
+        dsTenPhuongXa.add("<option disabled selected>Chọn Phường/Xã</option>");
+        
+        List<PhuongXa> dsPhuongXa = phuongXaBusiness.layDanhSachTheoQuanHuyen(id);
+        dsPhuongXa.forEach(it -> {
+            dsTenPhuongXa.add("<option value='"+it.getId()+"'>"+it.getTenPhuongXa()+"</option>");
+        });        
+        return dsTenPhuongXa;
     }
     
 }

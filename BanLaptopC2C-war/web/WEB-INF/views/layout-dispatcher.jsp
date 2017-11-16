@@ -7,9 +7,13 @@
     if (view.startsWith("admin/")) {
         pageContext.include("admin-layout.jsp");
     }
-    if (view.startsWith("merchant/")) {
-        pageContext.include("merchant-layout.jsp");
-    } else {
+    if (view.startsWith("merchant/landing/")) {
+        pageContext.include("merchant-landing-layout.jsp");
+    } 
+    if (view.startsWith("merchant/dashboard/")) {
+        pageContext.include("merchant-dashboard-layout.jsp");
+    }
+    else {
         pageContext.include("blank-layout.jsp");
     }
 %>
