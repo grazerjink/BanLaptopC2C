@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class KhuVucFacade extends AbstractFacade<KhuVuc> implements KhuVucFacadeLocal {
+public class KhuVucFacade extends AbstractFacade<KhuVuc> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

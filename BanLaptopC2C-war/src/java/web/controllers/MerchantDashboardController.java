@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("merchant")
 public class MerchantDashboardController {
     
-    @RequestMapping("dashboard")
+    @RequestMapping("quan-ly-gian-hang")
     public String dashboard() {
-        return "merchant/dashboard/home";
+        return "merchant/dashboard/trang-quan-ly";
     }
     
 }

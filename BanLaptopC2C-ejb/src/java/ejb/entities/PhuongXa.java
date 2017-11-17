@@ -61,6 +61,8 @@ public class PhuongXa implements Serializable {
     @JoinColumn(name = "id_quan_huyen", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private QuanHuyen idQuanHuyen;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPhuongXa", fetch = FetchType.LAZY)
+    private List<NguoiBan> nguoiBanList;
 
     public PhuongXa() {
     }
@@ -114,6 +116,15 @@ public class PhuongXa implements Serializable {
 
     public void setIdQuanHuyen(QuanHuyen idQuanHuyen) {
         this.idQuanHuyen = idQuanHuyen;
+    }
+
+    @XmlTransient
+    public List<NguoiBan> getNguoiBanList() {
+        return nguoiBanList;
+    }
+
+    public void setNguoiBanList(List<NguoiBan> nguoiBanList) {
+        this.nguoiBanList = nguoiBanList;
     }
 
     @Override

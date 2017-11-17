@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 16, 2017 at 06:20 AM
+-- Generation Time: Nov 17, 2017 at 05:33 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -649,11 +649,24 @@ CREATE TABLE IF NOT EXISTS `nguoi_ban` (
   `cmnd` varchar(12) NOT NULL,
   `so_dien_thoai` varchar(11) NOT NULL,
   `dia_chi` varchar(250) NOT NULL,
-  `ngay_dang_ky` datetime NOT NULL,
-  `kich_hoat` bit(1) NOT NULL,
-  `trang_thai` bit(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_quan_huyen` int(11) NOT NULL,
+  `id_phuong_xa` int(11) NOT NULL,
+  `id_thanh_pho` int(11) NOT NULL,
+  `ngay_dang_ky` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `kich_hoat` bit(1) NOT NULL DEFAULT b'0',
+  `trang_thai` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`id`),
+  KEY `fk_thanhpho_nguoiban` (`id_thanh_pho`),
+  KEY `fk_quanhuyen_nguoiban` (`id_quan_huyen`),
+  KEY `fk_phuongxa_nguoiban` (`id_phuong_xa`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `nguoi_ban`
+--
+
+INSERT INTO `nguoi_ban` (`id`, `email`, `mat_khau`, `ho_ten`, `cmnd`, `so_dien_thoai`, `dia_chi`, `id_quan_huyen`, `id_phuong_xa`, `id_thanh_pho`, `ngay_dang_ky`, `kich_hoat`, `trang_thai`) VALUES
+(1, 'huucanh@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Nguyễn Hữu Cảnh', '0123456789', '0120456456', '487 Lý Tự Trọng', 556, 9220, 50, '2017-11-18 00:08:54', b'0', b'0');
 
 -- --------------------------------------------------------
 
@@ -12927,6 +12940,14 @@ ALTER TABLE `ct_phieu_mua_hang`
 ALTER TABLE `danh_gia`
   ADD CONSTRAINT `fk_danhgia_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`),
   ADD CONSTRAINT `fk_danhgia_phieumuahang` FOREIGN KEY (`id_don_hang`) REFERENCES `phieu_mua_hang` (`id`);
+
+--
+-- Constraints for table `nguoi_ban`
+--
+ALTER TABLE `nguoi_ban`
+  ADD CONSTRAINT `fk_phuongxa_nguoiban` FOREIGN KEY (`id_phuong_xa`) REFERENCES `phuong_xa` (`id`),
+  ADD CONSTRAINT `fk_quanhuyen_nguoiban` FOREIGN KEY (`id_quan_huyen`) REFERENCES `quan_huyen` (`id`),
+  ADD CONSTRAINT `fk_thanhpho_nguoiban` FOREIGN KEY (`id_thanh_pho`) REFERENCES `thanh_pho` (`id`);
 
 --
 -- Constraints for table `phieu_mua_hang`

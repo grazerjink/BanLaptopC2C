@@ -1,0 +1,75 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 17, 2017, 11:52:27 AM
+    Author     : Winson Mac
+*/
+
+/*BEGIN HEADER STYLES*/
+.navbar.ks-navbar {
+    background-color: #FDA30E;
+}
+.ks-navbar-logo .v2q-logo span {
+    font-family: 'Libre Barcode 39 Text', cursive;
+    font-size: 36px;
+}
+.ks-navbar-menu .nav-item, .ks-navbar-actions .nav-item{
+    border-color: #fff;
+}
+.ks-navbar>.ks-wrapper>.nav>.ks-navbar-actions>.ks-user {
+    border-right: 1px solid #fff;
+}
+/*END HEADER STYLES*/
+
+/*BEGIN HEADER NAV MENU, ACTION STYLES*/
+.ks-navbar .v2q-link:hover {
+    background-color: #e08b00;
+}
+.ks-navbar .nav-item.show {
+    background-color: #e08b00;
+}
+.ks-scroll-wrapper {
+    background-color: #FFECB3;
+}
+.ks-navbar .ks-dropdown-grid-images.show>.dropdown-menu .ks-scroll-wrapper>.ks-grid-item:hover {
+    background-color: #fff8e1;
+}
+@media only screen and (max-width: 1610px) {
+    .ks-navbar>.ks-wrapper>.nav>.ks-navbar-actions>.ks-user .ks-info {
+        display: block;
+    }
+}
+/*END HEADER NAV MENU, ACTION STYLES*/
+
+/*BEGIN SIDEBAR STYLES*/
+.jspContainer {
+    background-color: #FFECB3;
+}
+.nav.nav-pills.nav-stacked .nav-item .nav-link:hover {
+    background-color: #FDA30E;
+}
+.nav.nav-pills.nav-stacked .nav-item.open>.nav-link {
+    background-color: #FDA30E;
+}
+body.ks-sidebar-sections .ks-page-container .ks-sidebar .ks-wrapper section>.nav .nav-item .dropdown-menu .dropdown-item{
+    background-color: #fff8e1;
+}
+body.ks-sidebar-sections .ks-page-container .ks-sidebar .ks-wrapper section>.nav .nav-item .dropdown-menu .dropdown-item:hover{
+    color: #000;
+    background-color: #ffe0b2;
+}
+body.ks-sidebar-sections .ks-page-container .ks-sidebar .ks-wrapper section>.nav .nav-item .dropdown-menu>.nav-item>.nav-link {
+    background-color: #fff8e1;
+}
+body.ks-sidebar-sections .ks-page-container .ks-sidebar .ks-wrapper section>.nav .nav-item .dropdown-menu>.nav-item>.nav-link:hover {
+    color: #000;
+    background-color: #ffe0b2;
+}
+body.ks-sidebar-sections .ks-page-container .ks-sidebar .ks-wrapper section>.nav .nav-item .dropdown-menu>.nav-item.open>.nav-link {
+    color: #000;
+    background-color: #ffe0b2;
+}
+/*END SIDEBAR STYLES*/

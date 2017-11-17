@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class CardManHinhFacade extends AbstractFacade<CardManHinh> implements CardManHinhFacadeLocal {
+public class CardManHinhFacade extends AbstractFacade<CardManHinh> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

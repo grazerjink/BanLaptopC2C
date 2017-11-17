@@ -5,9 +5,9 @@
  */
 package web.services;
 
-import ejb.business.PhuongXaBusinessLocal;
+import ejb.business.PhuongXaBusiness;
 import ejb.entities.PhuongXa;
-import ejb.sessions.PhuongXaFacadeLocal;
+import ejb.sessions.PhuongXaFacade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,24 +24,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class PhuongXaService {
 
-    PhuongXaBusinessLocal phuongXaBusiness = lookupPhuongXaBusinessLocal();
+    PhuongXaFacade phuongXaFacade = lookupPhuongXaFacadeBean();
 
-    PhuongXaFacadeLocal phuongXaFacade = lookupPhuongXaFacadeLocal();
-    
-    private PhuongXaFacadeLocal lookupPhuongXaFacadeLocal() {
+    PhuongXaBusiness phuongXaBusiness = lookupPhuongXaBusinessBean();
+
+    private PhuongXaBusiness lookupPhuongXaBusinessBean() {
         try {
             Context c = new InitialContext();
-            return (PhuongXaFacadeLocal) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/PhuongXaFacade!ejb.sessions.PhuongXaFacadeLocal");
+            return (PhuongXaBusiness) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/PhuongXaBusiness!ejb.business.PhuongXaBusiness");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
 
-    private PhuongXaBusinessLocal lookupPhuongXaBusinessLocal() {
+    private PhuongXaFacade lookupPhuongXaFacadeBean() {
         try {
             Context c = new InitialContext();
-            return (PhuongXaBusinessLocal) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/PhuongXaBusiness!ejb.business.PhuongXaBusinessLocal");
+            return (PhuongXaFacade) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/PhuongXaFacade!ejb.sessions.PhuongXaFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
@@ -51,12 +51,12 @@ public class PhuongXaService {
     public List<String> layDanhSachTheoQuanHuyen(Integer id) {
         List<String> dsTenPhuongXa = new ArrayList<>();
         dsTenPhuongXa.add("<option disabled selected>Chọn Phường/Xã</option>");
-        
+
         List<PhuongXa> dsPhuongXa = phuongXaBusiness.layDanhSachTheoQuanHuyen(id);
         dsPhuongXa.forEach(it -> {
-            dsTenPhuongXa.add("<option value='"+it.getId()+"'>"+it.getTenPhuongXa()+"</option>");
-        });        
+            dsTenPhuongXa.add("<option value='" + it.getId() + "'>" + it.getTenPhuongXa() + "</option>");
+        });
         return dsTenPhuongXa;
     }
-    
+
 }

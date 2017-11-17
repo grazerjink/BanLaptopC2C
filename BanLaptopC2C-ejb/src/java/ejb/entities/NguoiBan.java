@@ -16,6 +16,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -106,6 +108,15 @@ public class NguoiBan implements Serializable {
     private List<PhieuMuaTin> phieuMuaTinList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
     private List<DanhGia> danhGiaList;
+    @JoinColumn(name = "id_phuong_xa", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private PhuongXa idPhuongXa;
+    @JoinColumn(name = "id_quan_huyen", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private QuanHuyen idQuanHuyen;
+    @JoinColumn(name = "id_thanh_pho", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private ThanhPho idThanhPho;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
     private List<SoTinTon> soTinTonList;
 
@@ -243,6 +254,30 @@ public class NguoiBan implements Serializable {
 
     public void setDanhGiaList(List<DanhGia> danhGiaList) {
         this.danhGiaList = danhGiaList;
+    }
+
+    public PhuongXa getIdPhuongXa() {
+        return idPhuongXa;
+    }
+
+    public void setIdPhuongXa(PhuongXa idPhuongXa) {
+        this.idPhuongXa = idPhuongXa;
+    }
+
+    public QuanHuyen getIdQuanHuyen() {
+        return idQuanHuyen;
+    }
+
+    public void setIdQuanHuyen(QuanHuyen idQuanHuyen) {
+        this.idQuanHuyen = idQuanHuyen;
+    }
+
+    public ThanhPho getIdThanhPho() {
+        return idThanhPho;
+    }
+
+    public void setIdThanhPho(ThanhPho idThanhPho) {
+        this.idThanhPho = idThanhPho;
     }
 
     @XmlTransient

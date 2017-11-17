@@ -5,9 +5,9 @@
  */
 package web.services;
 
-import ejb.business.ThanhPhoBusinessLocal;
+import ejb.business.ThanhPhoBusiness;
 import ejb.entities.ThanhPho;
-import ejb.sessions.ThanhPhoFacadeLocal;
+import ejb.sessions.ThanhPhoFacade;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,31 +23,32 @@ import org.springframework.stereotype.Component;
 @Component
 public class ThanhPhoService {
 
-    ThanhPhoBusinessLocal thanhPhoBusiness = lookupThanhPhoBusinessLocal();
-    ThanhPhoFacadeLocal thanhPhoFacade = lookupThanhPhoFacadeLocal();
+    ThanhPhoFacade thanhPhoFacade = lookupThanhPhoFacadeBean();
+
+    ThanhPhoBusiness thanhPhoBusiness = lookupThanhPhoBusinessBean();
     
-    private ThanhPhoFacadeLocal lookupThanhPhoFacadeLocal() {
+    private ThanhPhoBusiness lookupThanhPhoBusinessBean() {
         try {
             Context c = new InitialContext();
-            return (ThanhPhoFacadeLocal) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/ThanhPhoFacade!ejb.sessions.ThanhPhoFacadeLocal");
+            return (ThanhPhoBusiness) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/ThanhPhoBusiness!ejb.business.ThanhPhoBusiness");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
 
-    private ThanhPhoBusinessLocal lookupThanhPhoBusinessLocal() {
+    private ThanhPhoFacade lookupThanhPhoFacadeBean() {
         try {
             Context c = new InitialContext();
-            return (ThanhPhoBusinessLocal) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/ThanhPhoBusiness!ejb.business.ThanhPhoBusinessLocal");
+            return (ThanhPhoFacade) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/ThanhPhoFacade!ejb.sessions.ThanhPhoFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
-    
+
     public List<ThanhPho> layDanhSachThanhPho() {
         return thanhPhoBusiness.layDanhSachThanhPho();
     }
-    
+
 }

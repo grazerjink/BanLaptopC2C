@@ -44,6 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "PhieuMuaHang.findByTenNguoiNhan", query = "SELECT p FROM PhieuMuaHang p WHERE p.tenNguoiNhan = :tenNguoiNhan")
     , @NamedQuery(name = "PhieuMuaHang.findByDiaChiGiao", query = "SELECT p FROM PhieuMuaHang p WHERE p.diaChiGiao = :diaChiGiao")
     , @NamedQuery(name = "PhieuMuaHang.findByGhiChu", query = "SELECT p FROM PhieuMuaHang p WHERE p.ghiChu = :ghiChu")
+    , @NamedQuery(name = "PhieuMuaHang.findByTongTien", query = "SELECT p FROM PhieuMuaHang p WHERE p.tongTien = :tongTien")
     , @NamedQuery(name = "PhieuMuaHang.findByNgayDatHang", query = "SELECT p FROM PhieuMuaHang p WHERE p.ngayDatHang = :ngayDatHang")})
 public class PhieuMuaHang implements Serializable {
 
@@ -80,6 +81,10 @@ public class PhieuMuaHang implements Serializable {
     private String ghiChu;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "tong_tien")
+    private float tongTien;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "ngay_dat_hang")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayDatHang;
@@ -107,13 +112,14 @@ public class PhieuMuaHang implements Serializable {
         this.id = id;
     }
 
-    public PhieuMuaHang(Integer id, String emailNhan, String soDienThoai, String tenNguoiNhan, String diaChiGiao, String ghiChu, Date ngayDatHang) {
+    public PhieuMuaHang(Integer id, String emailNhan, String soDienThoai, String tenNguoiNhan, String diaChiGiao, String ghiChu, float tongTien, Date ngayDatHang) {
         this.id = id;
         this.emailNhan = emailNhan;
         this.soDienThoai = soDienThoai;
         this.tenNguoiNhan = tenNguoiNhan;
         this.diaChiGiao = diaChiGiao;
         this.ghiChu = ghiChu;
+        this.tongTien = tongTien;
         this.ngayDatHang = ngayDatHang;
     }
 
@@ -163,6 +169,14 @@ public class PhieuMuaHang implements Serializable {
 
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
+    }
+
+    public float getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(float tongTien) {
+        this.tongTien = tongTien;
     }
 
     public Date getNgayDatHang() {

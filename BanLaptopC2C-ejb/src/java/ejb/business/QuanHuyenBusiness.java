@@ -7,6 +7,7 @@ package ejb.business;
 
 import ejb.entities.QuanHuyen;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +18,8 @@ import javax.persistence.Query;
  * @author Winson Mac
  */
 @Stateless
-public class QuanHuyenBusiness implements QuanHuyenBusinessLocal {
+@LocalBean
+public class QuanHuyenBusiness {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;
@@ -26,7 +28,6 @@ public class QuanHuyenBusiness implements QuanHuyenBusinessLocal {
         em.persist(object);
     }
 
-    @Override
     public List<QuanHuyen> layDanhSachTheoThanhPho(Integer id) {
         String hql = "FROM QuanHuyen q WHERE q.idThanhPho.id = :id ORDER BY q.tenQuanHuyen";
         Query query = em.createQuery(hql);

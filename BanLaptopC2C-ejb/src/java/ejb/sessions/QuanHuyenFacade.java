@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class QuanHuyenFacade extends AbstractFacade<QuanHuyen> implements QuanHuyenFacadeLocal {
+public class QuanHuyenFacade extends AbstractFacade<QuanHuyen> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class CpuFacade extends AbstractFacade<Cpu> implements CpuFacadeLocal {
+public class CpuFacade extends AbstractFacade<Cpu> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;
