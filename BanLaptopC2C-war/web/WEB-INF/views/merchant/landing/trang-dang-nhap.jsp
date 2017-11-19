@@ -8,8 +8,23 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-<link href="assets/merchant/css/my-custom-styles.css" rel="stylesheet" type="text/css"/>
+<style>
+    .form-control:hover {
+        border-color: #FFC237;
+    }
+    .form-control:focus {
+        border-color: #FDA30E;
+    }
+    .form-control:focus:hover{
+        border-color: #FDA30E;
+        box-shadow: none;
+    }
+    .v2q-input-wrapper .icon-addon span {
+        font-size: 20px;
+        line-height: 30px;
+        color: #FDA30E;
+    } 
+</style>
 <jsp:include page="../layout/landing/landing-header.jsp"/>
 <div class="ks-body container">
     <div class="row">
@@ -28,7 +43,7 @@
                     <form:form cssClass="form-container" modelAttribute="nguoiBan" action="merchant/dang-nhap/" method="POST">
                         <div class="form-group">
                             <div class="input-icon icon-left icon-lg icon-color-primary">
-                                <form:input path="email" cssClass="form-control" placeholder="Email"/>
+                                <form:input path="email" cssClass="form-control ks-rounded" placeholder="Email"/>
                                 <span class="icon-addon">
                                     <span class="la la-at"></span>
                                 </span>
@@ -36,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-icon icon-left icon-lg icon-color-primary">
-                                <form:input path="matKhau" type="password" cssClass="form-control" placeholder="Mật khẩu"/>
+                                <form:input path="matKhau" type="password" cssClass="form-control ks-rounded" placeholder="Mật khẩu"/>
                                 <span class="icon-addon">
                                     <span class="la la-key"></span>
                                 </span>
@@ -61,6 +76,22 @@
 <jsp:include page="../layout/landing/landing-footer.jsp"/>
 <script>
     $(function () {
+        $("#nguoiBan").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                matKhau: "required"
+            },
+            messages: {
+                email: {
+                    required: "Vui lòng nhập email.",
+                    email: "Chưa đúng định dạng email."
+                },
+                matKhau: "Vui lòng nhập mật khẩu"
+            }
+        });
     <c:if test="${param.success != null && fn:length(param.success)>0}">
         showSuccessToast("${param.success}");
     </c:if>

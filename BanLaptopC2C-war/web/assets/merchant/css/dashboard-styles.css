@@ -22,6 +22,9 @@ and open the template in the editor.
 .ks-navbar>.ks-wrapper>.nav>.ks-navbar-actions>.ks-user {
     border-right: 1px solid #fff;
 }
+.ks-navbar .nav-item.show .dropdown-menu .dropdown-item>.ks-icon {
+    color: #FDA30E;
+}
 /*END HEADER STYLES*/
 
 /*BEGIN HEADER NAV MENU, ACTION STYLES*/
@@ -36,6 +39,9 @@ and open the template in the editor.
 }
 .ks-navbar .ks-dropdown-grid-images.show>.dropdown-menu .ks-scroll-wrapper>.ks-grid-item:hover {
     background-color: #fff8e1;
+}
+.ks-navbar .nav-item.show .dropdown-menu .dropdown-item .v2q-icon {
+    color: #FDA30E;
 }
 @media only screen and (max-width: 1610px) {
     .ks-navbar>.ks-wrapper>.nav>.ks-navbar-actions>.ks-user .ks-info {

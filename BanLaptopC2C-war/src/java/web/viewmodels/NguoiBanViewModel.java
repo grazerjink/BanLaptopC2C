@@ -15,6 +15,11 @@ import ejb.entities.SoTinTon;
 import ejb.entities.ThanhPho;
 import java.util.Date;
 import java.util.List;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 /**
  *
@@ -23,20 +28,34 @@ import java.util.List;
 public class NguoiBanViewModel {
 
     Integer id;
+    @NotEmpty   
+    @Email
     String email;
+    @NotEmpty
+    @Pattern(regexp = "[a-zA-Z0-9]{4,20}")
     String matKhau;    
+    @NotEmpty
     String matKhauXacNhan;
+    @NotEmpty
     String hoTen;
+    @NotEmpty
+    @Pattern(regexp = "[0-9]{9,12}")
     String cmnd;
+    @NotEmpty
+    @Pattern(regexp = "[0-9]{10,11}")
     String soDienThoai;
+    @NotEmpty
     String diaChi;
     Date ngayDangKy;
     boolean kichHoat;
     boolean trangThai;
     
+    @NotNull
     PhuongXa idPhuongXa;
+    @NotNull
     QuanHuyen idQuanHuyen;
-    ThanhPho idThanhPho;
+    @NotNull
+    ThanhPho idThanhPho;    
     
     List<SanPham> sanPhamList;
     List<CtPhieuMuaHang> ctPhieuMuaHangList;

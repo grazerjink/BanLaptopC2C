@@ -8,11 +8,16 @@ package web.controllers;
 import com.google.gson.Gson;
 import ejb.entities.NguoiBan;
 import ejb.entities.ThanhPho;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +36,7 @@ import web.viewmodels.NguoiBanViewModel;
 @Controller
 @RequestMapping("merchant")
 public class MerchantLandingController {
+
     @Autowired
     ThanhPhoService thanhPhoService;
     @Autowired
@@ -39,51 +45,60 @@ public class MerchantLandingController {
     QuanHuyenService quanHuyenService;
     @Autowired
     NguoiBanService nguoiBanService;
-    
-    
-    @RequestMapping(value = {"","dang-nhap"})
-    public String dangNhap(ModelMap model) {
+
+    @RequestMapping(value = {"", "dang-nhap"})
+    public String dangNhap(ModelMap model, HttpSession httpSession) {
+        if(httpSession.getAttribute("merchant")!=null) {
+            return "redirect:/merchant/quan-ly-gian-hang/";
+        }
         model.addAttribute("nguoiBan", new NguoiBanViewModel());
         return "merchant/landing/trang-dang-nhap";
     }
-    
+
     @RequestMapping(value = "dang-nhap", method = RequestMethod.POST)
-    public String dangNhap(ModelMap model, 
+    public String dangNhap(ModelMap model,
             HttpSession httpSession,
             @ModelAttribute("nguoiBan") NguoiBanViewModel nguoiBanVM) {
-        if(nguoiBanService.dangNhapHeThong(httpSession, model, nguoiBanVM)) {
+        if (nguoiBanService.dangNhapHeThong(httpSession, model, nguoiBanVM)) {
             return "redirect:/merchant/quan-ly-gian-hang";
         }
         return "merchant/landing/trang-dang-nhap";
     }
-    
+
     @RequestMapping("dang-ky")
-    public String dangKy(ModelMap model) {
+    public String dangKy(ModelMap model, HttpSession httpSession) {
+        if(httpSession.getAttribute("merchant")!=null) {
+            return "redirect:/merchant/quan-ly-gian-hang/";
+        }
         model.addAttribute("nguoiBan", new NguoiBanViewModel());
         return "merchant/landing/trang-dang-ky";
     }
-    
-    @RequestMapping(value={"dang-ky"},method = RequestMethod.POST)
+
+    @RequestMapping(value = {"dang-ky"}, method = RequestMethod.POST)
     public String dangKy(ModelMap model,
-            @ModelAttribute("nguoiBan") NguoiBanViewModel nguoiBanVM) {
-        if(nguoiBanService.dangKyThongTin(model, nguoiBanVM))
-        {
-            return "redirect:/merchant/dang-nhap/";
+            HttpServletRequest req,
+            @ModelAttribute("nguoiBan") @Valid NguoiBanViewModel nguoiBanVM, BindingResult errors) {
+        if (errors.hasErrors()) {
+            model.addAttribute("serverErrors", "Xin vui lòng điền thông tin chính xác để được kích hoạt tài khoản.");
+        } else {
+            if (nguoiBanService.dangKyThongTin(model, nguoiBanVM, req)) {
+                return "redirect:/merchant/dang-nhap/";
+            }
         }
         return "merchant/landing/trang-dang-ky";
     }
-    
+
     @ModelAttribute("dsThanhPho")
     public List<ThanhPho> layDanhSachThanhPho() {
         return thanhPhoService.layDanhSachThanhPho();
-    }    
-    
+    }
+
     @ResponseBody
     @RequestMapping("ds-quanhuyen-theo-tp")
-    public String dsQuanHuyenTheoThanhPho(@RequestParam("id") Integer id) {        
+    public String dsQuanHuyenTheoThanhPho(@RequestParam("id") Integer id) {
         return new Gson().toJson(quanHuyenService.layDanhSachTheoThanhPho(id));
     }
-    
+
     @ResponseBody
     @RequestMapping("ds-phuongxa-theo-quanhuyen")
     public String dsPhuongXaTheoQuanHuyen(@RequestParam("id") Integer id) {

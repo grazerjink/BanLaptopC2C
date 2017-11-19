@@ -23,12 +23,22 @@
         <link rel="stylesheet" type="text/css" href="assets/merchant/template/libs/tether/css/tether.min.css">
         <link rel="stylesheet" type="text/css" href="assets/merchant/template/styles/common.min.css">
         <link rel="stylesheet" type="text/css" href="assets/merchant/template/styles/pages/auth.min.css">
-        <link rel="stylesheet" type="text/css" href="assets/vendor/jquery-toast-plugin/demos/css/jquery.toast.css">
+        
+        <!-- MY CUSTOM STYLES CSS -->
+        <link href="assets/merchant/css/landing-styles.css" rel="stylesheet" type="text/css"/>
+        
+        <!-- VENDOR STYLES CSS -->
+        <link href="assets/vendor/toastr/build/toastr.min.css" rel="stylesheet" type="text/css"/>
         
         <script src="assets/merchant/template/libs/jquery/jquery.min.js"></script>
         <script src="assets/merchant/template/libs/tether/js/tether.min.js"></script>
         <script src="assets/merchant/template/libs/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/vendor/jquery-toast-plugin/demos/js/jquery.toast.js"></script>
+        
+        <!-- VENDOR JS -->
+        <script src="assets/vendor/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
+        <script src="assets/vendor/jquery-validation-1.17.0/dist/additional-methods.min.js"></script>
+        <script src="assets/vendor/toastr/build/toastr.min.js"></script>
+
         <script src="assets/merchant/js/show-toast.js"></script>
     </head>
     <body>

@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,7 +37,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "PhieuMuaTin.findById", query = "SELECT p FROM PhieuMuaTin p WHERE p.id = :id")
     , @NamedQuery(name = "PhieuMuaTin.findByGiaBan", query = "SELECT p FROM PhieuMuaTin p WHERE p.giaBan = :giaBan")
     , @NamedQuery(name = "PhieuMuaTin.findByNgayGiaoDich", query = "SELECT p FROM PhieuMuaTin p WHERE p.ngayGiaoDich = :ngayGiaoDich")
-    , @NamedQuery(name = "PhieuMuaTin.findByPhuongThucThanhToan", query = "SELECT p FROM PhieuMuaTin p WHERE p.phuongThucThanhToan = :phuongThucThanhToan")})
+    , @NamedQuery(name = "PhieuMuaTin.findByPhuongThucThanhToan", query = "SELECT p FROM PhieuMuaTin p WHERE p.phuongThucThanhToan = :phuongThucThanhToan")
+    , @NamedQuery(name = "PhieuMuaTin.findByPaymentId", query = "SELECT p FROM PhieuMuaTin p WHERE p.paymentId = :paymentId")
+    , @NamedQuery(name = "PhieuMuaTin.findByPayerId", query = "SELECT p FROM PhieuMuaTin p WHERE p.payerId = :payerId")})
 public class PhieuMuaTin implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,6 +61,12 @@ public class PhieuMuaTin implements Serializable {
     @NotNull
     @Column(name = "phuong_thuc_thanh_toan")
     private int phuongThucThanhToan;
+    @Size(max = 250)
+    @Column(name = "payment_id")
+    private String paymentId;
+    @Size(max = 250)
+    @Column(name = "payer_id")
+    private String payerId;
     @JoinColumn(name = "id_goi_tin", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private GoiTin idGoiTin;
@@ -112,6 +121,22 @@ public class PhieuMuaTin implements Serializable {
 
     public void setPhuongThucThanhToan(int phuongThucThanhToan) {
         this.phuongThucThanhToan = phuongThucThanhToan;
+    }
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public String getPayerId() {
+        return payerId;
+    }
+
+    public void setPayerId(String payerId) {
+        this.payerId = payerId;
     }
 
     public GoiTin getIdGoiTin() {

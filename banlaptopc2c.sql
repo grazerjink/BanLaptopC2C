@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 17, 2017 at 05:33 PM
+-- Generation Time: Nov 19, 2017 at 01:49 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -532,6 +532,7 @@ DROP TABLE IF EXISTS `goi_tin`;
 CREATE TABLE IF NOT EXISTS `goi_tin` (
   `id` char(3) NOT NULL,
   `ten_goi_tin` varchar(250) NOT NULL,
+  `ten_loai` varchar(250) NOT NULL,
   `so_tin` int(11) NOT NULL,
   `gia_ban` float NOT NULL,
   PRIMARY KEY (`id`)
@@ -541,10 +542,10 @@ CREATE TABLE IF NOT EXISTS `goi_tin` (
 -- Dumping data for table `goi_tin`
 --
 
-INSERT INTO `goi_tin` (`id`, `ten_goi_tin`, `so_tin`, `gia_ban`) VALUES
-('GOL', 'Gói vàng (Gold)', 150, 239000),
-('SLI', 'Gói bạc (Sliver)', 65, 105000),
-('STD', 'Gói chuẩn (Standard)', 25, 45000);
+INSERT INTO `goi_tin` (`id`, `ten_goi_tin`, `ten_loai`, `so_tin`, `gia_ban`) VALUES
+('GOL', 'Gói vàng', 'Gold', 150, 239000),
+('SLI', 'Gói bạc', 'Sliver', 65, 105000),
+('STD', 'Gói thường', 'Standard', 25, 45000);
 
 -- --------------------------------------------------------
 
@@ -659,14 +660,17 @@ CREATE TABLE IF NOT EXISTS `nguoi_ban` (
   KEY `fk_thanhpho_nguoiban` (`id_thanh_pho`),
   KEY `fk_quanhuyen_nguoiban` (`id_quan_huyen`),
   KEY `fk_phuongxa_nguoiban` (`id_phuong_xa`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `nguoi_ban`
 --
 
 INSERT INTO `nguoi_ban` (`id`, `email`, `mat_khau`, `ho_ten`, `cmnd`, `so_dien_thoai`, `dia_chi`, `id_quan_huyen`, `id_phuong_xa`, `id_thanh_pho`, `ngay_dang_ky`, `kich_hoat`, `trang_thai`) VALUES
-(1, 'huucanh@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Nguyễn Hữu Cảnh', '0123456789', '0120456456', '487 Lý Tự Trọng', 556, 9220, 50, '2017-11-18 00:08:54', b'0', b'0');
+(1, 'huucanh@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Nguyễn Hữu Cảnh', '0123456789', '0120456456', '487 Lý Tự Trọng', 556, 9220, 50, '2017-11-18 00:08:54', b'0', b'1'),
+(2, 'thientrang@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Trần Thiên Trang', '9876543210', '0955556662', '223 An Dương Vương', 570, 9422, 50, '2017-11-18 14:16:32', b'1', b'0'),
+(3, 'huutai@gmail.com', '6389F3915211281868AB93D303440E77', 'Lê Hữu Tài', '595923134', '01324865242', '4543 ABC', 514, 8726, 45, '2017-11-18 14:53:23', b'1', b'1'),
+(4, 'grazerjink@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Lý Chí Vĩ', '026548129511', '09623648524', '24 Sư Vạn Hạnh', 567, 9369, 50, '2017-11-19 17:26:52', b'1', b'1');
 
 -- --------------------------------------------------------
 
@@ -758,12 +762,31 @@ CREATE TABLE IF NOT EXISTS `phieu_mua_tin` (
   `gia_ban` float NOT NULL,
   `ngay_giao_dich` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `phuong_thuc_thanh_toan` int(11) NOT NULL,
+  `payment_id` varchar(250) DEFAULT NULL,
+  `payer_id` varchar(250) DEFAULT NULL,
   `id_tinh_trang` char(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_phieumuatin_goitin` (`id_goi_tin`),
   KEY `fk_phieumuatin_nguoiban` (`id_nguoi_ban`),
   KEY `fk_phieumuatin_tinhtrang` (`id_tinh_trang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `phieu_mua_tin`
+--
+
+INSERT INTO `phieu_mua_tin` (`id`, `id_nguoi_ban`, `id_goi_tin`, `gia_ban`, `ngay_giao_dich`, `phuong_thuc_thanh_toan`, `payment_id`, `payer_id`, `id_tinh_trang`) VALUES
+(1, 3, 'SLI', 105000, '2017-11-19 13:24:27', 1, 'PAY-4LE91980G6709852SLIISG3Q', '6GT5ZQDLUELJ6', 'TC'),
+(2, 3, 'SLI', 105000, '2017-11-19 15:06:08', 0, NULL, NULL, 'XL'),
+(3, 3, 'SLI', 105000, '2017-11-19 15:08:56', 0, NULL, NULL, 'XL'),
+(4, 3, 'SLI', 105000, '2017-11-19 15:22:43', 0, NULL, NULL, 'XL'),
+(5, 1, 'SLI', 105000, '2017-11-19 17:32:28', 0, NULL, NULL, 'XL'),
+(6, 4, 'GOL', 239000, '2017-11-19 17:56:21', 1, 'PAY-9SM18093AJ6372132LIIWF6Q', '6GT5ZQDLUELJ6', 'TC'),
+(7, 4, 'GOL', 239000, '2017-11-19 18:03:44', 1, 'PAY-38607416SM902980TLIIWJ3I', '6GT5ZQDLUELJ6', 'TC'),
+(8, 4, 'SLI', 105000, '2017-11-19 18:07:18', 1, 'PAY-0S1098049S5087638LIIWLOI', '6GT5ZQDLUELJ6', 'TC'),
+(9, 4, 'STD', 45000, '2017-11-19 18:12:52', 1, 'PAY-0LF30083624620310LIIWODY', '6GT5ZQDLUELJ6', 'TC'),
+(10, 4, 'GOL', 239000, '2017-11-19 18:34:16', 1, 'PAY-8E485398V7308635NLIIWXRA', '6GT5ZQDLUELJ6', 'TC'),
+(11, 3, 'GOL', 239000, '2017-11-19 18:51:04', 1, 'PAY-1G460496AG1622110LIIW74A', '6GT5ZQDLUELJ6', 'TC');
 
 -- --------------------------------------------------------
 
@@ -12779,7 +12802,20 @@ CREATE TABLE IF NOT EXISTS `so_tin_ton` (
   `ngay_cap_nhat` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_tinton_nguoiban` (`id_nguoi_ban`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `so_tin_ton`
+--
+
+INSERT INTO `so_tin_ton` (`id`, `id_nguoi_ban`, `so_tin_ton`, `so_tin_da_dung`, `ngay_cap_nhat`) VALUES
+(1, 3, 65, 0, '2017-11-19 13:24:27'),
+(2, 4, 150, 0, '2017-11-19 17:56:21'),
+(3, 4, 300, 0, '2017-11-19 18:03:44'),
+(4, 4, 365, 0, '2017-11-19 18:07:18'),
+(5, 4, 390, 0, '2017-11-19 18:12:52'),
+(6, 4, 540, 0, '2017-11-19 18:34:16'),
+(7, 3, 215, 0, '2017-11-19 18:51:04');
 
 -- --------------------------------------------------------
 
