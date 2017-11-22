@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class RamFacade extends AbstractFacade<Ram> implements RamFacadeLocal {
+public class RamFacade extends AbstractFacade<Ram> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class OCungFacade extends AbstractFacade<OCung> implements OCungFacadeLocal {
+public class OCungFacade extends AbstractFacade<OCung> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

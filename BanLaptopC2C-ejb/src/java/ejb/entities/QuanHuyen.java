@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "QuanHuyen.findAll", query = "SELECT q FROM QuanHuyen q")
     , @NamedQuery(name = "QuanHuyen.findById", query = "SELECT q FROM QuanHuyen q WHERE q.id = :id")
-    , @NamedQuery(name = "QuanHuyen.findByTenQuanHuyen", query = "SELECT q FROM QuanHuyen q WHERE q.tenQuanHuyen = :tenQuanHuyen")})
+    , @NamedQuery(name = "QuanHuyen.findByTenQuanHuyen", query = "SELECT q FROM QuanHuyen q WHERE q.tenQuanHuyen = :tenQuanHuyen")
+    , @NamedQuery(name = "QuanHuyen.findByLoai", query = "SELECT q FROM QuanHuyen q WHERE q.loai = :loai")})
 public class QuanHuyen implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,11 +51,20 @@ public class QuanHuyen implements Serializable {
     @Size(min = 1, max = 250)
     @Column(name = "ten_quan_huyen")
     private String tenQuanHuyen;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
+    @Column(name = "loai")
+    private String loai;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
     private List<PhieuMuaHang> phieuMuaHangList;
-    @JoinColumn(name = "id_khu_vuc", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
+    private List<PhuongXa> phuongXaList;
+    @JoinColumn(name = "id_thanh_pho", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private KhuVuc idKhuVuc;
+    private ThanhPho idThanhPho;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
+    private List<NguoiBan> nguoiBanList;
 
     public QuanHuyen() {
     }
@@ -63,9 +73,10 @@ public class QuanHuyen implements Serializable {
         this.id = id;
     }
 
-    public QuanHuyen(Integer id, String tenQuanHuyen) {
+    public QuanHuyen(Integer id, String tenQuanHuyen, String loai) {
         this.id = id;
         this.tenQuanHuyen = tenQuanHuyen;
+        this.loai = loai;
     }
 
     public Integer getId() {
@@ -84,6 +95,14 @@ public class QuanHuyen implements Serializable {
         this.tenQuanHuyen = tenQuanHuyen;
     }
 
+    public String getLoai() {
+        return loai;
+    }
+
+    public void setLoai(String loai) {
+        this.loai = loai;
+    }
+
     @XmlTransient
     public List<PhieuMuaHang> getPhieuMuaHangList() {
         return phieuMuaHangList;
@@ -93,12 +112,30 @@ public class QuanHuyen implements Serializable {
         this.phieuMuaHangList = phieuMuaHangList;
     }
 
-    public KhuVuc getIdKhuVuc() {
-        return idKhuVuc;
+    @XmlTransient
+    public List<PhuongXa> getPhuongXaList() {
+        return phuongXaList;
     }
 
-    public void setIdKhuVuc(KhuVuc idKhuVuc) {
-        this.idKhuVuc = idKhuVuc;
+    public void setPhuongXaList(List<PhuongXa> phuongXaList) {
+        this.phuongXaList = phuongXaList;
+    }
+
+    public ThanhPho getIdThanhPho() {
+        return idThanhPho;
+    }
+
+    public void setIdThanhPho(ThanhPho idThanhPho) {
+        this.idThanhPho = idThanhPho;
+    }
+
+    @XmlTransient
+    public List<NguoiBan> getNguoiBanList() {
+        return nguoiBanList;
+    }
+
+    public void setNguoiBanList(List<NguoiBan> nguoiBanList) {
+        this.nguoiBanList = nguoiBanList;
     }
 
     @Override

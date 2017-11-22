@@ -6,9 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- single -->
-<link rel="stylesheet" href="assets/css/flexslider.css" type="text/css" media="screen" />
-<script src="assets/js/imagezoom.js"></script>
-<script src="assets/js/jquery.flexslider.js"></script>
+<link rel="stylesheet" href="assets/customer/css/flexslider.css" type="text/css" media="screen" />
+<script src="assets/customer/js/imagezoom.js"></script>
+<script src="assets/customer/js/jquery.flexslider.js"></script>
 <!-- single -->
 
 <!-- banner -->
@@ -36,17 +36,17 @@
                     </script>
                     <!-- //FlexSlider-->
                     <ul class="slides">
-                        <li data-thumb="assets/images/d2.jpg">
-                            <div class="thumb-image"> <img src="assets/images/d2.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="assets/customer/images/d2.jpg">
+                            <div class="thumb-image"> <img src="assets/customer/images/d2.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="assets/images/d1.jpg">
-                            <div class="thumb-image"> <img src="assets/images/d1.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="assets/customer/images/d1.jpg">
+                            <div class="thumb-image"> <img src="assets/customer/images/d1.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>	
-                        <li data-thumb="assets/images/d3.jpg">
-                            <div class="thumb-image"> <img src="assets/images/d3.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="assets/customer/images/d3.jpg">
+                            <div class="thumb-image"> <img src="assets/customer/images/d3.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="assets/images/d4.jpg">
-                            <div class="thumb-image"> <img src="assets/images/d4.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="assets/customer/images/d4.jpg">
+                            <div class="thumb-image"> <img src="assets/customer/images/d4.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>	
                     </ul>
                     <div class="clearfix"></div>
@@ -124,7 +124,7 @@
                         <div class="bootstrap-tab-text-grids">
                             <div class="bootstrap-tab-text-grid">
                                 <div class="bootstrap-tab-text-grid-left">
-                                    <img src="assets/images/men3.jpg" alt=" " class="img-responsive">
+                                    <img src="assets/customer/images/men3.jpg" alt=" " class="img-responsive">
                                 </div>
                                 <div class="bootstrap-tab-text-grid-right">
                                     <ul>

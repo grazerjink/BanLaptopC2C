@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class PhieuMuaTinFacade extends AbstractFacade<PhieuMuaTin> implements PhieuMuaTinFacadeLocal {
+public class PhieuMuaTinFacade extends AbstractFacade<PhieuMuaTin> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

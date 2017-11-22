@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class DoPhanGiaiFacade extends AbstractFacade<DoPhanGiai> implements DoPhanGiaiFacadeLocal {
+public class DoPhanGiaiFacade extends AbstractFacade<DoPhanGiai> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

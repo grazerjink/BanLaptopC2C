@@ -8,7 +8,7 @@
 <div class="footer">
     <div class="container">
         <div class="col-md-3 footer-left">
-            <h2><a href="index/"><img src="assets/images/logo3.jpg" alt=" " /></a></h2>
+            <h2><a href="index/"><img src="assets/customer/images/logo3.jpg" alt=" " /></a></h2>
             <p>Neque porro quisquam est, qui dolorem ipsum quia dolor
                 sit amet, consectetur, adipisci velit, sed quia non 
                 numquam eius modi tempora incidunt ut labore 
@@ -51,15 +51,15 @@
                 <div class="col-md-4 sign-gd flickr-post">
                     <h4>Flickr Posts</h4>
                     <ul>
-                        <li><a href="single/"><img src="assets/images/b15.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="single/"><img src="assets/images/b16.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="single/"><img src="assets/images/b17.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="single/"><img src="assets/images/b18.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="single/"><img src="assets/images/b15.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="single/"><img src="assets/images/b16.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="single/"><img src="assets/images/b17.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="single/"><img src="assets/images/b18.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="single/"><img src="assets/images/b15.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single/"><img src="assets/customer/images/b15.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single/"><img src="assets/customer/images/b16.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single/"><img src="assets/customer/images/b17.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single/"><img src="assets/customer/images/b18.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single/"><img src="assets/customer/images/b15.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single/"><img src="assets/customer/images/b16.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single/"><img src="assets/customer/images/b17.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single/"><img src="assets/customer/images/b18.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single/"><img src="assets/customer/images/b15.jpg" alt=" " class="img-responsive" /></a></li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>

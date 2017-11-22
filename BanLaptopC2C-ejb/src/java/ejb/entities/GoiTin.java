@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "GoiTin.findAll", query = "SELECT g FROM GoiTin g")
     , @NamedQuery(name = "GoiTin.findById", query = "SELECT g FROM GoiTin g WHERE g.id = :id")
     , @NamedQuery(name = "GoiTin.findByTenGoiTin", query = "SELECT g FROM GoiTin g WHERE g.tenGoiTin = :tenGoiTin")
+    , @NamedQuery(name = "GoiTin.findByTenLoai", query = "SELECT g FROM GoiTin g WHERE g.tenLoai = :tenLoai")
     , @NamedQuery(name = "GoiTin.findBySoTin", query = "SELECT g FROM GoiTin g WHERE g.soTin = :soTin")
     , @NamedQuery(name = "GoiTin.findByGiaBan", query = "SELECT g FROM GoiTin g WHERE g.giaBan = :giaBan")})
 public class GoiTin implements Serializable {
@@ -51,6 +52,11 @@ public class GoiTin implements Serializable {
     private String tenGoiTin;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 250)
+    @Column(name = "ten_loai")
+    private String tenLoai;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "so_tin")
     private int soTin;
     @Basic(optional = false)
@@ -67,9 +73,10 @@ public class GoiTin implements Serializable {
         this.id = id;
     }
 
-    public GoiTin(String id, String tenGoiTin, int soTin, float giaBan) {
+    public GoiTin(String id, String tenGoiTin, String tenLoai, int soTin, float giaBan) {
         this.id = id;
         this.tenGoiTin = tenGoiTin;
+        this.tenLoai = tenLoai;
         this.soTin = soTin;
         this.giaBan = giaBan;
     }
@@ -88,6 +95,14 @@ public class GoiTin implements Serializable {
 
     public void setTenGoiTin(String tenGoiTin) {
         this.tenGoiTin = tenGoiTin;
+    }
+
+    public String getTenLoai() {
+        return tenLoai;
+    }
+
+    public void setTenLoai(String tenLoai) {
+        this.tenLoai = tenLoai;
     }
 
     public int getSoTin() {

@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class SoTinTonFacade extends AbstractFacade<SoTinTon> implements SoTinTonFacadeLocal {
+public class SoTinTonFacade extends AbstractFacade<SoTinTon> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

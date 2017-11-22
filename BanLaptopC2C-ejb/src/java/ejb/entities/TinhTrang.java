@@ -49,6 +49,8 @@ public class TinhTrang implements Serializable {
     private String tenMoTa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTinhTrang", fetch = FetchType.LAZY)
     private List<CtPhieuMuaHang> ctPhieuMuaHangList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTinhTrang", fetch = FetchType.LAZY)
+    private List<PhieuMuaTin> phieuMuaTinList;
 
     public TinhTrang() {
     }
@@ -85,6 +87,15 @@ public class TinhTrang implements Serializable {
 
     public void setCtPhieuMuaHangList(List<CtPhieuMuaHang> ctPhieuMuaHangList) {
         this.ctPhieuMuaHangList = ctPhieuMuaHangList;
+    }
+
+    @XmlTransient
+    public List<PhieuMuaTin> getPhieuMuaTinList() {
+        return phieuMuaTinList;
+    }
+
+    public void setPhieuMuaTinList(List<PhieuMuaTin> phieuMuaTinList) {
+        this.phieuMuaTinList = phieuMuaTinList;
     }
 
     @Override
