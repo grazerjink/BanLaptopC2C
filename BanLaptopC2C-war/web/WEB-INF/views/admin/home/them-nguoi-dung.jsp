@@ -10,7 +10,6 @@
 <h2> Thêm người dùng</h2>
 <div class="col-lg-6">
     <form:form action="admin/dang-ky/" method="POST" modelAttribute="admin">
-
         <div class="form-group">
             <label>Email</label>
             <form:input path="email" cssClass="form-control"/>
@@ -39,4 +38,4 @@
             <button class="btn btn-default"> Thêm </button>
         </div>
     </form:form>
-    <div>
+<div>

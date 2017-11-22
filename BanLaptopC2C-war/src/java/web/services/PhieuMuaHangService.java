@@ -6,8 +6,10 @@
 package web.services;
 
 import ejb.entities.PhieuMuaHang;
+import ejb.sessions.PhieuMuaHangFacade;
 import java.util.List;
 import org.springframework.stereotype.Component;
+import web.commons.LookupFactory;
 
 /**
  *
@@ -16,12 +18,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class PhieuMuaHangService {
 
-    
-    
-    public List<PhieuMuaHang> layDanhSachPhieuMuaHang()
-    {
+    PhieuMuaHangFacade phieuMuaHangFacade = (PhieuMuaHangFacade) LookupFactory.lookupBeanFacade("PhieuMuaHangFacade");
+
+    public List<PhieuMuaHang> layDanhSachPhieuMuaHang() {
         return phieuMuaHangFacade.findAll();
     }
-    
-    
 }

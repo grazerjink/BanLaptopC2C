@@ -6,18 +6,20 @@
 package web.services;
 
 import ejb.entities.HangSanXuat;
+import ejb.sessions.HangSanXuatFacade;
 import java.util.List;
 import org.springframework.stereotype.Component;
+import web.commons.LookupFactory;
 
 /**
  *
  * @author Winson Mac
  */
 @Component
-public class HangSanXuatService{
-    
-    
-    
+public class HangSanXuatService {
+
+    HangSanXuatFacade hangSanXuatFacade = (HangSanXuatFacade) LookupFactory.lookupBeanFacade("HangSanXuatFacade");
+
     public boolean themHangSanXuat(HangSanXuat hangSanXuat) {
         try {
             hangSanXuatFacade.create(hangSanXuat);
@@ -43,7 +45,7 @@ public class HangSanXuatService{
     public HangSanXuat tim(String id) {
         return hangSanXuatFacade.find(id);
     }
-    
+
     public List<HangSanXuat> getList() {
         return hangSanXuatFacade.findAll();
     }

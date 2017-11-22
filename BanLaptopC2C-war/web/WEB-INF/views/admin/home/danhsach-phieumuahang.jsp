@@ -47,7 +47,7 @@
                 </div>
             </div>
             <!-- /.form-group -->
-             <div class="form-group">
+            <div class="form-group">
                 <label for="text2" class="control-label col-lg-4"> Tên người bán</label>
 
                 <div class="col-lg-8">
@@ -73,7 +73,7 @@
                 <th>Số điện thoại</th>
                 <th>Tình trạng</th>
                 <th></th>
-                
+
             </tr>
         </thead>
         <tbody>

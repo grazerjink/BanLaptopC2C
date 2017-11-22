@@ -1,8 +1,11 @@
 package web.services;
 
+import java.io.UnsupportedEncodingException;
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -28,7 +31,7 @@ public class MailerService {
 
             /// Bo thu vao buu dien va gui di
             mailSender.send(mail);
-        } catch (Exception e) {
+        } catch (UnsupportedEncodingException | MessagingException | MailException e) {
             throw new RuntimeException(e);
         }
 

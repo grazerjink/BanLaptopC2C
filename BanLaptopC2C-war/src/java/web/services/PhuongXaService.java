@@ -16,6 +16,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import org.springframework.stereotype.Component;
+import web.commons.LookupFactory;
 
 /**
  *
@@ -24,29 +25,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class PhuongXaService {
 
-    PhuongXaFacade phuongXaFacade = lookupPhuongXaFacadeBean();
-
-    PhuongXaBusiness phuongXaBusiness = lookupPhuongXaBusinessBean();
-
-    private PhuongXaBusiness lookupPhuongXaBusinessBean() {
-        try {
-            Context c = new InitialContext();
-            return (PhuongXaBusiness) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/PhuongXaBusiness!ejb.business.PhuongXaBusiness");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
-
-    private PhuongXaFacade lookupPhuongXaFacadeBean() {
-        try {
-            Context c = new InitialContext();
-            return (PhuongXaFacade) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/PhuongXaFacade!ejb.sessions.PhuongXaFacade");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
+    PhuongXaFacade phuongXaFacade = (PhuongXaFacade) LookupFactory.lookupBeanFacade("PhuongXaFacade");
+    PhuongXaBusiness phuongXaBusiness = (PhuongXaBusiness) LookupFactory.lookupBeanBusiness("PhuongXaBusiness");
 
     public List<String> layDanhSachTheoQuanHuyen(Integer id) {
         List<String> dsTenPhuongXa = new ArrayList<>();

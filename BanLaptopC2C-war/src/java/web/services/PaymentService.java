@@ -31,13 +31,8 @@ import web.commons.Constants;
 @Component
 public class PaymentService {
 
-    private static APIContext apiContext;
-
-    static {
-        apiContext = new APIContext(Constants.clientID, Constants.clientSecret, SANDBOX);
-    }
-
     public String paymentWithPaypal(GoiTin goiTin) {
+        APIContext apiContext = new APIContext(Constants.clientID, Constants.clientSecret, SANDBOX);
         // Set payer details
         Payer payer = new Payer();
         payer.setPaymentMethod("paypal");
@@ -46,26 +41,26 @@ public class PaymentService {
         RedirectUrls redirectUrls = new RedirectUrls();
         redirectUrls.setCancelUrl("http://localhost:8080/BanLaptopC2C-war/merchant/huy-thanh-toan/");
         redirectUrls.setReturnUrl("http://localhost:8080/BanLaptopC2C-war/merchant/xac-nhan-thanh-toan/");
-        
+
         // ### Items
         Item item = new Item();
         item.setSku(goiTin.getId())
                 .setName(goiTin.getTenGoiTin() + " - " + goiTin.getTenLoai())
                 .setQuantity("1")
                 .setCurrency("USD")
-                .setPrice(String.format("%.2f",(goiTin.getGiaBan()*0.044)/1000.0))
-                .setDescription(String.format("Mua gói tin đăng với giá bán là: %.2f, tỉ giá 1000 VNĐ = 0.044USD",goiTin.getGiaBan()));
+                .setPrice(String.format("%.2f", (goiTin.getGiaBan() * 0.044) / 1000.0))
+                .setDescription(String.format("Mua gói tin đăng với giá bán là: %.2f, tỉ giá 1000 VNĐ = 0.044USD", goiTin.getGiaBan()));
         ItemList itemList = new ItemList();
         List<Item> items = new ArrayList<Item>();
         items.add(item);
         itemList.setItems(items);
-              
+
         // Payment amount
         Amount amount = new Amount();
         amount.setCurrency("USD");
         // Total must be equal to sum of shipping, tax and subtotal.
-        amount.setTotal(String.format("%.2f",(goiTin.getGiaBan()*0.044)/1000.0));
-        
+        amount.setTotal(String.format("%.2f", (goiTin.getGiaBan() * 0.044) / 1000.0));
+
         // Transaction information
         Transaction transaction = new Transaction();
         transaction.setAmount(amount);
@@ -103,6 +98,7 @@ public class PaymentService {
     }
 
     public Payment completePaymentProcess(String paymentId, String payerId) {
+        APIContext apiContext = new APIContext(Constants.clientID, Constants.clientSecret, SANDBOX);
         if (paymentId != null && payerId != null) {
             Payment payment = new Payment();
             payment.setId(paymentId);
@@ -117,8 +113,7 @@ public class PaymentService {
                 System.err.println(e.getDetails());
                 return null;
             }
-        }
-        else {
+        } else {
             return null;
         }
     }

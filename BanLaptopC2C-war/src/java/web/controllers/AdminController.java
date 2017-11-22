@@ -39,7 +39,6 @@ public class AdminController {
     //local/c2c/admin/index
     @RequestMapping("index")
     public String index() {
-
         return "admin/home/index";
     }
 

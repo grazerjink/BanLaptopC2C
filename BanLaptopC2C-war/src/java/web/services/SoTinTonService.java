@@ -11,12 +11,8 @@ import ejb.entities.NguoiBan;
 import ejb.entities.SoTinTon;
 import ejb.sessions.SoTinTonFacade;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import org.springframework.stereotype.Component;
+import web.commons.LookupFactory;
 
 /**
  *
@@ -25,28 +21,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SoTinTonService {
 
-    SoTinTonBusiness soTinTonBusiness = lookupSoTinTonBusinessBean();
-    SoTinTonFacade soTinTonFacade = lookupSoTinTonFacadeBean();
-
-    private SoTinTonFacade lookupSoTinTonFacadeBean() {
-        try {
-            Context c = new InitialContext();
-            return (SoTinTonFacade) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/SoTinTonFacade!ejb.sessions.SoTinTonFacade");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
-
-    private SoTinTonBusiness lookupSoTinTonBusinessBean() {
-        try {
-            Context c = new InitialContext();
-            return (SoTinTonBusiness) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/SoTinTonBusiness!ejb.business.SoTinTonBusiness");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
+    SoTinTonBusiness soTinTonBusiness = (SoTinTonBusiness) LookupFactory.lookupBeanBusiness("SoTinTonBusiness");
+    SoTinTonFacade soTinTonFacade = (SoTinTonFacade) LookupFactory.lookupBeanFacade("SoTinTonFacade");
 
     public int laySoTinTheoNguoiBanVaThoiGian(NguoiBan nguoiBan, Date thoiGian) {
         SoTinTon soTinTon = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), thoiGian);
@@ -63,7 +39,7 @@ public class SoTinTonService {
         soTinTon.setIdNguoiBan(nguoiBan);
         soTinTon.setNgayCapNhat(new Date());
         soTinTon.setSoTinDaDung(0);
-        soTinTon.setSoTinTon(soTinHienTai+goiTin.getSoTin());
+        soTinTon.setSoTinTon(soTinHienTai + goiTin.getSoTin());
         soTinTonFacade.create(soTinTon);
     }
 

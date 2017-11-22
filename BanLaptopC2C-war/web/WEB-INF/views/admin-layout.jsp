@@ -8,9 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <base href="${pageContext.request.contextPath}/"
-              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <base href="${pageContext.request.contextPath}/"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <meta charset="UTF-8">
         <!--IE Compatibility modes-->
@@ -63,7 +62,7 @@
         </script>
         <link rel="stylesheet" href="assets/admin/css/style-switcher.css">
         <link rel="stylesheet/less" type="text/css" href="assets/admin/less/theme.less">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
     </head>
     <body>
         <div class="bg-dark dk" id="wrap">

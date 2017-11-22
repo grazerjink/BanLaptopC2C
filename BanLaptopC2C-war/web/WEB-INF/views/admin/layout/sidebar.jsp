@@ -32,43 +32,32 @@
         <li class="nav-header">Menu</li>
         <li class="nav-divider"></li>
         <li class="">
-            <a href="../home/danhsach-nguoidung/">
+            <a href="admin/danhsach-nguoidung/">
                 <i class="fa fa-dashboard"></i><span class="link-title">&nbsp; Quản lí người dùng</span>
             </a>
-            <a href="
         </li>
         <li class="">
-            <a href="../home/danhsach-phieumuahang/">
+            <a href="admin/danhsach-phieumuahang/">
                 <i class="fa fa-building "></i>
                 <span class="link-title">Thống kê hóa đơn</span>
                 <span class="fa arrow"></span>
             </a>
             <ul class="collapse">
                 <li>
-                    <a href="boxed.html">
-                        <i class="fa fa-angle-right"></i>&nbsp;</a>
-                </li>
-               
-                
-                <li>
-                    <a href="fixed-header.html">
-                        <i class="fa fa-angle-right"></i>&nbsp; Fixed Header </a>
+                    <a href="boxed.html"><i class="fa fa-angle-right"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="fixed-menu-boxed.html">
-                        <i class="fa fa-angle-right"></i>&nbsp; Boxed Layout &amp; Fixed Menu </a>
+                    <a href="fixed-header.html"><i class="fa fa-angle-right"></i>&nbsp; Fixed Header </a>
                 </li>
                 <li>
-                    <a href="fixed-menu.html">
-                        <i class="fa fa-angle-right"></i>&nbsp; Fixed Menu </a>
+                    <a href="fixed-menu-boxed.html"><i class="fa fa-angle-right"></i>&nbsp; Boxed Layout &amp; Fixed Menu </a>
                 </li>
                 <li>
-                    <a href="fixed-mini-sidebar.html">
-                        <i class="fa fa-angle-right"></i>&nbsp; Fixed &amp; Mini Menu </a>
+                    <a href="fixed-menu.html"><i class="fa fa-angle-right"></i>&nbsp; Fixed Menu </a>
                 </li>
-               
-              
-              
+                <li>
+                    <a href="fixed-mini-sidebar.html"><i class="fa fa-angle-right"></i>&nbsp; Fixed &amp; Mini Menu </a>
+                </li>
             </ul>
         </li>
         <li class="">
@@ -78,10 +67,8 @@
                 <span class="fa arrow"></span>
             </a>
             <ul class="collapse">
-               
                 <li>
-                    <a href="progress.html">
-                        <i class="fa fa-angle-right"></i>&nbsp; Progress </a>
+                    <a href="progress.html"><i class="fa fa-angle-right"></i>&nbsp; Progress </a>
                 </li>
             </ul>
         </li>

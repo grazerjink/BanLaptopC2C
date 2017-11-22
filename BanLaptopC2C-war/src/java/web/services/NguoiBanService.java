@@ -8,17 +8,13 @@ package web.services;
 import ejb.business.NguoiBanBusiness;
 import ejb.entities.NguoiBan;
 import ejb.sessions.NguoiBanFacade;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import web.commons.EncryptHelper;
+import web.commons.LookupFactory;
 import web.viewmodels.EntityMapping;
 import web.viewmodels.NguoiBanViewModel;
 
@@ -32,28 +28,8 @@ public class NguoiBanService {
     @Autowired
     MailerService mailerService;
 
-    NguoiBanBusiness nguoiBanBusiness = lookupNguoiBanBusinessBean();
-    NguoiBanFacade nguoiBanFacade = lookupNguoiBanFacadeBean();
-
-    private NguoiBanFacade lookupNguoiBanFacadeBean() {
-        try {
-            Context c = new InitialContext();
-            return (NguoiBanFacade) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/NguoiBanFacade!ejb.sessions.NguoiBanFacade");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
-
-    private NguoiBanBusiness lookupNguoiBanBusinessBean() {
-        try {
-            Context c = new InitialContext();
-            return (NguoiBanBusiness) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/NguoiBanBusiness!ejb.business.NguoiBanBusiness");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
+    NguoiBanBusiness nguoiBanBusiness = (NguoiBanBusiness) LookupFactory.lookupBeanBusiness("NguoiBanBusiness");
+    NguoiBanFacade nguoiBanFacade = (NguoiBanFacade) LookupFactory.lookupBeanFacade("NguoiBanFacade");
 
     public boolean dangKyThongTin(ModelMap model, NguoiBanViewModel nguoiBanVM,
             HttpServletRequest req) {
