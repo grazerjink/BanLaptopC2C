@@ -108,21 +108,20 @@ public class AdminController {
         return phieuMuaTinService.layDanhSachPhieuMua();
     }
     
-    
     // Danh sach phieu mua hang
     @RequestMapping("danhsach-phieumuahang")
     public String layDanhSachHoaDon(Model model)
     {
         model.addAttribute("dsPhieuMuaHang", phieuMuaHangService.layDanhSachPhieuMuaHang());
         return "admin/home/danhsach-phieumuahang";
-
     }
+    
     @ModelAttribute("dsPhieuMuaHang")
     public List<PhieuMuaHang> layDanhSachPhieuMuaHang()
     {
         return phieuMuaHangService.layDanhSachPhieuMuaHang();
     }
-    
+
     // Thống kê đánh giá
      @RequestMapping("thongke-dongia")
     public String layThongKeDanhGia(Model model)
@@ -130,9 +129,4 @@ public class AdminController {
         return "admin/home/thongke-danhgia";
 
     }
-    
-    
-    
-    
-
 }
