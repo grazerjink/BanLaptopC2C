@@ -35,4 +35,31 @@
     <session-config>
         <session-timeout> 30 </session-timeout>
     </session-config>
+<<<<<<< HEAD
+=======
+    <ejb-local-ref>
+        <ejb-ref-name>AdminFacade</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>ejb.sessions.AdminFacadeLocal</local>
+        <ejb-link>BanLaptopC2C-ejb.jar#AdminFacade</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>PhieuMuaTinFacade</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>ejb.sessions.PhieuMuaTinFacadeLocal</local>
+        <ejb-link>BanLaptopC2C-ejb.jar#PhieuMuaTinFacade</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>PhieuMuaHangFacade</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>ejb.sessions.PhieuMuaHangFacadeLocal</local>
+        <ejb-link>BanLaptopC2C-ejb.jar#PhieuMuaHangFacade</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>PhieuMuaHangFacade1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>ejb.sessions.PhieuMuaHangFacadeLocal</local>
+        <ejb-link>BanLaptopC2C-ejb.jar#PhieuMuaHangFacade</ejb-link>
+    </ejb-local-ref>
+>>>>>>> feature/thaovi
 </web-app>

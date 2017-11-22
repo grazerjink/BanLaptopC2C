@@ -20,8 +20,9 @@ import org.springframework.stereotype.Component;
  * @author Winson Mac
  */
 @Component
-public class HangSanXuatService {
+public class HangSanXuatService{
 
+<<<<<<< HEAD
     HangSanXuatFacade hangSanXuatFacade = lookupHangSanXuatFacadeBean();
 
     public boolean themHangSanXuat(HangSanXuat hangSanXuat) {
@@ -51,6 +52,15 @@ public class HangSanXuatService {
     }
 
     private HangSanXuatFacade lookupHangSanXuatFacadeBean() {
+=======
+    HangSanXuatFacadeLocal hangSanXuatFacade = lookupHangSanXuatFacadeLocal();
+    
+    public List<HangSanXuat> getList() {
+        return hangSanXuatFacade.findAll();
+    }
+
+    private HangSanXuatFacadeLocal lookupHangSanXuatFacadeLocal() {
+>>>>>>> feature/thaovi
         try {
             Context c = new InitialContext();
             return (HangSanXuatFacade) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/HangSanXuatFacade!ejb.sessions.HangSanXuatFacade");

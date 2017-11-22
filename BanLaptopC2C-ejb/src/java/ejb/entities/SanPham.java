@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
 @Entity
 @Table(name = "san_pham")
@@ -113,14 +113,19 @@ public class SanPham implements Serializable {
     @NotNull
     @Column(name = "an_hien")
     private boolean anHien;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSanPham", fetch = FetchType.LAZY)
+    private List<ThongSoKiThuat> thongSoKiThuatList;
     @JoinColumn(name = "id_hang_san_xuat", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private HangSanXuat idHangSanXuat;
     @JoinColumn(name = "id_nguoi_ban", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private NguoiBan idNguoiBan;
+<<<<<<< HEAD
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSanPham", fetch = FetchType.LAZY)
     private List<ThongSoKiThuat> thongSoKiThuatList;
+=======
+>>>>>>> feature/thaovi
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSanPham", fetch = FetchType.LAZY)
     private List<CtPhieuMuaHang> ctPhieuMuaHangList;
 
@@ -251,6 +256,15 @@ public class SanPham implements Serializable {
         this.anHien = anHien;
     }
 
+    @XmlTransient
+    public List<ThongSoKiThuat> getThongSoKiThuatList() {
+        return thongSoKiThuatList;
+    }
+
+    public void setThongSoKiThuatList(List<ThongSoKiThuat> thongSoKiThuatList) {
+        this.thongSoKiThuatList = thongSoKiThuatList;
+    }
+
     public HangSanXuat getIdHangSanXuat() {
         return idHangSanXuat;
     }
@@ -261,6 +275,7 @@ public class SanPham implements Serializable {
 
     public NguoiBan getIdNguoiBan() {
         return idNguoiBan;
+<<<<<<< HEAD
     }
 
     public void setIdNguoiBan(NguoiBan idNguoiBan) {
@@ -270,10 +285,12 @@ public class SanPham implements Serializable {
     @XmlTransient
     public List<ThongSoKiThuat> getThongSoKiThuatList() {
         return thongSoKiThuatList;
+=======
+>>>>>>> feature/thaovi
     }
 
-    public void setThongSoKiThuatList(List<ThongSoKiThuat> thongSoKiThuatList) {
-        this.thongSoKiThuatList = thongSoKiThuatList;
+    public void setIdNguoiBan(NguoiBan idNguoiBan) {
+        this.idNguoiBan = idNguoiBan;
     }
 
     @XmlTransient

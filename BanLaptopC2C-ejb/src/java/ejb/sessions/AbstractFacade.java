@@ -16,7 +16,7 @@ import javax.validation.ValidatorFactory;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
 public abstract class AbstractFacade<T> {
 

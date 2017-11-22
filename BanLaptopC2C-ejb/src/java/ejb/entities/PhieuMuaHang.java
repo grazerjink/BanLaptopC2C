@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
 @Entity
 @Table(name = "phieu_mua_hang")
@@ -87,7 +87,15 @@ public class PhieuMuaHang implements Serializable {
     @NotNull
     @Column(name = "ngay_dat_hang")
     @Temporal(TemporalType.TIMESTAMP)
+<<<<<<< HEAD
     private Date ngayDatHang;
+=======
+    private Date ngayGiaoHang;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "trang_thai")
+    private boolean trangThai;
+>>>>>>> feature/thaovi
     @JoinColumn(name = "id_nguoi_mua", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private NguoiMua idNguoiMua;
@@ -179,6 +187,7 @@ public class PhieuMuaHang implements Serializable {
         this.tongTien = tongTien;
     }
 
+<<<<<<< HEAD
     public Date getNgayDatHang() {
         return ngayDatHang;
     }
@@ -187,6 +196,8 @@ public class PhieuMuaHang implements Serializable {
         this.ngayDatHang = ngayDatHang;
     }
 
+=======
+>>>>>>> feature/thaovi
     public NguoiMua getIdNguoiMua() {
         return idNguoiMua;
     }

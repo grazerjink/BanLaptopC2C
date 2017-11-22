@@ -12,10 +12,17 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
+<<<<<<< HEAD
  * @author Winson Mac
  */
 @Stateless
 public class PhuongXaFacade extends AbstractFacade<PhuongXa> {
+=======
+ * @author Vivi
+ */
+@Stateless
+public class PhuongXaFacade extends AbstractFacade<PhuongXa> implements PhuongXaFacadeLocal {
+>>>>>>> feature/thaovi
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

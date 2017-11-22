@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
 @Entity
 @Table(name = "quan_huyen")
@@ -63,8 +63,11 @@ public class QuanHuyen implements Serializable {
     @JoinColumn(name = "id_thanh_pho", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private ThanhPho idThanhPho;
+<<<<<<< HEAD
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
     private List<NguoiBan> nguoiBanList;
+=======
+>>>>>>> feature/thaovi
 
     public QuanHuyen() {
     }
@@ -123,6 +126,7 @@ public class QuanHuyen implements Serializable {
 
     public ThanhPho getIdThanhPho() {
         return idThanhPho;
+<<<<<<< HEAD
     }
 
     public void setIdThanhPho(ThanhPho idThanhPho) {
@@ -136,6 +140,12 @@ public class QuanHuyen implements Serializable {
 
     public void setNguoiBanList(List<NguoiBan> nguoiBanList) {
         this.nguoiBanList = nguoiBanList;
+=======
+    }
+
+    public void setIdThanhPho(ThanhPho idThanhPho) {
+        this.idThanhPho = idThanhPho;
+>>>>>>> feature/thaovi
     }
 
     @Override
