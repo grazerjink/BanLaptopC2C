@@ -6,15 +6,14 @@
 package ejb.sessions;
 
 import ejb.entities.CardManHinh;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
-@Stateless
+@javax.ejb.Stateless
 public class CardManHinhFacade extends AbstractFacade<CardManHinh> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")

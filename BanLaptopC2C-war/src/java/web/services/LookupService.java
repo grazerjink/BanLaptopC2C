@@ -5,13 +5,13 @@
  */
 package web.services;
 
-import ejb.entities.HangSanXuat;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Winson Mac
  */
-public interface IHangSanXuatService {
-    List<HangSanXuat> getList();
+@Component
+public class LookupService {
+    
 }

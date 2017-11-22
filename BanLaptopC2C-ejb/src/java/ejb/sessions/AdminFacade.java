@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
 @Stateless
 public class AdminFacade extends AbstractFacade<Admin> {

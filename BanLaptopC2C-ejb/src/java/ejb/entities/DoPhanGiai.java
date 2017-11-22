@@ -19,14 +19,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "do_phan_giai")
@@ -46,16 +44,12 @@ public class DoPhanGiai implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "ten_do_phan_giai")
     private String tenDoPhanGiai;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "chieu_rong")
     private int chieuRong;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "chieu_dai")
     private int chieuDai;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDoPhanGiai", fetch = FetchType.LAZY)

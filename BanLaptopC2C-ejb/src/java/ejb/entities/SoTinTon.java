@@ -21,12 +21,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "so_tin_ton")
@@ -46,15 +45,12 @@ public class SoTinTon implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "so_tin_ton")
     private int soTinTon;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "so_tin_da_dung")
     private int soTinDaDung;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ngay_cap_nhat")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayCapNhat;

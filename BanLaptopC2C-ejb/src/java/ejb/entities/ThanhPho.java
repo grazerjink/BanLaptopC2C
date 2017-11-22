@@ -19,18 +19,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
-<<<<<<< HEAD
  * @author Winson Mac
-=======
- * @author Vivi
->>>>>>> feature/thaovi
  */
 @Entity
 @Table(name = "thanh_pho")
@@ -49,24 +43,17 @@ public class ThanhPho implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "ten_thanh_pho")
     private String tenThanhPho;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "loai")
     private String loai;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idThanhPho", fetch = FetchType.LAZY)
     private List<PhieuMuaHang> phieuMuaHangList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idThanhPho", fetch = FetchType.LAZY)
     private List<QuanHuyen> quanHuyenList;
-<<<<<<< HEAD
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idThanhPho", fetch = FetchType.LAZY)
     private List<NguoiBan> nguoiBanList;
-=======
->>>>>>> feature/thaovi
 
     public ThanhPho() {
     }
@@ -123,7 +110,6 @@ public class ThanhPho implements Serializable {
         this.quanHuyenList = quanHuyenList;
     }
 
-<<<<<<< HEAD
     @XmlTransient
     public List<NguoiBan> getNguoiBanList() {
         return nguoiBanList;
@@ -133,8 +119,6 @@ public class ThanhPho implements Serializable {
         this.nguoiBanList = nguoiBanList;
     }
 
-=======
->>>>>>> feature/thaovi
     @Override
     public int hashCode() {
         int hash = 0;

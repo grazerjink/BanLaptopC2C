@@ -15,13 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "admin")
@@ -44,39 +42,25 @@ public class Admin implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "mat_khau")
     private String matKhau;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "ho_ten")
     private String hoTen;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 11)
     @Column(name = "so_dien_thoai")
     private String soDienThoai;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 12)
     @Column(name = "so_tai_khoan")
     private String soTaiKhoan;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "dia_chi")
     private String diaChi;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "trang_thai")
     private boolean trangThai;
 

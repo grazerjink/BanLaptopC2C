@@ -21,12 +21,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "ct_phieu_mua_hang")
@@ -47,19 +46,15 @@ public class CtPhieuMuaHang implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "gia_ban")
     private float giaBan;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "so_luong_mua")
     private int soLuongMua;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "thanh_tien")
     private float thanhTien;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ngay_giao_hang")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayGiaoHang;

@@ -5,16 +5,8 @@
  */
 package web.services;
 
-import ejb.business.AdminBUSLocal;
 import ejb.entities.Admin;
-import ejb.entities.PhieuMuaTin;
-import ejb.sessions.AdminFacadeLocal;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,9 +15,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AdminService {
-
-    AdminFacadeLocal adminFacade = lookupAdminFacadeLocal();
-    AdminBUSLocal adminBUS = lookupAdminBUSLocal();
+    
+    
+    
     
     public boolean themNguoiDung(Admin admin) {
         try {
@@ -58,26 +50,6 @@ public class AdminService {
     
     public List<Admin> layDanhSachNguoiDungKhongKhoa() {
         return adminBUS.layDanhSachNguoiDungKhongKhoa();
-    }    
-
-    private AdminBUSLocal lookupAdminBUSLocal() {
-        try {
-            Context c = new InitialContext();
-            return (AdminBUSLocal) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/AdminBUS!ejb.business.AdminBUSLocal");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
-
-    private AdminFacadeLocal lookupAdminFacadeLocal() {
-        try {
-            Context c = new InitialContext();
-            return (AdminFacadeLocal) c.lookup("java:global/BanLaptopC2C/BanLaptopC2C-ejb/AdminFacade!ejb.sessions.AdminFacadeLocal");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
     }
     
     

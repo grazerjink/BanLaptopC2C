@@ -8,12 +8,10 @@ package web.controllers;
 import com.google.gson.Gson;
 import com.paypal.api.payments.Payment;
 import ejb.entities.NguoiBan;
-import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -132,17 +130,6 @@ public class MerchantDashboardController {
         return "merchant/dashboard/trang-thong-tin-ca-nhan";
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     @ResponseBody
     @RequestMapping("lay-goi-tin")
     public String layGoiTin(@RequestParam("id") String id) {

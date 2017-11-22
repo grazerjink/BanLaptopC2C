@@ -6,15 +6,14 @@
 package ejb.sessions;
 
 import ejb.entities.NguoiBan;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
-@Stateless
+@javax.ejb.Stateless
 public class NguoiBanFacade extends AbstractFacade<NguoiBan> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")

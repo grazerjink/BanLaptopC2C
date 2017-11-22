@@ -6,15 +6,14 @@
 package ejb.sessions;
 
 import ejb.entities.SanPham;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
-@Stateless
+@javax.ejb.Stateless
 public class SanPhamFacade extends AbstractFacade<SanPham> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")

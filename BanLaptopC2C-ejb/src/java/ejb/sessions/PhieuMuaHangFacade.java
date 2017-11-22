@@ -6,15 +6,14 @@
 package ejb.sessions;
 
 import ejb.entities.PhieuMuaHang;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
-@Stateless
+@javax.ejb.Stateless
 public class PhieuMuaHangFacade extends AbstractFacade<PhieuMuaHang> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")

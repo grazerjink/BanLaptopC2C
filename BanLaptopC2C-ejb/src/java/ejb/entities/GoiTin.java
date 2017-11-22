@@ -17,14 +17,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "goi_tin")
@@ -41,26 +39,18 @@ public class GoiTin implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 3)
     @Column(name = "id")
     private String id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "ten_goi_tin")
     private String tenGoiTin;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "ten_loai")
     private String tenLoai;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "so_tin")
     private int soTin;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "gia_ban")
     private float giaBan;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idGoiTin", fetch = FetchType.LAZY)

@@ -6,23 +6,15 @@
 package ejb.sessions;
 
 import ejb.entities.ThanhPho;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
-<<<<<<< HEAD
  * @author Winson Mac
  */
-@Stateless
+@javax.ejb.Stateless
 public class ThanhPhoFacade extends AbstractFacade<ThanhPho> {
-=======
- * @author Vivi
- */
-@Stateless
-public class ThanhPhoFacade extends AbstractFacade<ThanhPho> implements ThanhPhoFacadeLocal {
->>>>>>> feature/thaovi
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

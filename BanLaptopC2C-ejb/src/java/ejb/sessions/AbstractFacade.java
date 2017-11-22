@@ -5,18 +5,12 @@
  */
 package ejb.sessions;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-import javax.faces.validator.Validator;
 import javax.persistence.EntityManager;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
 public abstract class AbstractFacade<T> {
 
@@ -66,5 +60,5 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-
+    
 }
