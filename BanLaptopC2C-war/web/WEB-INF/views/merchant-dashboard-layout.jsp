@@ -41,7 +41,7 @@
 
         <!-- MY CUSTOM CSS -->
         <link href="assets/merchant/css/dashboard-styles.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/vendor/toastr/build/toastr.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/vendor/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script src="assets/merchant/template/libs/jquery/jquery.min.js"></script>
@@ -58,8 +58,9 @@
         <script src="assets/merchant/template/libs/c3js/c3.min.js"></script>
         <script src="assets/merchant/template/libs/maplace/maplace.min.js"></script>
         <script src="https://maps.google.com/maps/api/js?libraries=geometry&v=3.26&key=AIzaSyBBjLDxcCjc4s9ngpR11uwBWXRhyp3KPYM"></script>
-        <!--<script src="assets/merchant/js/dashboard-scripts.js" type="application/javascript"></script>-->    
-        <script src="assets/vendor/toastr/build/toastr.min.js"></script>
+        
+        <script src="assets/vendor/toastr/toastr.min.js"></script>
+        
         <script src="assets/merchant/js/show-toast.js" type="text/javascript"></script>
 
     </head>
