@@ -114,6 +114,7 @@ public class AdminController {
     @RequestMapping("danhsach-phieumuahang")
     public String layDanhSachHoaDon(Model model)
     {
+        model.addAttribute("dsPhieuMuaHang", phieuMuaHangService.layDanhSachPhieuMuaHang());
         return "admin/home/danhsach-phieumuahang";
 
     }

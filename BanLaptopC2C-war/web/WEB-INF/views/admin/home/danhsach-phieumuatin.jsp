@@ -75,7 +75,14 @@
                     <td><fmt:formatNumber value="${pm.giaBan}" pattern="#,###.00" /> VNĐ</td>
                     <td>${pm.phuongThucThanhToan} </td>
                     <td>
-                        ${pm.trangThai == true ? "Thành công" : "Đã hủy "}
+
+                        <div class="col-lg-10" >
+                            <select class="form-control">
+                                <option>Đang xử lí</option>
+                                <option>Thành công </option>
+                                <option>Đã hủy </option>
+                            </select>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

@@ -4,7 +4,9 @@
     Author     : Vivi
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <h2> Danh sách phiếu mua hàng </h2>
 <div class="box dark">
@@ -75,11 +77,11 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="pmh" items ="${dsPhieuMuaHang}" varStatus="i">
+            <c:forEach var="pmh" items="${dsPhieuMuaHang}" varStatus="i">
                 <tr>
                     <td>${i.count}</td>
                     <td><fmt:formatDate value="${pmh.ngayDatHang}" pattern="dd / MM / yyyy"/></td>
-                    <td>${pmh.idNguoiBan.hoTen}</td>
+                    <td>${pmh.idNguoiMua.hoTen}</td>
                     <td>${pmh.soDienThoai}</td>
                     <td>${pmh.tenNguoiNhan}</td>
                     <td>${pmh.soDienThoai} </td>

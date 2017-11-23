@@ -32,12 +32,13 @@
         <li class="nav-header">Menu</li>
         <li class="nav-divider"></li>
         <li class="">
-            <a href="dashboard.html">
+            <a href="../home/danhsach-nguoidung/">
                 <i class="fa fa-dashboard"></i><span class="link-title">&nbsp; Quản lí người dùng</span>
             </a>
+            <a href="
         </li>
         <li class="">
-            <a href="javascript:;">
+            <a href="../home/danhsach-phieumuahang/">
                 <i class="fa fa-building "></i>
                 <span class="link-title">Thống kê hóa đơn</span>
                 <span class="fa arrow"></span>
@@ -88,7 +89,7 @@
             <a href="javascript:;">
                 <i class="fa fa-pencil"></i>
                 <span class="link-title">
-                    Thống kê đánh giá fdgdfgdgfd
+                    Thống kê đánh giá
                 </span>
                 <span class="fa arrow"></span>
             </a>
