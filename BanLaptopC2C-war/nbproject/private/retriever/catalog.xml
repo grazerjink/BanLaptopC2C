@@ -4,6 +4,9 @@
     <system systemId="http://www.w3.org/2000/svg" uri="www.w3.org/2000/svg.xml"/>
 =======
 >>>>>>> feature/thaovi
+    
+    
+    
     <system systemId="http://www.springframework.org/schema/aop/spring-aop-4.0.xsd" uri="www.springframework.org/schema/aop/spring-aop-4.0.xsd"/>
     <system systemId="http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" uri="www.springframework.org/schema/tx/spring-tx-4.0.xsd"/>
     <system systemId="http://www.springframework.org/schema/mvc/spring-mvc.xsd" uri="www.springframework.org/schema/mvc/spring-mvc.xsd"/>
