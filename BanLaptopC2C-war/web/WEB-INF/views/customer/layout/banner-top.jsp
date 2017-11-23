@@ -28,7 +28,7 @@
                                 <ul class="dropdown-menu multi-column columns-3">
                                     <div class="row">
                                         <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
-                                            <a href="mens/"><img src="assets/images/woo1.jpg" alt=" "/></a>
+                                            <a href="mens/"><img src="assets/customer/images/woo1.jpg" alt=" "/></a>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
@@ -83,7 +83,7 @@
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 multi-gd-img multi-gd-text ">
-                                            <a href="womens/"><img src="assets/images/woo.jpg" alt=" "/></a>
+                                            <a href="womens/"><img src="assets/customer/images/woo.jpg" alt=" "/></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

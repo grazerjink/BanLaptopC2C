@@ -1,9 +1,9 @@
 <%@ page pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>V2Q Shopping Online | Mua sắm tin cậy | Hàng hóa chuẩn đẹp</title>
+    <head>   
         <base href="${pageContext.request.contextPath}/">
+        <title>V2Q Shopping Online | Mua sắm tin cậy | Hàng hóa chuẩn đẹp</title>
         <!-- for-mobile-apps -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,22 +18,22 @@
         <!-- //for-mobile-apps -->
         <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
-        <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="assets/customer/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <!-- pignose css -->
-        <link href="assets/css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="assets/customer/css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
         <!-- //pignose css -->
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="assets/css/z-custom-style.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/customer/css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="assets/customer/css/z-custom-style.css" rel="stylesheet" type="text/css"/>
         <!-- js -->
-        <script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="assets/customer/js/jquery-2.1.4.min.js"></script>
         <!-- //js -->
         <!-- cart -->
-        <script src="assets/js/simpleCart.min.js"></script>
+        <script src="assets/customer/js/simpleCart.min.js"></script>
         <!-- cart -->
         <!-- for bootstrap working -->
-        <script type="text/javascript" src="assets/js/bootstrap-3.1.1.min.js"></script>
+        <script type="text/javascript" src="assets/customer/js/bootstrap-3.1.1.min.js"></script>
         <!-- //for bootstrap working -->
-        <script src="assets/js/jquery.easing.min.js"></script>
+        <script src="assets/customer/js/jquery.easing.min.js"></script>
     </head>
     <body>
         <!-- header -->

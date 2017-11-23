@@ -19,8 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -46,17 +44,12 @@ public class OCung implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "loai_o_cung")
     private String loaiOCung;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "dung_luong")
     private String dungLuong;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "an_hien")
     private boolean anHien;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOCung", fetch = FetchType.LAZY)

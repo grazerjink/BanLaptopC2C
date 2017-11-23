@@ -6,7 +6,6 @@
 package ejb.sessions;
 
 import ejb.entities.TinhTrang;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -14,8 +13,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author Winson Mac
  */
-@Stateless
-public class TinhTrangFacade extends AbstractFacade<TinhTrang> implements TinhTrangFacadeLocal {
+@javax.ejb.Stateless
+public class TinhTrangFacade extends AbstractFacade<TinhTrang> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

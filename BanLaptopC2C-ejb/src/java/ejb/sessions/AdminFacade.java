@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Winson Mac
  */
 @Stateless
-public class AdminFacade extends AbstractFacade<Admin> implements AdminFacadeLocal {
+public class AdminFacade extends AbstractFacade<Admin> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

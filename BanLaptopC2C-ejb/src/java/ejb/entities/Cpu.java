@@ -19,8 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -48,24 +46,18 @@ public class Cpu implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "ten_cpu")
     private String tenCpu;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "so_nhan")
     private int soNhan;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "toc_do")
     private float tocDo;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "l3_cache")
     private int l3Cache;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "an_hien")
     private boolean anHien;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCpu", fetch = FetchType.LAZY)

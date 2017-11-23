@@ -16,14 +16,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -54,56 +54,51 @@ public class NguoiBan implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "mat_khau")
     private String matKhau;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "ho_ten")
     private String hoTen;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 12)
     @Column(name = "cmnd")
     private String cmnd;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 11)
     @Column(name = "so_dien_thoai")
     private String soDienThoai;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "dia_chi")
     private String diaChi;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ngay_dang_ky")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayDangKy;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "kich_hoat")
     private boolean kichHoat;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "trang_thai")
     private boolean trangThai;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
+    private List<SanPham> sanPhamList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
     private List<CtPhieuMuaHang> ctPhieuMuaHangList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
     private List<PhieuMuaTin> phieuMuaTinList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
     private List<DanhGia> danhGiaList;
+    @JoinColumn(name = "id_phuong_xa", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private PhuongXa idPhuongXa;
+    @JoinColumn(name = "id_quan_huyen", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private QuanHuyen idQuanHuyen;
+    @JoinColumn(name = "id_thanh_pho", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private ThanhPho idThanhPho;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
     private List<SoTinTon> soTinTonList;
 
@@ -208,6 +203,15 @@ public class NguoiBan implements Serializable {
     }
 
     @XmlTransient
+    public List<SanPham> getSanPhamList() {
+        return sanPhamList;
+    }
+
+    public void setSanPhamList(List<SanPham> sanPhamList) {
+        this.sanPhamList = sanPhamList;
+    }
+
+    @XmlTransient
     public List<CtPhieuMuaHang> getCtPhieuMuaHangList() {
         return ctPhieuMuaHangList;
     }
@@ -232,6 +236,30 @@ public class NguoiBan implements Serializable {
 
     public void setDanhGiaList(List<DanhGia> danhGiaList) {
         this.danhGiaList = danhGiaList;
+    }
+
+    public PhuongXa getIdPhuongXa() {
+        return idPhuongXa;
+    }
+
+    public void setIdPhuongXa(PhuongXa idPhuongXa) {
+        this.idPhuongXa = idPhuongXa;
+    }
+
+    public QuanHuyen getIdQuanHuyen() {
+        return idQuanHuyen;
+    }
+
+    public void setIdQuanHuyen(QuanHuyen idQuanHuyen) {
+        this.idQuanHuyen = idQuanHuyen;
+    }
+
+    public ThanhPho getIdThanhPho() {
+        return idThanhPho;
+    }
+
+    public void setIdThanhPho(ThanhPho idThanhPho) {
+        this.idThanhPho = idThanhPho;
     }
 
     @XmlTransient

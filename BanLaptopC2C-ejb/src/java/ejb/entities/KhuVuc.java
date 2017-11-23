@@ -6,23 +6,16 @@
 package ejb.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,26 +36,14 @@ public class KhuVuc implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "ten_khu_vuc")
     private String tenKhuVuc;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKhuVuc", fetch = FetchType.LAZY)
-    private List<PhieuMuaHang> phieuMuaHangList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKhuVuc", fetch = FetchType.LAZY)
-    private List<QuanHuyen> quanHuyenList;
 
     public KhuVuc() {
     }
 
     public KhuVuc(Integer id) {
         this.id = id;
-    }
-
-    public KhuVuc(Integer id, String tenKhuVuc) {
-        this.id = id;
-        this.tenKhuVuc = tenKhuVuc;
     }
 
     public Integer getId() {
@@ -79,24 +60,6 @@ public class KhuVuc implements Serializable {
 
     public void setTenKhuVuc(String tenKhuVuc) {
         this.tenKhuVuc = tenKhuVuc;
-    }
-
-    @XmlTransient
-    public List<PhieuMuaHang> getPhieuMuaHangList() {
-        return phieuMuaHangList;
-    }
-
-    public void setPhieuMuaHangList(List<PhieuMuaHang> phieuMuaHangList) {
-        this.phieuMuaHangList = phieuMuaHangList;
-    }
-
-    @XmlTransient
-    public List<QuanHuyen> getQuanHuyenList() {
-        return quanHuyenList;
-    }
-
-    public void setQuanHuyenList(List<QuanHuyen> quanHuyenList) {
-        this.quanHuyenList = quanHuyenList;
     }
 
     @Override

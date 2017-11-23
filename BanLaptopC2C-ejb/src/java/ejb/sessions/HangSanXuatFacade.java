@@ -6,7 +6,6 @@
 package ejb.sessions;
 
 import ejb.entities.HangSanXuat;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -14,8 +13,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author Winson Mac
  */
-@Stateless
-public class HangSanXuatFacade extends AbstractFacade<HangSanXuat> implements HangSanXuatFacadeLocal {
+@javax.ejb.Stateless
+public class HangSanXuatFacade extends AbstractFacade<HangSanXuat> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;

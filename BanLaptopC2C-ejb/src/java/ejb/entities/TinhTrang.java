@@ -17,8 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -38,17 +36,15 @@ public class TinhTrang implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 2)
     @Column(name = "id")
     private String id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "ten_mo_ta")
     private String tenMoTa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTinhTrang", fetch = FetchType.LAZY)
     private List<CtPhieuMuaHang> ctPhieuMuaHangList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTinhTrang", fetch = FetchType.LAZY)
+    private List<PhieuMuaTin> phieuMuaTinList;
 
     public TinhTrang() {
     }
@@ -85,6 +81,15 @@ public class TinhTrang implements Serializable {
 
     public void setCtPhieuMuaHangList(List<CtPhieuMuaHang> ctPhieuMuaHangList) {
         this.ctPhieuMuaHangList = ctPhieuMuaHangList;
+    }
+
+    @XmlTransient
+    public List<PhieuMuaTin> getPhieuMuaTinList() {
+        return phieuMuaTinList;
+    }
+
+    public void setPhieuMuaTinList(List<PhieuMuaTin> phieuMuaTinList) {
+        this.phieuMuaTinList = phieuMuaTinList;
     }
 
     @Override
