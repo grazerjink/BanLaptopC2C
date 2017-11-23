@@ -177,8 +177,17 @@
                             <label class="col-sm-2 form-control-label ">Quận / Huyện: </label>
                             <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                    <form:select id="quanHuyen" cssClass="form-control ks-rounded v2q-input" path="idQuanHuyen.id">
-                                    <option disabled selected>Chọn Quận/Huyện</option>
+                                <form:select id="quanHuyen" cssClass="form-control ks-rounded v2q-input" path="idQuanHuyen.id">
+                                    <c:forEach items="${dsQuanHuyen}" var="q">
+                                        <c:choose>
+                                            <c:when test="${nguoiBan.idQuanHuyen.id == q.id}">
+                                                <option selected value="${q.id}">${q.tenQuanHuyen}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="${q.id}">${q.tenQuanHuyen}</option>
+                                            </c:otherwise>
+                                        </c:choose>       
+                                    </c:forEach>                                                             
                                 </form:select>
                             </div>
                         </div> 
@@ -187,7 +196,16 @@
                             <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
                                     <form:select  id="phuongXa" cssClass="form-control ks-rounded v2q-input" path="idPhuongXa.id" >
-                                    <option disabled selected>Chọn Phường/Xã</option>
+                                    <c:forEach items="${dsPhuongXa}" var="p">
+                                        <c:choose>
+                                            <c:when test="${nguoiBan.idPhuongXa.id == p.id}">
+                                                <option selected value="${p.id}">${p.tenQuanHuyen}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="${p.id}">${p.tenPhuongXa}</option>
+                                            </c:otherwise>
+                                        </c:choose>       
+                                    </c:forEach>    
                                 </form:select>
                             </div>
                         </div> 
@@ -195,9 +213,17 @@
                             <label class="col-sm-2 form-control-label ">Tỉnh / Thành phố: </label>
                             <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                    <form:select  id="thanhPho" cssClass="form-control ks-rounded v2q-input" path="idThanhPho.id" >
-                                    <option disabled selected>Chọn Tỉnh/Thành phố</option>
-                                    <form:options items="${dsThanhPho}" itemValue="id" itemLabel="tenThanhPho"/>
+                                <form:select  id="thanhPho" cssClass="form-control ks-rounded v2q-input" path="idThanhPho.id" >
+                                    <c:forEach items="${dsThanhPho}" var="t">
+                                        <c:choose>
+                                            <c:when test="${nguoiBan.idThanhPho.id == t.id}">
+                                                <option selected value="${t.id}">${t.tenQuanHuyen}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="${t.id}">${t.tenThanhPho}</option>
+                                            </c:otherwise>
+                                        </c:choose>       
+                                    </c:forEach>
                                 </form:select>
                             </div>
                         </div> 

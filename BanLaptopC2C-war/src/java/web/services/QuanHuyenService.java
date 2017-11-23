@@ -33,5 +33,9 @@ public class QuanHuyenService {
         });
         return dsTenQuanHuyen;
     }
+    
+    public List<QuanHuyen> layDanhSachQuanHuyen() {
+        return  quanHuyenFacade.findAll();
+    }
 
 }

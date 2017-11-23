@@ -29,14 +29,14 @@
 <div class="ks-body container">
     <div class="row">
         <!-- Begin landing section -->
-        <div class="v2q-slogan col-md-8 col-sm-12">
+        <div class="v2q-slogan col-lg-8 col-md-6 col-sm-12">
             <div>Kinh doanh cùng chúng tôi </div>
             <div>Trở thành người bán hàng chuyên nghiệp </div>
             <img src="assets/merchant/images/login-img.png"/>
         </div>
         <!-- End landing section -->
         <!-- Begin login form -->
-        <div class="v2q-login col-md-4 col-sm-12">
+        <div class="v2q-login col-lg-4 col-md-6 col-sm-12">
             <div class="card panel panel-default ks-light ks-panel ks-login v2q-panel">
                 <div class="card-block">
                     <div class="ks-logo v2q-logo">V2Q MALL</div>

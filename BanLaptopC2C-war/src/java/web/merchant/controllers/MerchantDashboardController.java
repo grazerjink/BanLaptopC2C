@@ -8,10 +8,15 @@ package web.merchant.controllers;
 import com.google.gson.Gson;
 import com.paypal.api.payments.Payment;
 import ejb.entities.NguoiBan;
+import ejb.entities.PhuongXa;
+import ejb.entities.QuanHuyen;
+import ejb.entities.ThanhPho;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import web.services.GoiTinService;
 import web.services.PaymentService;
 import web.services.PhieuMuaTinService;
+import web.services.PhuongXaService;
+import web.services.QuanHuyenService;
 import web.services.SoTinTonService;
+import web.services.ThanhPhoService;
 import web.viewmodels.NguoiBanViewModel;
 
 /**
@@ -38,6 +46,12 @@ public class MerchantDashboardController {
     PaymentService paymentService;
     @Autowired
     PhieuMuaTinService phieuMuaTinService;
+    @Autowired
+    QuanHuyenService quanHuyenService;
+    @Autowired
+    ThanhPhoService thanhPhoService;
+    @Autowired
+    PhuongXaService phuongXaService;
 
     @RequestMapping("quan-ly-gian-hang")
     public String trangQuanLy() {
@@ -128,6 +142,19 @@ public class MerchantDashboardController {
     public String thongTinCaNhan(ModelMap model) {
         model.addAttribute("nguoiBan", new NguoiBanViewModel());
         return "merchant/dashboard/trang-thong-tin-ca-nhan";
+    }
+    
+    @ModelAttribute("dsThanhPho")
+    public List<ThanhPho> layDanhSachThanhPho() {
+        return thanhPhoService.layDanhSachThanhPho();
+    }
+    @ModelAttribute("dsQuanHuyen")
+    public List<QuanHuyen> layDanhSachQuanHuyen() {
+        return quanHuyenService.layDanhSachQuanHuyen();
+    }
+    @ModelAttribute("dsPhuongXa")
+    public List<PhuongXa> layDanhSachPhuongXa() {
+        return phuongXaService.layDanhSachPhuongXa();
     }
     
     @ResponseBody
