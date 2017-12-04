@@ -1,4 +1,4 @@
-package web.customer.controllers;
+package web.controllers.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

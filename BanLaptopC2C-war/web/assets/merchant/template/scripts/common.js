@@ -4,22 +4,21 @@
     /**
      * Default overlay settings
      */
-    $.LoadingOverlaySetup({
-        image: "assets/merchant/template/img/loaders/svg-loaders/three-dots.svg",
-        /*image       : "",
-         fontawesome : "fa fa-refresh fa-spin",*/
-        zIndex: 1,
-        size: 0,
-        color: '#FDA30E'
-    });
+    //$.LoadingOverlaySetup({
+    //    image: "assets/merchant/template/img/loaders/svg-loaders/three-dots.svg",
+    //    fontawesome : "fa fa-refresh fa-spin",*/
+    //    zIndex: 1,
+    //    size: 0,
+    //    color: '#FDA30E'
+    //});
 
     /**
      * Show overlay for an entire page
-     */
-    $.LoadingOverlay("show", {
-        fade: true,
-        zIndex: 99999
-    });
+     */     
+    //$.LoadingOverlay("show", {
+    //    fade: true,
+    //    zIndex: 99999
+    //});
 
     window.Kosmo = {
         screen: {
@@ -104,10 +103,10 @@
             $(window).trigger('resize');
         });
 
-        setTimeout(function() {
-            $.LoadingOverlay("hide");
-            ksBody.removeClass('ks-page-loading');
-        }, 1000);
+        //setTimeout(function() {
+        //    $.LoadingOverlay("hide");
+        //    ksBody.removeClass('ks-page-loading');
+        //}, 1000);
 
         // Replace default dropdown logic for sidebar
         ksSidebar.find('.dropdown-toggle').on('click', function() {

@@ -23,7 +23,7 @@ public class PhuongXaService {
     PhuongXaFacade phuongXaFacade = (PhuongXaFacade) LookupFactory.lookupBeanFacade("PhuongXaFacade");
     PhuongXaBusiness phuongXaBusiness = (PhuongXaBusiness) LookupFactory.lookupBeanBusiness("PhuongXaBusiness");
 
-    public List<String> layDanhSachTheoQuanHuyen(Integer id) {
+    public List<String> layDanhSachTenTheoQuanHuyen(Integer id) {
         List<String> dsTenPhuongXa = new ArrayList<>();
         dsTenPhuongXa.add("<option disabled selected>Chọn Phường/Xã</option>");
 
@@ -32,6 +32,10 @@ public class PhuongXaService {
             dsTenPhuongXa.add("<option value='" + it.getId() + "'>" + it.getTenPhuongXa() + "</option>");
         });
         return dsTenPhuongXa;
+    }
+    
+    public List<PhuongXa> layDanhSachPhuongXaTheoQuanHuyen(Integer id) {
+        return phuongXaBusiness.layDanhSachTheoQuanHuyen(id);
     }
     
     public List<PhuongXa> layDanhSachPhuongXa() {

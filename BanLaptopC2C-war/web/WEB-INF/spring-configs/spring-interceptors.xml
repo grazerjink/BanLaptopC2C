@@ -21,6 +21,7 @@
             <mvc:mapping path="/merchant/**" />
             <mvc:exclude-mapping path="/merchant/dang-nhap/" />
             <mvc:exclude-mapping path="/merchant/dang-ky/" />
+            <mvc:exclude-mapping path="/merchant/quen-mat-khau/" />
             <mvc:exclude-mapping path="/merchant/ds-quanhuyen-theo-tp/" />
             <mvc:exclude-mapping path="/merchant/ds-phuongxa-theo-quanhuyen/" />
             <bean class="web.interceptors.MerchantInterceptor" />			

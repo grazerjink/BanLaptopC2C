@@ -90,11 +90,11 @@
                     </c:forEach>                    
                 </div>
             </div>
-            <jsp:include page="../layout/dashboard/dashboard-tab-sidebar.jsp"/>
+            <jsp:include page="../../layout/dashboard/dashboard-tab-sidebar.jsp"/>
         </div>
     </div>
 </div>
-<jsp:include page="../layout/dashboard/dashboard-popup.jsp"/>
+<jsp:include page="../../layout/dashboard/dashboard-popup.jsp"/>
 <script>
     $(function () {
     <c:if test="${param.success != null && fn:length(param.success)>0}">

@@ -25,10 +25,6 @@
             <span class="la la-money ks-icon v2q-icon" aria-hidden="true"></span>
             <span>Mua tin đăng</span>
         </a>
-        <a class="dropdown-item" href="merchant/thong-tin-ca-nhan/">
-            <span class="la la-lock ks-icon v2q-icon" aria-hidden="true"></span>
-            <span>Đổi mật khẩu</span>
-        </a>  
         <a class="dropdown-item" href="merchant/dang-xuat/">
             <span class="la la-sign-out ks-icon v2q-icon" aria-hidden="true"></span>
             <span>Đăng xuất</span>

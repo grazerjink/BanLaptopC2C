@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package web.merchant.controllers;
+package web.controllers.merchant;
 
 import com.google.gson.Gson;
-import ejb.entities.NguoiBan;
 import ejb.entities.ThanhPho;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -46,15 +43,21 @@ public class MerchantLandingController {
     @Autowired
     NguoiBanService nguoiBanService;
 
+    /**
+     * GET Đăng nhập hệ thống trước khi bước vào trang dashboard quản lí
+     */
     @RequestMapping(value = {"", "dang-nhap"})
     public String dangNhap(ModelMap model, HttpSession httpSession) {
-        if(httpSession.getAttribute("merchant")!=null) {
+        if (httpSession.getAttribute("merchant") != null) {
             return "redirect:/merchant/quan-ly-gian-hang/";
         }
         model.addAttribute("nguoiBan", new NguoiBanViewModel());
         return "merchant/landing/trang-dang-nhap";
     }
 
+    /**
+     * POST Đăng nhập hệ thống trước khi bước vào trang dashboard quản lí
+     */
     @RequestMapping(value = "dang-nhap", method = RequestMethod.POST)
     public String dangNhap(ModelMap model,
             HttpSession httpSession,
@@ -65,15 +68,21 @@ public class MerchantLandingController {
         return "merchant/landing/trang-dang-nhap";
     }
 
+    /**
+     * GET Chức năng đăng ký cho merchant
+     */
     @RequestMapping("dang-ky")
     public String dangKy(ModelMap model, HttpSession httpSession) {
-        if(httpSession.getAttribute("merchant")!=null) {
+        if (httpSession.getAttribute("merchant") != null) {
             return "redirect:/merchant/quan-ly-gian-hang/";
         }
         model.addAttribute("nguoiBan", new NguoiBanViewModel());
         return "merchant/landing/trang-dang-ky";
     }
 
+    /**
+     * POST Chức năng đăng ký cho merchant
+     */
     @RequestMapping(value = {"dang-ky"}, method = RequestMethod.POST)
     public String dangKy(ModelMap model,
             HttpServletRequest req,
@@ -87,21 +96,53 @@ public class MerchantLandingController {
         }
         return "merchant/landing/trang-dang-ky";
     }
+    
+    @RequestMapping("quen-mat-khau")
+    public String quenMatKhau() {
+        return "merchant/landing/trang-quen-mat-khau";
+    }
+    
+    @RequestMapping(value = "quen-mat-khau", method = RequestMethod.POST)
+    public String quenMatKhau(ModelMap model, @RequestParam("email") String email) {
+        if(nguoiBanService.taoMatKhauMoi(model, email)) {
+            return "redirect:/merchant/dang-nhap/";
+        }
+        else {
+            return "merchant/landing/trang-quen-mat-khau";
+        }
+    }
 
+    /**
+     * GET Đăng nhập thành công sẽ chuyển tới trang index của dashboard
+     */
+    @RequestMapping("quan-ly-gian-hang")
+    public String trangQuanLy() {
+        return "merchant/dashboard/trang-quan-ly";
+    }
+
+    /**
+     * Load danh sách thành phố để lựa chọn khi đăng ký
+     */
     @ModelAttribute("dsThanhPho")
     public List<ThanhPho> layDanhSachThanhPho() {
         return thanhPhoService.layDanhSachThanhPho();
     }
 
+    /**
+     * Để giúp gọi ajax lấy danh sách Quận huyện khi chọn đc thành phố trên form
+     */
     @ResponseBody
     @RequestMapping("ds-quanhuyen-theo-tp")
     public String dsQuanHuyenTheoThanhPho(@RequestParam("id") Integer id) {
-        return new Gson().toJson(quanHuyenService.layDanhSachTheoThanhPho(id));
+        return new Gson().toJson(quanHuyenService.layDanhSachTenTheoThanhPho(id));
     }
 
+    /**
+     * Để giúp gọi ajax lấy danh sách phường xã khi chọn đc quận huyện trên form
+     */
     @ResponseBody
     @RequestMapping("ds-phuongxa-theo-quanhuyen")
     public String dsPhuongXaTheoQuanHuyen(@RequestParam("id") Integer id) {
-        return new Gson().toJson(phuongXaService.layDanhSachTheoQuanHuyen(id));
+        return new Gson().toJson(phuongXaService.layDanhSachTenTheoQuanHuyen(id));
     }
 }

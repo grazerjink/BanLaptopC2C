@@ -14,7 +14,7 @@ $(function () {
      * Show overlay for an entire page
      */
     $.LoadingOverlay("show", {
-        fade: [1000, 1000],
+        fade: [600, 600],
         zIndex: 9999
     });
 
@@ -103,7 +103,7 @@ $(function () {
     setTimeout(function () {
         $.LoadingOverlay("hide");
         ksBody.removeClass('ks-page-loading');
-    }, 2000);
+    }, 600);
 
     // Replace default dropdown logic for sidebar
     ksSidebar.find('.dropdown-toggle').on('click', function () {

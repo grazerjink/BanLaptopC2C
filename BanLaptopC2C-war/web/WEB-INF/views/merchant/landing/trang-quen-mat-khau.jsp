@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
     .form-control:hover {
         border-color: #FFC237;
@@ -40,33 +39,24 @@
             <div class="card panel panel-default ks-light ks-panel ks-login v2q-panel">
                 <div class="card-block">
                     <div class="ks-logo v2q-logo">V2Q MALL</div>
-                    <form:form cssClass="form-container" modelAttribute="nguoiBan" action="merchant/dang-nhap/" method="POST">
+                    <form id="form-quen-mat-khau" class="form-container" action="merchant/quen-mat-khau/" method="POST">
+                        <h4 class="text-center">Quên mật khẩu</h4>
                         <div class="form-group">
                             <div class="input-icon icon-left icon-lg icon-color-primary">
-                                <form:input path="email" cssClass="form-control ks-rounded" placeholder="Email"/>
+                                <input id="email" name="email" class="form-control ks-rounded" placeholder="Email đăng ký tài khoản bán hàng"/>
                                 <span class="icon-addon">
                                     <span class="la la-at"></span>
                                 </span>
                             </div>
                         </div>
+                        <div class="form-group text-center">
+                            <span style="color: red;"><b>${message}</b></span>
+                        </div>
+                        
                         <div class="form-group">
-                            <div class="input-icon icon-left icon-lg icon-color-primary">
-                                <form:input path="matKhau" type="password" cssClass="form-control ks-rounded" placeholder="Mật khẩu"/>
-                                <span class="icon-addon">
-                                    <span class="la la-key"></span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-login">Đăng nhập</button>
-                        </div>
-                        <div class="ks-text-center">
-                            Chưa có tài khoản bán hàng ? <a href="merchant/dang-ky/"> Đăng ký tại đây.</a>
-                        </div>
-                        <div class="ks-text-center">
-                            <a href="merchant/quen-mat-khau/">Quên mật khẩu?</a>
-                        </div>                    
-                    </form:form>
+                            <button type="submit" class="btn btn-login">Nhận mật khẩu mới</button>
+                        </div>                 
+                    </form>
                 </div>
             </div>
         </div>
@@ -76,20 +66,18 @@
 <jsp:include page="../layout/landing/landing-footer.jsp"/>
 <script>
     $(function () {
-        $("#nguoiBan").validate({
+        $("#form-quen-mat-khau").validate({
             rules: {
                 email: {
                     required: true,
                     email: true
-                },
-                matKhau: "required"
+                }
             },
             messages: {
                 email: {
                     required: "Vui lòng nhập email.",
                     email: "Chưa đúng định dạng email."
-                },
-                matKhau: "Vui lòng nhập mật khẩu"
+                }
             }
         });
     <c:if test="${param.success != null && fn:length(param.success)>0}">

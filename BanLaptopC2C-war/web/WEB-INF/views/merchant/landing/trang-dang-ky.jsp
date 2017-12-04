@@ -198,10 +198,6 @@
                 diaChi: {
                     required: true
                 },
-                email: {
-                    required: true,
-                    email: true
-                },
                 matKhau: {
                     required: true,
                     pattern: /^[a-zA-Z0-9]{4,20}$/
@@ -229,10 +225,6 @@
                 },
                 diaChi: {
                     required: "Vui lòng nhập địa chỉ."
-                },
-                email: {
-                    required: "Vui lòng nhập email.",
-                    email: "Chưa đúng định dạng email."
                 },
                 matKhau: {
                     required: "Vui lòng nhập mật khẩu.",

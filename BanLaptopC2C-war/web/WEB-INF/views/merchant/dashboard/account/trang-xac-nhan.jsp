@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <jsp:include page="../layout/dashboard/dashboard-tab-sidebar.jsp"/>
+            <jsp:include page="../../layout/dashboard/dashboard-tab-sidebar.jsp"/>
         </div>
     </div>
 </div>
