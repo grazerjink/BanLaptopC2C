@@ -7,8 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div href="index.html" class="navbar-brand">
     <!-- BEGIN RESPONSIVE SIDEBAR TOGGLER -->
-    <a href="#" class="ks-sidebar-toggle"><i class="ks-icon la la-bars" aria-hidden="true"></i></a>
-    <a href="#" class="ks-sidebar-mobile-toggle"><i class="ks-icon la la-bars" aria-hidden="true"></i></a>
+    <a class="ks-sidebar-toggle"><i class="ks-icon la la-bars" aria-hidden="true"></i></a>
+    <a class="ks-sidebar-mobile-toggle"><i class="ks-icon la la-bars" aria-hidden="true"></i></a>
     <!-- END RESPONSIVE SIDEBAR TOGGLER -->
 
     <div class="ks-navbar-logo">
@@ -59,7 +59,7 @@
             </div>
         </span>-->
 
-        <span class="nav-item dropdown ks-dropdown-grid-images">
+        <!--<span class="nav-item dropdown ks-dropdown-grid-images">
             <a class="nav-link v2q-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
             <div class="dropdown-menu ks-info ks-scrollable" aria-labelledby="Preview" data-height="260">
                 <div class="ks-scroll-wrapper">
@@ -89,8 +89,7 @@
                     </a>
                 </div>
             </div>
-        </span>
-
+        </span>-->
         <!-- END GRID NAVIGATION -->
     </div>
 </div>

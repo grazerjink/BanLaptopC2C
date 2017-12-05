@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -42,14 +43,17 @@ public class ThongSoKiThuat implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "card_tich_hop")
     private boolean cardTichHop;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ket_noi_wifi")
     private boolean ketNoiWifi;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "thoi_luong_pin")
-    private String thoiLuongPin;
+    private int thoiLuongPin;
     @JoinColumn(name = "id_cpu", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Cpu idCpu;
@@ -82,7 +86,7 @@ public class ThongSoKiThuat implements Serializable {
         this.id = id;
     }
 
-    public ThongSoKiThuat(Integer id, boolean cardTichHop, boolean ketNoiWifi, String thoiLuongPin) {
+    public ThongSoKiThuat(Integer id, boolean cardTichHop, boolean ketNoiWifi, int thoiLuongPin) {
         this.id = id;
         this.cardTichHop = cardTichHop;
         this.ketNoiWifi = ketNoiWifi;
@@ -113,11 +117,11 @@ public class ThongSoKiThuat implements Serializable {
         this.ketNoiWifi = ketNoiWifi;
     }
 
-    public String getThoiLuongPin() {
+    public int getThoiLuongPin() {
         return thoiLuongPin;
     }
 
-    public void setThoiLuongPin(String thoiLuongPin) {
+    public void setThoiLuongPin(int thoiLuongPin) {
         this.thoiLuongPin = thoiLuongPin;
     }
 

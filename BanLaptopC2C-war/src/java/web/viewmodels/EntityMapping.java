@@ -24,6 +24,10 @@ public class EntityMapping {
                 ngBanViewModel.soDienThoai,
                 ngBanViewModel.diaChi,
                 new Date(),
+                ngBanViewModel.isLanDauMuaTin(),
+                ngBanViewModel.getSoLanDangTin(),
+                ngBanViewModel.getSoLanCanhCao(),
+                ngBanViewModel.getSoLanDanhGia(),
                 ngBanViewModel.kichHoat,
                 ngBanViewModel.trangThai);
         nguoiBan.setIdPhuongXa(ngBanViewModel.getIdPhuongXa());

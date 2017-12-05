@@ -52,6 +52,10 @@ public class NguoiBanService {
                 try {
                     NguoiBan nguoiBan = EntityMapping.convertFrom(nguoiBanVM);
                     nguoiBan.setMatKhau(EncryptHelper.encrypt(nguoiBanVM.getMatKhau()));
+                    nguoiBan.setLanDauMuaTin(true);
+                    nguoiBan.setSoLanCanhCao(0);
+                    nguoiBan.setSoLanDanhGia(0);
+                    nguoiBan.setSoLanDangTin(0);
                     nguoiBan.setTrangThai(true);
                     nguoiBan.setKichHoat(false);
                     try {

@@ -46,6 +46,10 @@ public class NguoiBanViewModel {
     @NotEmpty
     String diaChi;
     Date ngayDangKy;
+    boolean lanDauMuaTin;
+    int soLanCanhCao;
+    int soLanDanhGia;
+    int soLanDangTin;
     boolean kichHoat;
     boolean trangThai;
     
@@ -62,6 +66,39 @@ public class NguoiBanViewModel {
     List<DanhGia> danhGiaList;
     List<SoTinTon> soTinTonList;
 
+    public int getSoLanDangTin() {
+        return soLanDangTin;
+    }
+
+    public void setSoLanDangTin(int soLanDangTin) {
+        this.soLanDangTin = soLanDangTin;
+    }
+    
+
+    public boolean isLanDauMuaTin() {
+        return lanDauMuaTin;
+    }
+
+    public void setLanDauMuaTin(boolean lanDauMuaTin) {
+        this.lanDauMuaTin = lanDauMuaTin;
+    }
+
+    public int getSoLanCanhCao() {
+        return soLanCanhCao;
+    }
+
+    public void setSoLanCanhCao(int soLanCanhCao) {
+        this.soLanCanhCao = soLanCanhCao;
+    }
+
+    public int getSoLanDanhGia() {
+        return soLanDanhGia;
+    }
+
+    public void setSoLanDanhGia(int soLanDanhGia) {
+        this.soLanDanhGia = soLanDanhGia;
+    }
+            
     public String getMatKhauXacNhan() {
         return matKhauXacNhan;
     }

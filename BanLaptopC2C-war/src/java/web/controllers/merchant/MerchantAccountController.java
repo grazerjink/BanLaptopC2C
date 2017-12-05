@@ -114,8 +114,7 @@ public class MerchantAccountController {
             Payment hoaDonPaypal = paymentService.completePaymentProcess(paymentId, payerId);
             String idGoiTin = hoaDonPaypal.getTransactions().get(0).getItemList().getItems().get(0).getSku();
             /// Cập nhật số tin            
-            soTinTonService.capNhatSoTinDang((NguoiBan) httpSession.getAttribute("merchant"),
-                    goiTinService.timGoiTinTheoId(idGoiTin));
+            soTinTonService.capNhatSoTinDang(goiTinService.timGoiTinTheoId(idGoiTin), httpSession);
             /// Tạo phiếu mua tin
             phieuMuaTinService.taoPhieuMuaTinQuaPayPal((NguoiBan) httpSession.getAttribute("merchant"),
                     goiTinService.timGoiTinTheoId(idGoiTin), paymentId, payerId);

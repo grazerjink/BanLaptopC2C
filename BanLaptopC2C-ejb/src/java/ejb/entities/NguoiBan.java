@@ -24,6 +24,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -44,6 +46,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "NguoiBan.findBySoDienThoai", query = "SELECT n FROM NguoiBan n WHERE n.soDienThoai = :soDienThoai")
     , @NamedQuery(name = "NguoiBan.findByDiaChi", query = "SELECT n FROM NguoiBan n WHERE n.diaChi = :diaChi")
     , @NamedQuery(name = "NguoiBan.findByNgayDangKy", query = "SELECT n FROM NguoiBan n WHERE n.ngayDangKy = :ngayDangKy")
+    , @NamedQuery(name = "NguoiBan.findByLanDauMuaTin", query = "SELECT n FROM NguoiBan n WHERE n.lanDauMuaTin = :lanDauMuaTin")
+    , @NamedQuery(name = "NguoiBan.findBySoLanDangTin", query = "SELECT n FROM NguoiBan n WHERE n.soLanDangTin = :soLanDangTin")
+    , @NamedQuery(name = "NguoiBan.findBySoLanCanhCao", query = "SELECT n FROM NguoiBan n WHERE n.soLanCanhCao = :soLanCanhCao")
+    , @NamedQuery(name = "NguoiBan.findBySoLanDanhGia", query = "SELECT n FROM NguoiBan n WHERE n.soLanDanhGia = :soLanDanhGia")
     , @NamedQuery(name = "NguoiBan.findByKichHoat", query = "SELECT n FROM NguoiBan n WHERE n.kichHoat = :kichHoat")
     , @NamedQuery(name = "NguoiBan.findByTrangThai", query = "SELECT n FROM NguoiBan n WHERE n.trangThai = :trangThai")})
 public class NguoiBan implements Serializable {
@@ -54,32 +60,64 @@ public class NguoiBan implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "mat_khau")
     private String matKhau;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "ho_ten")
     private String hoTen;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 12)
     @Column(name = "cmnd")
     private String cmnd;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 11)
     @Column(name = "so_dien_thoai")
     private String soDienThoai;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "dia_chi")
     private String diaChi;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ngay_dang_ky")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayDangKy;
     @Basic(optional = false)
+    @NotNull
+    @Column(name = "lan_dau_mua_tin")
+    private boolean lanDauMuaTin;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "so_lan_dang_tin")
+    private int soLanDangTin;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "so_lan_canh_cao")
+    private int soLanCanhCao;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "so_lan_danh_gia")
+    private int soLanDanhGia;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "kich_hoat")
     private boolean kichHoat;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "trang_thai")
     private boolean trangThai;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiBan", fetch = FetchType.LAZY)
@@ -109,7 +147,7 @@ public class NguoiBan implements Serializable {
         this.id = id;
     }
 
-    public NguoiBan(Integer id, String email, String matKhau, String hoTen, String cmnd, String soDienThoai, String diaChi, Date ngayDangKy, boolean kichHoat, boolean trangThai) {
+    public NguoiBan(Integer id, String email, String matKhau, String hoTen, String cmnd, String soDienThoai, String diaChi, Date ngayDangKy, boolean lanDauMuaTin, int soLanDangTin, int soLanCanhCao, int soLanDanhGia, boolean kichHoat, boolean trangThai) {
         this.id = id;
         this.email = email;
         this.matKhau = matKhau;
@@ -118,6 +156,10 @@ public class NguoiBan implements Serializable {
         this.soDienThoai = soDienThoai;
         this.diaChi = diaChi;
         this.ngayDangKy = ngayDangKy;
+        this.lanDauMuaTin = lanDauMuaTin;
+        this.soLanDangTin = soLanDangTin;
+        this.soLanCanhCao = soLanCanhCao;
+        this.soLanDanhGia = soLanDanhGia;
         this.kichHoat = kichHoat;
         this.trangThai = trangThai;
     }
@@ -184,6 +226,38 @@ public class NguoiBan implements Serializable {
 
     public void setNgayDangKy(Date ngayDangKy) {
         this.ngayDangKy = ngayDangKy;
+    }
+
+    public boolean getLanDauMuaTin() {
+        return lanDauMuaTin;
+    }
+
+    public void setLanDauMuaTin(boolean lanDauMuaTin) {
+        this.lanDauMuaTin = lanDauMuaTin;
+    }
+
+    public int getSoLanDangTin() {
+        return soLanDangTin;
+    }
+
+    public void setSoLanDangTin(int soLanDangTin) {
+        this.soLanDangTin = soLanDangTin;
+    }
+
+    public int getSoLanCanhCao() {
+        return soLanCanhCao;
+    }
+
+    public void setSoLanCanhCao(int soLanCanhCao) {
+        this.soLanCanhCao = soLanCanhCao;
+    }
+
+    public int getSoLanDanhGia() {
+        return soLanDanhGia;
+    }
+
+    public void setSoLanDanhGia(int soLanDanhGia) {
+        this.soLanDanhGia = soLanDanhGia;
     }
 
     public boolean getKichHoat() {

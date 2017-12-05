@@ -111,15 +111,15 @@
             </div>
             <div class="ks-statistics v2q-statistics-panel col-xs-12 col-sm-6 col-md-6 col-lg-6 row">
                 <div class="ks-item v2q-item col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <div class="ks-amount v2q-amount"><span>869</span></div>
+                    <div class="ks-amount v2q-amount"><span>${merchant.soLanDangTin}</span></div>
                     <div class="ks-text v2q-text"><span>lần đăng tin</span></div>
                 </div>
                 <div class="ks-item v2q-item col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <div class="ks-amount v2q-amount"><span>131</span></div>
+                    <div class="ks-amount v2q-amount"><span>${merchant.soLanDanhGia}</span></div>
                     <div class="ks-text v2q-text"><span>lần đánh giá</span></div>
                 </div>
                 <div class="ks-item v2q-item col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <div class="ks-amount v2q-amount"><span>3</span></div>
+                    <div class="ks-amount v2q-amount"><span>${merchant.soLanCanhCao}</span></div>
                     <div class="ks-text v2q-text"><span>lần vi phạm</span></div>
                 </div>
             </div>

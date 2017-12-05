@@ -24,6 +24,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -58,40 +60,57 @@ public class SanPham implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 500)
     @Column(name = "ten_may")
     private String tenMay;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "hinh_anh")
     private String hinhAnh;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "gia_ban")
     private float giaBan;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "ghi_chu")
     private String ghiChu;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 500)
     @Column(name = "mo_ta")
     private String moTa;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ton_kho")
     private int tonKho;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ngay_dang")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayDang;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "so_lan_xem")
     private int soLanXem;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "so_lan_mua")
     private int soLanMua;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 500)
     @Column(name = "bi_danh")
     private String biDanh;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "trang_thai")
     private boolean trangThai;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "an_hien")
     private boolean anHien;
     @JoinColumn(name = "id_hang_san_xuat", referencedColumnName = "id")
