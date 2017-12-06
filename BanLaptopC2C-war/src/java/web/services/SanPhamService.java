@@ -23,5 +23,9 @@ public class SanPhamService {
     public List<SanPham> layDanhSachSanPhamTheoNguoiBan(int idNguoiBan) {
         return sanPhamBusiness.layDanhSachSanPhamTheoNguoiBan(idNguoiBan);
     }
+
+    public List<SanPham> layTatCaSanPham() {
+        return sanPhamBusiness.layTatCaSanPham();
+    }
     
 }

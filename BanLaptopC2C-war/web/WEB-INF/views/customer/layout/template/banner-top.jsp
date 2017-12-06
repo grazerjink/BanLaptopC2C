@@ -20,7 +20,7 @@
                         </button>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
+                    <!--<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav menu__list">
                             <li class="active menu__item menu__item--current"><a class="menu__link" href="index/">Trang chủ <span class="sr-only">(current)</span></a></li>
                             <li class="dropdown menu__item">
@@ -28,7 +28,7 @@
                                 <ul class="dropdown-menu multi-column columns-3">
                                     <div class="row">
                                         <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
-                                            <a href="mens/"><img src="assets/customer/images/woo1.jpg" alt=" "/></a>
+                                            <a href="mens/"><img src="assets/customer/template/images/woo1.jpg" alt=" "/></a>
                                         </div>
                                         <div class="col-sm-3 multi-gd-img">
                                             <ul class="multi-column-dropdown">
@@ -83,7 +83,7 @@
                                             </ul>
                                         </div>
                                         <div class="col-sm-6 multi-gd-img multi-gd-text ">
-                                            <a href="womens/"><img src="assets/customer/images/woo.jpg" alt=" "/></a>
+                                            <a href="womens/"><img src="assets/customer/template/images/woo.jpg" alt=" "/></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -92,11 +92,11 @@
                             <li class=" menu__item"><a class="menu__link" href="electronics/">Laptop Đồ Họa </a></li>
                             <li class=" menu__item"><a class="menu__link" href="codes/">Laptop Lập Trình </a></li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
             </nav>	
         </div>
-        <div class="top_nav_right">
+<!--        <div class="top_nav_right">
             <div class="cart box_1">
                 <a href="checkout/">
                     <h3> <div class="total">
@@ -108,7 +108,7 @@
                 <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
             </div>	
-        </div>
+        </div>-->
         <div class="clearfix"></div>
     </div>
 </div>

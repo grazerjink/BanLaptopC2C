@@ -15,41 +15,41 @@
                 <div class="login-grids">
                     <div class="login">
                         <div class="login-bottom">
-                            <h3>Sign up for free</h3>
+                            <h3>Đăng ký nhanh miễn phí</h3>
                             <form>
                                 <div class="sign-up">
-                                    <h4>Email :</h4>
-                                    <input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                this.value = 'Type here';
+                                    <h4>Email: </h4>
+                                    <input type="text" value="Email đăng ký" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                                this.value = 'Email đăng ký';
                                             }" required="">	
                                 </div>
                                 <div class="sign-up">
-                                    <h4>Password :</h4>
+                                    <h4>Mật khẩu: </h4>
                                     <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
                                                 this.value = 'Password';
                                             }" required="">
 
                                 </div>
                                 <div class="sign-up">
-                                    <h4>Re-type Password :</h4>
+                                    <h4>Mật khẩu xác nhận: </h4>
                                     <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
                                                 this.value = 'Password';
                                             }" required="">
 
                                 </div>
                                 <div class="sign-up">
-                                    <input type="submit" value="REGISTER NOW" >
+                                    <input type="submit" value="ĐĂNG KÝ" >
                                 </div>
 
                             </form>
                         </div>
                         <div class="login-right">
-                            <h3>Sign in with your account</h3>
+                            <h3>Đăng nhập</h3>
                             <form>
                                 <div class="sign-in">
                                     <h4>Email :</h4>
-                                    <input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                this.value = 'Type here';
+                                    <input type="text" value="Email đăng ký" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                                this.value = 'Email đăng ký';
                                             }" required="">	
                                 </div>
                                 <div class="sign-in">
@@ -57,20 +57,20 @@
                                     <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
                                                 this.value = 'Password';
                                             }" required="">
-                                    <a href="#">Forgot password?</a>
+                                            <a href="#"><span style="font-size: 1.2em;">Quên mật khẩu?</span></a>
                                 </div>
                                 <div class="single-bottom">
                                     <input type="checkbox"  id="brand" value="">
-                                    <label for="brand"><span></span>Remember Me.</label>
+                                    <label for="brand"><span></span>Ghi nhớ đăng nhập</label>
                                 </div>
                                 <div class="sign-in">
-                                    <input type="submit" value="SIGNIN" >
+                                    <input type="submit" value="ĐĂNG NHẬP" >
                                 </div>
                             </form>
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
+                    <p style="font-size: 1em;">Việc đăng nhập sử dụng bằng việc đồng ý <a href="#">Điều khoản</a> và <a href="#">Chính sách của chúng tôi</a> !</p>
                 </div>
             </div>
         </div>

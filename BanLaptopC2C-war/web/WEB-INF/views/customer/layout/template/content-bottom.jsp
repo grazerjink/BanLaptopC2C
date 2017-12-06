@@ -9,7 +9,7 @@
     <div class="col-md-7 content-lgrid">
         <div class="col-sm-6 content-img-left text-center">
             <div class="content-grid-effect slow-zoom vertical">
-                <div class="img-box"><img src="assets/customer/images/p1.jpg" alt="image" class="img-responsive zoom-img"></div>
+                <div class="img-box"><img src="assets/customer/template/images/p1.jpg" alt="image" class="img-responsive zoom-img"></div>
                 <div class="info-box">
                     <div class="info-content simpleCart_shelfItem">
                         <h4>Mobiles</h4>
@@ -30,7 +30,7 @@
         </div>
         <div class="col-sm-6 content-img-left text-center">
             <div class="content-grid-effect slow-zoom vertical">
-                <div class="img-box"><img src="assets/customer/images/p2.jpg" alt="image" class="img-responsive zoom-img"></div>
+                <div class="img-box"><img src="assets/customer/template/images/p2.jpg" alt="image" class="img-responsive zoom-img"></div>
                 <div class="info-box">
                     <div class="info-content simpleCart_shelfItem">
                         <h4>Watches</h4>
@@ -46,7 +46,7 @@
     </div>
     <div class="col-md-5 content-rgrid text-center">
         <div class="content-grid-effect slow-zoom vertical">
-            <div class="img-box"><img src="assets/customer/images/p4.jpg" alt="image" class="img-responsive zoom-img"></div>
+            <div class="img-box"><img src="assets/customer/template/images/p4.jpg" alt="image" class="img-responsive zoom-img"></div>
             <div class="info-box">
                 <div class="info-content simpleCart_shelfItem">
                     <h4>Shoes</h4>

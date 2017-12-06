@@ -18,41 +18,47 @@
         <!-- //for-mobile-apps -->
         <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
-        <link href="assets/customer/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="assets/customer/template/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <!-- pignose css -->
-        <link href="assets/customer/css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="assets/customer/template/css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
         <!-- //pignose css -->
-        <link href="assets/customer/css/style.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="assets/customer/css/z-custom-style.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/customer/template/css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="assets/customer/template/css/z-custom-style.css" rel="stylesheet" type="text/css"/>
         <!-- js -->
-        <script type="text/javascript" src="assets/customer/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="assets/customer/template/js/jquery-2.1.4.min.js"></script>
         <!-- //js -->
         <!-- cart -->
-        <script src="assets/customer/js/simpleCart.min.js"></script>
+        <script src="assets/customer/template/js/simpleCart.min.js"></script>
         <!-- cart -->
         <!-- for bootstrap working -->
-        <script type="text/javascript" src="assets/customer/js/bootstrap-3.1.1.min.js"></script>
+        <script type="text/javascript" src="assets/customer/template/js/bootstrap-3.1.1.min.js"></script>
         <!-- //for bootstrap working -->
-        <script src="assets/customer/js/jquery.easing.min.js"></script>
+        <script src="assets/customer/template/js/jquery.easing.min.js"></script>
     </head>
     <body>
         <!-- header -->
-        <jsp:include page="customer/layout/header.jsp"/>
+        <jsp:include page="customer/layout/template/header.jsp"/>
         <!-- //header -->
         <!-- banner top -->
-        <jsp:include page="customer/layout/banner-top.jsp"/>
+        <jsp:include page="customer/layout/template/banner-top.jsp"/>
         <!-- //banner-top -->
+        <!-- banner -->
+        <jsp:include page="customer/layout/template/banner.jsp"/>
+        <!-- //banner -->
+        <!-- content-bottom -->
+        <%--<jsp:include page="../layout/content-bottom.jsp"/>--%>
+        <!-- //content-bottom -->
         <!-- main content -->
         <jsp:include page="${param.view}"/>
         <!-- //main content -->
         <!-- coupon -->
-        <jsp:include page="customer/layout/coupon.jsp"/>
+        <jsp:include page="customer/layout/template/coupon.jsp"/>
         <!-- //coupon -->
         <!-- footer -->
-        <jsp:include page="customer/layout/footer.jsp"/>
+        <jsp:include page="customer/layout/template/footer.jsp"/>
         <!-- //footer -->
         <!-- login -->
-        <jsp:include page="customer/layout/login.jsp"/>
-        <!-- //login -->
+        <jsp:include page="customer/layout/template/login.jsp"/>
+        <!-- //login -->        
     </body>
 </html>

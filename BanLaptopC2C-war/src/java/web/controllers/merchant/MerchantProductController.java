@@ -49,6 +49,7 @@ import web.viewmodels.SanPhamViewModel;
 @Controller
 @RequestMapping("merchant")
 public class MerchantProductController {
+
     @Autowired
     HangSanXuatService hangSanXuatService;
     @Autowired
@@ -66,75 +67,85 @@ public class MerchantProductController {
     @Autowired
     KichThuocManHinhService kichThuocManHinhService;
     @Autowired
-    NguoiBanService nguoiBanService;   
+    NguoiBanService nguoiBanService;
     @Autowired
-    SanPhamService sanPhamService;   
+    SanPhamService sanPhamService;
     @Autowired
     ServletContext app;
-    
+
     @RequestMapping("danh-sach-san-pham")
     public String danhSachSanPham(Model model, HttpSession httpSession) {
         NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
-        model.addAttribute("dsSanPham",sanPhamService.layDanhSachSanPhamTheoNguoiBan(nguoiBan.getId()));
+        model.addAttribute("dsSanPham", sanPhamService.layDanhSachSanPhamTheoNguoiBan(nguoiBan.getId()));
         return "merchant/dashboard/product/trang-danh-sach-san-pham";
     }
-    
+
     @RequestMapping("dang-tin-san-pham")
-    public String dangTinSanPham(Model model) {
+    public String dangTinSanPham(Model model, HttpSession httpSession) {
+        NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
+        if (!nguoiBan.getTrangThai()) {
+            model.addAttribute("error", "Tài khoản đã bị tạm khóa.");
+            return "redirect:/merchant/danh-sach-san-pham/";
+        }
         model.addAttribute("sanPham", new SanPhamViewModel());
         return "merchant/dashboard/product/trang-dang-tin-san-pham";
     }
-    
+
     @RequestMapping(value = "dang-tin-san-pham", method = RequestMethod.POST)
-    public String dangTinSanPham(Model model, 
+    public String dangTinSanPham(Model model,
             HttpSession httpSession,
             @RequestParam("fileUploads[]") MultipartFile[] fileUploads,
             @ModelAttribute("sanPham") @Valid SanPhamViewModel sanPhamVM,
             BindingResult errors) {
-        if(!errors.hasErrors()) {     
+        if (!errors.hasErrors()) {
             String path = app.getRealPath("/assets/merchant/images/products/");
-            if(nguoiBanService.dangTinSanPham(sanPhamVM, fileUploads, httpSession, model, path)) {
+            if (nguoiBanService.dangTinSanPham(sanPhamVM, fileUploads, httpSession, model, path)) {
                 return "redirect:/merchant/danh-sach-san-pham/";
             }
-        }
-        else {            
+        } else {
             model.addAttribute("serverErrors", "Khai báo thông tin sản phẩm không hợp lệ.<br>Xin vui lòng kiểm tra lại.");
-        }        
+        }
         return "merchant/dashboard/product/trang-dang-tin-san-pham";
-    }  
-    
+    }
+
     @ModelAttribute("dsHangSanXuat")
     public List<HangSanXuat> layDanhSachHangSanXuat() {
         return hangSanXuatService.layDanhSachHangSanXuat();
     }
+
     @ModelAttribute("dsRam")
     public List<Ram> layDanhSachRam() {
         return ramService.layDanhSachRam();
     }
+
     @ModelAttribute("dsCpu")
     public List<Cpu> layDanhSachCpu() {
         return cpuService.layDanhSachCpu();
     }
+
     @ModelAttribute("dsCardManHinh")
     public List<CardManHinh> layDanhSachCardManHinh() {
         return cardManHinhService.layDanhSachCardManHinh();
     }
+
     @ModelAttribute("dsOCung")
     public List<OCung> layDanhSachOCung() {
         return oCungService.layDanhSachOCung();
     }
+
     @ModelAttribute("dsLoaiManHinh")
     public List<LoaiManHinh> layDanhSachLoaiManHinh() {
         return loaiManHinhService.layDanhSachLoaiManHinh();
     }
+
     @ModelAttribute("dsDoPhanGiai")
     public List<DoPhanGiai> layDanhSachDoPhanGiai() {
         return doPhanGiaiService.layDanhSachDoPhanGiai();
-    }      
+    }
+
     @ModelAttribute("dsKichThuocManHinh")
     public List<KichThuocManHinh> layDanhSachKichThuocManHinh() {
         return kichThuocManHinhService.layDanhSachKichThuocManHinh();
-    }  
+    }
 
-    
 }

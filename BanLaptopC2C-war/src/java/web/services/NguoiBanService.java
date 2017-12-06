@@ -141,11 +141,8 @@ public class NguoiBanService {
             NguoiBan nguoiBan = nguoiBanBusiness.timTheoEmail(nguoiBanVM.getEmail());
             
             String matKhau = EncryptHelper.encrypt(nguoiBanVM.getMatKhau());
-            if (nguoiBan.getMatKhau().equals(matKhau)) {
-                if (!nguoiBan.getTrangThai()) {
-                    model.addAttribute("error", "Tài khoản đã bị tạm khóa.");
-                    return false;
-                } else if (!nguoiBan.getKichHoat()) {
+            if (nguoiBan.getMatKhau().equals(matKhau)) {                
+                if (!nguoiBan.getKichHoat()) {
                     model.addAttribute("error", "Tài khoản chưa được kích hoạt.");
                     return false;
                 } else {

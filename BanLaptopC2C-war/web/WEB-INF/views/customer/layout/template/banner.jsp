@@ -10,14 +10,16 @@
         <div class="slide-visual">
             <!-- Slide Image Area (1000 x 424) -->
             <ul class="slide-group">
-                <li><img class="img-responsive" src="assets/customer/images/ba1.jpg" alt="Dummy Image" /></li>
-                <li><img class="img-responsive" src="assets/customer/images/ba2.jpg" alt="Dummy Image" /></li>
-                <li><img class="img-responsive" src="assets/customer/images/ba3.jpg" alt="Dummy Image" /></li>
+                <li><img class="img-responsive" src="assets/customer/images/v2q-banner-1.jpg" alt="Dummy Image" /></li>
+                <li><img class="img-responsive" src="assets/customer/images/v2q-banner-2.jpg" alt="Dummy Image" /></li>
+                <li><img class="img-responsive" src="assets/customer/images/v2q-banner-3.jpg" alt="Dummy Image" /></li>
+                <li><img class="img-responsive" src="assets/customer/images/v2q-banner-4.jpg" alt="Dummy Image" /></li>-->
+                <!--<li><img class="img-responsive" src="assets/customer/images/v2q-banner-5.jpg" alt="Dummy Image" /></li>-->-->
             </ul>
         </div>
         <div class="clearfix"></div>
     </div>
-    <script type="text/javascript" src="assets/customer/js/pignose.layerslider.js"></script>
+    <script type="text/javascript" src="assets/customer/template/js/pignose.layerslider.js"></script>
     <script type="text/javascript">
         //<![CDATA[
         $(window).load(function () {

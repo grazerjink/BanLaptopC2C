@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <style>
@@ -70,7 +71,7 @@
                                         <span style="color: red; font-weight: 500;">Sản phẩm hiện bị khóa.</span>
                                     </c:otherwise>
                                 </c:choose>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -86,3 +87,14 @@
 
         </div>
     </div>
+</div>
+<script>
+    $(function () {
+    <c:if test="${param.success != null && fn:length(param.success)>0}">
+        showSuccessToast("${param.success}");
+    </c:if>
+    <c:if test="${param.error != null && fn:length(param.success)>0}">
+        showErrorToast("${param.error}");
+    </c:if>
+    });
+</script>
