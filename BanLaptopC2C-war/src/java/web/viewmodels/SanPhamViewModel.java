@@ -5,23 +5,34 @@
  */
 package web.viewmodels;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author Winson Mac
  */
 public class SanPhamViewModel {
 
-    private String tenMay;
-    private String hinhAnh;
-    private Double giaBan;
-    private String ghiChu;
-    private String moTa;
-    private Integer tonKho;
-    private boolean anHien;
-    private Integer idHangSanXuat;
-    private Integer idNguoiBan;
+    @NotEmpty
+    private String tenMay;    
+    @NotNull
+    @Min(value = 0)
+    private Double giaBan;    
+    @NotEmpty
+    private String moTa;    
+    @NotNull
+    @Min(value = 0)
+    private Integer tonKho;    
+    @NotEmpty
+    private String idHangSanXuat;    
+    
+    private Integer idNguoiBan;    
+    
+    @NotNull
     private ThongSoKiThuatViewModel thongSoKiThuatVM;
-
+    
     public String getTenMay() {
         return tenMay;
     }
@@ -30,28 +41,12 @@ public class SanPhamViewModel {
         this.tenMay = tenMay;
     }
 
-    public String getHinhAnh() {
-        return hinhAnh;
-    }
-
-    public void setHinhAnh(String hinhAnh) {
-        this.hinhAnh = hinhAnh;
-    }
-
     public Double getGiaBan() {
         return giaBan;
     }
 
     public void setGiaBan(Double giaBan) {
         this.giaBan = giaBan;
-    }
-
-    public String getGhiChu() {
-        return ghiChu;
-    }
-
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
     }
 
     public String getMoTa() {
@@ -70,21 +65,13 @@ public class SanPhamViewModel {
         this.tonKho = tonKho;
     }
 
-    public boolean isAnHien() {
-        return anHien;
-    }
-
-    public void setAnHien(boolean anHien) {
-        this.anHien = anHien;
-    }
-
-    public Integer getIdHangSanXuat() {
+    public String getIdHangSanXuat() {
         return idHangSanXuat;
     }
 
-    public void setIdHangSanXuat(Integer idHangSanXuat) {
+    public void setIdHangSanXuat(String idHangSanXuat) {
         this.idHangSanXuat = idHangSanXuat;
-    }
+    }        
 
     public Integer getIdNguoiBan() {
         return idNguoiBan;

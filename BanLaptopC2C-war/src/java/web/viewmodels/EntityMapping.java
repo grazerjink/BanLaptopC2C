@@ -6,6 +6,7 @@
 package web.viewmodels;
 
 import ejb.entities.NguoiBan;
+import ejb.entities.SanPham;
 import java.util.Date;
 
 /**

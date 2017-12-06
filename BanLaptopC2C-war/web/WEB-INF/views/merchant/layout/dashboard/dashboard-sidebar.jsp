@@ -159,9 +159,9 @@
                     </div>
                 </div>-->
                 <li class="nav-item">
-                    <a class="nav-link v2q-link" href="merchant/dang-tin-san-pham/">
+                    <a class="nav-link v2q-link" href="merchant/danh-sach-san-pham/">
                         <span class="ks-icon la la-laptop"></span> 
-                        <span>Đăng tin sản phẩm</span>
+                        <span>Danh sách sản phẩm</span>
                     </a>
                 </li>
                 <div class="nav-item dropdown">

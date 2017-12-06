@@ -4,6 +4,7 @@
     Author     : Winson Mac
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
@@ -81,13 +82,18 @@
     }
     .v2q-btn-upload {
         position: absolute;
-        bottom: 30px;
-        height: 16%;
+        bottom: 0px;
+        height: 100%;
         cursor: pointer;
         width: 100%;
+        background-color: transparent;        
+    }
+    .v2q-btn-upload>span {
+        color: #6e6e6e;
     }
     .v2q-btn-upload:hover {
-        background-color: #FFECB3;
+        background-color: #eeeeee;
+        opacity: 0.2;
     }
     .v2q-img-remove {
         position: absolute;
@@ -126,42 +132,40 @@
                             <label class="col-sm-2 form-control-label">Tên máy: </label>
                             <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="tenMay" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:input path="tenMay" cssClass="form-control ks-rounded v2q-input"/>
                             </div>
                         </div>   
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Hãng sản xuất: </label>
                             <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="moTa" cssClass="form-control ks-rounded v2q-input"/>
+                                <form:select path="idHangSanXuat" cssClass="form-control ks-rounded v2q-input">
+                                    <option selected disabled>Chọn hãng sản xuất</option>
+                                    <c:forEach items="${dsHangSanXuat}" var="sx">
+                                        <option value="${sx.id}">${sx.tenHang}</option>
+                                    </c:forEach>
+                                </form:select>
                             </div>
                         </div>     
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Mô tả ngắn: </label>
                             <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="moTa" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:input path="moTa" cssClass="form-control ks-rounded v2q-input"/>
                             </div>
                         </div>    
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Số lượng: </label>
                             <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="tonKho" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:input path="tonKho" cssClass="form-control ks-rounded v2q-input"/>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 form-control-label">Ghi chú<br>(Tùy chọn): </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
-                                <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="tonKho" cssClass="form-control ks-rounded v2q-input"/>
-                            </div>
-                        </div>    
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Giá bán: </label>
                             <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="giaBan" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:input path="giaBan" cssClass="form-control ks-rounded v2q-input"/>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -169,8 +173,8 @@
                             <input id="chooseImage" type="file" multiple hidden>
                             <div class="col-sm-10 row" id="v2q-img-upload">
                                 <div class="v2q-img-container">
-                                    <img class="v2q-upload" src="assets/merchant/images/product/placeholder.png" alt="" width="180" height="200"/>
-                                    <button type="button" class="v2q-btn-upload btn btn-flat btn-warning-outline">Nhấp chọn ảnh</button>
+                                    <img class="v2q-upload" src="assets/merchant/images/products/placeholder.png" alt="" width="180" height="200"/>
+                                    <button type="button" class="v2q-btn-upload btn btn-flat btn-warning-outline"></button>
                                     <a class="v2q-img-remove"><span class="la la-remove"></span></a>
                                     <input class="chooseImage" type="file" name="fileUploads[]" multiple hidden>
                                 </div>
@@ -183,73 +187,95 @@
                         <h4 class="ks-main-title">Thông số kĩ thuật</h4>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Kích thước màn hình: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
+                            <div class="col-sm-4 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.idKichThuocManHinh" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:select path="thongSoKiThuatVM.idKichThuocManHinh" cssClass="form-control ks-rounded v2q-input">
+                                    <option selected disabled>Chọn kích thước màn hình</option>
+                                    <c:forEach items="${dsKichThuocManHinh}" var="kt">
+                                        <option value="${kt.id}">${kt.loaiKichThuoc}</option>
+                                    </c:forEach>
+                                </form:select>
                             </div>
                         </div>   
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Loại màn hình: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
+                            <div class="col-sm-4 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.idLoaiManHinh" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:select path="thongSoKiThuatVM.idLoaiManHinh" cssClass="form-control ks-rounded v2q-input">
+                                    <option selected disabled>Chọn loại màn hình</option>
+                                    <c:forEach items="${dsLoaiManHinh}" var="lmh">
+                                        <option value="${lmh.id}">${lmh.tenLoai}</option>
+                                    </c:forEach>
+                                </form:select>
                             </div>
                         </div>   
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Độ phân giải: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
+                            <div class="col-sm-4 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.idDoPhanGiai" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:select path="thongSoKiThuatVM.idDoPhanGiai" cssClass="form-control ks-rounded v2q-input">
+                                    <option selected disabled>Chọn độ phân giải</option>
+                                    <c:forEach items="${dsDoPhanGiai}" var="dpg">
+                                        <option value="${dpg.id}">${dpg.tenDoPhanGiai} ${dpg.chieuRong}x${dpg.chieuDai}</option>
+                                    </c:forEach>
+                                </form:select>
                             </div>
                         </div>   
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Bộ vi xử lí: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
+                            <div class="col-sm-4 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.idCpu" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:select path="thongSoKiThuatVM.idCpu" cssClass="form-control ks-rounded v2q-input">
+                                    <option selected disabled>Chọn loại cpu</option>
+                                    <c:forEach items="${dsCpu}" var="cpu">
+                                        <option value="${cpu.id}">${cpu.tenCpu} ${cpu.soNhan} Core - ${cpu.tocDo}GHz ${cpu.l3Cache}MB</option>
+                                    </c:forEach>
+                                </form:select>
                             </div>
                         </div>     
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Dung lượng ổ cứng: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
+                            <div class="col-sm-4 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.idOCung" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:select path="thongSoKiThuatVM.idOCung" cssClass="form-control ks-rounded v2q-input">
+                                    <option selected disabled>Chọn loại ổ cứng</option>
+                                    <c:forEach items="${dsOCung}" var="oc">
+                                        <option value="${oc.id}">${oc.loaiOCung} ${oc.dungLuong}</option>
+                                    </c:forEach>
+                                </form:select>
                             </div>
                         </div>    
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Ram: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
+                            <div class="col-sm-4 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.idRam" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:select path="thongSoKiThuatVM.idRam" cssClass="form-control ks-rounded v2q-input">
+                                    <option selected disabled>Chọn loại ram</option>
+                                    <c:forEach items="${dsRam}" var="ram">
+                                        <option value="${ram.id}">${ram.loaiRam} ${ram.dungLuong}GB</option>
+                                    </c:forEach>
+                                </form:select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Card màn hình: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
+                            <div class="col-sm-4 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.idCardManHinh" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:select path="thongSoKiThuatVM.idCardManHinh" cssClass="form-control ks-rounded v2q-input">
+                                    <option selected disabled>Chọn card màn hình</option>
+                                    <c:forEach items="${dsCardManHinh}" var="card">
+                                        <option value="${card.id}">${card.tenCard} ${card.dungLuong}GB</option>
+                                    </c:forEach>
+                                </form:select>
                             </div>
                         </div>    
                         <div class="form-group row">
-                            <label class="col-sm-2 form-control-label">Tích hợp: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
-                                <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.cardTichHop" cssClass="form-control ks-rounded v2q-input"/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 form-control-label">Kết nối wifi: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
-                                <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.ketNoiWifi" cssClass="form-control ks-rounded v2q-input"/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Thời lượng pin: </label>
-                            <div class="col-sm-6 v2q-input-wrapper">
-                                <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:input path="thongSoKiThuatVM.thoiLuongPin" cssClass="form-control ks-rounded v2q-input"/>
+                            <div class="col-sm-2 v2q-input-wrapper">
+                                <span class="icon-addon"><span class="la la-battery-full"></span></span>
+                                    <form:input path="thongSoKiThuatVM.thoiLuongPin" cssClass="form-control ks-rounded v2q-input"/>
                             </div>
+                            <span style="margin-left: 10px;"> hours</span>
                         </div>
                     </div>
                 </div>
@@ -264,10 +290,10 @@
 </div>
 <div id="img-template" hidden>
     <div class="v2q-img-container">
-        <img class="v2q-upload" src="assets/merchant/images/product/placeholder.png" alt="" width="180" height="200"/>
-        <button type="button" class="v2q-btn-upload btn btn-flat btn-warning-outline">Nhấp chọn ảnh</button>
+        <img class="v2q-upload" src="assets/merchant/images/products/placeholder.png" alt="" width="180" height="200"/>
+        <button type="button" class="v2q-btn-upload btn btn-flat btn-warning-outline"></button>
         <a class="v2q-img-remove"><span class="la la-remove"></span></a>
-        <input class="chooseImage" name="fileUploads[]" type="file" hidden>
+        <input class="chooseImage" type="file" name="fileUploads[]" multiple hidden>
     </div>
 </div>
 <script>

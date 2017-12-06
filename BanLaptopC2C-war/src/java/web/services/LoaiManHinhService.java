@@ -5,8 +5,8 @@
  */
 package web.services;
 
-import ejb.entities.HangSanXuat;
-import ejb.sessions.HangSanXuatFacade;
+import ejb.entities.LoaiManHinh;
+import ejb.sessions.LoaiManHinhFacade;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import web.commons.LookupFactory;
@@ -16,11 +16,11 @@ import web.commons.LookupFactory;
  * @author Winson Mac
  */
 @Component
-public class HangSanXuatService {
-
-    HangSanXuatFacade hangSanXuatFacade = (HangSanXuatFacade) LookupFactory.lookupBeanFacade("HangSanXuatFacade");
-
-    public List<HangSanXuat> layDanhSachHangSanXuat() {
-        return hangSanXuatFacade.findAll();
+public class LoaiManHinhService {
+        
+    LoaiManHinhFacade loaiManHinhFacade = (LoaiManHinhFacade) LookupFactory.lookupBeanFacade("LoaiManHinhFacade");
+    
+    public List<LoaiManHinh> layDanhSachLoaiManHinh() {
+        return loaiManHinhFacade.findAll();
     }
 }

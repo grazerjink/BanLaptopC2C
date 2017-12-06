@@ -40,15 +40,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SanPham.findAll", query = "SELECT s FROM SanPham s")
     , @NamedQuery(name = "SanPham.findById", query = "SELECT s FROM SanPham s WHERE s.id = :id")
     , @NamedQuery(name = "SanPham.findByTenMay", query = "SELECT s FROM SanPham s WHERE s.tenMay = :tenMay")
-    , @NamedQuery(name = "SanPham.findByHinhAnh", query = "SELECT s FROM SanPham s WHERE s.hinhAnh = :hinhAnh")
     , @NamedQuery(name = "SanPham.findByGiaBan", query = "SELECT s FROM SanPham s WHERE s.giaBan = :giaBan")
-    , @NamedQuery(name = "SanPham.findByGhiChu", query = "SELECT s FROM SanPham s WHERE s.ghiChu = :ghiChu")
     , @NamedQuery(name = "SanPham.findByMoTa", query = "SELECT s FROM SanPham s WHERE s.moTa = :moTa")
     , @NamedQuery(name = "SanPham.findByTonKho", query = "SELECT s FROM SanPham s WHERE s.tonKho = :tonKho")
     , @NamedQuery(name = "SanPham.findByNgayDang", query = "SELECT s FROM SanPham s WHERE s.ngayDang = :ngayDang")
     , @NamedQuery(name = "SanPham.findBySoLanXem", query = "SELECT s FROM SanPham s WHERE s.soLanXem = :soLanXem")
     , @NamedQuery(name = "SanPham.findBySoLanMua", query = "SELECT s FROM SanPham s WHERE s.soLanMua = :soLanMua")
-    , @NamedQuery(name = "SanPham.findByBiDanh", query = "SELECT s FROM SanPham s WHERE s.biDanh = :biDanh")
     , @NamedQuery(name = "SanPham.findByTrangThai", query = "SELECT s FROM SanPham s WHERE s.trangThai = :trangThai")
     , @NamedQuery(name = "SanPham.findByAnHien", query = "SELECT s FROM SanPham s WHERE s.anHien = :anHien")})
 public class SanPham implements Serializable {
@@ -66,18 +63,8 @@ public class SanPham implements Serializable {
     private String tenMay;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
-    @Column(name = "hinh_anh")
-    private String hinhAnh;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "gia_ban")
     private float giaBan;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
-    @Column(name = "ghi_chu")
-    private String ghiChu;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 500)
@@ -102,17 +89,14 @@ public class SanPham implements Serializable {
     private int soLanMua;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 500)
-    @Column(name = "bi_danh")
-    private String biDanh;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "trang_thai")
     private boolean trangThai;
     @Basic(optional = false)
     @NotNull
     @Column(name = "an_hien")
     private boolean anHien;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSanPham", fetch = FetchType.LAZY)
+    private List<ThongSoKiThuat> thongSoKiThuatList;
     @JoinColumn(name = "id_hang_san_xuat", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private HangSanXuat idHangSanXuat;
@@ -120,7 +104,7 @@ public class SanPham implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private NguoiBan idNguoiBan;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSanPham", fetch = FetchType.LAZY)
-    private List<ThongSoKiThuat> thongSoKiThuatList;
+    private List<HinhAnhSanPham> hinhAnhSanPhamList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSanPham", fetch = FetchType.LAZY)
     private List<CtPhieuMuaHang> ctPhieuMuaHangList;
 
@@ -131,18 +115,15 @@ public class SanPham implements Serializable {
         this.id = id;
     }
 
-    public SanPham(Integer id, String tenMay, String hinhAnh, float giaBan, String ghiChu, String moTa, int tonKho, Date ngayDang, int soLanXem, int soLanMua, String biDanh, boolean trangThai, boolean anHien) {
+    public SanPham(Integer id, String tenMay, float giaBan, String moTa, int tonKho, Date ngayDang, int soLanXem, int soLanMua, boolean trangThai, boolean anHien) {
         this.id = id;
         this.tenMay = tenMay;
-        this.hinhAnh = hinhAnh;
         this.giaBan = giaBan;
-        this.ghiChu = ghiChu;
         this.moTa = moTa;
         this.tonKho = tonKho;
         this.ngayDang = ngayDang;
         this.soLanXem = soLanXem;
         this.soLanMua = soLanMua;
-        this.biDanh = biDanh;
         this.trangThai = trangThai;
         this.anHien = anHien;
     }
@@ -163,28 +144,12 @@ public class SanPham implements Serializable {
         this.tenMay = tenMay;
     }
 
-    public String getHinhAnh() {
-        return hinhAnh;
-    }
-
-    public void setHinhAnh(String hinhAnh) {
-        this.hinhAnh = hinhAnh;
-    }
-
     public float getGiaBan() {
         return giaBan;
     }
 
     public void setGiaBan(float giaBan) {
         this.giaBan = giaBan;
-    }
-
-    public String getGhiChu() {
-        return ghiChu;
-    }
-
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
     }
 
     public String getMoTa() {
@@ -227,14 +192,6 @@ public class SanPham implements Serializable {
         this.soLanMua = soLanMua;
     }
 
-    public String getBiDanh() {
-        return biDanh;
-    }
-
-    public void setBiDanh(String biDanh) {
-        this.biDanh = biDanh;
-    }
-
     public boolean getTrangThai() {
         return trangThai;
     }
@@ -249,6 +206,15 @@ public class SanPham implements Serializable {
 
     public void setAnHien(boolean anHien) {
         this.anHien = anHien;
+    }
+
+    @XmlTransient
+    public List<ThongSoKiThuat> getThongSoKiThuatList() {
+        return thongSoKiThuatList;
+    }
+
+    public void setThongSoKiThuatList(List<ThongSoKiThuat> thongSoKiThuatList) {
+        this.thongSoKiThuatList = thongSoKiThuatList;
     }
 
     public HangSanXuat getIdHangSanXuat() {
@@ -268,12 +234,12 @@ public class SanPham implements Serializable {
     }
 
     @XmlTransient
-    public List<ThongSoKiThuat> getThongSoKiThuatList() {
-        return thongSoKiThuatList;
+    public List<HinhAnhSanPham> getHinhAnhSanPhamList() {
+        return hinhAnhSanPhamList;
     }
 
-    public void setThongSoKiThuatList(List<ThongSoKiThuat> thongSoKiThuatList) {
-        this.thongSoKiThuatList = thongSoKiThuatList;
+    public void setHinhAnhSanPhamList(List<HinhAnhSanPham> hinhAnhSanPhamList) {
+        this.hinhAnhSanPhamList = hinhAnhSanPhamList;
     }
 
     @XmlTransient

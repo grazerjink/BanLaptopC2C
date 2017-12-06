@@ -31,8 +31,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ThongSoKiThuat.findAll", query = "SELECT t FROM ThongSoKiThuat t")
     , @NamedQuery(name = "ThongSoKiThuat.findById", query = "SELECT t FROM ThongSoKiThuat t WHERE t.id = :id")
-    , @NamedQuery(name = "ThongSoKiThuat.findByCardTichHop", query = "SELECT t FROM ThongSoKiThuat t WHERE t.cardTichHop = :cardTichHop")
-    , @NamedQuery(name = "ThongSoKiThuat.findByKetNoiWifi", query = "SELECT t FROM ThongSoKiThuat t WHERE t.ketNoiWifi = :ketNoiWifi")
     , @NamedQuery(name = "ThongSoKiThuat.findByThoiLuongPin", query = "SELECT t FROM ThongSoKiThuat t WHERE t.thoiLuongPin = :thoiLuongPin")})
 public class ThongSoKiThuat implements Serializable {
 
@@ -42,14 +40,6 @@ public class ThongSoKiThuat implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "card_tich_hop")
-    private boolean cardTichHop;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ket_noi_wifi")
-    private boolean ketNoiWifi;
     @Basic(optional = false)
     @NotNull
     @Column(name = "thoi_luong_pin")
@@ -86,10 +76,8 @@ public class ThongSoKiThuat implements Serializable {
         this.id = id;
     }
 
-    public ThongSoKiThuat(Integer id, boolean cardTichHop, boolean ketNoiWifi, int thoiLuongPin) {
+    public ThongSoKiThuat(Integer id, int thoiLuongPin) {
         this.id = id;
-        this.cardTichHop = cardTichHop;
-        this.ketNoiWifi = ketNoiWifi;
         this.thoiLuongPin = thoiLuongPin;
     }
 
@@ -99,22 +87,6 @@ public class ThongSoKiThuat implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public boolean getCardTichHop() {
-        return cardTichHop;
-    }
-
-    public void setCardTichHop(boolean cardTichHop) {
-        this.cardTichHop = cardTichHop;
-    }
-
-    public boolean getKetNoiWifi() {
-        return ketNoiWifi;
-    }
-
-    public void setKetNoiWifi(boolean ketNoiWifi) {
-        this.ketNoiWifi = ketNoiWifi;
     }
 
     public int getThoiLuongPin() {

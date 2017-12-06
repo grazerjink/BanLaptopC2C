@@ -57,9 +57,9 @@ public class ThanhPho implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idThanhPho", fetch = FetchType.LAZY)
     private List<PhieuMuaHang> phieuMuaHangList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idThanhPho", fetch = FetchType.LAZY)
-    private List<QuanHuyen> quanHuyenList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idThanhPho", fetch = FetchType.LAZY)
     private List<NguoiBan> nguoiBanList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idThanhPho", fetch = FetchType.LAZY)
+    private List<QuanHuyen> quanHuyenList;
 
     public ThanhPho() {
     }
@@ -108,21 +108,21 @@ public class ThanhPho implements Serializable {
     }
 
     @XmlTransient
-    public List<QuanHuyen> getQuanHuyenList() {
-        return quanHuyenList;
-    }
-
-    public void setQuanHuyenList(List<QuanHuyen> quanHuyenList) {
-        this.quanHuyenList = quanHuyenList;
-    }
-
-    @XmlTransient
     public List<NguoiBan> getNguoiBanList() {
         return nguoiBanList;
     }
 
     public void setNguoiBanList(List<NguoiBan> nguoiBanList) {
         this.nguoiBanList = nguoiBanList;
+    }
+
+    @XmlTransient
+    public List<QuanHuyen> getQuanHuyenList() {
+        return quanHuyenList;
+    }
+
+    public void setQuanHuyenList(List<QuanHuyen> quanHuyenList) {
+        this.quanHuyenList = quanHuyenList;
     }
 
     @Override

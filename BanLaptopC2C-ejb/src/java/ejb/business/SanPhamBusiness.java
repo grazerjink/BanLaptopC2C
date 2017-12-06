@@ -5,7 +5,8 @@
  */
 package ejb.business;
 
-import ejb.entities.NguoiBan;
+import ejb.entities.SanPham;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -19,7 +20,7 @@ import javax.persistence.Query;
  */
 @Stateless
 @LocalBean
-public class NguoiBanBusiness {
+public class SanPhamBusiness {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;
@@ -28,23 +29,25 @@ public class NguoiBanBusiness {
         em.persist(object);
     }
     
-    public NguoiBan timTheoEmail(String email) {
+    public int themSanPham(SanPham sanPham) {
+        em.persist(sanPham);
+        em.flush();
+        return sanPham.getId();
+    }
+    
+    public List<SanPham> layDanhSachSanPhamTheoNguoiBan(int idNguoiBan) {    
         try {
-            Query q = em.createNamedQuery("NguoiBan.findByEmail");
-            q.setParameter("email", email);
-            return (NguoiBan) q.getSingleResult();
+            Query q = em.createQuery("SELECT s FROM SanPham s WHERE s.idNguoiBan.id = :id");
+            q.setParameter("id", idNguoiBan);    
+            List<SanPham> sp = q.getResultList();
+            sp.forEach(x -> {
+                x.getHinhAnhSanPhamList().size();
+                x.getThongSoKiThuatList().size();
+            });
+            return sp;
         } catch (NoResultException e) {
             return null;
         }
     }
-
-    public NguoiBan timTheoCMND(String cmnd) {
-        try {
-            Query q = em.createNamedQuery("NguoiBan.findByCmnd");
-            q.setParameter("cmnd", cmnd);
-            return (NguoiBan) q.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
+    
 }
