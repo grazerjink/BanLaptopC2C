@@ -34,6 +34,15 @@
                     <h4 class="text-center" style="font-size: 20px; font-weight: 500;">Đăng ký gian hàng kinh doanh</h4>
                     <div class="form-group">
                         <div class="input-icon icon-left icon-lg icon-color-primary">
+                            <form:input path="tenGianHang" cssClass="form-control ks-rounded" placeholder="Tên gian hàng"/>
+                            <form:errors path="tenGianHang" cssClass="serverError" />
+                            <span class="icon-addon">
+                                <span class="la la-home"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon icon-left icon-lg icon-color-primary">
                             <form:input path="hoTen" cssClass="form-control ks-rounded" placeholder="Họ tên người bán"/>
                             <form:errors path="hoTen" cssClass="serverError" />
                             <span class="icon-addon">

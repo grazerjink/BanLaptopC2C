@@ -53,12 +53,24 @@ public class SanPhamBusiness {
     public List<SanPham> layTatCaSanPham() {
         try {
             Query q = em.createNamedQuery("SanPham.findAll");
-            List<SanPham> sp = q.getResultList();            
+            List<SanPham> sp = q.getResultList();
             Collections.shuffle(sp);
             sp.forEach(x -> {
                 x.getHinhAnhSanPhamList().size();
-                x.getThongSoKiThuatList().size();
             });
+            return sp;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public SanPham timSanPhamTheoId(Integer id) {
+        try {
+            Query q = em.createNamedQuery("SanPham.findById");
+            q.setParameter("id", id);
+            SanPham sp = (SanPham) q.getSingleResult();
+            sp.getHinhAnhSanPhamList().size();
+            sp.getThongSoKiThuatList().size();
             return sp;
         } catch (NoResultException e) {
             return null;

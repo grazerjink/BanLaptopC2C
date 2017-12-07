@@ -4,7 +4,9 @@ import ejb.entities.SanPham;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import web.services.SanPhamService;
 
@@ -21,7 +23,9 @@ public class CustomerHomeController {
     }
 
     @RequestMapping("chi-tiet/{id}")
-    public String chiTiet() {
+    public String chiTiet(Model model, @PathVariable Integer id) {
+        SanPham sp = sanPhamService.timSanPhamTheoId(id);
+        model.addAttribute("sp", sp);
         return "customer/home/chi-tiet";
     }
     

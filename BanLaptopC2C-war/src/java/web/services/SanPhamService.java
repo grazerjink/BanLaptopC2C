@@ -28,4 +28,7 @@ public class SanPhamService {
         return sanPhamBusiness.layTatCaSanPham();
     }
     
+    public SanPham timSanPhamTheoId(Integer id) {
+        return sanPhamBusiness.timSanPhamTheoId(id);
+    }
 }

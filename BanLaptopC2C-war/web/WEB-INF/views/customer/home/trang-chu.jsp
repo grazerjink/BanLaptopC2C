@@ -1,4 +1,7 @@
 <%@ page pageEncoding="utf-8"%>
+<!-- banner -->
+<jsp:include page="../layout/template/banner.jsp"/>
+<!-- //banner -->
 <div class="">
     <div class="container">
         <script src="assets/customer/template/js/easyResponsiveTabs.js" type="text/javascript"></script>

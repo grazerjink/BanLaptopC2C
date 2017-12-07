@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "NguoiBan.findById", query = "SELECT n FROM NguoiBan n WHERE n.id = :id")
     , @NamedQuery(name = "NguoiBan.findByEmail", query = "SELECT n FROM NguoiBan n WHERE n.email = :email")
     , @NamedQuery(name = "NguoiBan.findByMatKhau", query = "SELECT n FROM NguoiBan n WHERE n.matKhau = :matKhau")
+    , @NamedQuery(name = "NguoiBan.findByTenGianHang", query = "SELECT n FROM NguoiBan n WHERE n.tenGianHang = :tenGianHang")
     , @NamedQuery(name = "NguoiBan.findByHoTen", query = "SELECT n FROM NguoiBan n WHERE n.hoTen = :hoTen")
     , @NamedQuery(name = "NguoiBan.findByCmnd", query = "SELECT n FROM NguoiBan n WHERE n.cmnd = :cmnd")
     , @NamedQuery(name = "NguoiBan.findBySoDienThoai", query = "SELECT n FROM NguoiBan n WHERE n.soDienThoai = :soDienThoai")
@@ -71,6 +72,11 @@ public class NguoiBan implements Serializable {
     @Size(min = 1, max = 250)
     @Column(name = "mat_khau")
     private String matKhau;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
+    @Column(name = "ten_gian_hang")
+    private String tenGianHang;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 250)
@@ -147,10 +153,11 @@ public class NguoiBan implements Serializable {
         this.id = id;
     }
 
-    public NguoiBan(Integer id, String email, String matKhau, String hoTen, String cmnd, String soDienThoai, String diaChi, Date ngayDangKy, boolean lanDauMuaTin, int soLanDangTin, int soLanCanhCao, int soLanDanhGia, boolean kichHoat, boolean trangThai) {
+    public NguoiBan(Integer id, String email, String matKhau, String tenGianHang, String hoTen, String cmnd, String soDienThoai, String diaChi, Date ngayDangKy, boolean lanDauMuaTin, int soLanDangTin, int soLanCanhCao, int soLanDanhGia, boolean kichHoat, boolean trangThai) {
         this.id = id;
         this.email = email;
         this.matKhau = matKhau;
+        this.tenGianHang = tenGianHang;
         this.hoTen = hoTen;
         this.cmnd = cmnd;
         this.soDienThoai = soDienThoai;
@@ -186,6 +193,14 @@ public class NguoiBan implements Serializable {
 
     public void setMatKhau(String matKhau) {
         this.matKhau = matKhau;
+    }
+
+    public String getTenGianHang() {
+        return tenGianHang;
+    }
+
+    public void setTenGianHang(String tenGianHang) {
+        this.tenGianHang = tenGianHang;
     }
 
     public String getHoTen() {

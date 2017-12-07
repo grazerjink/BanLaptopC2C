@@ -14,7 +14,6 @@
                 <li><img class="img-responsive" src="assets/customer/images/v2q-banner-2.jpg" alt="Dummy Image" /></li>
                 <li><img class="img-responsive" src="assets/customer/images/v2q-banner-3.jpg" alt="Dummy Image" /></li>
                 <li><img class="img-responsive" src="assets/customer/images/v2q-banner-4.jpg" alt="Dummy Image" /></li>-->
-                <!--<li><img class="img-responsive" src="assets/customer/images/v2q-banner-5.jpg" alt="Dummy Image" /></li>-->-->
             </ul>
         </div>
         <div class="clearfix"></div>

@@ -31,12 +31,11 @@ import ejb.sessions.ThanhPhoFacade;
 import ejb.sessions.ThongSoKiThuatFacade;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
+import java.nio.file.Files;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.HeuristicMixedException;
@@ -51,9 +50,9 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartFile;
 import web.commons.EncryptHelper;
+import web.commons.ImageUtils;
 import web.commons.LookupFactory;
 import web.commons.RandomString;
-import web.viewmodels.EntityMapping;
 import web.viewmodels.NguoiBanViewModel;
 import web.viewmodels.SanPhamViewModel;
 
@@ -63,10 +62,10 @@ import web.viewmodels.SanPhamViewModel;
  */
 @Component
 public class NguoiBanService {
-    
+
     @Autowired
     MailerService mailerService;
-    
+
     UserTransaction tx = LookupFactory.lookupUserTransaction();
     SoTinTonFacade soTinTonFacade = (SoTinTonFacade) LookupFactory.lookupBeanFacade("SoTinTonFacade");
     SoTinTonBusiness soTinTonBusiness = (SoTinTonBusiness) LookupFactory.lookupBeanBusiness("SoTinTonBusiness");
@@ -87,7 +86,7 @@ public class NguoiBanService {
     RamFacade ramFacade = (RamFacade) LookupFactory.lookupBeanFacade("RamFacade");
     OCungFacade oCungFacade = (OCungFacade) LookupFactory.lookupBeanFacade("OCungFacade");
     ThongSoKiThuatFacade thongSoKiThuatFacade = (ThongSoKiThuatFacade) LookupFactory.lookupBeanFacade("ThongSoKiThuatFacade");
-    
+
     public boolean dangKyThongTin(ModelMap model, NguoiBanViewModel nguoiBanVM,
             HttpServletRequest req) {
         if (nguoiBanVM.getMatKhau().equals(nguoiBanVM.getMatKhauXacNhan())) {
@@ -99,7 +98,18 @@ public class NguoiBanService {
                 return false;
             } else {
                 try {
-                    NguoiBan nguoiBan = EntityMapping.convertFrom(nguoiBanVM);
+                    NguoiBan nguoiBan = new NguoiBan();
+                    nguoiBan.setEmail(nguoiBanVM.getEmail());
+                    nguoiBan.setMatKhau(nguoiBanVM.getMatKhau());
+                    nguoiBan.setTenGianHang(nguoiBanVM.getTenGianHang());
+                    nguoiBan.setHoTen(nguoiBanVM.getHoTen());
+                    nguoiBan.setCmnd(nguoiBanVM.getCmnd());
+                    nguoiBan.setSoDienThoai(nguoiBanVM.getSoDienThoai());
+                    nguoiBan.setDiaChi(nguoiBanVM.getDiaChi());
+                    nguoiBan.setNgayDangKy(new Date());
+                    nguoiBan.setIdPhuongXa(nguoiBanVM.getIdPhuongXa());
+                    nguoiBan.setIdQuanHuyen(nguoiBanVM.getIdQuanHuyen());
+                    nguoiBan.setIdThanhPho(nguoiBanVM.getIdThanhPho());
                     nguoiBan.setMatKhau(EncryptHelper.encrypt(nguoiBanVM.getMatKhau()));
                     nguoiBan.setLanDauMuaTin(true);
                     nguoiBan.setSoLanCanhCao(0);
@@ -135,13 +145,13 @@ public class NguoiBanService {
             return false;
         }
     }
-    
+
     public boolean dangNhapHeThong(HttpSession httpSession, ModelMap model, NguoiBanViewModel nguoiBanVM) {
         try {
             NguoiBan nguoiBan = nguoiBanBusiness.timTheoEmail(nguoiBanVM.getEmail());
-            
+
             String matKhau = EncryptHelper.encrypt(nguoiBanVM.getMatKhau());
-            if (nguoiBan.getMatKhau().equals(matKhau)) {                
+            if (nguoiBan.getMatKhau().equals(matKhau)) {
                 if (!nguoiBan.getKichHoat()) {
                     model.addAttribute("error", "Tài khoản chưa được kích hoạt.");
                     return false;
@@ -158,7 +168,7 @@ public class NguoiBanService {
             return false;
         }
     }
-    
+
     public void capNhatThongTin(NguoiBanViewModel nguoiBanVM, ModelMap model, HttpSession httpSession) {
         try {
             NguoiBan ngBan = (NguoiBan) httpSession.getAttribute("merchant");
@@ -176,7 +186,7 @@ public class NguoiBanService {
         }
         model.addAttribute("tab", 1);
     }
-    
+
     public void doiMatKhau(String matKhauCu,
             String matKhauMoi,
             String matKhauXacNhan,
@@ -198,11 +208,9 @@ public class NguoiBanService {
         }
         model.addAttribute("tab", 3);
     }
-    
+
     public boolean taoMatKhauMoi(ModelMap model, String email) {
         try {
-            //// TODO: Phải kiểm tra nó bị khóa hay không ?
-            //// lần sau làm ^^
             NguoiBan nguoiBan = nguoiBanBusiness.timTheoEmail(email);
             String matKhauMoi = new RandomString(8, ThreadLocalRandom.current()).nextString();
             nguoiBan.setMatKhau(EncryptHelper.encrypt(matKhauMoi));
@@ -224,7 +232,7 @@ public class NguoiBanService {
             return false;
         }
     }
-    
+
     public boolean dangTinSanPham(SanPhamViewModel sanPhamVM, MultipartFile[] fileUploads, HttpSession httpSession, Model model, String path) {
         try {
             tx.begin();
@@ -259,7 +267,8 @@ public class NguoiBanService {
                         hinhAnhSanPham.setTenHinh(f.getOriginalFilename());
                         hinhAnhSanPhamFacade.create(hinhAnhSanPham);
                         String imagePath = path + "\\" + hinhAnhSanPham.getTenHinh();
-                        f.transferTo(new File(imagePath));
+                        File file = new File(imagePath);
+                        ImageUtils.resizeAndTransferTo(f.getInputStream(), 573, 430, file);
                     }
                 }
                 ThongSoKiThuat ts = new ThongSoKiThuat();
@@ -281,6 +290,7 @@ public class NguoiBanService {
                 return false;
             }
         } catch (IOException | IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException ex) {
+            ex.printStackTrace();
             try {
                 tx.rollback();
             } catch (IllegalStateException | SecurityException | SystemException ex1) {

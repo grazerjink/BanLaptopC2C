@@ -4,17 +4,61 @@
     Author     : Winson Mac
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- single -->
-<link rel="stylesheet" href="assets/customer/css/flexslider.css" type="text/css" media="screen" />
-<script src="assets/customer/js/imagezoom.js"></script>
-<script src="assets/customer/js/jquery.flexslider.js"></script>
+<link rel="stylesheet" href="assets/customer/template/css/flexslider.css" type="text/css" media="screen" />
+<script src="assets/customer/template/js/imagezoom.js"></script>
+<script src="assets/customer/template/js/jquery.flexslider.js"></script>
 <!-- single -->
-
+<style>
+    .page-head {
+        background: url(assets/customer/images/v2q-single-banner.jpg) no-repeat center;
+    }
+    .flex-active-slide {
+        text-align: center;
+    }
+    .flexslider .slides img{
+        margin: 15px 0;
+    }    
+    .flex-viewport {
+        min-height: 378px;
+        max-height: 378px;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        transition: all 1s ease;
+        border: none;
+        float: left;
+        width: 75%;
+        margin-right: 10px;
+        border: 1px solid #D1CFCF;        
+        text-align: center;
+    }    
+    .occasion-cart {
+        margin-top: 30px;
+    }
+    .v2q-info-technique {
+        padding-top: 5px;
+    }
+    .v2q-info-technique h5 {
+        padding-bottom: 3px;
+    }
+    .v2q-item-price{
+        margin-top: 20px;
+    }
+    .v2q-item-price > span{
+        color: red;
+        font-weight: bolder;
+        font-size: 2em;
+    }
+</style>
 <!-- banner -->
 <div class="page-head">
     <div class="container">
-        <h3>Single</h3>
+        <h3>Chi tiết sản phẩm</h3>
     </div>
 </div>
 <!-- //banner -->
@@ -23,81 +67,53 @@
     <div class="container">
         <div class="col-md-6 single-right-left animated wow slideInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
             <div class="grid images_3_of_2">
-                <div class="flexslider">
+                <div class="flexslider">    
                     <!-- FlexSlider -->
                     <script>
-                        // Can also be used with $(document).ready()
-                        $(window).load(function () {
+                        $(document).ready(function () {
                             $('.flexslider').flexslider({
                                 animation: "slide",
-                                controlNav: "thumbnails"
+                                controlNav: "thumbnails",
+                                startAt: -1
                             });
                         });
                     </script>
                     <!-- //FlexSlider-->
-                    <ul class="slides">
-                        <li data-thumb="assets/customer/images/d2.jpg">
-                            <div class="thumb-image"> <img src="assets/customer/images/d2.jpg" data-imagezoom="true" class="img-responsive"> </div>
-                        </li>
-                        <li data-thumb="assets/customer/images/d1.jpg">
-                            <div class="thumb-image"> <img src="assets/customer/images/d1.jpg" data-imagezoom="true" class="img-responsive"> </div>
-                        </li>	
-                        <li data-thumb="assets/customer/images/d3.jpg">
-                            <div class="thumb-image"> <img src="assets/customer/images/d3.jpg" data-imagezoom="true" class="img-responsive"> </div>
-                        </li>
-                        <li data-thumb="assets/customer/images/d4.jpg">
-                            <div class="thumb-image"> <img src="assets/customer/images/d4.jpg" data-imagezoom="true" class="img-responsive"> </div>
-                        </li>	
+                    <ul class="slides">                        
+                        <c:forEach var="h" items="${sp.hinhAnhSanPhamList}">
+                            <li data-thumb="assets/merchant/images/products/${h.tenHinh}">
+                                <div class="thumb-image">
+                                    <img src="assets/merchant/images/products/${h.tenHinh}" data-imagezoom="true" class="img-responsive"> 
+                                </div>
+                            </li>
+                        </c:forEach>
                     </ul>
                     <div class="clearfix"></div>
                 </div>	
             </div>
         </div>
         <div class="col-md-6 single-right-left simpleCart_shelfItem animated wow slideInRight animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInRight;">
-            <h3>Asics Gel Zaraca 4 Blue Sport Shoes</h3>
-            <p><span class="item_price">$550</span> <del>- $900</del></p>
-            <div class="rating1">
-                <span class="starRating">
-                    <input id="rating5" type="radio" name="rating" value="5">
-                    <label for="rating5">5</label>
-                    <input id="rating4" type="radio" name="rating" value="4">
-                    <label for="rating4">4</label>
-                    <input id="rating3" type="radio" name="rating" value="3" checked="">
-                    <label for="rating3">3</label>
-                    <input id="rating2" type="radio" name="rating" value="2">
-                    <label for="rating2">2</label>
-                    <input id="rating1" type="radio" name="rating" value="1">
-                    <label for="rating1">1</label>
-                </span>
+            <h3>${sp.tenMay}</h3>
+            <h4 style="margin-top: 10px;">${sp.moTa}</h4>
+            <h5 style="margin-top: 20px;">Thông số cơ bản: </h5>
+            <div class="v2q-info-technique">
+                <h5>Màn hình: 14" LCD FullHD 1820x1980</h5>
+                <h5>CPU: Intel Core I5 7582U 2.7GHz 3MB L3 Cache </h5>
+                <h5>Ram: 8GB DDR4</h5>
+                <h5>VGA: GeForce 980M 2GB</h5>
+                <h5>Storage: SSD 256GB</h5>
+            </div>
+            <div class="v2q-item-price">
+                <span class="item_price">Giá: <fmt:formatNumber value="${sp.giaBan}" pattern="###,###"/></span>
             </div>
             <div class="color-quality">
                 <div class="color-quality-right">
-                    <h5>Quality :</h5>
-                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-                        <option value="null">5 Qty</option>
-                        <option value="null">6 Qty</option> 
-                        <option value="null">7 Qty</option>					
-                        <option value="null">10 Qty</option>								
-                    </select>
+                    <span>Số lượng: ${sp.tonKho}</span>
                 </div>
-            </div>
-            <div class="occasional">
-                <h5>Types :</h5>
-                <div class="colr ert">
-                    <label class="radio"><input type="radio" name="radio" checked=""><i></i>Casual Shoes</label>
-                </div>
-                <div class="colr">
-                    <label class="radio"><input type="radio" name="radio"><i></i>Sports Shoes</label>
-                </div>
-                <div class="colr">
-                    <label class="radio"><input type="radio" name="radio"><i></i>Formal Shoes</label>
-                </div>
-                <div class="clearfix"> </div>
             </div>
             <div class="occasion-cart">
-                <a href="#" class="item_add hvr-outline-out button2">Add to cart</a>
+                <a href="#" class="item_add hvr-outline-out button2">Thêm vào giỏ hàng</a>
             </div>
-
         </div>
         <div class="clearfix"> </div>
 
@@ -124,7 +140,7 @@
                         <div class="bootstrap-tab-text-grids">
                             <div class="bootstrap-tab-text-grid">
                                 <div class="bootstrap-tab-text-grid-left">
-                                    <img src="assets/customer/images/men3.jpg" alt=" " class="img-responsive">
+                                    <img src="assets/customer/template/images/men3.jpg" alt=" " class="img-responsive">
                                 </div>
                                 <div class="bootstrap-tab-text-grid-right">
                                     <ul>
@@ -168,4 +184,5 @@
     </div>
 </div>
 <!-- //single -->
+
 

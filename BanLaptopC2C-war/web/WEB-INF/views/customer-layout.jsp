@@ -15,7 +15,7 @@
             }, false);
             function hideURLbar(){ window.scrollTo(0,1); }
         </script>
-        <!-- //for-mobile-apps -->
+        <!-- //for-mobile-apps --> 
         <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
         <link href="assets/customer/template/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -24,6 +24,7 @@
         <!-- //pignose css -->
         <link href="assets/customer/template/css/style.css" rel="stylesheet" type="text/css" media="all" />
         <link href="assets/customer/template/css/z-custom-style.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
         <!-- js -->
         <script type="text/javascript" src="assets/customer/template/js/jquery-2.1.4.min.js"></script>
         <!-- //js -->
@@ -34,6 +35,7 @@
         <script type="text/javascript" src="assets/customer/template/js/bootstrap-3.1.1.min.js"></script>
         <!-- //for bootstrap working -->
         <script src="assets/customer/template/js/jquery.easing.min.js"></script>
+        
     </head>
     <body>
         <!-- header -->
@@ -41,10 +43,7 @@
         <!-- //header -->
         <!-- banner top -->
         <jsp:include page="customer/layout/template/banner-top.jsp"/>
-        <!-- //banner-top -->
-        <!-- banner -->
-        <jsp:include page="customer/layout/template/banner.jsp"/>
-        <!-- //banner -->
+        <!-- //banner-top -->        
         <!-- content-bottom -->
         <%--<jsp:include page="../layout/content-bottom.jsp"/>--%>
         <!-- //content-bottom -->
