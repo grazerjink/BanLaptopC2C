@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 22, 2017 at 05:14 PM
+-- Generation Time: Dec 08, 2017 at 04:09 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -567,7 +567,6 @@ CREATE TABLE IF NOT EXISTS `hang_san_xuat` (
 --
 
 INSERT INTO `hang_san_xuat` (`id`, `ten_hang`, `logo_hang`, `an_hien`) VALUES
-('AB', 'ABCDEFGHIJK', 'abce.png', b'1'),
 ('AC', 'Acer', 'acer.png', b'1'),
 ('AP', 'Apple', 'apple.png', b'1'),
 ('AS', 'ASUS', 'asus.png', b'1'),
@@ -575,7 +574,54 @@ INSERT INTO `hang_san_xuat` (`id`, `ten_hang`, `logo_hang`, `an_hien`) VALUES
 ('HP', 'HP', 'hp.png', b'1'),
 ('LE', 'Lenovo', 'lenovo.png', b'1'),
 ('LG', 'LG', 'lg.png', b'1'),
+('MS', 'Microsoft', 'microsoft.png', b'1'),
 ('SS', 'Samsung', 'samsung.png', b'1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hinh_anh_san_pham`
+--
+
+DROP TABLE IF EXISTS `hinh_anh_san_pham`;
+CREATE TABLE IF NOT EXISTS `hinh_anh_san_pham` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_san_pham` int(11) NOT NULL,
+  `ten_hinh` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_sanpham_hinhanhsanpham` (`id_san_pham`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hinh_anh_san_pham`
+--
+
+INSERT INTO `hinh_anh_san_pham` (`id`, `id_san_pham`, `ten_hinh`) VALUES
+(1, 1, 'macbook-rose-gold-5.jpg'),
+(2, 1, 'macbook-rose-gold-2.jpg'),
+(3, 1, 'macbook-rose-gold-1.jpg'),
+(4, 1, 'macbook-rose-gold-4.jpeg'),
+(5, 1, 'macbook-rose-gold-3.jpeg'),
+(6, 2, 'macbook-touchbar-4.jpg'),
+(7, 2, 'macbook-touchbar-1.jpg'),
+(8, 2, 'macbook-touchbar-2.jpg'),
+(9, 2, 'macbook-touchbar-5.jpg'),
+(10, 2, 'macbook-touchbar-3.jpg'),
+(11, 3, 'surface-pro-4.jpg'),
+(12, 3, 'surface-pro-2.jpg'),
+(13, 3, 'surface-pro-1.jpg'),
+(14, 3, 'surface-pro-5.jpg'),
+(15, 3, 'surface-pro-3.png'),
+(16, 4, 'hp-elite-folio-g1-5.jpg'),
+(17, 4, 'hp-elite-folio-g1-3.jpg'),
+(18, 4, 'hp-elite-folio-g1-4.jpg'),
+(19, 4, 'hp-elite-folio-g1-1.png'),
+(20, 4, 'hp-elite-folio-g1-2.png'),
+(21, 5, 'xps-3.jpg'),
+(22, 5, 'xps-1.jpg'),
+(23, 5, 'xps-2.jpg'),
+(24, 5, 'xps-4.jpg'),
+(25, 5, 'xps-5.jpg');
 
 -- --------------------------------------------------------
 
@@ -646,6 +692,7 @@ CREATE TABLE IF NOT EXISTS `nguoi_ban` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(250) NOT NULL,
   `mat_khau` varchar(250) NOT NULL,
+  `ten_gian_hang` varchar(250) NOT NULL,
   `ho_ten` varchar(250) NOT NULL,
   `cmnd` varchar(12) NOT NULL,
   `so_dien_thoai` varchar(11) NOT NULL,
@@ -654,23 +701,25 @@ CREATE TABLE IF NOT EXISTS `nguoi_ban` (
   `id_phuong_xa` int(11) NOT NULL,
   `id_thanh_pho` int(11) NOT NULL,
   `ngay_dang_ky` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lan_dau_mua_tin` bit(1) NOT NULL DEFAULT b'1',
+  `so_lan_dang_tin` int(11) NOT NULL,
+  `so_lan_canh_cao` int(11) NOT NULL,
+  `so_lan_danh_gia` int(11) NOT NULL,
   `kich_hoat` bit(1) NOT NULL DEFAULT b'0',
   `trang_thai` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`id`),
   KEY `fk_thanhpho_nguoiban` (`id_thanh_pho`),
   KEY `fk_quanhuyen_nguoiban` (`id_quan_huyen`),
   KEY `fk_phuongxa_nguoiban` (`id_phuong_xa`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `nguoi_ban`
 --
 
-INSERT INTO `nguoi_ban` (`id`, `email`, `mat_khau`, `ho_ten`, `cmnd`, `so_dien_thoai`, `dia_chi`, `id_quan_huyen`, `id_phuong_xa`, `id_thanh_pho`, `ngay_dang_ky`, `kich_hoat`, `trang_thai`) VALUES
-(1, 'huucanh@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Nguyễn Hữu Cảnh', '0123456789', '0120456456', '487 Lý Tự Trọng', 556, 9220, 50, '2017-11-18 00:08:54', b'0', b'1'),
-(2, 'thientrang@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Trần Thiên Trang', '9876543210', '0955556662', '223 An Dương Vương', 570, 9422, 50, '2017-11-18 14:16:32', b'1', b'0'),
-(3, 'huutai@gmail.com', '6389F3915211281868AB93D303440E77', 'Lê Hữu Tài', '595923134', '01324865242', '4543 ABC', 514, 8726, 45, '2017-11-18 14:53:23', b'1', b'1'),
-(4, 'grazerjink@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Lý Chí Vĩ', '026548129511', '09623648524', '24 Sư Vạn Hạnh', 567, 9369, 50, '2017-11-19 17:26:52', b'1', b'1');
+INSERT INTO `nguoi_ban` (`id`, `email`, `mat_khau`, `ten_gian_hang`, `ho_ten`, `cmnd`, `so_dien_thoai`, `dia_chi`, `id_quan_huyen`, `id_phuong_xa`, `id_thanh_pho`, `ngay_dang_ky`, `lan_dau_mua_tin`, `so_lan_dang_tin`, `so_lan_canh_cao`, `so_lan_danh_gia`, `kich_hoat`, `trang_thai`) VALUES
+(1, 'grazerjink@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Cửa hàng laptop VIVU™', 'Mạc Khải Quân', '025659100', '0905209926', '46A Đoàn Hồng Phước', 563, 9322, 50, '2017-12-05 11:42:31', b'0', 0, 0, 0, b'1', b'1'),
+(2, 'freetimes196@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Cửa hàng MacBook Tân Việt', 'Lý Thế Khang', '029928456', '0912345651', '125 Bà Thím', 572, 9448, 50, '2017-12-08 20:56:17', b'0', 0, 0, 0, b'1', b'1');
 
 -- --------------------------------------------------------
 
@@ -769,7 +818,7 @@ CREATE TABLE IF NOT EXISTS `phieu_mua_tin` (
   KEY `fk_phieumuatin_goitin` (`id_goi_tin`),
   KEY `fk_phieumuatin_nguoiban` (`id_nguoi_ban`),
   KEY `fk_phieumuatin_tinhtrang` (`id_tinh_trang`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `phieu_mua_tin`
@@ -787,7 +836,14 @@ INSERT INTO `phieu_mua_tin` (`id`, `id_nguoi_ban`, `id_goi_tin`, `gia_ban`, `nga
 (9, 4, 'STD', 45000, '2017-11-19 18:12:52', 1, 'PAY-0LF30083624620310LIIWODY', '6GT5ZQDLUELJ6', 'TC'),
 (10, 4, 'GOL', 239000, '2017-11-19 18:34:16', 1, 'PAY-8E485398V7308635NLIIWXRA', '6GT5ZQDLUELJ6', 'TC'),
 (11, 3, 'GOL', 239000, '2017-11-19 18:51:04', 1, 'PAY-1G460496AG1622110LIIW74A', '6GT5ZQDLUELJ6', 'TC'),
-(12, 4, 'STD', 45000, '2017-11-19 22:54:20', 1, 'PAY-54Y28982NX549223HLII2R5Q', '6GT5ZQDLUELJ6', 'TC');
+(12, 4, 'STD', 45000, '2017-11-19 22:54:20', 1, 'PAY-54Y28982NX549223HLII2R5Q', '6GT5ZQDLUELJ6', 'TC'),
+(13, 4, 'STD', 45000, '2017-12-04 11:14:55', 1, 'PAY-66A03558NJ845632WLISMW7Q', '6GT5ZQDLUELJ6', 'TC'),
+(14, 4, 'GOL', 239000, '2017-12-04 11:16:48', 1, 'PAY-20P82450GA1000335LISMYGI', '6GT5ZQDLUELJ6', 'TC'),
+(15, 4, 'STD', 45000, '2017-12-04 11:17:24', 1, 'PAY-3D449225ML491111DLISMYQA', '6GT5ZQDLUELJ6', 'TC'),
+(16, 4, 'STD', 45000, '2017-12-04 21:12:06', 1, 'PAY-0GU3746281679803MLISVO6I', '6GT5ZQDLUELJ6', 'TC'),
+(17, 1, 'STD', 45000, '2017-12-05 11:46:25', 0, NULL, NULL, 'XL'),
+(18, 1, 'STD', 45000, '2017-12-05 11:48:42', 1, 'PAY-5SX58530MN2536723LITCJNY', '6GT5ZQDLUELJ6', 'TC'),
+(19, 2, 'GOL', 239000, '2017-12-08 21:19:33', 1, 'PAY-7U311173WR6655425LIVJ32Y', '6GT5ZQDLUELJ6', 'TC');
 
 -- --------------------------------------------------------
 
@@ -12770,23 +12826,31 @@ DROP TABLE IF EXISTS `san_pham`;
 CREATE TABLE IF NOT EXISTS `san_pham` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ten_may` varchar(500) NOT NULL,
-  `hinh_anh` varchar(250) NOT NULL,
   `gia_ban` float NOT NULL,
   `id_hang_san_xuat` char(2) NOT NULL,
-  `ghi_chu` varchar(250) NOT NULL,
   `mo_ta` varchar(500) NOT NULL,
   `ton_kho` int(11) NOT NULL,
   `id_nguoi_ban` int(11) NOT NULL,
   `ngay_dang` datetime NOT NULL,
   `so_lan_xem` int(11) NOT NULL,
   `so_lan_mua` int(11) NOT NULL,
-  `bi_danh` varchar(500) NOT NULL,
   `trang_thai` bit(1) NOT NULL,
   `an_hien` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_sanpham_hangsanxuat` (`id_hang_san_xuat`),
   KEY `fk_sanpham_nguoiban` (`id_nguoi_ban`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `san_pham`
+--
+
+INSERT INTO `san_pham` (`id`, `ten_may`, `gia_ban`, `id_hang_san_xuat`, `mo_ta`, `ton_kho`, `id_nguoi_ban`, `ngay_dang`, `so_lan_xem`, `so_lan_mua`, `trang_thai`, `an_hien`) VALUES
+(1, 'Macbook 2017 Rose Gold 13 inch', 33000000, 'AP', 'Macbook 2017 Rose Gold 13 inch', 20, 2, '2017-12-08 22:37:20', 0, 0, b'1', b'1'),
+(2, 'Macbook 2017 Touch Bar', 35000000, 'AP', 'Macbook 2017 Touch Bar', 10, 2, '2017-12-08 22:38:16', 0, 0, b'1', b'1'),
+(3, 'Surface Book Pro 4', 28000000, 'MS', 'Surface Book Pro 4', 10, 1, '2017-12-08 22:50:45', 0, 0, b'1', b'1'),
+(4, 'Hp Elite Folio G1', 27000000, 'HP', 'Hp Elite Folio G1', 20, 1, '2017-12-08 22:52:10', 0, 0, b'1', b'1'),
+(5, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1');
 
 -- --------------------------------------------------------
 
@@ -12803,21 +12867,44 @@ CREATE TABLE IF NOT EXISTS `so_tin_ton` (
   `ngay_cap_nhat` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_tinton_nguoiban` (`id_nguoi_ban`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `so_tin_ton`
 --
 
 INSERT INTO `so_tin_ton` (`id`, `id_nguoi_ban`, `so_tin_ton`, `so_tin_da_dung`, `ngay_cap_nhat`) VALUES
-(1, 3, 65, 0, '2017-11-19 13:24:27'),
-(2, 4, 150, 0, '2017-11-19 17:56:21'),
-(3, 4, 300, 0, '2017-11-19 18:03:44'),
-(4, 4, 365, 0, '2017-11-19 18:07:18'),
-(5, 4, 390, 0, '2017-11-19 18:12:52'),
-(6, 4, 540, 0, '2017-11-19 18:34:16'),
-(7, 3, 215, 0, '2017-11-19 18:51:04'),
-(8, 4, 565, 0, '2017-11-19 22:54:19');
+(13, 1, 30, 0, '2017-12-05 11:48:42'),
+(28, 1, 29, 1, '2017-12-06 17:05:13'),
+(29, 1, 28, 1, '2017-12-06 17:05:51'),
+(30, 1, 27, 1, '2017-12-06 17:32:54'),
+(31, 1, 26, 1, '2017-12-06 18:04:59'),
+(32, 1, 25, 1, '2017-12-06 18:15:19'),
+(33, 1, 24, 1, '2017-12-06 18:28:22'),
+(34, 1, 23, 1, '2017-12-06 18:35:50'),
+(35, 1, 22, 1, '2017-12-06 18:47:46'),
+(36, 1, 21, 1, '2017-12-06 18:49:48'),
+(39, 1, 20, 1, '2017-12-07 19:09:59'),
+(40, 1, 19, 1, '2017-12-07 19:16:55'),
+(41, 1, 18, 1, '2017-12-07 19:19:57'),
+(42, 1, 17, 1, '2017-12-07 19:20:40'),
+(43, 1, 16, 1, '2017-12-07 19:24:22'),
+(46, 1, 15, 1, '2017-12-08 20:37:13'),
+(47, 2, 155, 0, '2017-12-08 21:19:33'),
+(48, 2, 154, 1, '2017-12-08 21:22:03'),
+(49, 2, 153, 1, '2017-12-08 21:23:11'),
+(50, 1, 14, 1, '2017-12-08 21:53:37'),
+(51, 1, 13, 1, '2017-12-08 21:59:54'),
+(52, 2, 152, 1, '2017-12-08 22:12:14'),
+(53, 2, 151, 1, '2017-12-08 22:13:44'),
+(54, 2, 150, 1, '2017-12-08 22:26:51'),
+(55, 2, 149, 1, '2017-12-08 22:29:57'),
+(56, 2, 148, 1, '2017-12-08 22:34:39'),
+(57, 2, 147, 1, '2017-12-08 22:37:20'),
+(58, 2, 146, 1, '2017-12-08 22:38:16'),
+(59, 1, 12, 1, '2017-12-08 22:50:45'),
+(60, 1, 11, 1, '2017-12-08 22:52:10'),
+(61, 1, 10, 1, '2017-12-08 22:54:12');
 
 -- --------------------------------------------------------
 
@@ -12919,10 +13006,8 @@ CREATE TABLE IF NOT EXISTS `thong_so_ki_thuat` (
   `id_cpu` int(11) NOT NULL,
   `id_ram` int(11) NOT NULL,
   `id_card_man_hinh` int(11) NOT NULL,
-  `card_tich_hop` bit(1) NOT NULL,
   `id_o_cung` int(11) NOT NULL,
-  `ket_noi_wifi` bit(1) NOT NULL,
-  `thoi_luong_pin` varchar(250) NOT NULL,
+  `thoi_luong_pin` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_vga_thongso` (`id_card_man_hinh`),
   KEY `fk_cpu_thongso` (`id_cpu`),
@@ -12932,7 +13017,18 @@ CREATE TABLE IF NOT EXISTS `thong_so_ki_thuat` (
   KEY `fk_sanpham_thongso` (`id_san_pham`),
   KEY `fk_dophangiai_thongso` (`id_do_phan_giai`),
   KEY `fk_kichthuocmanhinh_thongso` (`id_kich_thuoc_man_hinh`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `thong_so_ki_thuat`
+--
+
+INSERT INTO `thong_so_ki_thuat` (`id`, `id_san_pham`, `id_kich_thuoc_man_hinh`, `id_loai_man_hinh`, `id_do_phan_giai`, `id_cpu`, `id_ram`, `id_card_man_hinh`, `id_o_cung`, `thoi_luong_pin`) VALUES
+(1, 1, 1, 3, 3, 132, 16, 15, 6, 10),
+(2, 2, 2, 2, 3, 108, 16, 131, 6, 10),
+(3, 3, 1, 2, 3, 109, 22, 132, 6, 10),
+(4, 4, 3, 2, 2, 150, 14, 3, 6, 10),
+(5, 5, 1, 1, 2, 154, 22, 9, 5, 10);
 
 -- --------------------------------------------------------
 
@@ -12978,6 +13074,12 @@ ALTER TABLE `ct_phieu_mua_hang`
 ALTER TABLE `danh_gia`
   ADD CONSTRAINT `fk_danhgia_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`),
   ADD CONSTRAINT `fk_danhgia_phieumuahang` FOREIGN KEY (`id_don_hang`) REFERENCES `phieu_mua_hang` (`id`);
+
+--
+-- Constraints for table `hinh_anh_san_pham`
+--
+ALTER TABLE `hinh_anh_san_pham`
+  ADD CONSTRAINT `fk_sanpham_hinhanhsanpham` FOREIGN KEY (`id_san_pham`) REFERENCES `san_pham` (`id`);
 
 --
 -- Constraints for table `nguoi_ban`

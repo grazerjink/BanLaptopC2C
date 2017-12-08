@@ -79,7 +79,6 @@
         </references>
         <spring-data xmlns="http://www.netbeans.org/ns/spring-data/1">
             <config-files>
-                <config-file>web/WEB-INF/spring-configs/spring-resource.xml</config-file>
                 <config-file>web/WEB-INF/spring-configs/spring-interceptors.xml</config-file>
             </config-files>
             <config-file-groups>

@@ -30,4 +30,8 @@ public class EncryptHelper {
             throw new RuntimeException(e);
         }
     }
+    
+    public static boolean matches(String encryptedString, String matchString) {
+        return encryptedString.equals(encrypt(matchString));
+    }
 }

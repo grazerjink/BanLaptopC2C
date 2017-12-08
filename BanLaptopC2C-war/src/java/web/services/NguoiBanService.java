@@ -31,7 +31,6 @@ import ejb.sessions.ThanhPhoFacade;
 import ejb.sessions.ThongSoKiThuatFacade;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
@@ -184,8 +183,8 @@ public class NguoiBanService {
         } catch (Exception ex) {
             model.addAttribute("error", "Xảy ra lỗi, xin vui lòng kiểm tra lại.");
         }
-        model.addAttribute("tab", 1);
-    }
+        model.addAttribute("tab", 1); 
+    } 
 
     public void doiMatKhau(String matKhauCu,
             String matKhauMoi,
@@ -235,68 +234,72 @@ public class NguoiBanService {
 
     public boolean dangTinSanPham(SanPhamViewModel sanPhamVM, MultipartFile[] fileUploads, HttpSession httpSession, Model model, String path) {
         try {
-            tx.begin();
-            if (fileUploads.length > 1 || (fileUploads.length == 1 && fileUploads[0].getSize() != 0)) {
-                NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
-                Date hienTai = new Date();
-                SoTinTon soTin = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), hienTai);
-                SoTinTon newSoTin = new SoTinTon();
-                newSoTin.setIdNguoiBan(nguoiBan);
-                newSoTin.setNgayCapNhat(hienTai);
-                newSoTin.setSoTinDaDung(1);
-                newSoTin.setSoTinTon(soTin.getSoTinTon() - 1);
-                soTinTonFacade.create(newSoTin);
-                SanPham sp = new SanPham();
-                sp.setAnHien(true);
-                sp.setTenMay(sanPhamVM.getTenMay());
-                sp.setGiaBan(sanPhamVM.getGiaBan().floatValue());
-                sp.setMoTa(sanPhamVM.getMoTa());
-                sp.setNgayDang(new Date());
-                sp.setIdHangSanXuat(hangSanXuatFacade.find(sanPhamVM.getIdHangSanXuat()));
-                sp.setSoLanMua(0);
-                sp.setSoLanXem(0);
-                sp.setTrangThai(true);
-                sp.setIdNguoiBan(nguoiBan);
-                sp.setTonKho(sanPhamVM.getTonKho());
-                int id = sanPhamBusiness.themSanPham(sp);
-                sp.setId(id);
-                for (MultipartFile f : fileUploads) {
-                    if (f.getSize() > 0) {
-                        HinhAnhSanPham hinhAnhSanPham = new HinhAnhSanPham();
-                        hinhAnhSanPham.setIdSanPham(sp);
-                        hinhAnhSanPham.setTenHinh(f.getOriginalFilename());
-                        hinhAnhSanPhamFacade.create(hinhAnhSanPham);
-                        String imagePath = path + "\\" + hinhAnhSanPham.getTenHinh();
-                        File file = new File(imagePath);
-                        ImageUtils.resizeAndTransferTo(f.getInputStream(), 573, 430, file);
+            NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
+            if (soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), new Date())> 0) {
+                tx.begin();
+                if (fileUploads.length > 1 || (fileUploads.length == 1 && fileUploads[0].getSize() != 0)) {
+                    Date hienTai = new Date();
+                    int soTinTon = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), hienTai);
+                    SoTinTon newSoTin = new SoTinTon();
+                    newSoTin.setIdNguoiBan(nguoiBan);
+                    newSoTin.setNgayCapNhat(hienTai);
+                    newSoTin.setSoTinDaDung(1);
+                    newSoTin.setSoTinTon(soTinTon - 1);
+                    soTinTonFacade.create(newSoTin);
+                    SanPham sp = new SanPham();
+                    sp.setAnHien(true);
+                    sp.setTenMay(sanPhamVM.getTenMay());
+                    sp.setGiaBan(sanPhamVM.getGiaBan().floatValue());
+                    sp.setMoTa(sanPhamVM.getMoTa());
+                    sp.setNgayDang(new Date());
+                    sp.setIdHangSanXuat(hangSanXuatFacade.find(sanPhamVM.getIdHangSanXuat()));
+                    sp.setSoLanMua(0);
+                    sp.setSoLanXem(0);
+                    sp.setTrangThai(true);
+                    sp.setIdNguoiBan(nguoiBan);
+                    sp.setTonKho(sanPhamVM.getTonKho());
+                    int id = sanPhamBusiness.themSanPham(sp);
+                    sp.setId(id);
+                    for (MultipartFile f : fileUploads) {
+                        if (f.getSize() > 0) {
+                            HinhAnhSanPham hinhAnhSanPham = new HinhAnhSanPham();
+                            hinhAnhSanPham.setIdSanPham(sp);
+                            hinhAnhSanPham.setTenHinh(f.getOriginalFilename());
+                            hinhAnhSanPhamFacade.create(hinhAnhSanPham);
+                            String imagePath = path + "\\" + hinhAnhSanPham.getTenHinh();
+                            File file = new File(imagePath);
+                            ImageUtils.resizeAndTransferTo(f.getInputStream(), 480, 480, file); 
+                        }
                     }
+                    ThongSoKiThuat ts = new ThongSoKiThuat();
+                    ts.setIdCardManHinh(cardManHinhFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdCardManHinh()));
+                    ts.setIdCpu(cpuFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdCpu()));
+                    ts.setIdDoPhanGiai(doPhanGiaiFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdDoPhanGiai()));
+                    ts.setIdKichThuocManHinh(kichThuocManHinhFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdKichThuocManHinh()));
+                    ts.setIdLoaiManHinh(loaiManHinhFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdLoaiManHinh()));
+                    ts.setIdOCung(oCungFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdOCung()));
+                    ts.setIdRam(ramFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdRam()));
+                    ts.setIdSanPham(sp);
+                    ts.setThoiLuongPin(sanPhamVM.getThongSoKiThuatVM().getThoiLuongPin());
+                    thongSoKiThuatFacade.create(ts);
+                    tx.commit();
+                    model.addAttribute("success", "Thêm sản phẩm thành công.<br>Thiết lập hiển thị ngay.");
+                    return true;
+                } else {
+                    model.addAttribute("error", "Xin vui lòng thêm tối thiểu 1 ảnh đại diện cho sản phẩm");
+                    return false;
                 }
-                ThongSoKiThuat ts = new ThongSoKiThuat();
-                ts.setIdCardManHinh(cardManHinhFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdCardManHinh()));
-                ts.setIdCpu(cpuFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdCpu()));
-                ts.setIdDoPhanGiai(doPhanGiaiFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdDoPhanGiai()));
-                ts.setIdKichThuocManHinh(kichThuocManHinhFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdKichThuocManHinh()));
-                ts.setIdLoaiManHinh(loaiManHinhFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdLoaiManHinh()));
-                ts.setIdOCung(oCungFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdOCung()));
-                ts.setIdRam(ramFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdRam()));
-                ts.setIdSanPham(sp);
-                ts.setThoiLuongPin(sanPhamVM.getThongSoKiThuatVM().getThoiLuongPin());
-                thongSoKiThuatFacade.create(ts);
-                tx.commit();
-                model.addAttribute("success", "Thêm sản phẩm thành công.<br>Thiết lập hiển thị ngay.");
-                return true;
             } else {
-                model.addAttribute("error", "Xin vui lòng thêm tối thiểu 1 ảnh đại diện cho sản phẩm");
+                model.addAttribute("error", "Số tin hiện tại không đủ, vui lòng mua thêm tin đăng.");
                 return false;
             }
         } catch (IOException | IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException ex) {
-            ex.printStackTrace();
             try {
                 tx.rollback();
+                model.addAttribute("error", "Thêm sản phẩm thất bại<br>Xin vui lòng thực hiện lại.");
             } catch (IllegalStateException | SecurityException | SystemException ex1) {
-                Logger.getLogger(NguoiBanService.class.getName()).log(Level.SEVERE, null, ex1);
+                ex.printStackTrace();
             }
-            model.addAttribute("error", "Thêm sản phẩm thất bại<br>Xin vui lòng thực hiện lại.");
             return false;
         }
     }

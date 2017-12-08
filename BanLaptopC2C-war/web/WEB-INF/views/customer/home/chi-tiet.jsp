@@ -19,24 +19,10 @@
     .flex-active-slide {
         text-align: center;
     }
-    .flexslider .slides img{
-        margin: 15px 0;
-    }    
-    .flex-viewport {
-        min-height: 378px;
-        max-height: 378px;
-        -webkit-transition: all 1s ease;
-        -moz-transition: all 1s ease;
-        -ms-transition: all 1s ease;
-        -o-transition: all 1s ease;
-        transition: all 1s ease;
-        border: none;
-        float: left;
-        width: 75%;
-        margin-right: 10px;
-        border: 1px solid #D1CFCF;        
-        text-align: center;
-    }    
+    .flex-control-thumbs li img{
+        width: 80%;
+        height: 80%;
+    }
     .occasion-cart {
         margin-top: 30px;
     }
@@ -52,7 +38,12 @@
     .v2q-item-price > span{
         color: red;
         font-weight: bolder;
-        font-size: 2em;
+        font-size: 1.8em;
+    } 
+    .v2q-item-quantity > span {
+        color: #007aff;
+        font-weight: bold;
+        font-size: 1.25em;
     }
 </style>
 <!-- banner -->
@@ -107,7 +98,7 @@
                 <span class="item_price">Giá: <fmt:formatNumber value="${sp.giaBan}" pattern="###,###"/></span>
             </div>
             <div class="color-quality">
-                <div class="color-quality-right">
+                <div class="v2q-item-quantity color-quality-right">
                     <span>Số lượng: ${sp.tonKho}</span>
                 </div>
             </div>

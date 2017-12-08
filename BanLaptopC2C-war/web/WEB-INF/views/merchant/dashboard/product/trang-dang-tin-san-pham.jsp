@@ -139,7 +139,7 @@
                             <label class="col-sm-2 form-control-label">Hãng sản xuất: </label>
                             <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
-                                <form:select path="idHangSanXuat" cssClass="form-control ks-rounded v2q-input">
+                                    <form:select path="idHangSanXuat" cssClass="form-control ks-rounded v2q-input">
                                     <option selected disabled>Chọn hãng sản xuất</option>
                                     <c:forEach items="${dsHangSanXuat}" var="sx">
                                         <option value="${sx.id}">${sx.tenHang}</option>
@@ -328,5 +328,8 @@
                 $("#v2q-img-upload").append($("#img-template").html());
             }
         });
+    <c:if test="${error != null}">
+        showErrorToast("${error}");
+    </c:if>
     });
 </script>

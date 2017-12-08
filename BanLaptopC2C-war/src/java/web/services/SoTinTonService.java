@@ -28,12 +28,7 @@ public class SoTinTonService {
     SoTinTonFacade soTinTonFacade = (SoTinTonFacade) LookupFactory.lookupBeanFacade("SoTinTonFacade");
 
     public int laySoTinTheoNguoiBanVaThoiGian(NguoiBan nguoiBan, Date thoiGian) {
-        SoTinTon soTinTon = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), thoiGian);
-        if (soTinTon != null) {
-            return soTinTon.getSoTinTon();
-        } else {
-            return 0;
-        }
+        return soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), thoiGian);
     }
 
     public void capNhatSoTinDang(GoiTin goiTin, HttpSession httpSession) {
