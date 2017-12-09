@@ -9,7 +9,6 @@ import ejb.entities.PhuongXa;
 import ejb.entities.QuanHuyen;
 import ejb.entities.ThanhPho;
 import java.util.Date;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,61 +17,24 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author Winson Mac
  */
-public class NguoiBanViewModel {
+public class NguoiMuaViewModel {
 
-    Integer id;
     @NotEmpty
     @Email
-    String email;
+    private String email;
     @NotEmpty
     @Pattern(regexp = "[a-zA-Z0-9]{4,20}")
-    String matKhau;
+    private String matKhau;
     @NotEmpty
-    String matKhauXacNhan;
-    @NotEmpty
-    String tenGianHang;
-    @NotEmpty
-    String hoTen;
-    @NotEmpty
-    @Pattern(regexp = "[0-9]{9,12}")
-    String cmnd;
-    @NotEmpty
+    private String matKhauXacNhan;
     @Pattern(regexp = "[0-9]{10,11}")
-    String soDienThoai;
-    @NotEmpty
-    String diaChi;
-    Date ngayDangKy;
-
-    @NotNull
+    private String soDienThoai;
+    private String hoTen;
+    private Date ngaySinh;
+    private String diaChi;
     PhuongXa idPhuongXa;
-    @NotNull
     QuanHuyen idQuanHuyen;
-    @NotNull
     ThanhPho idThanhPho;
-
-    public String getMatKhauXacNhan() {
-        return matKhauXacNhan;
-    }
-
-    public void setMatKhauXacNhan(String matKhauXacNhan) {
-        this.matKhauXacNhan = matKhauXacNhan;
-    }
-
-    public String getTenGianHang() {
-        return tenGianHang;
-    }
-
-    public void setTenGianHang(String tenGianHang) {
-        this.tenGianHang = tenGianHang;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;
@@ -98,12 +60,12 @@ public class NguoiBanViewModel {
         this.hoTen = hoTen;
     }
 
-    public String getCmnd() {
-        return cmnd;
+    public Date getNgaySinh() {
+        return ngaySinh;
     }
 
-    public void setCmnd(String cmnd) {
-        this.cmnd = cmnd;
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 
     public String getSoDienThoai() {
@@ -122,14 +84,14 @@ public class NguoiBanViewModel {
         this.diaChi = diaChi;
     }
 
-    public Date getNgayDangKy() {
-        return ngayDangKy;
+    public String getMatKhauXacNhan() {
+        return matKhauXacNhan;
     }
 
-    public void setNgayDangKy(Date ngayDangKy) {
-        this.ngayDangKy = ngayDangKy;
+    public void setMatKhauXacNhan(String matKhauXacNhan) {
+        this.matKhauXacNhan = matKhauXacNhan;
     }
-    
+
     public PhuongXa getIdPhuongXa() {
         return idPhuongXa;
     }

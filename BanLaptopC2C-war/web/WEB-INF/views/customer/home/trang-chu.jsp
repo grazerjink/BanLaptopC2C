@@ -1,4 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- banner -->
 <jsp:include page="../layout/template/banner.jsp"/>
 <!-- //banner -->
@@ -39,3 +41,11 @@
 <!-- GO TO TOP -->
 <jsp:include page="../layout/template/go-to-top.jsp"/>
 <!-- //GO TO TOP-->
+<script>
+    <c:if test="${param.success != null && fn:length(param.success)>0}">
+    showSuccessToast("${param.success}");
+    </c:if>
+    <c:if test="${param.error != null && fn:length(param.error)>0}">
+    showErrorToast("${param.error}");
+    </c:if>
+</script>

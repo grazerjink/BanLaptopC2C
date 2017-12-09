@@ -15,7 +15,7 @@
     <!-- Configures Handler Interceptors --> 
     <mvc:interceptors>  
         <!-- Lọc tất cả các URL -->
-        <!--        <bean class="web.interceptors.MerchantInterceptor" />-->
+        <bean class="web.interceptors.CustomerInterceptor" />
 		
         <mvc:interceptor>		
             <mvc:mapping path="/merchant/**" />

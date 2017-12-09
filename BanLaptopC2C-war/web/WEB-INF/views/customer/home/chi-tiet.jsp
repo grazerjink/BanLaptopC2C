@@ -13,9 +13,6 @@
 <script src="assets/customer/template/js/jquery.flexslider.js"></script>
 <!-- single -->
 <style>
-    .page-head {
-        background: url(assets/customer/images/v2q-single-banner.jpg) no-repeat center;
-    }
     .flex-active-slide {
         text-align: center;
     }

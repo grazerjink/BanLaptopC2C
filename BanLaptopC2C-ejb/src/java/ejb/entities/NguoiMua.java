@@ -16,6 +16,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -65,24 +67,16 @@ public class NguoiMua implements Serializable {
     @Size(min = 1, max = 250)
     @Column(name = "mat_khau")
     private String matKhau;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
+    @Size(max = 250)
     @Column(name = "ho_ten")
     private String hoTen;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "ngay_sinh")
     @Temporal(TemporalType.DATE)
     private Date ngaySinh;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
+    @Size(max = 250)
     @Column(name = "so_dien_thoai")
     private String soDienThoai;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
+    @Size(max = 250)
     @Column(name = "dia_chi")
     private String diaChi;
     @Basic(optional = false)
@@ -100,6 +94,15 @@ public class NguoiMua implements Serializable {
     private boolean trangThai;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNguoiMua", fetch = FetchType.LAZY)
     private List<PhieuMuaHang> phieuMuaHangList;
+    @JoinColumn(name = "id_phuong_xa", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private PhuongXa idPhuongXa;
+    @JoinColumn(name = "id_quan_huyen", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private QuanHuyen idQuanHuyen;
+    @JoinColumn(name = "id_thanh_pho", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ThanhPho idThanhPho;
 
     public NguoiMua() {
     }
@@ -108,14 +111,10 @@ public class NguoiMua implements Serializable {
         this.id = id;
     }
 
-    public NguoiMua(Integer id, String email, String matKhau, String hoTen, Date ngaySinh, String soDienThoai, String diaChi, Date ngayDangKi, boolean kichHoat, boolean trangThai) {
+    public NguoiMua(Integer id, String email, String matKhau, Date ngayDangKi, boolean kichHoat, boolean trangThai) {
         this.id = id;
         this.email = email;
         this.matKhau = matKhau;
-        this.hoTen = hoTen;
-        this.ngaySinh = ngaySinh;
-        this.soDienThoai = soDienThoai;
-        this.diaChi = diaChi;
         this.ngayDangKi = ngayDangKi;
         this.kichHoat = kichHoat;
         this.trangThai = trangThai;
@@ -208,6 +207,30 @@ public class NguoiMua implements Serializable {
 
     public void setPhieuMuaHangList(List<PhieuMuaHang> phieuMuaHangList) {
         this.phieuMuaHangList = phieuMuaHangList;
+    }
+
+    public PhuongXa getIdPhuongXa() {
+        return idPhuongXa;
+    }
+
+    public void setIdPhuongXa(PhuongXa idPhuongXa) {
+        this.idPhuongXa = idPhuongXa;
+    }
+
+    public QuanHuyen getIdQuanHuyen() {
+        return idQuanHuyen;
+    }
+
+    public void setIdQuanHuyen(QuanHuyen idQuanHuyen) {
+        this.idQuanHuyen = idQuanHuyen;
+    }
+
+    public ThanhPho getIdThanhPho() {
+        return idThanhPho;
+    }
+
+    public void setIdThanhPho(ThanhPho idThanhPho) {
+        this.idThanhPho = idThanhPho;
     }
 
     @Override

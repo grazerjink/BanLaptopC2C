@@ -25,6 +25,7 @@
         <link href="assets/customer/template/css/style.css" rel="stylesheet" type="text/css" media="all" />
         <link href="assets/customer/template/css/z-custom-style.css" rel="stylesheet" type="text/css"/>
         <link href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="assets/vendor/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
         <!-- js -->
         <script type="text/javascript" src="assets/customer/template/js/jquery-2.1.4.min.js"></script>
         <!-- //js -->
@@ -35,7 +36,22 @@
         <script type="text/javascript" src="assets/customer/template/js/bootstrap-3.1.1.min.js"></script>
         <!-- //for bootstrap working -->
         <script src="assets/customer/template/js/jquery.easing.min.js"></script>
-        
+        <script src="assets/vendor/toastr/toastr.min.js" type="text/javascript"></script>
+        <script src="assets/customer/js/show-toast.js" type="text/javascript"></script>
+        <style>
+            .page-head {
+                background: url(assets/customer/images/v2q-single-banner.jpg) no-repeat center;
+                background-size: 100%;
+            }
+            .search {
+                float: left;
+                width: 70%;
+            }
+            .section_room {
+                float: left;
+                width: 20%;
+            }
+        </style>
     </head>
     <body>
         <!-- header -->
@@ -58,6 +74,6 @@
         <!-- //footer -->
         <!-- login -->
         <jsp:include page="customer/layout/template/login.jsp"/>
-        <!-- //login -->        
+        <!-- //login -->         
     </body>
 </html>

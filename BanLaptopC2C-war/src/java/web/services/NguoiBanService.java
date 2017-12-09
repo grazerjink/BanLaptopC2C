@@ -33,8 +33,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.HeuristicMixedException;
@@ -98,8 +96,8 @@ public class NguoiBanService {
             } else {
                 try {
                     NguoiBan nguoiBan = new NguoiBan();
-                    nguoiBan.setEmail(nguoiBanVM.getEmail());
-                    nguoiBan.setMatKhau(nguoiBanVM.getMatKhau());
+                    nguoiBan.setEmail(nguoiBanVM.getEmail());                    
+                    nguoiBan.setMatKhau(EncryptHelper.encrypt(nguoiBanVM.getMatKhau()));
                     nguoiBan.setTenGianHang(nguoiBanVM.getTenGianHang());
                     nguoiBan.setHoTen(nguoiBanVM.getHoTen());
                     nguoiBan.setCmnd(nguoiBanVM.getCmnd());
@@ -109,7 +107,6 @@ public class NguoiBanService {
                     nguoiBan.setIdPhuongXa(nguoiBanVM.getIdPhuongXa());
                     nguoiBan.setIdQuanHuyen(nguoiBanVM.getIdQuanHuyen());
                     nguoiBan.setIdThanhPho(nguoiBanVM.getIdThanhPho());
-                    nguoiBan.setMatKhau(EncryptHelper.encrypt(nguoiBanVM.getMatKhau()));
                     nguoiBan.setLanDauMuaTin(true);
                     nguoiBan.setSoLanCanhCao(0);
                     nguoiBan.setSoLanDanhGia(0);

@@ -62,6 +62,8 @@ public class QuanHuyen implements Serializable {
     private List<PhuongXa> phuongXaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
     private List<NguoiBan> nguoiBanList;
+    @OneToMany(mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
+    private List<NguoiMua> nguoiMuaList;
     @JoinColumn(name = "id_thanh_pho", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private ThanhPho idThanhPho;
@@ -128,6 +130,15 @@ public class QuanHuyen implements Serializable {
 
     public void setNguoiBanList(List<NguoiBan> nguoiBanList) {
         this.nguoiBanList = nguoiBanList;
+    }
+
+    @XmlTransient
+    public List<NguoiMua> getNguoiMuaList() {
+        return nguoiMuaList;
+    }
+
+    public void setNguoiMuaList(List<NguoiMua> nguoiMuaList) {
+        this.nguoiMuaList = nguoiMuaList;
     }
 
     public ThanhPho getIdThanhPho() {
