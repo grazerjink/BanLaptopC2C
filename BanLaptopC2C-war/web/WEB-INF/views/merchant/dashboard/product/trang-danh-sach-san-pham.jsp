@@ -8,57 +8,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<style> 
-    .v2q-card {
-        width: 100%;
-        min-height: 385px;
-        max-height: 385px;
-    }
-    .v2q-card-add {
-        position: relative;
-        background-color: #e9eef1;
-    }
-    .v2q-card-add .v2q-image {
-        position: absolute;
-        text-align: center;
-    }
-    .v2q-card-add > a{
-        position: absolute;
-        background-color: transparent;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-    .v2q-card-add > a:hover{
-        background-color: #e8e8e8;
-        opacity: .5;
-        border: 3px #ef8e05 solid;
-        border-color: #ef8e05;
-    }
-    .v2q-card-add > span {
-        font-size: 16px; 
-        color: #8e8e8e;       
-        width: 100%;
-        text-align: center;
-        position: absolute;
-        bottom: 70px;
-    }
-    .v2q-item-image {
-        width:100%; 
-        height: 180px; 
-        margin-bottom: 15px;
-    }
-    .v2q-item-title {
-        font-size: 16px; 
-        font-weight: bolder;
-        min-height: 45px;
-        max-height: 45px;
-    }
-    .overflow {
-        overflow: hidden;
-    }
-    .ellipsis { text-overflow: ellipsis; }
-</style>
 <div class="ks-header">
     <section class="ks-title-and-subtitle">
         <div class="ks-title-block">

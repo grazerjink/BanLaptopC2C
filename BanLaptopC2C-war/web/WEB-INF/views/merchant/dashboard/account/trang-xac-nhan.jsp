@@ -6,15 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-
-<style>
-    .v2q-status {
-        font-size: 18px;
-        font-style: italic;
-        /* font-stretch: semi-condensed; */
-        font-weight: 900;
-    }
-</style>
 <div class="ks-header">
     <section class="ks-title-and-subtitle">
         <div class="ks-title-block">

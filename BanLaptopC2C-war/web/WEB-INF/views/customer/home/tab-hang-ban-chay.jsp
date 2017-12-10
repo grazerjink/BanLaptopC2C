@@ -6,38 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<style>
-    .item-info-product {
-        text-align: center;
-        margin-top: 15px;
-    }
-    .item-info-product h4 {
-        min-height: 40px;
-        max-height: 40px;
-        padding: 0 8px;
-        margin-bottom: 10px;
-    }
-    .v2q-product-price {
-        margin: 5px 0;
-    }
-    .v2q-product-price span {
-        color: #000;
-        font-size: 20px;
-    }
-    .product-men .v2q-rating {
-        margin-bottom: 15px;
-    }
-    .product-men .v2q-rating .v2q-star {
-        color: #FDA30E;
-    }
-    .men-thumb-item:hover .inner-men-cart-pro .link-product-add-cart {
-        top: 82.5%;
-    }
-    .men-thumb-item img {
-        height: auto;
-        width: 100%;
-    }
-</style>
 <div class="tab-1 resp-tab-content" aria-labelledby="tab_hang-ban-chay">
     <c:forEach items="${dsSanPham}" var="sp">
         <div class="col-md-3 product-men" style="margin-bottom: 20px;">

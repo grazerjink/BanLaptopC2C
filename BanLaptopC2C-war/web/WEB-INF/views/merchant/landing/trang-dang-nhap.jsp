@@ -8,23 +8,6 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-    .form-control:hover {
-        border-color: #FFC237;
-    }
-    .form-control:focus {
-        border-color: #FDA30E;
-    }
-    .form-control:focus:hover{
-        border-color: #FDA30E;
-        box-shadow: none;
-    }
-    .v2q-input-wrapper .icon-addon span {
-        font-size: 20px;
-        line-height: 30px;
-        color: #FDA30E;
-    } 
-</style>
 <jsp:include page="../layout/landing/landing-header.jsp"/>
 <div class="ks-body container">
     <div class="row">

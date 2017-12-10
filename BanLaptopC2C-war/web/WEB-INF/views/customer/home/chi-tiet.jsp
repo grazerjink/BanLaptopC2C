@@ -11,38 +11,8 @@
 <link rel="stylesheet" href="assets/customer/template/css/flexslider.css" type="text/css" media="screen" />
 <script src="assets/customer/template/js/imagezoom.js"></script>
 <script src="assets/customer/template/js/jquery.flexslider.js"></script>
+<script src="assets/customer/js/shopping-cart.js" type="text/javascript"></script>
 <!-- single -->
-<style>
-    .flex-active-slide {
-        text-align: center;
-    }
-    .flex-control-thumbs li img{
-        width: 80%;
-        height: 80%;
-    }
-    .occasion-cart {
-        margin-top: 30px;
-    }
-    .v2q-info-technique {
-        padding-top: 5px;
-    }
-    .v2q-info-technique h5 {
-        padding-bottom: 3px;
-    }
-    .v2q-item-price{
-        margin-top: 20px;
-    }
-    .v2q-item-price > span{
-        color: red;
-        font-weight: bolder;
-        font-size: 1.8em;
-    } 
-    .v2q-item-quantity > span {
-        color: #007aff;
-        font-weight: bold;
-        font-size: 1.25em;
-    }
-</style>
 <!-- banner -->
 <div class="page-head">
     <div class="container">
@@ -100,7 +70,7 @@
                 </div>
             </div>
             <div class="occasion-cart">
-                <a href="#" class="item_add hvr-outline-out button2">Thêm vào giỏ hàng</a>
+                <a class="item_add hvr-outline-out button2 v2q-btn-buy" data-prod-id="${sp.id}">Thêm vào giỏ hàng</a>
             </div>
         </div>
         <div class="clearfix"> </div>

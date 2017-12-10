@@ -105,6 +105,7 @@ img {
 
 label.error, span.serverError {
     background: url(../images/unchecked.gif) no-repeat;
+    background-position: left;
     padding-left: 20px;
     margin-left: 1em;
     margin-top: 5px;
@@ -115,4 +116,20 @@ label.error, span.serverError {
     margin: 0 auto;
     position: absolute;
     top: 10px;
+}
+
+.form-control:hover {
+    border-color: #FFC237;
+}
+.form-control:focus {
+    border-color: #FDA30E;
+}
+.form-control:focus:hover{
+    border-color: #FDA30E;
+    box-shadow: none;
+}
+.v2q-input-wrapper .icon-addon span {
+    font-size: 20px;
+    line-height: 30px;
+    color: #FDA30E;
 }

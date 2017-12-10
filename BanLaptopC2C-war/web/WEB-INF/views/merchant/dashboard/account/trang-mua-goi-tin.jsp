@@ -9,50 +9,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<style>
-    .ks-dashboard-tabbed-sidebar-widgets .row {
-        height: 485px;
-    }    
-    .v2q-wrapper {
-        margin-bottom: 20px;
-        position: relative;
-        height: 100%;
-    }
-    .v2q-box {
-        height: 100%;
-    }
-    .v2q-box-title {
-        font-weight: 500;
-        font-size: 20px;
-        margin-top: 15px;
-    }
-    .v2q-amount {
-        font-size: 36px;
-        font-weight: 500;
-        color: #FDA30E;
-        margin-top: 40px;
-    }
-    .v2q-box-button {
-        position: absolute;
-        bottom: 0;
-        margin-bottom: 30px;
-    }
-    .v2q-btn {
-        width: 100%;
-        height: 100%;
-        margin-top: 20px;
-        font-size: 26px;
-    }
-    .v2q-btn span {
-        font-size: 1em;
-    }
-    .ks-price-ratio-progress {
-        margin-top: 15px;
-    }
-    .v2q-quantity>span {
-        font-size: 20px;
-    }
-</style>
 <div class="ks-header">
     <section class="ks-title-and-subtitle">
         <div class="ks-title-block">

@@ -6,23 +6,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-    .form-control:hover {
-        border-color: #FFC237;
-    }
-    .form-control:focus {
-        border-color: #FDA30E;
-    }
-    .form-control:focus:hover{
-        border-color: #FDA30E;
-        box-shadow: none;
-    }
-    .v2q-input-wrapper .icon-addon span {
-        font-size: 20px;
-        line-height: 30px;
-        color: #FDA30E;
-    } 
-</style>
 <jsp:include page="../layout/landing/landing-header.jsp"/>
 <div class="ks-body">
     <!-- Begin login form -->

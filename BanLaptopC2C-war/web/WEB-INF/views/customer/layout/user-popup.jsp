@@ -5,30 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<style>
-    #user-popup {
-        display: none;
-        width: 200px;
-        height: auto;
-        position: absolute; 
-        z-index: 1000;
-        top: 45px;
-        left: 165px;
-    }
-    .list-group-item {
-        text-align: left;
-    }
-/*    .beeperNub {
-        background-image: url(assets/customer/images/angle.png);
-        background-repeat: no-repeat;
-        height: 15px;
-        position: absolute;
-        top: -10px;
-        width: 20px;        
-        right: 5px;
-        z-index: 9999;
-    }*/
-</style>
 <div id="user-popup">
     <!--<div class="beeperNub"></div>-->
     <div class="list-group">

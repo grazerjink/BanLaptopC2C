@@ -59,10 +59,10 @@
         <script src="assets/merchant/template/libs/maplace/maplace.min.js"></script>
         <script src="https://maps.google.com/maps/api/js?libraries=geometry&v=3.26&key=AIzaSyBBjLDxcCjc4s9ngpR11uwBWXRhyp3KPYM"></script>
         
-        <script src="assets/vendor/toastr/toastr.min.js"></script>
-        
+        <script src="assets/vendor/jquery-validation-1.17.0/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="assets/vendor/jquery-validation-1.17.0/additional-methods.min.js" type="text/javascript"></script>
+        <script src="assets/vendor/toastr/toastr.min.js"></script>        
         <script src="assets/merchant/js/show-toast.js" type="text/javascript"></script>
-
     </head>
     <body class="ks-navbar-fixed ks-sidebar-sections ks-sidebar-position-fixed ks-page-header-fixed ks-theme-primary ks-page-loading">
         <!-- BEGIN HEADER -->

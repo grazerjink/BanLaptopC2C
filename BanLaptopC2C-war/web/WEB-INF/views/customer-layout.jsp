@@ -15,6 +15,7 @@
             }, false);
             function hideURLbar(){ window.scrollTo(0,1); }
         </script>
+        <link href="assets/customer/images/v2q-icon.png" rel="icon"/>
         <!-- //for-mobile-apps --> 
         <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
@@ -26,37 +27,29 @@
         <link href="assets/customer/template/css/z-custom-style.css" rel="stylesheet" type="text/css"/>
         <link href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
         <link href="assets/vendor/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/customer/css/home-styles.css" rel="stylesheet" type="text/css"/>
         <!-- js -->
         <script type="text/javascript" src="assets/customer/template/js/jquery-2.1.4.min.js"></script>
+        <script src="assets/vendor/jquery-validation-1.17.0/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="assets/vendor/jquery-validation-1.17.0/additional-methods.min.js" type="text/javascript"></script>        
         <!-- //js -->
         <!-- cart -->
         <script src="assets/customer/template/js/simpleCart.min.js"></script>
         <!-- cart -->
         <!-- for bootstrap working -->
-        <script type="text/javascript" src="assets/customer/template/js/bootstrap-3.1.1.min.js"></script>
+        <script src="assets/customer/template/js/bootstrap-3.1.1.min.js"></script>
         <!-- //for bootstrap working -->
-        <script src="assets/customer/template/js/jquery.easing.min.js"></script>
+        <script src="assets/customer/template/js/jquery.easing.min.js"></script>        
         <script src="assets/vendor/toastr/toastr.min.js" type="text/javascript"></script>
-        <script src="assets/customer/js/show-toast.js" type="text/javascript"></script>
-        <style>
-            .page-head {
-                background: url(assets/customer/images/v2q-single-banner.jpg) no-repeat center;
-                background-size: 100%;
-            }
-            .search {
-                float: left;
-                width: 70%;
-            }
-            .section_room {
-                float: left;
-                width: 20%;
-            }
-        </style>
+        <script src="assets/customer/js/show-toast.js" type="text/javascript"></script> 
     </head>
     <body>
         <!-- header -->
         <jsp:include page="customer/layout/template/header.jsp"/>
         <!-- //header -->
+        <!-- header-bot -->
+        <jsp:include page="customer/layout/template/header-bottom.jsp"/>
+        <!-- //header-bot -->
         <!-- banner top -->
         <jsp:include page="customer/layout/template/banner-top.jsp"/>
         <!-- //banner-top -->        

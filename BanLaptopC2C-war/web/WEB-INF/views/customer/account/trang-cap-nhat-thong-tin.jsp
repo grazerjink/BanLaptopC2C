@@ -5,15 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<style>
-    .v2q-profile {
-        margin: 30px 0;
-    }
-    .list-group-item.active, .list-group-item.active:hover {
-        border-color: #F89406;
-        background-color: #FDA30E;
-    }
-</style>
 <!-- banner -->
 <div class="page-head">
     <div class="container-fluid">
@@ -21,7 +12,7 @@
     </div>
 </div>
 <!-- //banner -->
-<div class="v2q-profile" style="min-height: 500px;">
+<div class="v2q-profile">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -33,7 +24,6 @@
                     <a href="dang-xuat/" class="list-group-item list-group-item-action">Đăng xuất</a>
                 </div>
             </div>
-            <div class="col-lg-9" style="background-color: #00CAF2; height: 1000px;"></div>
         </div>
     </div>
 </div>

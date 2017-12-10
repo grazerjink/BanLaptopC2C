@@ -15,26 +15,22 @@
                 <div class="login-grids">
                     <div class="login">
                         <div class="login-bottom">
-                            <h3>Đăng ký nhanh miễn phí</h3>
-                            <form:form modelAttribute="nguoiMua" method="post" action="dang-ky">
-                                <div class="sign-up">
+                            <h3>Đăng ký nhanh</h3>
+                            <form:form modelAttribute="nguoiMua" method="post" action="dang-ky" id="dangKyForm">
+                                <div class="sign-up v2q-field">
                                     <h4>Email: </h4>
-                                    <form:input path="email" type="text" value="Email đăng ký" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                this.value = 'Email đăng ký';
-                                                }" required=""/>	
+                                    <form:input path="email" type="text" placeholder="Email đăng ký" cssClass="v2q-input"/>
+                                    <form:errors path="email" cssClass="serverError" />
                                 </div>
-                                <div class="sign-up">
+                                <div class="sign-up v2q-field">
                                     <h4>Mật khẩu: </h4>
-                                    <form:input path="matKhau" type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                this.value = 'Password';
-                                                }" required=""/>
-
+                                    <form:input path="matKhau" type="password" placeholder="Mật khẩu" cssClass="v2q-input" />
+                                    <form:errors path="matKhau" cssClass="serverError" />
                                 </div>
-                                <div class="sign-up">
-                                    <h4>Mật khẩu xác nhận: </h4>
-                                    <form:input path="matKhauXacNhan" type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                this.value = 'Password';
-                                                }" required=""/>
+                                <div class="sign-up v2q-field">
+                                    <h4>Xác nhận lại: </h4>
+                                    <form:input path="matKhauXacNhan" type="password" placeholder="Mật khẩu xác nhận" cssClass="v2q-input"/>
+                                    <form:errors path="matKhauXacNhan" cssClass="serverError" />
                                 </div>
                                 <div class="sign-up">
                                     <input type="submit" value="ĐĂNG KÝ" >
@@ -44,21 +40,19 @@
                         </div>
                         <div class="login-right">
                             <h3>Đăng nhập</h3>
-                            <form:form modelAttribute="nguoiMua" method="post" action="dang-nhap">
-                                <div class="sign-in">
+                            <form:form modelAttribute="nguoiMua" method="post" action="dang-nhap" id="danhNhapForm">
+                                <div class="sign-in v2q-field">
                                     <h4>Email :</h4>
-                                    <form:input path="email" type="text" value="Email đăng ký" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                this.value = 'Email đăng ký';
-                                                }" required=""/>	
+                                    <form:input path="email" type="text" placeholder="Email đã đăng nhập" cssClass="v2q-input"/>	
+                                    <form:errors path="email" cssClass="serverError" />
                                 </div>
-                                <div class="sign-in">
-                                    <h4>Password :</h4>
-                                    <form:input path="matKhau" type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                this.value = 'Password';
-                                                }" required=""/>
+                                <div class="sign-in v2q-field">
+                                    <h4>Mật khẩu :</h4>
+                                    <form:input path="matKhau" type="password" placeholder="Mật khẩu" cssClass="v2q-input"/>
+                                    <form:errors path="matKhau" cssClass="serverError"/>
                                     <a href="#"><span style="font-size: 1.2em;">Quên mật khẩu?</span></a>
                                 </div>
-                                <div class="single-bottom">
+                                <div class="single-bottom v2q-field">
                                     <input type="checkbox"  id="brand" value="">
                                     <label for="brand"><span></span>Ghi nhớ đăng nhập</label>
                                 </div>
@@ -75,3 +69,51 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        $("#danhNhapForm").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                matKhau: "required"
+            },
+            messages: {
+                email: {
+                    required: "Vui lòng nhập email.",
+                    email: "Chưa đúng định dạng email."
+                },
+                matKhau: "Vui lòng nhập mật khẩu"
+            }
+        });
+        $("#dangKyForm").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                matKhau: {
+                    required: true,
+                    pattern: /^[a-zA-Z0-9]{4,20}$/
+                },
+                matKhauXacNhan: {
+                    equalTo: "#matKhau"
+                }
+            },
+            messages: {
+                email: {
+                    required: "Vui lòng nhập email.",
+                    email: "Chưa đúng định dạng email."
+                },
+                matKhau: {
+                    required: "Vui lòng nhập mật khẩu.",
+                    pattern: "Độ dài ít nhất 4 đến 20 ký tự."
+                },
+                matKhauXacNhan: {
+                    equalTo: "Mật khẩu xác nhận không khớp."
+                }
+            }
+        });
+    });
+</script>

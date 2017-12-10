@@ -74,8 +74,7 @@ public class CustomerAccountController {
     @RequestMapping("cap-nhat-thong-tin")
     public String capNhatThongTin(Model model) {
         return "customer/account/trang-cap-nhat-thong-tin";
-    }
-    
+    }    
     @RequestMapping("dang-xuat")
     public String dangXuat(HttpSession httpSession) {
         httpSession.removeAttribute("customer");

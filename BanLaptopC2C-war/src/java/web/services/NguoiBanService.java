@@ -269,15 +269,15 @@ public class NguoiBanService {
                         }
                     }
                     ThongSoKiThuat ts = new ThongSoKiThuat();
-                    ts.setIdCardManHinh(cardManHinhFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdCardManHinh()));
-                    ts.setIdCpu(cpuFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdCpu()));
-                    ts.setIdDoPhanGiai(doPhanGiaiFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdDoPhanGiai()));
-                    ts.setIdKichThuocManHinh(kichThuocManHinhFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdKichThuocManHinh()));
-                    ts.setIdLoaiManHinh(loaiManHinhFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdLoaiManHinh()));
-                    ts.setIdOCung(oCungFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdOCung()));
-                    ts.setIdRam(ramFacade.find(sanPhamVM.getThongSoKiThuatVM().getIdRam()));
+                    ts.setIdCardManHinh(cardManHinhFacade.find(sanPhamVM.getIdCardManHinh()));
+                    ts.setIdCpu(cpuFacade.find(sanPhamVM.getIdCpu()));
+                    ts.setIdDoPhanGiai(doPhanGiaiFacade.find(sanPhamVM.getIdDoPhanGiai()));
+                    ts.setIdKichThuocManHinh(kichThuocManHinhFacade.find(sanPhamVM.getIdKichThuocManHinh()));
+                    ts.setIdLoaiManHinh(loaiManHinhFacade.find(sanPhamVM.getIdLoaiManHinh()));
+                    ts.setIdOCung(oCungFacade.find(sanPhamVM.getIdOCung()));
+                    ts.setIdRam(ramFacade.find(sanPhamVM.getIdRam()));
                     ts.setIdSanPham(sp);
-                    ts.setThoiLuongPin(sanPhamVM.getThongSoKiThuatVM().getThoiLuongPin());
+                    ts.setThoiLuongPin(sanPhamVM.getThoiLuongPin());
                     thongSoKiThuatFacade.create(ts);
                     tx.commit();
                     model.addAttribute("success", "Thêm sản phẩm thành công.<br>Thiết lập hiển thị ngay.");
