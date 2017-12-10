@@ -73,6 +73,7 @@
             <div id="content">
                 <div class="outer">
                     <div class="inner bg-light lter">
+                        <!-- chạy trang jsp-->
                         <jsp:include page="${param.view}"/>
                     </div>
                         

@@ -16,6 +16,7 @@ import web.commons.LookupFactory;
  * @author Vivi
  */
 @Component
+
 public class PhieuMuaHangService {
 
     PhieuMuaHangFacade phieuMuaHangFacade = (PhieuMuaHangFacade) LookupFactory.lookupBeanFacade("PhieuMuaHangFacade");

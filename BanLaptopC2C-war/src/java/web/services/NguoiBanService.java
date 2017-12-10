@@ -6,8 +6,10 @@
 package web.services;
 
 import ejb.business.NguoiBanBusiness;
+import ejb.entities.HangSanXuat;
 import ejb.entities.NguoiBan;
 import ejb.sessions.NguoiBanFacade;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,16 @@ public class NguoiBanService {
     NguoiBanBusiness nguoiBanBusiness = (NguoiBanBusiness) LookupFactory.lookupBeanBusiness("NguoiBanBusiness");
     NguoiBanFacade nguoiBanFacade = (NguoiBanFacade) LookupFactory.lookupBeanFacade("NguoiBanFacade");
 
+    
+    // lay danh sach nguoi ban
+    
+     public List<NguoiBan> layDanhSachNguoiBan() {
+        return nguoiBanFacade.findAll();
+    }
+    
+    
+    
+    
     public boolean dangKyThongTin(ModelMap model, NguoiBanViewModel nguoiBanVM,
             HttpServletRequest req) {
         if (nguoiBanVM.getMatKhau().equals(nguoiBanVM.getMatKhauXacNhan())) {

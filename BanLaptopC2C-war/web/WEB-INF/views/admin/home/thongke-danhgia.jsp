@@ -4,6 +4,7 @@
     Author     : Vivi
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <h2> Thống kê đánh giá của Người Bán</h2>
 <div class="box dark">
@@ -65,7 +66,7 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="tkdg" items ="${dsThongKeDanhGia}" varStatus="i">
+            <c:forEach var="tkdg" items ="${dsThongKeDanhGia}" varStatus="i" >
                 <tr>
                     <td>${i.count}</td>
                     <td>${tkdg.idDonHang}</td>

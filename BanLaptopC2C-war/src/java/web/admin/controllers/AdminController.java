@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import web.services.AdminService;
 import web.services.DanhGiaService;
 import web.services.PhieuMuaHangService;
@@ -40,7 +41,30 @@ public class AdminController {
     PhieuMuaHangService phieuMuaHangService;
     @Autowired
     DanhGiaService danhGiaService;
+    
 
+    
+    // Đăng nhập 
+     @RequestMapping("dangnhap")
+    public String dangNhap() {
+        return "admin/landing/dangnhap";
+    }
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String login(Model model,
+            @RequestParam("Email") String email,
+            @RequestParam("Password") String password,
+            HttpSession httpSession) {
+        String temp = adminService.dangNhap(email, password, httpSession);
+        if (temp.equals("Đăng nhập thành công")) {
+            return "redirect:/admin/index";
+        }
+        model.addAttribute("mess", temp);
+        return "admin/landing/dangnhap";
+    }
+    
+    
+    
+    
     //local/c2c/admin/index
     @RequestMapping("index")
     public String index() {
@@ -118,7 +142,6 @@ public class AdminController {
     @RequestMapping("danhsach-phieumuahang")
     public String layDanhSachHoaDon(Model model)
     {
-        model.addAttribute("dsPhieuMuaHang", phieuMuaHangService.layDanhSachPhieuMuaHang());
         return "admin/home/danhsach-phieumuahang";
 
     }
@@ -128,23 +151,19 @@ public class AdminController {
         return phieuMuaHangService.layDanhSachPhieuMuaHang();
     }
     
-    // Thống kê đánh giá
+    // Thong ke danh gia cua Merchant
      @RequestMapping("thongke-danhgia")
     public String layThongKeDanhGia(Model model)
     {
         return "admin/home/thongke-danhgia";
 
     }
-     @ModelAttribute("dsThongKeDanhGia")
+    @ModelAttribute("dsThongKeDanhGia")
     public List<DanhGia> layDSThongKeDanhGia() {
         return danhGiaService.layDSThongKeDanhGia();
     }
    
     
-    
-    
-    
-    // Quên mật khẩu
     
     
     

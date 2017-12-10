@@ -34,10 +34,5 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
-    </welcome-file-list>
-    <ejb-local-ref>
-        <ejb-ref-name>DanhGiaFacade</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <ejb-link>BanLaptopC2C-ejb.jar#DanhGiaFacade</ejb-link>
-    </ejb-local-ref>
+    </welcome-file-list>    
 </web-app>
