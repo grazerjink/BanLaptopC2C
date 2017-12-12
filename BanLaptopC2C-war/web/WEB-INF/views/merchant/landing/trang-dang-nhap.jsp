@@ -8,35 +8,18 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-    .form-control:hover {
-        border-color: #FFC237;
-    }
-    .form-control:focus {
-        border-color: #FDA30E;
-    }
-    .form-control:focus:hover{
-        border-color: #FDA30E;
-        box-shadow: none;
-    }
-    .v2q-input-wrapper .icon-addon span {
-        font-size: 20px;
-        line-height: 30px;
-        color: #FDA30E;
-    } 
-</style>
 <jsp:include page="../layout/landing/landing-header.jsp"/>
 <div class="ks-body container">
     <div class="row">
         <!-- Begin landing section -->
-        <div class="v2q-slogan col-md-8 col-sm-12">
+        <div class="v2q-slogan col-lg-8 col-md-6 col-sm-12">
             <div>Kinh doanh cùng chúng tôi </div>
             <div>Trở thành người bán hàng chuyên nghiệp </div>
             <img src="assets/merchant/images/login-img.png"/>
         </div>
         <!-- End landing section -->
         <!-- Begin login form -->
-        <div class="v2q-login col-md-4 col-sm-12">
+        <div class="v2q-login col-lg-4 col-md-6 col-sm-12">
             <div class="card panel panel-default ks-light ks-panel ks-login v2q-panel">
                 <div class="card-block">
                     <div class="ks-logo v2q-logo">V2Q MALL</div>
@@ -64,7 +47,7 @@
                             Chưa có tài khoản bán hàng ? <a href="merchant/dang-ky/"> Đăng ký tại đây.</a>
                         </div>
                         <div class="ks-text-center">
-                            <a href="javascript:void(0);">Quên mật khẩu?</a>
+                            <a href="merchant/quen-mat-khau/">Quên mật khẩu?</a>
                         </div>                    
                     </form:form>
                 </div>

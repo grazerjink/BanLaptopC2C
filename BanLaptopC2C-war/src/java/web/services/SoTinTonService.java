@@ -9,8 +9,10 @@ import ejb.business.SoTinTonBusiness;
 import ejb.entities.GoiTin;
 import ejb.entities.NguoiBan;
 import ejb.entities.SoTinTon;
+import ejb.sessions.NguoiBanFacade;
 import ejb.sessions.SoTinTonFacade;
 import java.util.Date;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import web.commons.LookupFactory;
 
@@ -21,25 +23,30 @@ import web.commons.LookupFactory;
 @Component
 public class SoTinTonService {
 
+    NguoiBanFacade nguoiBanFacade = (NguoiBanFacade) LookupFactory.lookupBeanFacade("NguoiBanFacade");
     SoTinTonBusiness soTinTonBusiness = (SoTinTonBusiness) LookupFactory.lookupBeanBusiness("SoTinTonBusiness");
     SoTinTonFacade soTinTonFacade = (SoTinTonFacade) LookupFactory.lookupBeanFacade("SoTinTonFacade");
 
     public int laySoTinTheoNguoiBanVaThoiGian(NguoiBan nguoiBan, Date thoiGian) {
-        SoTinTon soTinTon = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), thoiGian);
-        if (soTinTon != null) {
-            return soTinTon.getSoTinTon();
-        } else {
-            return 0;
-        }
+        return soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), thoiGian);
     }
 
-    public void capNhatSoTinDang(NguoiBan nguoiBan, GoiTin goiTin) {
+    public void capNhatSoTinDang(GoiTin goiTin, HttpSession httpSession) {
+        NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
         int soTinHienTai = laySoTinTheoNguoiBanVaThoiGian(nguoiBan, new Date());
+        if(nguoiBan.getLanDauMuaTin()) {
+            soTinHienTai += goiTin.getSoTin() + 5;
+            nguoiBan.setLanDauMuaTin(false);
+            nguoiBanFacade.edit(nguoiBan);      
+        }
+        else {
+            soTinHienTai += goiTin.getSoTin();
+        }
         SoTinTon soTinTon = new SoTinTon();
         soTinTon.setIdNguoiBan(nguoiBan);
         soTinTon.setNgayCapNhat(new Date());
         soTinTon.setSoTinDaDung(0);
-        soTinTon.setSoTinTon(soTinHienTai + goiTin.getSoTin());
+        soTinTon.setSoTinTon(soTinHienTai);
         soTinTonFacade.create(soTinTon);
     }
 

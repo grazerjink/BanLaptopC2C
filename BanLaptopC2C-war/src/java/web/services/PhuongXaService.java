@@ -10,11 +10,6 @@ import ejb.entities.PhuongXa;
 import ejb.sessions.PhuongXaFacade;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import org.springframework.stereotype.Component;
 import web.commons.LookupFactory;
 
@@ -28,7 +23,7 @@ public class PhuongXaService {
     PhuongXaFacade phuongXaFacade = (PhuongXaFacade) LookupFactory.lookupBeanFacade("PhuongXaFacade");
     PhuongXaBusiness phuongXaBusiness = (PhuongXaBusiness) LookupFactory.lookupBeanBusiness("PhuongXaBusiness");
 
-    public List<String> layDanhSachTheoQuanHuyen(Integer id) {
+    public List<String> layDanhSachTenTheoQuanHuyen(Integer id) {
         List<String> dsTenPhuongXa = new ArrayList<>();
         dsTenPhuongXa.add("<option disabled selected>Chọn Phường/Xã</option>");
 
@@ -37,6 +32,14 @@ public class PhuongXaService {
             dsTenPhuongXa.add("<option value='" + it.getId() + "'>" + it.getTenPhuongXa() + "</option>");
         });
         return dsTenPhuongXa;
+    }
+    
+    public List<PhuongXa> layDanhSachPhuongXaTheoQuanHuyen(Integer id) {
+        return phuongXaBusiness.layDanhSachTheoQuanHuyen(id);
+    }
+    
+    public List<PhuongXa> layDanhSachPhuongXa() {
+        return  phuongXaFacade.findAll();
     }
 
 }

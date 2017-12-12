@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="ks-column ks-sidebar ks-info">
     <div class="ks-wrapper"> 
-        <section>
+        <!--<section>
             <h5 class="ks-header">Main</h5>
             <ul class="nav nav-pills nav-stacked">
                 <li class="nav-item dropdown">
@@ -53,14 +53,14 @@
                     </div>
                 </li>
             </ul>
-        </section>
+        </section>-->
         <section>
-            <h5 class="ks-header">Applications</h5>
+            <h5 class="ks-header">Danh mục chức năng</h5>
             <ul class="nav nav-pills nav-stacked">
-                <div class="nav-item dropdown">
+                <!--<div class="nav-item dropdown">
                     <a class="nav-link v2q-link dropdown-toggle"  href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="ks-icon la la-flask"></span>
-                        <span>CRM</span>
+                        <span>Đăng tin sản phẩm</span>
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="crm-contacts.html">Contacts</a>
@@ -157,17 +157,29 @@
                         <a class="dropdown-item" href="document-viewer-presentation.html">Presentation Viewer</a>
                         <a class="dropdown-item" href="document-viewer-audio.html">Audio Viewer</a>
                     </div>
-                </div>
+                </div>-->
                 <li class="nav-item">
-                    <a class="nav-link v2q-link" href="music-app.html">
-                        <span class="ks-icon la la-music"></span>
-                        <span>Music</span>
+                    <a class="nav-link v2q-link" href="merchant/danh-sach-san-pham/">
+                        <span class="ks-icon la la-laptop"></span> 
+                        <span>Danh sách sản phẩm</span>
                     </a>
                 </li>
+                <div class="nav-item dropdown">
+                    <a class="nav-link v2q-link dropdown-toggle"  href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="ks-icon la la-eye"></span>
+                        <span>Đơn hàng</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="document-viewer-image.html">Danh sách đơn hàng</a>
+                        <a class="dropdown-item" href="document-viewer-pdf.html">Pdf Viewer</a>
+                        <a class="dropdown-item" href="document-viewer-presentation.html">Presentation Viewer</a>
+                        <a class="dropdown-item" href="document-viewer-audio.html">Audio Viewer</a>
+                    </div>
+                </div>
                 <li class="nav-item">
                     <a class="nav-link v2q-link" href="calendar.html">
                         <span class="ks-icon la la-calendar-o"></span>
-                        <span>Calendar</span>
+                        <span></span>
                     </a>
                 </li>
             </ul>

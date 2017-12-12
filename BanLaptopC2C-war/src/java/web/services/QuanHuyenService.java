@@ -23,7 +23,7 @@ public class QuanHuyenService {
     QuanHuyenFacade quanHuyenFacade = (QuanHuyenFacade) LookupFactory.lookupBeanFacade("QuanHuyenFacade");
     QuanHuyenBusiness quanHuyenBusiness = (QuanHuyenBusiness) LookupFactory.lookupBeanBusiness("QuanHuyenBusiness");
 
-    public List<String> layDanhSachTheoThanhPho(Integer id) {
+    public List<String> layDanhSachTenTheoThanhPho(Integer id) {
         List<String> dsTenQuanHuyen = new ArrayList<>();
         dsTenQuanHuyen.add("<option disabled selected>Chọn Quận/Huyện</option>");
 
@@ -32,6 +32,14 @@ public class QuanHuyenService {
             dsTenQuanHuyen.add("<option value='" + it.getId() + "'>" + it.getTenQuanHuyen() + "</option>");
         });
         return dsTenQuanHuyen;
+    }
+    
+    public List<QuanHuyen> layDanhSachQuanHuyen() {
+        return  quanHuyenFacade.findAll();
+    }
+    
+     public List<QuanHuyen> layDanhSachQuanHuyenTheoThanhPho(Integer id) {
+        return quanHuyenBusiness.layDanhSachTheoThanhPho(id);
     }
 
 }

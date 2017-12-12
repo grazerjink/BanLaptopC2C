@@ -27,7 +27,7 @@ public class NguoiBanBusiness {
     public void persist(Object object) {
         em.persist(object);
     }
-
+    
     public NguoiBan timTheoEmail(String email) {
         try {
             Query q = em.createNamedQuery("NguoiBan.findByEmail");

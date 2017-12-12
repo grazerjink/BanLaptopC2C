@@ -30,16 +30,17 @@ public class SoTinTonBusiness {
         em.persist(object);
     }
 
-    public SoTinTon laySoTinTheoNguoiBanVaThoiGian(Integer id, Date thoiGian) {
+    public int laySoTinTheoNguoiBanVaThoiGian(Integer id, Date thoiGian) {
         try {
             Query q = em.createQuery("FROM SoTinTon s "
                     + "WHERE s.idNguoiBan.id = :id AND s.ngayCapNhat <= :date "
                     + "ORDER BY s.ngayCapNhat DESC");
             q.setParameter("id", id);
             q.setParameter("date", thoiGian);
-            return (SoTinTon) q.getResultList().get(0);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            return null;
+            SoTinTon soTin = (SoTinTon) q.getResultList().get(0);
+            return soTin.getSoTinTon();
+        } catch (Exception ex) {
+            return 0;
         }
     }
 

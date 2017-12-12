@@ -21,6 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -45,20 +47,26 @@ public class QuanHuyen implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "ten_quan_huyen")
     private String tenQuanHuyen;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "loai")
     private String loai;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
     private List<PhieuMuaHang> phieuMuaHangList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
     private List<PhuongXa> phuongXaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
+    private List<NguoiBan> nguoiBanList;
+    @OneToMany(mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
+    private List<NguoiMua> nguoiMuaList;
     @JoinColumn(name = "id_thanh_pho", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private ThanhPho idThanhPho;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuanHuyen", fetch = FetchType.LAZY)
-    private List<NguoiBan> nguoiBanList;
 
     public QuanHuyen() {
     }
@@ -115,14 +123,6 @@ public class QuanHuyen implements Serializable {
         this.phuongXaList = phuongXaList;
     }
 
-    public ThanhPho getIdThanhPho() {
-        return idThanhPho;
-    }
-
-    public void setIdThanhPho(ThanhPho idThanhPho) {
-        this.idThanhPho = idThanhPho;
-    }
-
     @XmlTransient
     public List<NguoiBan> getNguoiBanList() {
         return nguoiBanList;
@@ -130,6 +130,23 @@ public class QuanHuyen implements Serializable {
 
     public void setNguoiBanList(List<NguoiBan> nguoiBanList) {
         this.nguoiBanList = nguoiBanList;
+    }
+
+    @XmlTransient
+    public List<NguoiMua> getNguoiMuaList() {
+        return nguoiMuaList;
+    }
+
+    public void setNguoiMuaList(List<NguoiMua> nguoiMuaList) {
+        this.nguoiMuaList = nguoiMuaList;
+    }
+
+    public ThanhPho getIdThanhPho() {
+        return idThanhPho;
+    }
+
+    public void setIdThanhPho(ThanhPho idThanhPho) {
+        this.idThanhPho = idThanhPho;
     }
 
     @Override

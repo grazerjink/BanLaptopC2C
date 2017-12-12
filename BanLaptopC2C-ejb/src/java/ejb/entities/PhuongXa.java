@@ -21,6 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -45,9 +47,13 @@ public class PhuongXa implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "ten_phuong_xa")
     private String tenPhuongXa;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
     @Column(name = "loai")
     private String loai;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPhuongXa", fetch = FetchType.LAZY)
@@ -57,6 +63,8 @@ public class PhuongXa implements Serializable {
     private QuanHuyen idQuanHuyen;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPhuongXa", fetch = FetchType.LAZY)
     private List<NguoiBan> nguoiBanList;
+    @OneToMany(mappedBy = "idPhuongXa", fetch = FetchType.LAZY)
+    private List<NguoiMua> nguoiMuaList;
 
     public PhuongXa() {
     }
@@ -119,6 +127,15 @@ public class PhuongXa implements Serializable {
 
     public void setNguoiBanList(List<NguoiBan> nguoiBanList) {
         this.nguoiBanList = nguoiBanList;
+    }
+
+    @XmlTransient
+    public List<NguoiMua> getNguoiMuaList() {
+        return nguoiMuaList;
+    }
+
+    public void setNguoiMuaList(List<NguoiMua> nguoiMuaList) {
+        this.nguoiMuaList = nguoiMuaList;
     }
 
     @Override

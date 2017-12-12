@@ -5,21 +5,14 @@
  */
 package web.viewmodels;
 
-import ejb.entities.CtPhieuMuaHang;
-import ejb.entities.DanhGia;
-import ejb.entities.PhieuMuaTin;
 import ejb.entities.PhuongXa;
 import ejb.entities.QuanHuyen;
-import ejb.entities.SanPham;
-import ejb.entities.SoTinTon;
 import ejb.entities.ThanhPho;
 import java.util.Date;
-import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
 
 /**
  *
@@ -28,14 +21,16 @@ import org.hibernate.validator.constraints.Range;
 public class NguoiBanViewModel {
 
     Integer id;
-    @NotEmpty   
+    @NotEmpty
     @Email
     String email;
     @NotEmpty
     @Pattern(regexp = "[a-zA-Z0-9]{4,20}")
-    String matKhau;    
+    String matKhau;
     @NotEmpty
     String matKhauXacNhan;
+    @NotEmpty
+    String tenGianHang;
     @NotEmpty
     String hoTen;
     @NotEmpty
@@ -47,21 +42,13 @@ public class NguoiBanViewModel {
     @NotEmpty
     String diaChi;
     Date ngayDangKy;
-    boolean kichHoat;
-    boolean trangThai;
-    
+
     @NotNull
     PhuongXa idPhuongXa;
     @NotNull
     QuanHuyen idQuanHuyen;
     @NotNull
-    ThanhPho idThanhPho;    
-    
-    List<SanPham> sanPhamList;
-    List<CtPhieuMuaHang> ctPhieuMuaHangList;
-    List<PhieuMuaTin> phieuMuaTinList;
-    List<DanhGia> danhGiaList;
-    List<SoTinTon> soTinTonList;
+    ThanhPho idThanhPho;
 
     public String getMatKhauXacNhan() {
         return matKhauXacNhan;
@@ -69,6 +56,14 @@ public class NguoiBanViewModel {
 
     public void setMatKhauXacNhan(String matKhauXacNhan) {
         this.matKhauXacNhan = matKhauXacNhan;
+    }
+
+    public String getTenGianHang() {
+        return tenGianHang;
+    }
+
+    public void setTenGianHang(String tenGianHang) {
+        this.tenGianHang = tenGianHang;
     }
 
     public Integer getId() {
@@ -134,55 +129,7 @@ public class NguoiBanViewModel {
     public void setNgayDangKy(Date ngayDangKy) {
         this.ngayDangKy = ngayDangKy;
     }
-
-    public boolean isKichHoat() {
-        return kichHoat;
-    }
-
-    public void setKichHoat(boolean kichHoat) {
-        this.kichHoat = kichHoat;
-    }
-
-    public boolean isTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(boolean trangThai) {
-        this.trangThai = trangThai;
-    }
-
-    public List<SanPham> getSanPhamList() {
-        return sanPhamList;
-    }
-
-    public void setSanPhamList(List<SanPham> sanPhamList) {
-        this.sanPhamList = sanPhamList;
-    }
-
-    public List<CtPhieuMuaHang> getCtPhieuMuaHangList() {
-        return ctPhieuMuaHangList;
-    }
-
-    public void setCtPhieuMuaHangList(List<CtPhieuMuaHang> ctPhieuMuaHangList) {
-        this.ctPhieuMuaHangList = ctPhieuMuaHangList;
-    }
-
-    public List<PhieuMuaTin> getPhieuMuaTinList() {
-        return phieuMuaTinList;
-    }
-
-    public void setPhieuMuaTinList(List<PhieuMuaTin> phieuMuaTinList) {
-        this.phieuMuaTinList = phieuMuaTinList;
-    }
-
-    public List<DanhGia> getDanhGiaList() {
-        return danhGiaList;
-    }
-
-    public void setDanhGiaList(List<DanhGia> danhGiaList) {
-        this.danhGiaList = danhGiaList;
-    }
-
+    
     public PhuongXa getIdPhuongXa() {
         return idPhuongXa;
     }
@@ -205,14 +152,6 @@ public class NguoiBanViewModel {
 
     public void setIdThanhPho(ThanhPho idThanhPho) {
         this.idThanhPho = idThanhPho;
-    }
-
-    public List<SoTinTon> getSoTinTonList() {
-        return soTinTonList;
-    }
-
-    public void setSoTinTonList(List<SoTinTon> soTinTonList) {
-        this.soTinTonList = soTinTonList;
     }
 
 }

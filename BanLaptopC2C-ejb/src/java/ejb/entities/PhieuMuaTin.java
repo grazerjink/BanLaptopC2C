@@ -21,6 +21,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -47,17 +49,22 @@ public class PhieuMuaTin implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "gia_ban")
     private float giaBan;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ngay_giao_dich")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayGiaoDich;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "phuong_thuc_thanh_toan")
     private int phuongThucThanhToan;
+    @Size(max = 250)
     @Column(name = "payment_id")
     private String paymentId;
+    @Size(max = 250)
     @Column(name = "payer_id")
     private String payerId;
     @JoinColumn(name = "id_goi_tin", referencedColumnName = "id")

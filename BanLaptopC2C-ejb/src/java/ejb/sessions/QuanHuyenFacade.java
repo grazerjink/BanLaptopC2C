@@ -6,6 +6,7 @@
 package ejb.sessions;
 
 import ejb.entities.QuanHuyen;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -13,7 +14,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Winson Mac
  */
-@javax.ejb.Stateless
+@Stateless
 public class QuanHuyenFacade extends AbstractFacade<QuanHuyen> {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")

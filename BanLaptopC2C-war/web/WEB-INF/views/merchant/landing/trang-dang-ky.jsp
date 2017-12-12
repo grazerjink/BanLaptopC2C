@@ -6,23 +6,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-    .form-control:hover {
-        border-color: #FFC237;
-    }
-    .form-control:focus {
-        border-color: #FDA30E;
-    }
-    .form-control:focus:hover{
-        border-color: #FDA30E;
-        box-shadow: none;
-    }
-    .v2q-input-wrapper .icon-addon span {
-        font-size: 20px;
-        line-height: 30px;
-        color: #FDA30E;
-    } 
-</style>
 <jsp:include page="../layout/landing/landing-header.jsp"/>
 <div class="ks-body">
     <!-- Begin login form -->
@@ -32,6 +15,15 @@
                 <div class="ks-logo v2q-logo" style="font-size: 70px;">V2Q MALL</div>
                 <form:form cssClass="form-container" action="merchant/dang-ky/" method="POST" modelAttribute="nguoiBan">
                     <h4 class="text-center" style="font-size: 20px; font-weight: 500;">Đăng ký gian hàng kinh doanh</h4>
+                    <div class="form-group">
+                        <div class="input-icon icon-left icon-lg icon-color-primary">
+                            <form:input path="tenGianHang" cssClass="form-control ks-rounded" placeholder="Tên gian hàng"/>
+                            <form:errors path="tenGianHang" cssClass="serverError" />
+                            <span class="icon-addon">
+                                <span class="la la-home"></span>
+                            </span>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="input-icon icon-left icon-lg icon-color-primary">
                             <form:input path="hoTen" cssClass="form-control ks-rounded" placeholder="Họ tên người bán"/>
@@ -198,10 +190,6 @@
                 diaChi: {
                     required: true
                 },
-                email: {
-                    required: true,
-                    email: true
-                },
                 matKhau: {
                     required: true,
                     pattern: /^[a-zA-Z0-9]{4,20}$/
@@ -229,10 +217,6 @@
                 },
                 diaChi: {
                     required: "Vui lòng nhập địa chỉ."
-                },
-                email: {
-                    required: "Vui lòng nhập email.",
-                    email: "Chưa đúng định dạng email."
                 },
                 matKhau: {
                     required: "Vui lòng nhập mật khẩu.",

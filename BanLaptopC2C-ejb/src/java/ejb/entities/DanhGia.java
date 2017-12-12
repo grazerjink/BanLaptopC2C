@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -41,9 +42,11 @@ public class DanhGia implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "so_diem")
     private int soDiem;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "su_dung")
     private boolean suDung;
     @JoinColumn(name = "id_nguoi_ban", referencedColumnName = "id")

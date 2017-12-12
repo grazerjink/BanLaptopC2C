@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.transaction.UserTransaction;
 
 /**
  *
@@ -33,6 +34,15 @@ public class LookupFactory {
         try {
             Context c = new InitialContext();
             return c.lookup(strLookup);
+        } catch (NamingException ne) {
+            Logger.getLogger(LookupFactory.class.getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+    public static UserTransaction lookupUserTransaction() {
+        try {
+            Context c = new InitialContext();
+            return (UserTransaction) c.lookup("java:comp/UserTransaction");
         } catch (NamingException ne) {
             Logger.getLogger(LookupFactory.class.getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
