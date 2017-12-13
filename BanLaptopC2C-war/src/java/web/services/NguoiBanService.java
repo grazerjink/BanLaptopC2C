@@ -1,4 +1,4 @@
-﻿/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,7 +9,6 @@ import ejb.business.NguoiBanBusiness;
 import ejb.business.SanPhamBusiness;
 import ejb.business.SoTinTonBusiness;
 import ejb.entities.HinhAnhSanPham;
-import ejb.entities.HangSanXuat;
 import ejb.entities.NguoiBan;
 import ejb.entities.SanPham;
 import ejb.entities.SoTinTon;
@@ -59,6 +58,8 @@ import web.viewmodels.SanPhamViewModel;
  *
  * @author Winson Mac
  */
+
+
 @Component
 public class NguoiBanService {
 
@@ -86,16 +87,11 @@ public class NguoiBanService {
     OCungFacade oCungFacade = (OCungFacade) LookupFactory.lookupBeanFacade("OCungFacade");
     ThongSoKiThuatFacade thongSoKiThuatFacade = (ThongSoKiThuatFacade) LookupFactory.lookupBeanFacade("ThongSoKiThuatFacade");
 
-    
-    // lay danh sach nguoi ban
-    
-     public List<NguoiBan> layDanhSachNguoiBan() {
+    // lay danh sach nguoi ban    
+    public List<NguoiBan> layDanhSachNguoiBan() {
         return nguoiBanFacade.findAll();
     }
-    
-    
-    
-    
+
     public boolean dangKyThongTin(ModelMap model, NguoiBanViewModel nguoiBanVM,
             HttpServletRequest req) {
         if (nguoiBanVM.getMatKhau().equals(nguoiBanVM.getMatKhauXacNhan())) {
@@ -108,7 +104,7 @@ public class NguoiBanService {
             } else {
                 try {
                     NguoiBan nguoiBan = new NguoiBan();
-                    nguoiBan.setEmail(nguoiBanVM.getEmail());                    
+                    nguoiBan.setEmail(nguoiBanVM.getEmail());
                     nguoiBan.setMatKhau(EncryptHelper.encrypt(nguoiBanVM.getMatKhau()));
                     nguoiBan.setTenGianHang(nguoiBanVM.getTenGianHang());
                     nguoiBan.setHoTen(nguoiBanVM.getHoTen());
@@ -139,8 +135,7 @@ public class NguoiBanService {
                     } catch (Exception e) {
                         model.addAttribute("error", "Lỗi hệ thống xin vui lòng thử lại sau.");
                         return false;
-                        
-                        
+
                     }
                     nguoiBanFacade.create(nguoiBan);
                     model.addAttribute("success", "Đăng ký tài khoản thành công.<br>Vui lòng kiểm tra hộp thư để kích hoạt tài khoản.");
@@ -194,8 +189,8 @@ public class NguoiBanService {
         } catch (Exception ex) {
             model.addAttribute("error", "Xảy ra lỗi, xin vui lòng kiểm tra lại.");
         }
-        model.addAttribute("tab", 1); 
-    } 
+        model.addAttribute("tab", 1);
+    }
 
     public void doiMatKhau(String matKhauCu,
             String matKhauMoi,
@@ -246,7 +241,7 @@ public class NguoiBanService {
     public boolean dangTinSanPham(SanPhamViewModel sanPhamVM, MultipartFile[] fileUploads, HttpSession httpSession, Model model, String path) {
         try {
             NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
-            if (soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), new Date())> 0) {
+            if (soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), new Date()) > 0) {
                 tx.begin();
                 if (fileUploads.length > 1 || (fileUploads.length == 1 && fileUploads[0].getSize() != 0)) {
                     Date hienTai = new Date();
@@ -279,7 +274,7 @@ public class NguoiBanService {
                             hinhAnhSanPhamFacade.create(hinhAnhSanPham);
                             String imagePath = path + "\\" + hinhAnhSanPham.getTenHinh();
                             File file = new File(imagePath);
-                            ImageUtils.resizeAndTransferTo(f.getInputStream(), 480, 480, file); 
+                            ImageUtils.resizeAndTransferTo(f.getInputStream(), 480, 480, file);
                         }
                     }
                     ThongSoKiThuat ts = new ThongSoKiThuat();

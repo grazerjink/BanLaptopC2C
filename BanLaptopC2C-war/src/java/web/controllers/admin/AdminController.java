@@ -9,7 +9,6 @@ import ejb.entities.Admin;
 import ejb.entities.DanhGia;
 import ejb.entities.PhieuMuaHang;
 import ejb.entities.PhieuMuaTin;
-import ejb.sessions.DanhGiaFacade;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +40,13 @@ public class AdminController {
     PhieuMuaHangService phieuMuaHangService;
     @Autowired
     DanhGiaService danhGiaService;
-    
 
-    
     // Đăng nhập 
-     @RequestMapping("dangnhap")
+    @RequestMapping("dangnhap")
     public String dangNhap() {
         return "admin/landing/dangnhap";
     }
+
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(Model model,
             @RequestParam("Email") String email,
@@ -61,10 +59,7 @@ public class AdminController {
         model.addAttribute("mess", temp);
         return "admin/landing/dangnhap";
     }
-    
-    
-    
-    
+
     //local/c2c/admin/index
     @RequestMapping("index")
     public String index() {
@@ -136,46 +131,27 @@ public class AdminController {
     public List<PhieuMuaTin> layDanhSachPhieuMua() {
         return phieuMuaTinService.layDanhSachPhieuMua();
     }
-    
+
     // Danh sach phieu mua hang
     @RequestMapping("danhsach-phieumuahang")
-    public String layDanhSachHoaDon(Model model)
-    {
+    public String layDanhSachHoaDon(Model model) {
         return "admin/home/danhsach-phieumuahang";
     }
-    
+
     @ModelAttribute("dsPhieuMuaHang")
-    public List<PhieuMuaHang> layDanhSachPhieuMuaHang()
-    {
+    public List<PhieuMuaHang> layDanhSachPhieuMuaHang() {
         return phieuMuaHangService.layDanhSachPhieuMuaHang();
     }
-<<<<<<< HEAD:BanLaptopC2C-war/src/java/web/controllers/admin/AdminController.java
 
-    // Thống kê đánh giá
-     @RequestMapping("thongke-dongia")
-=======
-    
     // Thong ke danh gia cua Merchant
-     @RequestMapping("thongke-danhgia")
->>>>>>> feature/thaovi:BanLaptopC2C-war/src/java/web/controllers/admin/AdminController.java
-    public String layThongKeDanhGia(Model model)
-    {
+    @RequestMapping("thongke-danhgia")
+    public String layThongKeDanhGia(Model model) {
         return "admin/home/thongke-danhgia";
-
     }
-<<<<<<< HEAD:BanLaptopC2C-war/src/java/web/controllers/admin/AdminController.java
-=======
+
     @ModelAttribute("dsThongKeDanhGia")
     public List<DanhGia> layDSThongKeDanhGia() {
         return danhGiaService.layDSThongKeDanhGia();
     }
-   
-    
-    
-    
-    
-    
-    
 
->>>>>>> feature/thaovi:BanLaptopC2C-war/src/java/web/controllers/admin/AdminController.java
 }
