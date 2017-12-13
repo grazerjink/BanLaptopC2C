@@ -1,4 +1,4 @@
-/*
+﻿/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,6 +9,7 @@ import ejb.business.NguoiBanBusiness;
 import ejb.business.SanPhamBusiness;
 import ejb.business.SoTinTonBusiness;
 import ejb.entities.HinhAnhSanPham;
+import ejb.entities.HangSanXuat;
 import ejb.entities.NguoiBan;
 import ejb.entities.SanPham;
 import ejb.entities.SoTinTon;
@@ -33,6 +34,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.HeuristicMixedException;
@@ -84,6 +86,16 @@ public class NguoiBanService {
     OCungFacade oCungFacade = (OCungFacade) LookupFactory.lookupBeanFacade("OCungFacade");
     ThongSoKiThuatFacade thongSoKiThuatFacade = (ThongSoKiThuatFacade) LookupFactory.lookupBeanFacade("ThongSoKiThuatFacade");
 
+    
+    // lay danh sach nguoi ban
+    
+     public List<NguoiBan> layDanhSachNguoiBan() {
+        return nguoiBanFacade.findAll();
+    }
+    
+    
+    
+    
     public boolean dangKyThongTin(ModelMap model, NguoiBanViewModel nguoiBanVM,
             HttpServletRequest req) {
         if (nguoiBanVM.getMatKhau().equals(nguoiBanVM.getMatKhauXacNhan())) {
@@ -127,6 +139,8 @@ public class NguoiBanService {
                     } catch (Exception e) {
                         model.addAttribute("error", "Lỗi hệ thống xin vui lòng thử lại sau.");
                         return false;
+                        
+                        
                     }
                     nguoiBanFacade.create(nguoiBan);
                     model.addAttribute("success", "Đăng ký tài khoản thành công.<br>Vui lòng kiểm tra hộp thư để kích hoạt tài khoản.");

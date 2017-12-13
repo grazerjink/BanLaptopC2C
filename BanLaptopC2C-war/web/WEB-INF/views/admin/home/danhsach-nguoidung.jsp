@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <h2> Danh sách người dùng</h2>
 
-<div class="col-lg-6">
     <header>
         <h5><a href="admin/dang-ky/" >Thêm người dùng</a></h5>
     </header>
@@ -39,4 +38,4 @@
             </tbody>               
         </table>
     </div>
-</div>
+

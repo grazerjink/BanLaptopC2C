@@ -34,4 +34,31 @@ public class AdminBusiness {
         query.setParameter("trangThai", true);
         return query.getResultList();
     }
+    
+    // Ham kiem tra xem Email co ton tai hay khong 
+    
+     public boolean kiemTraTonTaiEmail(String email) {
+        Query query = em.createQuery("SELECT n FROM Admin n WHERE n.email=:e");
+        query.setParameter("e", email);
+        try {
+            query.getSingleResult();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    // đăng nhập 
+    public Admin layAdmintheoemail(String email) {
+        Admin admin = new Admin();
+        Query query = em.createQuery("SELECT n FROM Admin n WHERE n.email=:e");
+        query.setParameter("e", email);
+        try {
+            admin = (Admin) query.getSingleResult();
+        } catch (Exception e) {
+            
+        }
+        return admin;
+    }
+    
+    
 }

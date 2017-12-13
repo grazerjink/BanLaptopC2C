@@ -1,9 +1,10 @@
 <%-- 
     Document   : thongke-danhgia
-    Created on : Nov 16, 2017, 1:27:23 PM
+    Created on : Nov 30, 2017, 8:21:39 PM
     Author     : Vivi
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <h2> Thống kê đánh giá của Người Bán</h2>
 <div class="box dark">
@@ -56,27 +57,23 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Mã phiếu mua</th>
+                <th>Mã Đơn Hàng</th>
                 <th>Tên người bán</th>
                 <th>Số điểm</th>
-                <th></th>
+                
                 
                 
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="pmh" items ="${dsPhieuMuaHang}" varStatus="i">
+            <c:forEach var="tkdg" items ="${dsThongKeDanhGia}" varStatus="i" >
                 <tr>
                     <td>${i.count}</td>
-                    <td><fmt:formatDate value="${pmh.ngayDatHang}" pattern="dd / MM / yyyy"/></td>
-                    <td>${pmh.idNguoiBan.hoTen}</td>
-                    <td>${pmh.soDienThoai}</td>
-                    <td>${pmh.tenNguoiNhan}</td>
-                    <td>${pmh.soDienThoai} </td>
-                    <td>
-                        ${pmh.trangThai == true ? "Thành công" : "Đã hủy "}
-                    </td>
-                    <td><a>Xem chi tiết </a></td>
+                    <td>${tkdg.idDonHang}</td>
+                    <td>${tkdg.idNguoiBan.hoTen}</td>
+                    <td>${tkdg.soDiem}</td>
+                    
+                   
                 </tr>
             </c:forEach>
         </tbody>            

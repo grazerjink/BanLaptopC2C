@@ -9,6 +9,7 @@ import ejb.business.AdminBusiness;
 import ejb.entities.Admin;
 import ejb.sessions.AdminFacade;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import web.commons.LookupFactory;
 
@@ -51,5 +52,19 @@ public class AdminService {
     public List<Admin> layDanhSachNguoiDungKhongKhoa() {
         return adminBusiness.layDanhSachNguoiDungKhongKhoa();
     }
+    
+    // Đăng nhập
+    public String dangNhap(String email, String password, HttpSession httpSession) {
+        if (adminBusiness.kiemTraTonTaiEmail(email) == true) {
+            Admin admin = adminBusiness.layAdmintheoemail(email);
+            if (admin.getMatKhau().equals(password) == true) {
+                httpSession.setAttribute("admin", admin);
+                return "Đăng nhập thành công";
+            }
+            return "Mật khẩu không chính xác";
+        }
+        return "Email không tồn tại";
+    }
+    
 
 }

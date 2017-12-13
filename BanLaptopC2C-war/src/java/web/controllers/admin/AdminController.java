@@ -6,8 +6,10 @@
 package web.controllers.admin;
 
 import ejb.entities.Admin;
+import ejb.entities.DanhGia;
 import ejb.entities.PhieuMuaHang;
 import ejb.entities.PhieuMuaTin;
+import ejb.sessions.DanhGiaFacade;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import web.services.AdminService;
+import web.services.DanhGiaService;
 import web.services.PhieuMuaHangService;
 import web.services.PhieuMuaTinService;
 
@@ -35,7 +39,32 @@ public class AdminController {
     PhieuMuaTinService phieuMuaTinService;
     @Autowired
     PhieuMuaHangService phieuMuaHangService;
+    @Autowired
+    DanhGiaService danhGiaService;
+    
 
+    
+    // Đăng nhập 
+     @RequestMapping("dangnhap")
+    public String dangNhap() {
+        return "admin/landing/dangnhap";
+    }
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String login(Model model,
+            @RequestParam("Email") String email,
+            @RequestParam("Password") String password,
+            HttpSession httpSession) {
+        String temp = adminService.dangNhap(email, password, httpSession);
+        if (temp.equals("Đăng nhập thành công")) {
+            return "redirect:/admin/index";
+        }
+        model.addAttribute("mess", temp);
+        return "admin/landing/dangnhap";
+    }
+    
+    
+    
+    
     //local/c2c/admin/index
     @RequestMapping("index")
     public String index() {
@@ -112,7 +141,6 @@ public class AdminController {
     @RequestMapping("danhsach-phieumuahang")
     public String layDanhSachHoaDon(Model model)
     {
-        model.addAttribute("dsPhieuMuaHang", phieuMuaHangService.layDanhSachPhieuMuaHang());
         return "admin/home/danhsach-phieumuahang";
     }
     
@@ -121,12 +149,33 @@ public class AdminController {
     {
         return phieuMuaHangService.layDanhSachPhieuMuaHang();
     }
+<<<<<<< HEAD:BanLaptopC2C-war/src/java/web/controllers/admin/AdminController.java
 
     // Thống kê đánh giá
      @RequestMapping("thongke-dongia")
+=======
+    
+    // Thong ke danh gia cua Merchant
+     @RequestMapping("thongke-danhgia")
+>>>>>>> feature/thaovi:BanLaptopC2C-war/src/java/web/controllers/admin/AdminController.java
     public String layThongKeDanhGia(Model model)
     {
         return "admin/home/thongke-danhgia";
 
     }
+<<<<<<< HEAD:BanLaptopC2C-war/src/java/web/controllers/admin/AdminController.java
+=======
+    @ModelAttribute("dsThongKeDanhGia")
+    public List<DanhGia> layDSThongKeDanhGia() {
+        return danhGiaService.layDSThongKeDanhGia();
+    }
+   
+    
+    
+    
+    
+    
+    
+
+>>>>>>> feature/thaovi:BanLaptopC2C-war/src/java/web/controllers/admin/AdminController.java
 }

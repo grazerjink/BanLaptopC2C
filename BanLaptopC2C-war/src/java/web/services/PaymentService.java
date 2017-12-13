@@ -87,6 +87,7 @@ public class PaymentService {
             Iterator links = createdPayment.getLinks().iterator();
             while (links.hasNext()) {
                 Links link = (Links) links.next();
+                //
                 if (link.getRel().equalsIgnoreCase("approval_url")) {
                     return link.getHref();
                 }
@@ -96,7 +97,9 @@ public class PaymentService {
         }
         return null;
     }
-
+        // quá trình xử lí thanh toán thành công 
+    
+            // paymentId hóa đơn do paypal tự tạo, payerId id account của người mua
     public Payment completePaymentProcess(String paymentId, String payerId) {
         APIContext apiContext = new APIContext(Constants.clientID, Constants.clientSecret, SANDBOX);
         if (paymentId != null && payerId != null) {
