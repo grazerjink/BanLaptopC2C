@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package web.merchant.controllers;
+package web.controllers.merchant;
 
 import ejb.entities.DanhGia;
 import ejb.entities.NguoiBan;
@@ -22,10 +22,7 @@ import web.services.NguoiBanService;
  */
 @Controller
 @RequestMapping("admin")
-
-
-public class NguoiBanController {
-    
+public class NguoiBanController { 
     
     @Autowired
     NguoiBanService nguoiBanService;

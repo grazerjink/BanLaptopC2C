@@ -4,6 +4,7 @@
     Author     : Vivi
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -86,7 +87,7 @@
                     <td>${pmh.tenNguoiNhan}</td>
                     <td>${pmh.soDienThoai} </td>
                     <td>
-                        ${pmh.trangThai == true ? "Thành công" : "Đã hủy "}
+                        111111
                     </td>
                     <td><a>Xem chi tiết </a></td>
                 </tr>

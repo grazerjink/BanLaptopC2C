@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package web.merchant.controllers;
+package web.controllers.merchant;
 
 import com.google.gson.Gson;
 import com.paypal.api.payments.Payment;
