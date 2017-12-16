@@ -32,20 +32,21 @@ public class SoTinTonService {
     }
 
     public void capNhatSoTinDang(GoiTin goiTin, HttpSession httpSession) {
+        SoTinTon soTinTon = new SoTinTon();
         NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
         int soTinHienTai = laySoTinTheoNguoiBanVaThoiGian(nguoiBan, new Date());
         if(nguoiBan.getLanDauMuaTin()) {
             soTinHienTai += goiTin.getSoTin() + 5;
+            soTinTon.setSoTinThayDoi(goiTin.getSoTin()+5);
             nguoiBan.setLanDauMuaTin(false);
             nguoiBanFacade.edit(nguoiBan);      
         }
         else {
+            soTinTon.setSoTinThayDoi(goiTin.getSoTin());
             soTinHienTai += goiTin.getSoTin();
-        }
-        SoTinTon soTinTon = new SoTinTon();
+        }        
         soTinTon.setIdNguoiBan(nguoiBan);
-        soTinTon.setNgayCapNhat(new Date());
-        soTinTon.setSoTinDaDung(0);
+        soTinTon.setNgayCapNhat(new Date());        
         soTinTon.setSoTinTon(soTinHienTai);
         soTinTonFacade.create(soTinTon);
     }

@@ -327,3 +327,30 @@ label.error, span.serverError {
 .ellipsis { text-overflow: ellipsis; }
 /*TRANG DANH SACH SAN PHAM STYLES*/
 
+.page-item.disabled .page-link, .page-item.disabled .page-link:focus, .page-item.disabled .page-link:hover {
+    color: #FFECB3;
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #FFECB3;
+}
+
+.page-link {
+    font-size: 13px;
+    padding: 8px 14px;
+    color: #FDA30E;
+    background-color: #fff;
+    border: 1px solid #FDA30E;
+}
+
+.page-link:focus, .page-link:hover {
+    color: #FDA30E;
+    background-color: #fff8e1;
+    border-color: #FDA30E;
+    text-decoration: none;
+}
+
+.page-item.active .page-link, .page-item.active .page-link:focus, .page-item.active .page-link:hover {
+    color: #fff;
+    background-color: #FDA30E;
+    border-color: #FDA30E;
+}

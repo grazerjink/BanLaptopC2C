@@ -157,17 +157,11 @@
                         <a class="dropdown-item" href="document-viewer-presentation.html">Presentation Viewer</a>
                         <a class="dropdown-item" href="document-viewer-audio.html">Audio Viewer</a>
                     </div>
-                </div>-->
-                <li class="nav-item">
-                    <a class="nav-link v2q-link" href="merchant/danh-sach-san-pham/">
-                        <span class="ks-icon la la-laptop"></span> 
-                        <span>Danh sách sản phẩm</span>
-                    </a>
-                </li>
+                </div>
                 <div class="nav-item dropdown">
                     <a class="nav-link v2q-link dropdown-toggle"  href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="ks-icon la la-eye"></span>
-                        <span>Đơn hàng</span>
+                        <span>Đơn đặt hàng</span>
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="document-viewer-image.html">Danh sách đơn hàng</a>
@@ -175,7 +169,19 @@
                         <a class="dropdown-item" href="document-viewer-presentation.html">Presentation Viewer</a>
                         <a class="dropdown-item" href="document-viewer-audio.html">Audio Viewer</a>
                     </div>
-                </div>
+                </div>-->
+                <li class="nav-item">
+                    <a class="nav-link v2q-link" href="merchant/don-dat-hang/">
+                        <span class="ks-icon la la-eye"></span> 
+                        <span>Đơn đặt hàng</span>
+                    </a>
+                </li>  
+                <li class="nav-item">
+                    <a class="nav-link v2q-link" href="merchant/danh-sach-san-pham/">
+                        <span class="ks-icon la la-laptop"></span> 
+                        <span>Danh sách sản phẩm</span>
+                    </a>
+                </li>                
                 <li class="nav-item">
                     <a class="nav-link v2q-link" href="calendar.html">
                         <span class="ks-icon la la-calendar-o"></span>

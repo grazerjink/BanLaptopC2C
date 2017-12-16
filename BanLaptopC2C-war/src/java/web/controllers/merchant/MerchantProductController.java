@@ -9,6 +9,7 @@ import ejb.entities.CardManHinh;
 import ejb.entities.Cpu;
 import ejb.entities.DoPhanGiai;
 import ejb.entities.HangSanXuat;
+import ejb.entities.HinhAnhSanPham;
 import ejb.entities.KichThuocManHinh;
 import ejb.entities.LoaiManHinh;
 import ejb.entities.NguoiBan;
@@ -34,6 +35,7 @@ import web.services.CardManHinhService;
 import web.services.CpuService;
 import web.services.DoPhanGiaiService;
 import web.services.HangSanXuatService;
+import web.services.HinhAnhSanPhamService;
 import web.services.KichThuocManHinhService;
 import web.services.LoaiManHinhService;
 import web.services.NguoiBanService;
@@ -65,6 +67,8 @@ public class MerchantProductController {
     @Autowired
     OCungService oCungService;
     @Autowired
+    HinhAnhSanPhamService hinhAnhSanPhamService;
+    @Autowired
     KichThuocManHinhService kichThuocManHinhService;
     @Autowired
     NguoiBanService nguoiBanService;
@@ -73,16 +77,15 @@ public class MerchantProductController {
     @Autowired
     ServletContext app;
 
-    @RequestMapping("cap-nhat-he-thong")
-    public String lamMoiHeThong(Model model) {
-        model.addAttribute("success", "Thêm sản phẩm thành công.");
-        return "redirect:/merchant/danh-sach-san-pham/";
-    }
-
     @RequestMapping("danh-sach-san-pham")
     public String danhSachSanPham(Model model, HttpSession httpSession) {
         NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
-        model.addAttribute("dsSanPham", sanPhamService.layDanhSachSanPhamTheoNguoiBan(nguoiBan.getId()));
+        List<SanPham> list = sanPhamService.layDanhSachSanPhamTheoNguoiBan(nguoiBan.getId());
+        for(SanPham s : list) {     
+            List<HinhAnhSanPham> listHinh = hinhAnhSanPhamService.layDanhSachHinhAnhTheoIdSanPham(s.getId());
+            s.setHinhAnhSanPhamList(listHinh);
+        }
+        model.addAttribute("dsSanPham", list);
         return "merchant/dashboard/product/trang-danh-sach-san-pham";
     }
 
@@ -106,7 +109,8 @@ public class MerchantProductController {
         if (!errors.hasErrors()) {
             String path = app.getRealPath("/assets/merchant/images/products/");
             if (nguoiBanService.dangTinSanPham(sanPhamVM, fileUploads, httpSession, model, path)) {
-                return "redirect:/merchant/cap-nhat-he-thong/";
+                model.addAttribute("success", "Thêm sản phẩm thành công.");
+                return "redirect:/merchant/danh-sach-san-pham/";
             }
         } else {
             model.addAttribute("serverErrors", "Khai báo thông tin sản phẩm không hợp lệ.<br>Xin vui lòng kiểm tra lại.");

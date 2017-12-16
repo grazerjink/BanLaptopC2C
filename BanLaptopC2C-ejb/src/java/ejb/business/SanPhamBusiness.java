@@ -38,14 +38,10 @@ public class SanPhamBusiness {
 
     public List<SanPham> layDanhSachSanPhamTheoNguoiBan(int idNguoiBan) {
         try {
-            em.flush();
             Query q = em.createQuery("SELECT s FROM SanPham s WHERE s.idNguoiBan.id = :id");
             q.setParameter("id", idNguoiBan);
-            List<SanPham> sp = q.getResultList();
-            sp.forEach(x -> {
-                x.getHinhAnhSanPhamList().size();
-            });
-            return sp;
+            List<SanPham> list = q.getResultList();            
+            return list;
         } catch (NoResultException e) {
             return null;
         }

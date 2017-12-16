@@ -189,6 +189,10 @@ public class MerchantAccountController {
         model.addAttribute("nguoiBan", new NguoiBanViewModel());
         model.addAttribute("dsQuanHuyen", dsQuanHuyen);
         model.addAttribute("dsPhuongXa", dsPhuongXa);
+        
+        // Lich su mua va su dung tin
+        
+        
         return "merchant/dashboard/account/trang-thong-tin-ca-nhan";
     }
     

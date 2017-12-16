@@ -5,6 +5,7 @@
  */
 package web.services;
 
+import ejb.business.HinhAnhSanPhamBusiness;
 import ejb.business.NguoiBanBusiness;
 import ejb.business.SanPhamBusiness;
 import ejb.business.SoTinTonBusiness;
@@ -249,9 +250,10 @@ public class NguoiBanService {
                     SoTinTon newSoTin = new SoTinTon();
                     newSoTin.setIdNguoiBan(nguoiBan);
                     newSoTin.setNgayCapNhat(hienTai);
-                    newSoTin.setSoTinDaDung(1);
+                    newSoTin.setSoTinThayDoi(-1);
                     newSoTin.setSoTinTon(soTinTon - 1);
                     soTinTonFacade.create(newSoTin);
+                   
                     SanPham sp = new SanPham();
                     sp.setAnHien(true);
                     sp.setTenMay(sanPhamVM.getTenMay());
@@ -267,14 +269,15 @@ public class NguoiBanService {
                     int id = sanPhamBusiness.themSanPham(sp);
                     sp.setId(id);
                     for (MultipartFile f : fileUploads) {
-                        if (f.getSize() > 0) {
-                            HinhAnhSanPham hinhAnhSanPham = new HinhAnhSanPham();
-                            hinhAnhSanPham.setIdSanPham(sp);
-                            hinhAnhSanPham.setTenHinh(f.getOriginalFilename());
-                            hinhAnhSanPhamFacade.create(hinhAnhSanPham);
-                            String imagePath = path + "\\" + hinhAnhSanPham.getTenHinh();
+                        if (f.getSize() > 0) {              
+                            String imagePath = path + "\\" + f.getOriginalFilename();
                             File file = new File(imagePath);
                             ImageUtils.resizeAndTransferTo(f.getInputStream(), 480, 480, file);
+                            
+                            HinhAnhSanPham hinhAnhSanPham = new HinhAnhSanPham();
+                            hinhAnhSanPham.setIdSanPham(sp);
+                            hinhAnhSanPham.setTenHinh(f.getOriginalFilename());                                   
+                            hinhAnhSanPhamFacade.create(hinhAnhSanPham);     
                         }
                     }
                     ThongSoKiThuat ts = new ThongSoKiThuat();
@@ -288,7 +291,12 @@ public class NguoiBanService {
                     ts.setIdSanPham(sp);
                     ts.setThoiLuongPin(sanPhamVM.getThoiLuongPin());
                     thongSoKiThuatFacade.create(ts);
+                    /// Cap nhat so lan dang tin cua merchant
+                    NguoiBan ngBan = nguoiBanFacade.find(nguoiBan.getId());
+                    ngBan.setSoLanDangTin(nguoiBan.getSoLanDangTin()+1);
+                    nguoiBanFacade.edit(ngBan);
                     tx.commit();
+                    httpSession.setAttribute("merchant", ngBan);
                     model.addAttribute("success", "Thêm sản phẩm thành công.<br>Thiết lập hiển thị ngay.");
                     return true;
                 } else {
