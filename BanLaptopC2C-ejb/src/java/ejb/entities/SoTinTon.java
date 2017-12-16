@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Winson Mac
+ * @author kjmok
  */
 @Entity
 @Table(name = "so_tin_ton")
@@ -61,6 +61,9 @@ public class SoTinTon implements Serializable {
     @JoinColumn(name = "id_nguoi_ban", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private NguoiBan idNguoiBan;
+    @JoinColumn(name = "id_phieu_mua_tin", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private PhieuMuaTin idPhieuMuaTin;
 
     public SoTinTon() {
     }
@@ -114,6 +117,14 @@ public class SoTinTon implements Serializable {
 
     public void setIdNguoiBan(NguoiBan idNguoiBan) {
         this.idNguoiBan = idNguoiBan;
+    }
+
+    public PhieuMuaTin getIdPhieuMuaTin() {
+        return idPhieuMuaTin;
+    }
+
+    public void setIdPhieuMuaTin(PhieuMuaTin idPhieuMuaTin) {
+        this.idPhieuMuaTin = idPhieuMuaTin;
     }
 
     @Override

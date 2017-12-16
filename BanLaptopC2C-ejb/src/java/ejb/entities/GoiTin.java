@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Winson Mac
+ * @author kjmok
  */
 @Entity
 @Table(name = "goi_tin")

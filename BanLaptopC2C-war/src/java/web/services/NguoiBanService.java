@@ -270,7 +270,7 @@ public class NguoiBanService {
                     sp.setId(id);
                     for (MultipartFile f : fileUploads) {
                         if (f.getSize() > 0) {              
-                            String imagePath = path + "\\" + f.getOriginalFilename();
+                            String imagePath = path + "/" + f.getOriginalFilename();
                             File file = new File(imagePath);
                             ImageUtils.resizeAndTransferTo(f.getInputStream(), 480, 480, file);
                             
@@ -316,5 +316,10 @@ public class NguoiBanService {
             }
             return false;
         }
+    }
+
+    public List<SoTinTon> layLichSuTinDang(Integer id) {
+        List<SoTinTon> list = soTinTonBusiness.layLichSuTinDangTheoIdNguoiBan(id);
+        return list;
     }
 }

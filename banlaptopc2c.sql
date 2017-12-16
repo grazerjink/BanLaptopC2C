@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 13, 2017 at 07:14 AM
--- Server version: 5.7.19
+-- Host: localhost
+-- Generation Time: Dec 16, 2017 at 03:13 PM
+-- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -849,22 +849,7 @@ CREATE TABLE IF NOT EXISTS `phieu_mua_tin` (
 --
 
 INSERT INTO `phieu_mua_tin` (`id`, `id_nguoi_ban`, `id_goi_tin`, `gia_ban`, `ngay_giao_dich`, `phuong_thuc_thanh_toan`, `payment_id`, `payer_id`, `id_tinh_trang`) VALUES
-(1, 3, 'SLI', 105000, '2017-11-19 13:24:27', 1, 'PAY-4LE91980G6709852SLIISG3Q', '6GT5ZQDLUELJ6', 'TC'),
-(2, 3, 'SLI', 105000, '2017-11-19 15:06:08', 0, NULL, NULL, 'XL'),
-(3, 3, 'SLI', 105000, '2017-11-19 15:08:56', 0, NULL, NULL, 'XL'),
-(4, 3, 'SLI', 105000, '2017-11-19 15:22:43', 0, NULL, NULL, 'XL'),
 (5, 1, 'SLI', 105000, '2017-11-19 17:32:28', 0, NULL, NULL, 'XL'),
-(6, 4, 'GOL', 239000, '2017-11-19 17:56:21', 1, 'PAY-9SM18093AJ6372132LIIWF6Q', '6GT5ZQDLUELJ6', 'TC'),
-(7, 4, 'GOL', 239000, '2017-11-19 18:03:44', 1, 'PAY-38607416SM902980TLIIWJ3I', '6GT5ZQDLUELJ6', 'TC'),
-(8, 4, 'SLI', 105000, '2017-11-19 18:07:18', 1, 'PAY-0S1098049S5087638LIIWLOI', '6GT5ZQDLUELJ6', 'TC'),
-(9, 4, 'STD', 45000, '2017-11-19 18:12:52', 1, 'PAY-0LF30083624620310LIIWODY', '6GT5ZQDLUELJ6', 'TC'),
-(10, 4, 'GOL', 239000, '2017-11-19 18:34:16', 1, 'PAY-8E485398V7308635NLIIWXRA', '6GT5ZQDLUELJ6', 'TC'),
-(11, 3, 'GOL', 239000, '2017-11-19 18:51:04', 1, 'PAY-1G460496AG1622110LIIW74A', '6GT5ZQDLUELJ6', 'TC'),
-(12, 4, 'STD', 45000, '2017-11-19 22:54:20', 1, 'PAY-54Y28982NX549223HLII2R5Q', '6GT5ZQDLUELJ6', 'TC'),
-(13, 4, 'STD', 45000, '2017-12-04 11:14:55', 1, 'PAY-66A03558NJ845632WLISMW7Q', '6GT5ZQDLUELJ6', 'TC'),
-(14, 4, 'GOL', 239000, '2017-12-04 11:16:48', 1, 'PAY-20P82450GA1000335LISMYGI', '6GT5ZQDLUELJ6', 'TC'),
-(15, 4, 'STD', 45000, '2017-12-04 11:17:24', 1, 'PAY-3D449225ML491111DLISMYQA', '6GT5ZQDLUELJ6', 'TC'),
-(16, 4, 'STD', 45000, '2017-12-04 21:12:06', 1, 'PAY-0GU3746281679803MLISVO6I', '6GT5ZQDLUELJ6', 'TC'),
 (17, 1, 'STD', 45000, '2017-12-05 11:46:25', 0, NULL, NULL, 'XL'),
 (18, 1, 'STD', 45000, '2017-12-05 11:48:42', 1, 'PAY-5SX58530MN2536723LITCJNY', '6GT5ZQDLUELJ6', 'TC'),
 (19, 2, 'GOL', 239000, '2017-12-08 21:19:33', 1, 'PAY-7U311173WR6655425LIVJ32Y', '6GT5ZQDLUELJ6', 'TC');
@@ -12888,51 +12873,14 @@ DROP TABLE IF EXISTS `so_tin_ton`;
 CREATE TABLE IF NOT EXISTS `so_tin_ton` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_nguoi_ban` int(11) NOT NULL,
+  `id_phieu_mua_tin` int(11) NOT NULL,
   `so_tin_ton` int(11) NOT NULL,
-  `so_tin_da_dung` int(11) NOT NULL,
+  `so_tin_thay_doi` int(11) NOT NULL,
   `ngay_cap_nhat` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_tinton_nguoiban` (`id_nguoi_ban`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `so_tin_ton`
---
-
-INSERT INTO `so_tin_ton` (`id`, `id_nguoi_ban`, `so_tin_ton`, `so_tin_da_dung`, `ngay_cap_nhat`) VALUES
-(13, 1, 30, 0, '2017-12-05 11:48:42'),
-(28, 1, 29, 1, '2017-12-06 17:05:13'),
-(29, 1, 28, 1, '2017-12-06 17:05:51'),
-(30, 1, 27, 1, '2017-12-06 17:32:54'),
-(31, 1, 26, 1, '2017-12-06 18:04:59'),
-(32, 1, 25, 1, '2017-12-06 18:15:19'),
-(33, 1, 24, 1, '2017-12-06 18:28:22'),
-(34, 1, 23, 1, '2017-12-06 18:35:50'),
-(35, 1, 22, 1, '2017-12-06 18:47:46'),
-(36, 1, 21, 1, '2017-12-06 18:49:48'),
-(39, 1, 20, 1, '2017-12-07 19:09:59'),
-(40, 1, 19, 1, '2017-12-07 19:16:55'),
-(41, 1, 18, 1, '2017-12-07 19:19:57'),
-(42, 1, 17, 1, '2017-12-07 19:20:40'),
-(43, 1, 16, 1, '2017-12-07 19:24:22'),
-(46, 1, 15, 1, '2017-12-08 20:37:13'),
-(47, 2, 155, 0, '2017-12-08 21:19:33'),
-(48, 2, 154, 1, '2017-12-08 21:22:03'),
-(49, 2, 153, 1, '2017-12-08 21:23:11'),
-(50, 1, 14, 1, '2017-12-08 21:53:37'),
-(51, 1, 13, 1, '2017-12-08 21:59:54'),
-(52, 2, 152, 1, '2017-12-08 22:12:14'),
-(53, 2, 151, 1, '2017-12-08 22:13:44'),
-(54, 2, 150, 1, '2017-12-08 22:26:51'),
-(55, 2, 149, 1, '2017-12-08 22:29:57'),
-(56, 2, 148, 1, '2017-12-08 22:34:39'),
-(57, 2, 147, 1, '2017-12-08 22:37:20'),
-(58, 2, 146, 1, '2017-12-08 22:38:16'),
-(59, 1, 12, 1, '2017-12-08 22:50:45'),
-(60, 1, 11, 1, '2017-12-08 22:52:10'),
-(61, 1, 10, 1, '2017-12-08 22:54:12'),
-(62, 1, 9, 1, '2017-12-10 14:51:12'),
-(63, 2, 145, 1, '2017-12-10 15:00:57');
+  KEY `fk_tinton_nguoiban` (`id_nguoi_ban`),
+  KEY `fk_tinton_phieumuatin` (`id_phieu_mua_tin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -13036,6 +12984,7 @@ CREATE TABLE IF NOT EXISTS `thong_so_ki_thuat` (
   `id_card_man_hinh` int(11) NOT NULL,
   `id_o_cung` int(11) NOT NULL,
   `thoi_luong_pin` int(11) NOT NULL,
+  `bao_hanh` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_vga_thongso` (`id_card_man_hinh`),
   KEY `fk_cpu_thongso` (`id_cpu`),
@@ -13051,14 +13000,14 @@ CREATE TABLE IF NOT EXISTS `thong_so_ki_thuat` (
 -- Dumping data for table `thong_so_ki_thuat`
 --
 
-INSERT INTO `thong_so_ki_thuat` (`id`, `id_san_pham`, `id_kich_thuoc_man_hinh`, `id_loai_man_hinh`, `id_do_phan_giai`, `id_cpu`, `id_ram`, `id_card_man_hinh`, `id_o_cung`, `thoi_luong_pin`) VALUES
-(1, 1, 1, 3, 3, 132, 16, 15, 6, 10),
-(2, 2, 2, 2, 3, 108, 16, 131, 6, 10),
-(3, 3, 1, 2, 3, 109, 22, 132, 6, 10),
-(4, 4, 3, 2, 2, 150, 14, 3, 6, 10),
-(5, 5, 1, 1, 2, 154, 22, 9, 5, 10),
-(6, 6, 3, 2, 2, 154, 16, 9, 5, 10),
-(7, 7, 1, 1, 3, 37, 14, 127, 5, 10);
+INSERT INTO `thong_so_ki_thuat` (`id`, `id_san_pham`, `id_kich_thuoc_man_hinh`, `id_loai_man_hinh`, `id_do_phan_giai`, `id_cpu`, `id_ram`, `id_card_man_hinh`, `id_o_cung`, `thoi_luong_pin`, `bao_hanh`) VALUES
+(1, 1, 1, 3, 3, 132, 16, 15, 6, 10, 0),
+(2, 2, 2, 2, 3, 108, 16, 131, 6, 10, 0),
+(3, 3, 1, 2, 3, 109, 22, 132, 6, 10, 0),
+(4, 4, 3, 2, 2, 150, 14, 3, 6, 10, 0),
+(5, 5, 1, 1, 2, 154, 22, 9, 5, 10, 0),
+(6, 6, 3, 2, 2, 154, 16, 9, 5, 10, 0),
+(7, 7, 1, 1, 3, 37, 14, 127, 5, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -13167,7 +13116,8 @@ ALTER TABLE `san_pham`
 -- Constraints for table `so_tin_ton`
 --
 ALTER TABLE `so_tin_ton`
-  ADD CONSTRAINT `fk_tinton_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`);
+  ADD CONSTRAINT `fk_tinton_nguoiban` FOREIGN KEY (`id_nguoi_ban`) REFERENCES `nguoi_ban` (`id`),
+  ADD CONSTRAINT `fk_tinton_phieumuatin` FOREIGN KEY (`id_phieu_mua_tin`) REFERENCES `phieu_mua_tin` (`id`);
 
 --
 -- Constraints for table `thong_so_ki_thuat`

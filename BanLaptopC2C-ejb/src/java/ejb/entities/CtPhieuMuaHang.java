@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Winson Mac
+ * @author kjmok
  */
 @Entity
 @Table(name = "ct_phieu_mua_hang")

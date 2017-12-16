@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Winson Mac
+ * @author kjmok
  */
 @Stateless
 public class SoTinTonFacade extends AbstractFacade<SoTinTon> {

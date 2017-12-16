@@ -183,6 +183,15 @@
                             </div>
                             <span style="margin-left: 10px;"> hours</span>
                         </div>
+                            <div class="form-group row">
+                            <label class="col-sm-2 form-control-label">Thời gian bảo hành : </label>
+                            <div class="col-sm-3 v2q-input-wrapper">
+                                <span class="icon-addon"><span class="la la-battery-full"></span></span>
+                                    <form:input path="baoHanh" cssClass="form-control ks-rounded v2q-input"/>
+                                    <form:errors path="baoHanh" cssClass="serverError" />
+                            </div>
+                            <span style="margin-left: 10px;"> tháng</span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">

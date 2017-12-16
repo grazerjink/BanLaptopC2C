@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Winson Mac
+ * @author kjmok
  */
 @Entity
 @Table(name = "thong_so_ki_thuat")
@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ThongSoKiThuat.findAll", query = "SELECT t FROM ThongSoKiThuat t")
     , @NamedQuery(name = "ThongSoKiThuat.findById", query = "SELECT t FROM ThongSoKiThuat t WHERE t.id = :id")
-    , @NamedQuery(name = "ThongSoKiThuat.findByThoiLuongPin", query = "SELECT t FROM ThongSoKiThuat t WHERE t.thoiLuongPin = :thoiLuongPin")})
+    , @NamedQuery(name = "ThongSoKiThuat.findByThoiLuongPin", query = "SELECT t FROM ThongSoKiThuat t WHERE t.thoiLuongPin = :thoiLuongPin")
+    , @NamedQuery(name = "ThongSoKiThuat.findByBaoHanh", query = "SELECT t FROM ThongSoKiThuat t WHERE t.baoHanh = :baoHanh")})
 public class ThongSoKiThuat implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,6 +45,10 @@ public class ThongSoKiThuat implements Serializable {
     @NotNull
     @Column(name = "thoi_luong_pin")
     private int thoiLuongPin;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "bao_hanh")
+    private int baoHanh;
     @JoinColumn(name = "id_cpu", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Cpu idCpu;
@@ -76,9 +81,10 @@ public class ThongSoKiThuat implements Serializable {
         this.id = id;
     }
 
-    public ThongSoKiThuat(Integer id, int thoiLuongPin) {
+    public ThongSoKiThuat(Integer id, int thoiLuongPin, int baoHanh) {
         this.id = id;
         this.thoiLuongPin = thoiLuongPin;
+        this.baoHanh = baoHanh;
     }
 
     public Integer getId() {
@@ -95,6 +101,14 @@ public class ThongSoKiThuat implements Serializable {
 
     public void setThoiLuongPin(int thoiLuongPin) {
         this.thoiLuongPin = thoiLuongPin;
+    }
+
+    public int getBaoHanh() {
+        return baoHanh;
+    }
+
+    public void setBaoHanh(int baoHanh) {
+        this.baoHanh = baoHanh;
     }
 
     public Cpu getIdCpu() {

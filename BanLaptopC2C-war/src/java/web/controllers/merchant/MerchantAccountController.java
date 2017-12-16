@@ -10,6 +10,7 @@ import com.paypal.api.payments.Payment;
 import ejb.entities.NguoiBan;
 import ejb.entities.PhuongXa;
 import ejb.entities.QuanHuyen;
+import ejb.entities.SoTinTon;
 import ejb.entities.ThanhPho;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -191,8 +192,8 @@ public class MerchantAccountController {
         model.addAttribute("dsPhuongXa", dsPhuongXa);
         
         // Lich su mua va su dung tin
-        
-        
+        List<SoTinTon> lichSuTinDang = nguoiBanService.layLichSuTinDang(nguoiBan.getId());
+        model.addAttribute("lichSuTinDang", lichSuTinDang);
         return "merchant/dashboard/account/trang-thong-tin-ca-nhan";
     }
     
