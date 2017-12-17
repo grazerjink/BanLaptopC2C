@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author kjmok
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "so_tin_ton")
@@ -62,7 +62,7 @@ public class SoTinTon implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private NguoiBan idNguoiBan;
     @JoinColumn(name = "id_phieu_mua_tin", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private PhieuMuaTin idPhieuMuaTin;
 
     public SoTinTon() {

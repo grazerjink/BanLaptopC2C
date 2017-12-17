@@ -4,6 +4,7 @@
     Author     : Winson Mac
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="assets/merchant/template/libs/datatables-net/media/css/dataTables.bootstrap4.min.css"> <!-- original -->
@@ -16,6 +17,9 @@
 <style>
     div.dataTables_wrapper .dataTables_filter .form-control {
         width: 400px;
+    }
+    th, td {
+        text-align: center;
     }
 </style>
 <script>
@@ -53,42 +57,46 @@
                 <table id="ks-datatable" class="table table-bordered" width="100%">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Thời gian hoạt động</th>
+                            <th>Số tin còn lại</th>
+                            <th>Đăng tin</th>
+                            <th>Mua tin</th>
+                            <th>Gói tin đăng</th>
+                            <th>Phương thức thanh toán</th>
+                            <th>Trạng thái</th>
                         </tr>
                     </thead>
-                    <!--                    <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot>-->
                     <tbody>
-                        <c:forEach items="${lichSuTinDang}" var="td">
+                        <c:forEach items="${lsTinDang}" var="td">
                             <tr>
-                                <td>${td.ngayCapNhat}</td>
+                                <td><fmt:formatDate value="${td.ngayCapNhat}" pattern="dd / MM / yyyy - HH:mm:ss"/></td>
+                                <td>${td.soTinTon}</td>
                                 <c:choose>
                                     <c:when test="${td.soTinThayDoi lt 0}">
-                                        <td> - </td>
                                         <td>${td.soTinThayDoi}</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
                                     </c:when>
-                                    <c:otherwise>
-                                        <td>${td.soTinThayDoi}</td>
-                                        <td> - </td>
+                                    <c:otherwise> 
+                                        <td>-</td>
+                                        <td>+${td.soTinThayDoi}</td>
+                                        <td>${td.idPhieuMuaTin.idGoiTin.tenGoiTin} ( <fmt:formatNumber value="${td.idPhieuMuaTin.idGoiTin.giaBan}" pattern="###,###"/> VNĐ )</td>
+                                        <c:choose>
+                                            <c:when test="${td.idPhieuMuaTin.phuongThucThanhToan eq 1}">
+                                                <td>Thanh toán PayPal</td>
+                                                <td>Thành công</td>
+                                            </c:when>
+                                            <c:otherwise> 
+                                                <td>Thanh toán trực tiếp</td>
+                                                <td>
+                                                    ${td.idPhieuMuaTin.idTinhTrang.id == "TC" ? "Thành công" : "Chờ thanh toán"}
+                                                </td>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </c:otherwise>
                                 </c:choose>
-                                <td></td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
                             </tr>
                         </c:forEach>
                     </tbody>

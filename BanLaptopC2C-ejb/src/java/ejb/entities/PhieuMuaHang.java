@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kjmok
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "phieu_mua_hang")
@@ -102,8 +102,6 @@ public class PhieuMuaHang implements Serializable {
     private ThanhPho idThanhPho;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPhieuMuaHang", fetch = FetchType.LAZY)
     private List<CtPhieuMuaHang> ctPhieuMuaHangList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDonHang", fetch = FetchType.LAZY)
-    private List<DanhGia> danhGiaList;
 
     public PhieuMuaHang() {
     }
@@ -226,15 +224,6 @@ public class PhieuMuaHang implements Serializable {
 
     public void setCtPhieuMuaHangList(List<CtPhieuMuaHang> ctPhieuMuaHangList) {
         this.ctPhieuMuaHangList = ctPhieuMuaHangList;
-    }
-
-    @XmlTransient
-    public List<DanhGia> getDanhGiaList() {
-        return danhGiaList;
-    }
-
-    public void setDanhGiaList(List<DanhGia> danhGiaList) {
-        this.danhGiaList = danhGiaList;
     }
 
     @Override

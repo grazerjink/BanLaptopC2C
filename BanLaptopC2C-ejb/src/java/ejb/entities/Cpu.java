@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kjmok
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "cpu")

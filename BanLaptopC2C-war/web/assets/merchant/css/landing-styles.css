@@ -107,8 +107,9 @@ label.error, span.serverError {
     background: url(../images/unchecked.gif) no-repeat;
     background-position: left;
     padding-left: 20px;
-    margin-left: 1em;
-    margin-top: 5px;
+    margin-left: 30px;
+    margin-top: 5px; 
+    display: inline-block;
     color: red;
     font-style: italic;
 }

@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author kjmok
+ * @author Winson Mac
  */
 @Stateless
 public class SanPhamFacade extends AbstractFacade<SanPham> {

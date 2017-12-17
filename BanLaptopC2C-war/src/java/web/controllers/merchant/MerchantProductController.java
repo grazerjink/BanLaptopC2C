@@ -113,7 +113,7 @@ public class MerchantProductController {
                 return "redirect:/merchant/danh-sach-san-pham/";
             }
         } else {
-            model.addAttribute("serverErrors", "Khai báo thông tin sản phẩm không hợp lệ.<br>Xin vui lòng kiểm tra lại.");
+            model.addAttribute("serverErrors", "Thông tin sản phẩm không hợp lệ.<br>Xin vui lòng kiểm tra lại.");
         }
         return "merchant/dashboard/product/trang-dang-tin-san-pham";
     }

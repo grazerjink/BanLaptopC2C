@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kjmok
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "phieu_mua_tin")
@@ -80,7 +79,7 @@ public class PhieuMuaTin implements Serializable {
     @JoinColumn(name = "id_tinh_trang", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TinhTrang idTinhTrang;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPhieuMuaTin", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idPhieuMuaTin", fetch = FetchType.LAZY)
     private List<SoTinTon> soTinTonList;
 
     public PhieuMuaTin() {

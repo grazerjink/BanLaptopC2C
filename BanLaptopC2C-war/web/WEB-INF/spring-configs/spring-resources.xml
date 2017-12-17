@@ -19,6 +19,8 @@
         <property name="basenames">
             <list>
                 <value>classpath:NguoiBanValidationMessages</value>
+                <value>classpath:SanPhamValidationMessages</value>
+                <value>classpath:NguoiMuaValidationMessages</value>
             </list>
         </property>
     </bean>

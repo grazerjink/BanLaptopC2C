@@ -339,5 +339,8 @@
     <c:if test="${error != null}">
         showErrorToast("${error}");
     </c:if>
+    <c:if test="${serverErrors != null}">
+        showServerErrorToast("${serverErrors}");
+    </c:if>
     });
 </script>

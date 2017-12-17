@@ -59,7 +59,7 @@
 <jsp:include page="../layout/landing/landing-footer.jsp"/>
 <script>
     $(function () {
-        $("#nguoiBan").validate({
+        $("#s").validate({
             rules: {
                 email: {
                     required: true,

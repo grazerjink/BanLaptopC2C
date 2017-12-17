@@ -5,11 +5,13 @@
  */
 package ejb.business;
 
-import ejb.entities.PhieuMuaTin;
+import ejb.entities.DanhGia;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,7 +19,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 @LocalBean
-public class PhieuMuaTinBusiness {
+public class DanhGiaBusiness {
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;
@@ -26,10 +28,16 @@ public class PhieuMuaTinBusiness {
         em.persist(object);
     }
     
-    public int taoPhieuMuaTin(PhieuMuaTin phieuMuaTin) {
-        em.persist(phieuMuaTin);
-        em.flush();
-        return phieuMuaTin.getId();
+    public DanhGia timLuotDanhGiaTheoIdDonHang(int idDonHang) {
+        try {
+            // idDonHang là id của ct phiếu mua hàng
+            Query q = em.createQuery("SELECT d FROM DanhGia d WHERE d.idDonHang.id = :id");
+            q.setParameter("id", idDonHang);
+            return (DanhGia) q.getSingleResult();
+        }
+        catch (NoResultException e) {
+            return null;
+        }
     }
     
 }

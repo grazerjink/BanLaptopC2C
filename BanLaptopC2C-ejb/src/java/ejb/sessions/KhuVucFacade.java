@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author kjmok
+ * @author Winson Mac
  */
 @Stateless
 public class KhuVucFacade extends AbstractFacade<KhuVuc> {

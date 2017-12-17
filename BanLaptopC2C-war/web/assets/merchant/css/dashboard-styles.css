@@ -110,12 +110,11 @@ body.ks-sidebar-sections .ks-page-container .ks-sidebar .ks-wrapper section>.nav
 label.error, span.serverError {
     background: url(../images/unchecked.gif) no-repeat;
     background-position: left;
+    margin-top: 32px;
     padding-left: 20px;
-    margin-left: 1em;
     color: red;
     font-style: italic;
-    position: absolute;
-    bottom: -23px;
+    display: inline-block;
 }
 /*MUA GOI TIN STYLES*/
 .ks-dashboard-tabbed-sidebar-widgets .row {

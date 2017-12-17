@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author kjmok
+ * @author Winson Mac
  */
 @Stateless
 public class CpuFacade extends AbstractFacade<Cpu> {

@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author kjmok
+ * @author Winson Mac
  */
 @Entity
 @Table(name = "nguoi_ban")
@@ -51,8 +51,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "NguoiBan.findBySoLanDangTin", query = "SELECT n FROM NguoiBan n WHERE n.soLanDangTin = :soLanDangTin")
     , @NamedQuery(name = "NguoiBan.findBySoLanCanhCao", query = "SELECT n FROM NguoiBan n WHERE n.soLanCanhCao = :soLanCanhCao")
     , @NamedQuery(name = "NguoiBan.findBySoLanDanhGia", query = "SELECT n FROM NguoiBan n WHERE n.soLanDanhGia = :soLanDanhGia")
+    , @NamedQuery(name = "NguoiBan.findByTongDiemDanhGia", query = "SELECT n FROM NguoiBan n WHERE n.tongDiemDanhGia = :tongDiemDanhGia")
+    , @NamedQuery(name = "NguoiBan.findByDiemTrungBinh", query = "SELECT n FROM NguoiBan n WHERE n.diemTrungBinh = :diemTrungBinh")
     , @NamedQuery(name = "NguoiBan.findByKichHoat", query = "SELECT n FROM NguoiBan n WHERE n.kichHoat = :kichHoat")
-    , @NamedQuery(name = "NguoiBan.findByTrangThai", query = "SELECT n FROM NguoiBan n WHERE n.trangThai = :trangThai")})
+    , @NamedQuery(name = "NguoiBan.findByTrangThai", query = "SELECT n FROM NguoiBan n WHERE n.trangThai = :trangThai")
+    , @NamedQuery(name = "NguoiBan.findByLyDo", query = "SELECT n FROM NguoiBan n WHERE n.lyDo = :lyDo")})
 public class NguoiBan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -102,22 +105,18 @@ public class NguoiBan implements Serializable {
     @Column(name = "ngay_dang_ky")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayDangKy;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "lan_dau_mua_tin")
-    private boolean lanDauMuaTin;
-    @Basic(optional = false)
-    @NotNull
+    private Boolean lanDauMuaTin;
     @Column(name = "so_lan_dang_tin")
-    private int soLanDangTin;
-    @Basic(optional = false)
-    @NotNull
+    private Integer soLanDangTin;
     @Column(name = "so_lan_canh_cao")
-    private int soLanCanhCao;
-    @Basic(optional = false)
-    @NotNull
+    private Integer soLanCanhCao;
     @Column(name = "so_lan_danh_gia")
-    private int soLanDanhGia;
+    private Integer soLanDanhGia;
+    @Column(name = "tong_diem_danh_gia")
+    private Integer tongDiemDanhGia;
+    @Column(name = "diem_trung_binh")
+    private Integer diemTrungBinh;
     @Basic(optional = false)
     @NotNull
     @Column(name = "kich_hoat")
@@ -126,6 +125,9 @@ public class NguoiBan implements Serializable {
     @NotNull
     @Column(name = "trang_thai")
     private boolean trangThai;
+    @Size(max = 250)
+    @Column(name = "ly_do")
+    private String lyDo;
     @JoinColumn(name = "id_phuong_xa", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private PhuongXa idPhuongXa;
@@ -153,7 +155,7 @@ public class NguoiBan implements Serializable {
         this.id = id;
     }
 
-    public NguoiBan(Integer id, String email, String matKhau, String tenGianHang, String hoTen, String cmnd, String soDienThoai, String diaChi, Date ngayDangKy, boolean lanDauMuaTin, int soLanDangTin, int soLanCanhCao, int soLanDanhGia, boolean kichHoat, boolean trangThai) {
+    public NguoiBan(Integer id, String email, String matKhau, String tenGianHang, String hoTen, String cmnd, String soDienThoai, String diaChi, Date ngayDangKy, boolean kichHoat, boolean trangThai) {
         this.id = id;
         this.email = email;
         this.matKhau = matKhau;
@@ -163,10 +165,6 @@ public class NguoiBan implements Serializable {
         this.soDienThoai = soDienThoai;
         this.diaChi = diaChi;
         this.ngayDangKy = ngayDangKy;
-        this.lanDauMuaTin = lanDauMuaTin;
-        this.soLanDangTin = soLanDangTin;
-        this.soLanCanhCao = soLanCanhCao;
-        this.soLanDanhGia = soLanDanhGia;
         this.kichHoat = kichHoat;
         this.trangThai = trangThai;
     }
@@ -243,36 +241,52 @@ public class NguoiBan implements Serializable {
         this.ngayDangKy = ngayDangKy;
     }
 
-    public boolean getLanDauMuaTin() {
+    public Boolean getLanDauMuaTin() {
         return lanDauMuaTin;
     }
 
-    public void setLanDauMuaTin(boolean lanDauMuaTin) {
+    public void setLanDauMuaTin(Boolean lanDauMuaTin) {
         this.lanDauMuaTin = lanDauMuaTin;
     }
 
-    public int getSoLanDangTin() {
+    public Integer getSoLanDangTin() {
         return soLanDangTin;
     }
 
-    public void setSoLanDangTin(int soLanDangTin) {
+    public void setSoLanDangTin(Integer soLanDangTin) {
         this.soLanDangTin = soLanDangTin;
     }
 
-    public int getSoLanCanhCao() {
+    public Integer getSoLanCanhCao() {
         return soLanCanhCao;
     }
 
-    public void setSoLanCanhCao(int soLanCanhCao) {
+    public void setSoLanCanhCao(Integer soLanCanhCao) {
         this.soLanCanhCao = soLanCanhCao;
     }
 
-    public int getSoLanDanhGia() {
+    public Integer getSoLanDanhGia() {
         return soLanDanhGia;
     }
 
-    public void setSoLanDanhGia(int soLanDanhGia) {
+    public void setSoLanDanhGia(Integer soLanDanhGia) {
         this.soLanDanhGia = soLanDanhGia;
+    }
+
+    public Integer getTongDiemDanhGia() {
+        return tongDiemDanhGia;
+    }
+
+    public void setTongDiemDanhGia(Integer tongDiemDanhGia) {
+        this.tongDiemDanhGia = tongDiemDanhGia;
+    }
+
+    public Integer getDiemTrungBinh() {
+        return diemTrungBinh;
+    }
+
+    public void setDiemTrungBinh(Integer diemTrungBinh) {
+        this.diemTrungBinh = diemTrungBinh;
     }
 
     public boolean getKichHoat() {
@@ -289,6 +303,14 @@ public class NguoiBan implements Serializable {
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public String getLyDo() {
+        return lyDo;
+    }
+
+    public void setLyDo(String lyDo) {
+        this.lyDo = lyDo;
     }
 
     public PhuongXa getIdPhuongXa() {
