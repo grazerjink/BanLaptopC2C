@@ -17,7 +17,10 @@
                 <th>Họ tên</th>
                 <th>CMND</th>
                 <th>Số điện thoại</th>
-                <th>Địa chỉ</th>
+                 <th>Địa chỉ</th>
+                <th>Ngày đăng kí</th>
+                 <th>Kích hoạt</th>
+                <th>Tình trạng</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +32,10 @@
                 <td>${nb.cmnd}</td>
                 <td>${nb.soDienThoai}</td>
                 <td>${nb.diaChi}</td>
+                <td>${nb.ngayDangKy}</td>
+                 <td>${pm.trangThai == true ? "Đã kích hoạt" : "Chưa kích hoạt"}</td>
+                <td>${pm.trangThai == true ? "Đang hoạt động" : "Đang khóa"}</td>
+                 
             </tr>
         </c:forEach>
         </tbody>               
