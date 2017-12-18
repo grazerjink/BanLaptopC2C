@@ -42,67 +42,29 @@
                 <span class="link-title">Thống kê hóa đơn</span>
                 <span class="fa arrow"></span>
             </a>
-            <ul class="collapse">
-                <li>
-                    <a href="boxed.html"><i class="fa fa-angle-right"></i>&nbsp;</a>
-                </li>
-                <li>
-                    <a href="fixed-header.html"><i class="fa fa-angle-right"></i>&nbsp; Fixed Header </a>
-                </li>
-                <li>
-                    <a href="fixed-menu-boxed.html"><i class="fa fa-angle-right"></i>&nbsp; Boxed Layout &amp; Fixed Menu </a>
-                </li>
-                <li>
-                    <a href="fixed-menu.html"><i class="fa fa-angle-right"></i>&nbsp; Fixed Menu </a>
-                </li>
-                <li>
-                    <a href="fixed-mini-sidebar.html"><i class="fa fa-angle-right"></i>&nbsp; Fixed &amp; Mini Menu </a>
-                </li>
-            </ul>
+            
         </li>
         <li class="">
-            <a href="javascript:;">
+            <a href="admin/danhsach-phieumuatin/">
                 <i class="fa fa-tasks"></i>
                 <span class="link-title">Quản lí phiếu mua tin</span>
                 <span class="fa arrow"></span>
             </a>
-            <ul class="collapse">
-                <li>
-                    <a href="progress.html"><i class="fa fa-angle-right"></i>&nbsp; Progress </a>
-                </li>
-            </ul>
         </li>
         <li class="">
-            <a href="javascript:;">
+            <a href="admin/thongke-danhgia/">
                 <i class="fa fa-pencil"></i>
                 <span class="link-title">
                     Thống kê đánh giá
                 </span>
                 <span class="fa arrow"></span>
             </a>
-            <ul class="collapse">
-                <li>
-                    <a href="form-general.html">
-                        <i class="fa fa-angle-right"></i>&nbsp; Form General </a>
-                </li>
-                <li>
-                    <a href="form-validation.html">
-                        <i class="fa fa-angle-right"></i>&nbsp; Form Validation </a>
-                </li>
-                <li>
-                    <a href="form-wizard.html">
-                        <i class="fa fa-angle-right"></i>&nbsp; Form Wizard </a>
-                </li>
-                <li>
-                    <a href="form-wysiwyg.html">
-                        <i class="fa fa-angle-right"></i>&nbsp; Form WYSIWYG </a>
-                </li>
-            </ul>
+           
         </li>
         <li>
-            <a href="table.html">
+            <a href="admin/danhsach-nguoiban/">
                 <i class="fa fa-table"></i>
-                <span class="link-title">Tables</span>
+                <span class="link-title">Quản lí người bán</span>
             </a>
         </li>
         <li>

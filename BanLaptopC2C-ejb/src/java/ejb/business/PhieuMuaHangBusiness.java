@@ -5,21 +5,24 @@
  */
 package ejb.business;
 
-import ejb.entities.PhieuMuaHang;
+import ejb.entities.Admin;
+import ejb.entities.CtPhieuMuaHang;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
+
 @Stateless
 @LocalBean
 public class PhieuMuaHangBusiness {
+    
 
     @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
     private EntityManager em;
@@ -27,6 +30,14 @@ public class PhieuMuaHangBusiness {
     public void persist(Object object) {
         em.persist(object);
     }
-    
-    
+
+    public List<CtPhieuMuaHang> layChiTietPhieuMua(Integer id)
+    {
+        String sql = "SELECT pm from CtPhieuMuaHang pm where pm.idPhieuMuaHang.id = :id";
+        Query query = em.createQuery(sql,CtPhieuMuaHang.class); 
+        query.setParameter("id",id);
+        return query.getResultList();
+        
+    }
+
 }

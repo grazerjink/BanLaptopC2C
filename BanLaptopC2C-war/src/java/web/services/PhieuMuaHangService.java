@@ -5,6 +5,7 @@
  */
 package web.services;
 
+<<<<<<< HEAD
 import ejb.business.CtPhieuMuaHangBusiness;
 import ejb.business.DanhGiaBusiness;
 import ejb.business.HinhAnhSanPhamBusiness;
@@ -13,6 +14,14 @@ import ejb.entities.DanhGia;
 import ejb.entities.PhieuMuaHang;
 import ejb.sessions.CtPhieuMuaHangFacade;
 import ejb.sessions.DanhGiaFacade;
+=======
+import ejb.business.PhieuMuaHangBusiness;
+import ejb.business.PhuongXaBusiness;
+import ejb.entities.Admin;
+import ejb.entities.CtPhieuMuaHang;
+import ejb.entities.PhieuMuaHang;
+import ejb.sessions.CtPhieuMuaHangFacade;
+>>>>>>> feature/thaovi
 import ejb.sessions.PhieuMuaHangFacade;
 import ejb.sessions.TinhTrangFacade;
 import java.util.ArrayList;
@@ -44,6 +53,7 @@ public class PhieuMuaHangService {
     UserTransaction tx = LookupFactory.lookupUserTransaction();
     CtPhieuMuaHangBusiness ctPhieuMuaHangBusiness = (CtPhieuMuaHangBusiness) LookupFactory.lookupBeanBusiness("CtPhieuMuaHangBusiness");
     PhieuMuaHangFacade phieuMuaHangFacade = (PhieuMuaHangFacade) LookupFactory.lookupBeanFacade("PhieuMuaHangFacade");
+<<<<<<< HEAD
     HinhAnhSanPhamBusiness hinhAnhSanPhamBusiness = (HinhAnhSanPhamBusiness) LookupFactory.lookupBeanBusiness("HinhAnhSanPhamBusiness");
     CtPhieuMuaHangFacade ctPhieuMuaHangFacade = (CtPhieuMuaHangFacade) LookupFactory.lookupBeanFacade("CtPhieuMuaHangFacade");
     TinhTrangFacade tinhTrangFacade = (TinhTrangFacade) LookupFactory.lookupBeanFacade("TinhTrangFacade");
@@ -147,5 +157,30 @@ public class PhieuMuaHangService {
     public List<DonHangViewModel> layDanhSachDonHangThanhCongTheoKhoangThoiGian(Integer idNguoiBan, Date batDau, Date ketThuc) {
         List<CtPhieuMuaHang> list = ctPhieuMuaHangBusiness.layDanhSachDonHangTheoKhoangThoiGianKemIdVaTinhTrang(idNguoiBan, batDau, ketThuc, Constants.TT_THANH_CONG);
         return getListDonHang(list);
+=======
+   PhieuMuaHangBusiness ctPhieuMuaHangBusiness = (PhieuMuaHangBusiness) LookupFactory.lookupBeanBusiness("PhieuMuaHangBusiness");
+    public List<PhieuMuaHang> layDanhSachPhieuMuaHang() {
+        return phieuMuaHangFacade.findAll();
+    }
+    
+//    public boolean capNhatNguoiDung(Admin admin) {
+//        try {
+//            adminFacade.edit(admin);
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
+    
+    public List<CtPhieuMuaHang> layChiTiet_PhieuMuaHang(Integer id)
+    {
+       try{           
+           // ko return ra sao có dữ liệu           
+           return ctPhieuMuaHangBusiness.layChiTietPhieuMua(id);
+       }
+       catch(Exception e){
+           return null;
+       }
+>>>>>>> feature/thaovi
     }
 }

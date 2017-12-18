@@ -1,4 +1,4 @@
-/*
+﻿/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -10,6 +10,8 @@ import ejb.business.PhieuMuaTinBusiness;
 import ejb.business.SanPhamBusiness;
 import ejb.business.SoTinTonBusiness;
 import ejb.entities.GoiTin;
+import ejb.entities.Admin;
+>>>>>>> feature/thaovi
 import ejb.entities.HinhAnhSanPham;
 import ejb.entities.NguoiBan;
 import ejb.entities.PhieuMuaTin;
@@ -400,5 +402,29 @@ public class NguoiBanService {
             }
         }
         
+    }
+        //         public Admin timNguoiDung(int id) {
+        //            try {
+        //                return adminFacade.find(id);
+        //            } catch (Exception e) {
+        //                return null;
+        //            }
+        //        }
+
+    public NguoiBan timNguoiBan(Integer id) {
+        try {
+            return nguoiBanFacade.find(id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public boolean capNhatNguoiBan(NguoiBan nguoiban) {
+        try {
+            nguoiBanFacade.edit(nguoiban);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
