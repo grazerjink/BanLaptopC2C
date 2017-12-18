@@ -29,6 +29,14 @@ public class CtPhieuMuaHangBusiness {
     public void persist(Object object) {
         em.persist(object);
     }
+    
+    public List<CtPhieuMuaHang> layChiTietPhieuMua(Integer id)
+    {
+        String sql = "SELECT pm from CtPhieuMuaHang pm where pm.idPhieuMuaHang.id = :id";
+        Query query = em.createQuery(sql,CtPhieuMuaHang.class); 
+        query.setParameter("id",id);
+        return query.getResultList();        
+    }
 
     public List<CtPhieuMuaHang> layDanhSachDonHangTheoIdVaTinhTrang(int idNguoiBan, String tinhTrang) {
         String hql = "SELECT d FROM CtPhieuMuaHang d WHERE d.idNguoiBan.id = :idNguoiBan AND d.idTinhTrang.id = :idTinhTrang";

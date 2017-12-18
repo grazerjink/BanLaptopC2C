@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,10 +52,10 @@ public class AdminController {
         return "admin/landing/dangnhap";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "dangnhap", method = RequestMethod.POST)
     public String login(Model model,
-            @RequestParam("Email") String email,
-            @RequestParam("Password") String password,
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
             HttpSession httpSession) {
         String temp = adminService.dangNhap(email, password, httpSession);
         if (temp.equals("Đăng nhập thành công")) {
@@ -62,12 +63,6 @@ public class AdminController {
         }
         model.addAttribute("mess", temp);
         return "admin/landing/dangnhap";
-    }
-
-    //local/c2c/admin/index
-    @RequestMapping("index")
-    public String index() {
-        return "admin/home/index";
     }
 
     // dang ky
@@ -96,8 +91,7 @@ public class AdminController {
             @PathVariable("id") Integer id) {
         model.addAttribute("admin", adminService.timNguoiDung(id));
         return "admin/home/sua-nguoi-dung";
-    } 
-
+    }
 
     @RequestMapping(value = "cap-nhat", method = RequestMethod.POST)
     public String capNhat(Model model,
@@ -112,11 +106,31 @@ public class AdminController {
             return "admin/home/sua-nguoi-dung";
         }
     }
-    // danh sach nguoi dung
 
+    @RequestMapping(value = "quen-mat-khau")
+    public String quenMatKhau(ModelMap model) {
+        return "admin/home/quenmatkhau";
+    }
+
+    @RequestMapping(value = "quen-mat-khau", method = RequestMethod.POST)
+    public String quenMatKhau(ModelMap model, @RequestParam("email") String email) {
+        if (adminService.taoMatKhauMoi(model, email)) {
+            return "redirect:/admin/dangnhap/";
+        } else {
+            return "admin/home/quenmatkhau";
+        }
+    }
+
+    //local/c2c/admin/index
+    @RequestMapping(value = {"", "index"})
+    public String index() {
+        return "admin/home/index";
+    }
+
+    // danh sach nguoi dung
     @RequestMapping("danhsach-nguoidung")
     public String layDanhSachND(Model model) {
-        return "admin/home/danhsach-nguoidung";
+        return "admin/home/danhsach-nguoidung"; 
     }
 
     // Hàm lấy danh sách người dùng
@@ -142,19 +156,19 @@ public class AdminController {
     public String layDanhSachHoaDon(Model model) {
         return "admin/home/danhsach-phieumuahang";
     }
-     // lay danh sach phieu mua hang
+    
+    // lay danh sach phieu mua hang
     @ModelAttribute("dsPhieuMuaHang")
     public List<PhieuMuaHang> layDanhSachPhieuMuaHang() {
         return phieuMuaHangService.layDanhSachPhieuMuaHang();
     }
+
     // Danh sach phieu mua hang
     @RequestMapping("chitiet-phieumuahang/{mapm}")
-    public String layDanhSachChiTietHoaDontheoMa(Model model, @PathVariable("mapm") Integer mapm ) {
+    public String layDanhSachChiTietHoaDontheoMa(Model model, @PathVariable("mapm") Integer mapm) {
         model.addAttribute("ctPhieuMuaHang", phieuMuaHangService.layChiTiet_PhieuMuaHang(mapm));
         return "admin/home/chitiet-phieumuahang";
     }
-     
-    
 
     // Thong ke danh gia cua Merchant
     @RequestMapping("thongke-danhgia")
@@ -166,24 +180,21 @@ public class AdminController {
     public List<DanhGia> layDSThongKeDanhGia() {
         return danhGiaService.layDSThongKeDanhGia();
     }
-    
+
     // Cập nhật tài khoản người bán
-    
 //    @RequestMapping("chitiet-phieumuahang/{mapm}")
 //    public String layDanhSachChiTietHoaDontheoMa(Model model, @PathVariable("mapm") Integer mapm ) {
 //        model.addAttribute("ctPhieuMuaHang", phieuMuaHangService.layChiTiet_PhieuMuaHang(mapm));
 //        return "admin/home/chitiet-phieumuahang";
 //    }
-    
     @RequestMapping("capnhat-nguoiban/{manb}")
     public String capNhatNguoiBan(Model model, @PathVariable("manb") Integer manb) {
         model.addAttribute("nguoiBan", nguoibanService.timNguoiBan(manb));
         return "admin/home/capnhat-nguoiban";
     }
-   
-    @RequestMapping(value="nguoiBan", method = RequestMethod.POST)
-    public String capNhatNguoiBan(Model model, @ModelAttribute() NguoiBan nguoiban)
-    {
+
+    @RequestMapping(value = "nguoiBan", method = RequestMethod.POST)
+    public String capNhatNguoiBan(Model model, @ModelAttribute() NguoiBan nguoiban) {
         // goi phuong thuc service 1 phan
         boolean daSua = nguoibanService.capNhatNguoiBan(nguoiban);
         if (daSua) {
@@ -193,7 +204,18 @@ public class AdminController {
             model.addAttribute("message", "Cập nhật thất bại");
             return "admin/home/capnhat-nguoiban";
         }
-        
+
+    }
+
+    // Hien danh sach nguoi ban 
+    @RequestMapping("danhsach-nguoiban")
+    public String layDanhSachNguoiBan(Model model) {
+        return "admin/home/danhsach-nguoiban";
+    }
+
+    @ModelAttribute("dsNguoiBan")
+    public List<NguoiBan> layDSNguoiBan() {
+        return nguoibanService.layDanhSachNguoiBan();
     }
 
 }

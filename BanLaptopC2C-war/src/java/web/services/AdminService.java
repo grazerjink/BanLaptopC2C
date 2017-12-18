@@ -34,6 +34,8 @@ public class AdminService {
 
     public boolean themNguoiDung(Admin admin) {
         try {
+            String matKhauMaHoa = EncryptHelper.encrypt(admin.getMatKhau());
+            admin.setMatKhau(EncryptHelper.encrypt(matKhauMaHoa));
             adminFacade.create(admin);
             return true;
         } catch (Exception e) {

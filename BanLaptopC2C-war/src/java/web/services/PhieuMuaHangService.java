@@ -5,7 +5,6 @@
  */
 package web.services;
 
-<<<<<<< HEAD
 import ejb.business.CtPhieuMuaHangBusiness;
 import ejb.business.DanhGiaBusiness;
 import ejb.business.HinhAnhSanPhamBusiness;
@@ -14,14 +13,6 @@ import ejb.entities.DanhGia;
 import ejb.entities.PhieuMuaHang;
 import ejb.sessions.CtPhieuMuaHangFacade;
 import ejb.sessions.DanhGiaFacade;
-=======
-import ejb.business.PhieuMuaHangBusiness;
-import ejb.business.PhuongXaBusiness;
-import ejb.entities.Admin;
-import ejb.entities.CtPhieuMuaHang;
-import ejb.entities.PhieuMuaHang;
-import ejb.sessions.CtPhieuMuaHangFacade;
->>>>>>> feature/thaovi
 import ejb.sessions.PhieuMuaHangFacade;
 import ejb.sessions.TinhTrangFacade;
 import java.util.ArrayList;
@@ -49,11 +40,10 @@ import web.viewmodels.DonHangViewModel;
 @Component
 
 public class PhieuMuaHangService {
-    
+
     UserTransaction tx = LookupFactory.lookupUserTransaction();
     CtPhieuMuaHangBusiness ctPhieuMuaHangBusiness = (CtPhieuMuaHangBusiness) LookupFactory.lookupBeanBusiness("CtPhieuMuaHangBusiness");
     PhieuMuaHangFacade phieuMuaHangFacade = (PhieuMuaHangFacade) LookupFactory.lookupBeanFacade("PhieuMuaHangFacade");
-<<<<<<< HEAD
     HinhAnhSanPhamBusiness hinhAnhSanPhamBusiness = (HinhAnhSanPhamBusiness) LookupFactory.lookupBeanBusiness("HinhAnhSanPhamBusiness");
     CtPhieuMuaHangFacade ctPhieuMuaHangFacade = (CtPhieuMuaHangFacade) LookupFactory.lookupBeanFacade("CtPhieuMuaHangFacade");
     TinhTrangFacade tinhTrangFacade = (TinhTrangFacade) LookupFactory.lookupBeanFacade("TinhTrangFacade");
@@ -116,17 +106,16 @@ public class PhieuMuaHangService {
 
     public void capNhatTinhTrangDonHang(Integer idDonHang, String idTinhTrang) {
         try {
-            tx.begin();   
-            CtPhieuMuaHang ct = ctPhieuMuaHangFacade.find(idDonHang);   
+            tx.begin();
+            CtPhieuMuaHang ct = ctPhieuMuaHangFacade.find(idDonHang);
             ct.setIdTinhTrang(tinhTrangFacade.find(idTinhTrang));
             if (idTinhTrang.equals(Constants.TT_DA_HUY) || idTinhTrang.equals(Constants.TT_THANH_CONG)) {
                 DanhGia dg = danhGiaBusiness.timLuotDanhGiaTheoIdDonHang(idDonHang);
                 dg.setSuDung(true);
                 danhGiaFacade.edit(dg);
+            } else { //Khi mà đơn hàng có tình trạng đang giao thì cập nhật ngày hiện tại là ngày giao
+                ct.setNgayGiaoHang(new Date());
             }
-            else { //Khi mà đơn hàng có tình trạng đang giao thì cập nhật ngày hiện tại là ngày giao
-                ct.setNgayGiaoHang(new Date());                
-            }                  
             ctPhieuMuaHangFacade.edit(ct);
             tx.commit();
         } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
@@ -143,26 +132,22 @@ public class PhieuMuaHangService {
         List<CtPhieuMuaHang> list = ctPhieuMuaHangBusiness.layDanhSachDonHangTheoKhoangThoiGianKemIdVaTinhTrang(idNguoiBan, batDau, ketThuc, Constants.TT_DANG_XU_LY);
         return getListDonHang(list);
     }
-    
+
     public List<DonHangViewModel> layDanhSachDonHangDangGiaoTheoKhoangThoiGian(Integer idNguoiBan, Date batDau, Date ketThuc) {
         List<CtPhieuMuaHang> list = ctPhieuMuaHangBusiness.layDanhSachDonHangTheoKhoangThoiGianKemIdVaTinhTrang(idNguoiBan, batDau, ketThuc, Constants.TT_DANG_GIAO);
         return getListDonHang(list);
     }
-    
+
     public List<DonHangViewModel> layDanhSachDonHangDaHuyTheoKhoangThoiGian(Integer idNguoiBan, Date batDau, Date ketThuc) {
         List<CtPhieuMuaHang> list = ctPhieuMuaHangBusiness.layDanhSachDonHangTheoKhoangThoiGianKemIdVaTinhTrang(idNguoiBan, batDau, ketThuc, Constants.TT_DA_HUY);
         return getListDonHang(list);
     }
-    
+
     public List<DonHangViewModel> layDanhSachDonHangThanhCongTheoKhoangThoiGian(Integer idNguoiBan, Date batDau, Date ketThuc) {
         List<CtPhieuMuaHang> list = ctPhieuMuaHangBusiness.layDanhSachDonHangTheoKhoangThoiGianKemIdVaTinhTrang(idNguoiBan, batDau, ketThuc, Constants.TT_THANH_CONG);
         return getListDonHang(list);
-=======
-   PhieuMuaHangBusiness ctPhieuMuaHangBusiness = (PhieuMuaHangBusiness) LookupFactory.lookupBeanBusiness("PhieuMuaHangBusiness");
-    public List<PhieuMuaHang> layDanhSachPhieuMuaHang() {
-        return phieuMuaHangFacade.findAll();
     }
-    
+
 //    public boolean capNhatNguoiDung(Admin admin) {
 //        try {
 //            adminFacade.edit(admin);
@@ -171,16 +156,12 @@ public class PhieuMuaHangService {
 //            return false;
 //        }
 //    }
-    
-    public List<CtPhieuMuaHang> layChiTiet_PhieuMuaHang(Integer id)
-    {
-       try{           
-           // ko return ra sao có dữ liệu           
-           return ctPhieuMuaHangBusiness.layChiTietPhieuMua(id);
-       }
-       catch(Exception e){
-           return null;
-       }
->>>>>>> feature/thaovi
+    public List<CtPhieuMuaHang> layChiTiet_PhieuMuaHang(Integer id) {
+        try {
+            // ko return ra sao có dữ liệu           
+            return ctPhieuMuaHangBusiness.layChiTietPhieuMua(id);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
