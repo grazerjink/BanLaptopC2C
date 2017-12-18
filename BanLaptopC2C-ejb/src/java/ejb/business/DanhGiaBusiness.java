@@ -1,22 +1,24 @@
-/*
+﻿/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package ejb.business;
 
-import ejb.entities.DanhGia;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.List;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
  *
  * @author Winson Mac
+ *
  */
+
 @Stateless
 @LocalBean
 public class DanhGiaBusiness {
@@ -39,5 +41,11 @@ public class DanhGiaBusiness {
             return null;
         }
     }
-    
+
+    public List<DanhGia> layDanhSachDanhGia(int id_customer)
+    {
+        Query qr = em.createQuery("select d from DanhGia d "
+                + "where d.idDonHang.idPhieuMuaHang.idNguoiMua.id = :id_customer and d.suDung = true");
+        return qr.getResultList();
+    }
 }

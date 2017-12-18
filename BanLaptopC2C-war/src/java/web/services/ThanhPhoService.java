@@ -25,5 +25,9 @@ public class ThanhPhoService {
     public List<ThanhPho> layDanhSachThanhPho() {
         return thanhPhoBusiness.layDanhSachThanhPho();
     }
+    
+    public ThanhPho layThanhPho(int id){
+        return thanhPhoFacade.find(id);
+    }
 
 }
