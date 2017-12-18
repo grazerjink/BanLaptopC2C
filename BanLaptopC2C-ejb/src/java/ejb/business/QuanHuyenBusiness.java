@@ -6,6 +6,7 @@
 package ejb.business;
 
 import ejb.entities.QuanHuyen;
+import ejb.entities.ThanhPho;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -34,5 +35,12 @@ public class QuanHuyenBusiness {
         query.setParameter("id", id);
         return query.getResultList();
     }   
+    
+    public List<QuanHuyen> layDanhSachTheoThanhPho(ThanhPho thanhpho) {
+        String hql = "FROM QuanHuyen q WHERE q.idThanhPho = :thanhpho ORDER BY q.tenQuanHuyen";
+        Query query = em.createQuery(hql);
+        query.setParameter("thanhpho",thanhpho );
+        return query.getResultList();
+    } 
     
 }

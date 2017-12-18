@@ -27,11 +27,9 @@
                     </div>
                     <span class="v2q-product-shop" style="font-size: 1em">${sp.idNguoiBan.tenGianHang}</span>
                     <div class="v2q-rating">
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
+                        <c:forEach var="i" begin="1" end="${sp.idNguoiBan.diemTrungBinh}">
+                         <span class="v2q-star fa fa-star"></span>   
+                        </c:forEach>
                     </div>
                     <a class="item_add single-item hvr-outline-out button2 v2q-btn-buy" data-prod-id="${sp.id}">Thêm giỏ hàng</a>									
                 </div>

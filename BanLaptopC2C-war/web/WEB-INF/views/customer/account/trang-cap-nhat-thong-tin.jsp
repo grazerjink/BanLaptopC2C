@@ -10,6 +10,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <jsp:include page="../layout/template/banner.jsp"/>
+<script src="assets/customer/js/local.js" type="text/javascript"></script>
 <style>
     .v2q-user-panel {
         margin-top: 20px;
@@ -93,7 +94,7 @@
             <label class="col-sm-2 form-control-label">Họ tên: </label>
             <div class="col-sm-6 v2q-input-wrapper">
                 <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:input path="hoTen" cssClass="form-control ks-rounded v2q-input" value="${customer.hoTen}"/>
+                    <form:input path="hoTen" cssClass="form-control ks-rounded v2q-input" value="${nguoimuasession.hoTen}"/>
                     <form:errors path="hoTen" cssClass="serverError" />
             </div>
         </div>    
@@ -102,14 +103,14 @@
             <label class="col-sm-2 form-control-label ">Email: </label>
             <div class="col-sm-6 v2q-input-wrapper">
                 <span class="icon-addon"><span class="la la-home"></span></span>
-                <input class="form-control ks-rounded v2q-input" readonly value="${customer.email}"/>
+                <input class="form-control ks-rounded v2q-input" readonly value="${nguoimuasession.email}"/>
             </div>
         </div> 
         <div class="form-group row">
             <label class="col-sm-2 form-control-label ">Số điện thoại: </label>
             <div class="col-sm-6 v2q-input-wrapper">
                 <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:input path="soDienThoai" cssClass="form-control ks-rounded v2q-input" value="${customer.soDienThoai}"/>
+                    <form:input path="soDienThoai" cssClass="form-control ks-rounded v2q-input" value="${nguoimuasession.soDienThoai}"/>
                     <form:errors path="soDienThoai" cssClass="serverError" />
             </div>
         </div> 
@@ -117,7 +118,7 @@
             <label class="col-sm-2 form-control-label ">Địa chỉ: </label>
             <div class="col-sm-6 v2q-input-wrapper">
                 <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:input path="diaChi" cssClass="form-control ks-rounded v2q-input" value="${customer.diaChi}"/>
+                    <form:input path="diaChi" cssClass="form-control ks-rounded v2q-input" value="${nguoimuasession.diaChi}"/>
                     <form:errors path="diaChi" cssClass="serverError" />
             </div>
         </div> 
@@ -125,14 +126,14 @@
             <label class="col-sm-2 form-control-label ">Tỉnh / Thành phố: </label>
             <div class="col-sm-6 v2q-input-wrapper">
                 <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:select id="thanhPho" cssClass="form-control ks-rounded v2q-input" path="idThanhPho.id" >
+                    <form:select id="thanhPho" cssClass="form-control ks-rounded v2q-input" path="idThanhPho" >
                         <c:forEach items="${dsThanhPho}" var="t">
                             <c:choose>
                                 <c:when test="${customer.idThanhPho.id == t.id}">
-                                <option selected value="${t.id}">${t.tenThanhPho}</option>
+                                <option selected value="${t}">${t.tenThanhPho}</option>
                             </c:when>
                             <c:otherwise>
-                                <option value="${t.id}">${t.tenThanhPho}</option>
+                                <option value="${t}">${t.tenThanhPho}</option>
                             </c:otherwise>
                         </c:choose>       
                     </c:forEach>
@@ -144,14 +145,14 @@
             <label class="col-sm-2 form-control-label ">Quận / Huyện: </label>
             <div class="col-sm-6 v2q-input-wrapper">
                 <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:select id="quanHuyen" cssClass="form-control ks-rounded v2q-input" path="idQuanHuyen.id">
+                    <form:select id="quanHuyen" cssClass="form-control ks-rounded v2q-input" path="idQuanHuyen">
                         <c:forEach items="${dsQuanHuyen}" var="q">
                             <c:choose>
                                 <c:when test="${customer.idQuanHuyen.id == q.id}">
-                                <option selected value="${q.id}">${q.tenQuanHuyen}</option>
+                                <option selected value="${q}">${q.tenQuanHuyen}</option>
                             </c:when>
                             <c:otherwise>
-                                <option value="${q.id}">${q.tenQuanHuyen}</option>
+                                <option value="${q}">${q.tenQuanHuyen}</option>
                             </c:otherwise>
                         </c:choose>       
                     </c:forEach>                                                             
@@ -163,14 +164,14 @@
             <label class="col-sm-2 form-control-label ">Phường / Xã: </label>
             <div class="col-sm-6 v2q-input-wrapper">
                 <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:select  id="phuongXa" cssClass="form-control ks-rounded v2q-input" path="idPhuongXa.id" >
+                    <form:select  id="phuongXa" cssClass="form-control ks-rounded v2q-input" path="idPhuongXa" >
                         <c:forEach items="${dsPhuongXa}" var="p">
                             <c:choose>
                                 <c:when test="${customer.idPhuongXa.id == p.id}">
-                                <option selected value="${p.id}">${p.tenPhuongXa}</option>
+                                <option selected value="${p}">${p.tenPhuongXa}</option>
                             </c:when>
                             <c:otherwise>
-                                <option value="${p.id}">${p.tenPhuongXa}</option>
+                                <option value="${p}">${p.tenPhuongXa}</option>
                             </c:otherwise>
                         </c:choose>       
                     </c:forEach>    
@@ -192,7 +193,8 @@
 <script>
     $(function () {
         /// Goi ajax lay danh sach quan huyen theo thanh pho khi nhan chon
-        $('#thanhPho').change(function () {
+     $(function () {
+    $('#thanhPho').change(function () {
             $.ajax({
                 url: "quan-huyen",
                 dataType: "json",
@@ -204,6 +206,8 @@
                 }
             });
         });
+        $('#thanhPho').change();
+
         $('#quanHuyen').change(function () {
             $.ajax({
                 url: "phuong-xa",
@@ -216,6 +220,8 @@
                 }
             });
         });
+        $('#quanHuyen').change();
+        
         $("#nguoiMua").validate({
             rules: {
                 hoTen: {

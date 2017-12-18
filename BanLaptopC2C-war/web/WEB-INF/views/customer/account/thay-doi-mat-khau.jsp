@@ -75,6 +75,12 @@
         color: #FDA30E;
     } 
 </style>
+<c:if test="${success != null}">
+    <script type="text/javascript">
+        alert('${ success}');
+        </script>
+</c:if>
+
 <div class="">
     <form id="form-doi-mat-khau" action="doi-mat-khau-customer" method="post">  
         <div class="form-group row">

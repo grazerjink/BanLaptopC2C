@@ -42,6 +42,7 @@
             </form:form>
                 
         </div>
+        
         <c:if test="${dssanphamkt != null}">
             <c:forEach items="${dssanphamkt}" var="sp">
         <div class="col-md-3 product-men" style="margin-bottom: 20px;">
@@ -63,11 +64,9 @@
                     </div>
                     <span class="v2q-product-shop" style="font-size: 1em">${sp.idNguoiBan.tenGianHang}</span>
                     <div class="v2q-rating">
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
+                        <c:forEach var="i" begin="1" end="${sp.idNguoiBan.diemTrungBinh}">
+                         <span class="v2q-star fa fa-star"></span>   
+                        </c:forEach>
                     </div>
                     <a class="item_add single-item hvr-outline-out button2 v2q-btn-buy" data-prod-id="${sp.id}">Thêm giỏ hàng</a>									
                 </div>

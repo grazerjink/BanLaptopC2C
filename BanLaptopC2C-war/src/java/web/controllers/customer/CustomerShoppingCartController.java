@@ -161,11 +161,23 @@ public class CustomerShoppingCartController {
     public String layQuanHuyen(Model model,@RequestParam("id") Integer id){
         return new Gson().toJson(quanHuyenService.layDanhSachTenTheoThanhPho(id));
     }
+    
+    @RequestMapping("quan-huyenid")
+    @ResponseBody
+    public String layQuanHuyentheoid(Model model,@RequestParam("id") ThanhPho thanhpho){
+        return new Gson().toJson(quanHuyenService.layDanhSachTenTheoThanhPho(thanhpho));
+    }
 
     @ResponseBody
     @RequestMapping("phuong-xa")
     public String dsPhuongXaTheoQuanHuyen(@RequestParam("id") Integer id) {
         return new Gson().toJson(phuongXaService.layDanhSachTenTheoQuanHuyen(id));
+    }
+    
+    @ResponseBody
+    @RequestMapping("phuong-xaid")
+    public String dsPhuongXaTheoQuanHuyen(@RequestParam("id") QuanHuyen quanhuyen) {
+        return new Gson().toJson(phuongXaService.layDanhSachTenTheoQuanHuyen(quanhuyen));
     }
     
 }
