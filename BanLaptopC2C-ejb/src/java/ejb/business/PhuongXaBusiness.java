@@ -11,6 +11,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -28,19 +29,27 @@ public class PhuongXaBusiness {
     public void persist(Object object) {
         em.persist(object);
     }
-    
+
     public List<PhuongXa> layDanhSachTheoQuanHuyen(Integer id) {
-        String hql = "FROM PhuongXa p WHERE p.idQuanHuyen.id = :id ORDER BY p.tenPhuongXa ";
-        Query query = em.createQuery(hql);
-        query.setParameter("id", id);
-        return query.getResultList();
+        try {
+            String hql = "FROM PhuongXa p WHERE p.idQuanHuyen.id = :id ORDER BY p.tenPhuongXa ";
+            Query query = em.createQuery(hql);
+            query.setParameter("id", id);
+            return query.getResultList();
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
-    
+
     public List<PhuongXa> layDanhSachTheoQuanHuyen(QuanHuyen quanhuyen) {
-        String hql = "FROM PhuongXa p WHERE p.idQuanHuyen = :quanhuyen ORDER BY p.tenPhuongXa ";
-        Query query = em.createQuery(hql);
-        query.setParameter("quanhuyen", quanhuyen);
-        return query.getResultList();
+        try {
+            String hql = "FROM PhuongXa p WHERE p.idQuanHuyen = :quanhuyen ORDER BY p.tenPhuongXa ";
+            Query query = em.createQuery(hql);
+            query.setParameter("quanhuyen", quanhuyen);
+            return query.getResultList();
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
-    
+
 }

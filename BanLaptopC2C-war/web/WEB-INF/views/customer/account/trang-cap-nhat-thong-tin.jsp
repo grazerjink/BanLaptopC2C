@@ -6,11 +6,10 @@
 <%@ page pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <jsp:include page="../layout/template/banner.jsp"/>
-<script src="assets/customer/js/local.js" type="text/javascript"></script>
 <style>
     .v2q-user-panel {
         margin-top: 20px;
@@ -81,122 +80,149 @@
         color: #FDA30E;
     } 
 </style>
-<div class="">
-    
-    <div class="container">
-<div class="tab-pane active" id="chinhsua" role="tabpanel" aria-expanded="false">
-    <form:form modelAttribute="nguoiMua" action="cap-nhat-thong-tin" method="post">  
-        <form:hidden path="email" value="${nguoimuasession.email}" />
-        <form:hidden path="matKhau" value="${nguoimuasession.matKhau}" />
-        <form:hidden path="matKhauXacNhan" value="${nguoimuasession.matKhau}"/>
-        
-        <div class="form-group row">
-            <label class="col-sm-2 form-control-label">Họ tên: </label>
-            <div class="col-sm-6 v2q-input-wrapper">
-                <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:input path="hoTen" cssClass="form-control ks-rounded v2q-input" value="${nguoimuasession.hoTen}"/>
-                    <form:errors path="hoTen" cssClass="serverError" />
-            </div>
-        </div>    
-        
-        <div class="form-group row">
-            <label class="col-sm-2 form-control-label ">Email: </label>
-            <div class="col-sm-6 v2q-input-wrapper">
-                <span class="icon-addon"><span class="la la-home"></span></span>
-                <input class="form-control ks-rounded v2q-input" readonly value="${nguoimuasession.email}"/>
-            </div>
-        </div> 
-        <div class="form-group row">
-            <label class="col-sm-2 form-control-label ">Số điện thoại: </label>
-            <div class="col-sm-6 v2q-input-wrapper">
-                <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:input path="soDienThoai" cssClass="form-control ks-rounded v2q-input" value="${nguoimuasession.soDienThoai}"/>
-                    <form:errors path="soDienThoai" cssClass="serverError" />
-            </div>
-        </div> 
-        <div class="form-group row">
-            <label class="col-sm-2 form-control-label ">Địa chỉ: </label>
-            <div class="col-sm-6 v2q-input-wrapper">
-                <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:input path="diaChi" cssClass="form-control ks-rounded v2q-input" value="${nguoimuasession.diaChi}"/>
-                    <form:errors path="diaChi" cssClass="serverError" />
-            </div>
-        </div> 
-        <div class="form-group row">
-            <label class="col-sm-2 form-control-label ">Tỉnh / Thành phố: </label>
-            <div class="col-sm-6 v2q-input-wrapper">
-                <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:select id="thanhPho" cssClass="form-control ks-rounded v2q-input" path="idThanhPho" >
-                        <c:forEach items="${dsThanhPho}" var="t">
+<c:set var="customer" scope="session" value="${sessionScope['customer']}"/>
+<div class="container">
+    <div class="tab-pane active" id="chinhsua" role="tabpanel" aria-expanded="false">
+        <form:form modelAttribute="nguoiMua" action="cap-nhat-thong-tin" method="post">  
+            <form:hidden id="2" path="email" value="mail@gmail.com" />
+            <form:hidden id="3" path="matKhau" value="123456789" />
+            <form:hidden id="4" path="matKhauXacNhan" value="123456789"/>
+
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label">Họ tên: </label>
+                <div class="col-sm-6 v2q-input-wrapper">
+                    <span class="icon-addon"><span class="la la-home"></span></span>
+                        <form:input path="hoTen" cssClass="form-control ks-rounded v2q-input" value="${customer.hoTen}"/>
+                        <form:errors path="hoTen" cssClass="serverError" />
+                </div>
+            </div>    
+
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label ">Email: </label>
+                <div class="col-sm-6 v2q-input-wrapper">
+                    <span class="icon-addon"><span class="la la-home"></span></span>
+                    <input class="form-control ks-rounded v2q-input" readonly value="${customer.email}"/>
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label ">Số điện thoại: </label>
+                <div class="col-sm-6 v2q-input-wrapper">
+                    <span class="icon-addon"><span class="la la-home"></span></span>
+                        <form:input path="soDienThoai" cssClass="form-control ks-rounded v2q-input" value="${customer.soDienThoai}"/>
+                        <form:errors path="soDienThoai" cssClass="serverError" />
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label ">Địa chỉ: </label>
+                <div class="col-sm-6 v2q-input-wrapper">
+                    <span class="icon-addon"><span class="la la-home"></span></span>
+                        <form:input path="diaChi" cssClass="form-control ks-rounded v2q-input" value="${customer.diaChi}"/>
+                        <form:errors path="diaChi" cssClass="serverError" />
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label ">Tỉnh / Thành phố: </label>
+                <div class="col-sm-6 v2q-input-wrapper">
+                    <span class="icon-addon"><span class="la la-home"></span></span>
+                        <form:select id="thanhPho" cssClass="form-control ks-rounded v2q-input" path="idThanhPho" >
                             <c:choose>
-                                <c:when test="${customer.idThanhPho.id == t.id}">
-                                <option selected value="${t}">${t.tenThanhPho}</option>
+                                <c:when test="${dsThanhPho == null}">
+                                <option disabled selected>Chọn tỉnh thành phố</option>
                             </c:when>
                             <c:otherwise>
-                                <option value="${t}">${t.tenThanhPho}</option>
+                                <c:forEach items="${dsThanhPho}" var="t">                                
+                                    <c:choose>
+                                        <c:when test="${customer.idThanhPho.id == t.id}">
+                                            <option selected value="${t.id}">${t.tenThanhPho}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${t.id}">${t.tenThanhPho}</option>
+                                        </c:otherwise>
+                                    </c:choose>       
+                                </c:forEach>
                             </c:otherwise>
-                        </c:choose>       
-                    </c:forEach>
-                </form:select>
-                <form:errors path="idThanhPho" cssClass="serverError" />
-            </div>
-        </div> 
-        <div class="form-group row">
-            <label class="col-sm-2 form-control-label ">Quận / Huyện: </label>
-            <div class="col-sm-6 v2q-input-wrapper">
-                <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:select id="quanHuyen" cssClass="form-control ks-rounded v2q-input" path="idQuanHuyen">
-                        <c:forEach items="${dsQuanHuyen}" var="q">
+                        </c:choose>                            
+                    </form:select>
+                    <form:errors path="idThanhPho" cssClass="serverError" />
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label ">Quận / Huyện: </label>
+                <div class="col-sm-6 v2q-input-wrapper">
+                    <span class="icon-addon"><span class="la la-home"></span></span>
+                        <form:select id="quanHuyen" cssClass="form-control ks-rounded v2q-input" path="idQuanHuyen">
                             <c:choose>
-                                <c:when test="${customer.idQuanHuyen.id == q.id}">
-                                <option selected value="${q}">${q.tenQuanHuyen}</option>
+                                <c:when test="${dsQuanHuyen == null}">
+                                <option disabled selected>Chọn quận huyện</option>
                             </c:when>
                             <c:otherwise>
-                                <option value="${q}">${q.tenQuanHuyen}</option>
+                                <c:forEach items="${dsQuanHuyen}" var="q">
+                                    <c:choose>
+                                        <c:when test="${customer.idQuanHuyen.id == q.id}">
+                                            <option selected value="${q.id}">${q.tenQuanHuyen}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${q.id}">${q.tenQuanHuyen}</option>
+                                        </c:otherwise>
+                                    </c:choose>       
+                                </c:forEach>     
                             </c:otherwise>
-                        </c:choose>       
-                    </c:forEach>                                                             
-                </form:select>
-                <form:errors path="idQuanHuyen" cssClass="serverError" />
-            </div>
-        </div> 
-        <div class="form-group row">
-            <label class="col-sm-2 form-control-label ">Phường / Xã: </label>
-            <div class="col-sm-6 v2q-input-wrapper">
-                <span class="icon-addon"><span class="la la-home"></span></span>
-                    <form:select  id="phuongXa" cssClass="form-control ks-rounded v2q-input" path="idPhuongXa" >
-                        <c:forEach items="${dsPhuongXa}" var="p">
+                        </c:choose>                                                                                   
+                    </form:select>
+                    <form:errors path="idQuanHuyen" cssClass="serverError" />
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label ">Phường / Xã: </label>
+                <div class="col-sm-6 v2q-input-wrapper">
+                    <span class="icon-addon"><span class="la la-home"></span></span>
+                        <form:select id="phuongXa" cssClass="form-control ks-rounded v2q-input" path="idPhuongXa" >
                             <c:choose>
-                                <c:when test="${customer.idPhuongXa.id == p.id}">
-                                <option selected value="${p}">${p.tenPhuongXa}</option>
-                            </c:when>
-                            <c:otherwise>
-                                <option value="${p}">${p.tenPhuongXa}</option>
-                            </c:otherwise>
-                        </c:choose>       
-                    </c:forEach>    
-                </form:select>
-                <form:errors path="idPhuongXa" cssClass="serverError" />
+                                <c:when test="${dsPhuongXa == null}">
+                                    <option disabled selected>Chọn phường xã</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${dsPhuongXa}" var="p">
+                                        <c:choose>
+                                            <c:when test="${customer.idPhuongXa.id == p.id}">
+                                                <option selected value="${p.id}">${p.tenPhuongXa}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="${p.id}">${p.tenPhuongXa}</option>
+                                            </c:otherwise>
+                                        </c:choose>       
+                                    </c:forEach>     
+                                </c:otherwise>
+                            </c:choose>
+                            <c:forEach items="${dsPhuongXa}" var="p">
+                                <c:choose>
+                                    <c:when test="${customer.idPhuongXa.id == p.id}">
+                                    <option selected value="${p.id}">${p.tenPhuongXa}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${p.id}">${p.tenPhuongXa}</option>
+                                </c:otherwise>
+                            </c:choose>       
+                        </c:forEach>
+                    </form:select>
+                    <form:errors path="idPhuongXa" cssClass="serverError" />
+                </div>
             </div>
-        </div>
-        
-        <div class="form-group row">
-            <div class="col-sm-8">
-                <button class="pull-right btn btn-warning-outline ks-rounded v2q-save">Lưu thay đổi</button>
-            </div>
-        </div> 
-    </form:form>
-</div>
+
+            <div class="form-group row">
+                <div class="col-sm-8">
+                    <button type="submit" class="pull-right btn btn-warning-outline ks-rounded v2q-save">Cập nhật thông tin</button>
+                </div>
+            </div> 
+        </form:form>
     </div>
 </div>
 <jsp:include page="../layout/template/go-to-top.jsp"/>
 <script>
     $(function () {
-        /// Goi ajax lay danh sach quan huyen theo thanh pho khi nhan chon
-     $(function () {
-    $('#thanhPho').change(function () {
+        $('#thanhPho').change(function () {
             $.ajax({
-                url: "quan-huyen",
+                url: "ds-quanhuyen-theo-tp",
                 dataType: "json",
                 data: {
                     id: $(this).val()
@@ -206,11 +232,9 @@
                 }
             });
         });
-        $('#thanhPho').change();
-
         $('#quanHuyen').change(function () {
             $.ajax({
-                url: "phuong-xa",
+                url: "ds-phuongxa-theo-quanhuyen",
                 dataType: "json",
                 data: {
                     id: $(this).val()
@@ -220,8 +244,6 @@
                 }
             });
         });
-        $('#quanHuyen').change();
-        
         $("#nguoiMua").validate({
             rules: {
                 hoTen: {

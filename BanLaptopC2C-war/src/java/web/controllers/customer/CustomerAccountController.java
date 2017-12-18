@@ -5,6 +5,7 @@
  */
 package web.controllers.customer;
 
+import com.google.gson.Gson;
 import ejb.entities.NguoiBan;
 import ejb.entities.NguoiMua;
 import ejb.entities.PhuongXa;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import web.services.NguoiMuaService;
 import web.services.PhuongXaService;
 import web.services.QuanHuyenService;
@@ -46,7 +48,6 @@ public class CustomerAccountController {
     ThanhPhoService thanhPhoService;
     @Autowired
     PhuongXaService phuongXaService;
-    
 
     @RequestMapping(value = "dang-ky", method = RequestMethod.POST)
     public String dangKyTaiKhoan(Model model,
@@ -75,64 +76,58 @@ public class CustomerAccountController {
     public String kichHoatTaiKhoan(Model model,
             @PathVariable Integer id) {
         nguoiMuaService.kichHoatTaiKhoan(model, id);
-        return "redirect:/"; 
+        return "redirect:/";
     }
-    
+
     @RequestMapping("lich-su-giao-dich")
     public String lichSuGiaoDich(Model model) {
         return "customer/account/trang-cap-nhat-thong-tin";
     }
+
     @RequestMapping("lien-he")
     public String lienHe(Model model) {
         return "customer/account/trang-cap-nhat-thong-tin";
     }
+
     @RequestMapping("doi-mat-khau")
     public String doiMatKhau(Model model) {
         return "customer/account/thay-doi-mat-khau";
     }
+
     @RequestMapping("cap-nhat-thong-tin")
-    public String capNhatThongTin(Model model,HttpSession session) {
-        NguoiMua nguoimua = (NguoiMua) session.getAttribute("customer");
-        List<QuanHuyen> dsQuanHuyen=null;
-        List<PhuongXa> dsPhuongXa =null;
-        try
-        {
-        dsQuanHuyen = quanHuyenService.layDanhSachQuanHuyenTheoThanhPho(nguoimua.getIdThanhPho().getId());
-        dsPhuongXa = phuongXaService.layDanhSachPhuongXaTheoQuanHuyen(nguoimua.getIdQuanHuyen().getId());
+    public String capNhatThongTin(Model model, HttpSession httpSession) {
+        if (httpSession.getAttribute("customer") == null) {
+            model.addAttribute("error", "Xin vui lòng đăng nhập lại.");
+            return "redirect:/";
         }
-        catch(Exception ex)
-        {
-            
-            nguoimua.setIdThanhPho(thanhPhoService.layThanhPho(1));
-            dsQuanHuyen = quanHuyenService.layDanhSachQuanHuyenTheoThanhPho(1);      
-            dsPhuongXa = phuongXaService.layDanhSachPhuongXaTheoQuanHuyen(1);
-        }
-        model.addAttribute("dsThanhPho", thanhPhoService.layDanhSachThanhPho());
-        model.addAttribute("nguoimua", new NguoiMuaViewModel());
-        model.addAttribute("nguoimuasession", nguoimua);
-        model.addAttribute("dsQuanHuyen", dsQuanHuyen);
-        model.addAttribute("dsPhuongXa", dsPhuongXa);
+        NguoiMua nguoiMua = (NguoiMua) httpSession.getAttribute("customer");
+        List<QuanHuyen> dsQuanHuyen = quanHuyenService.layDanhSachQuanHuyenTheoThanhPho(nguoiMua.getIdThanhPho().getId());
+        List<PhuongXa> dsPhuongXa = phuongXaService.layDanhSachPhuongXaTheoQuanHuyen(nguoiMua.getIdQuanHuyen().getId());
+        
+        model.addAttribute("dsQuanHuyen",dsQuanHuyen);
+        model.addAttribute("dsPhuongXa",dsPhuongXa);
         return "customer/account/trang-cap-nhat-thong-tin";
-    }    
-    @RequestMapping(value="cap-nhat-thong-tin", method = RequestMethod.POST)
-    public String capNhatThongTin(Model model,HttpSession httpSession,            
-            @ModelAttribute("nguoimua") @Valid NguoiMuaViewModel nguoiMuaVM,
+    }
+
+    @RequestMapping(value = "cap-nhat-thong-tin", method = RequestMethod.POST)
+    public String capNhatThongTin(Model model, HttpSession httpSession,
+            @ModelAttribute("nguoiMua") @Valid NguoiMuaViewModel nguoiMuaVM,
             BindingResult errors) {
-        if (errors.hasErrors()) { 
+        if (errors.hasErrors()) {
             model.addAttribute("serverErrors", "Thông tin thay đổi không hợp lệ.");
         } else {
-           nguoiMuaService.capNhatThongTinCaNhan(nguoiMuaVM, model, httpSession);
-        }        
-        
-        
-        return "customer/account/trang-cap-nhat-thong-tin";
-    }   
+            nguoiMuaService.capNhatThongTinCaNhan(nguoiMuaVM, model, httpSession);
+        }
+        return "redirect:/cap-nhat-thong-tin/";
+    }
+
     @RequestMapping("dang-xuat")
     public String dangXuat(HttpSession httpSession) {
         httpSession.removeAttribute("customer");
         return "redirect:/";
     }
-    @RequestMapping(value="doi-mat-khau-customer", method = RequestMethod.POST)
+
+    @RequestMapping(value = "doi-mat-khau-customer", method = RequestMethod.POST)
     public String doiMatKhau(@RequestParam("matKhauCu") String matKhauCu,
             @RequestParam("matKhauMoi") String matKhauMoi,
             @RequestParam("matKhauXacNhan") String matKhauXacNhan,
@@ -140,5 +135,28 @@ public class CustomerAccountController {
             ModelMap model) {
         nguoiMuaService.doiMatKhau(matKhauCu, matKhauMoi, matKhauXacNhan, model, httpSession);
         return "redirect:/doi-mat-khau";
+    }
+
+    @ModelAttribute("dsThanhPho")
+    public List<ThanhPho> layDanhSachThanhPho() {
+        return thanhPhoService.layDanhSachThanhPho();
+    }
+
+    /**
+     * Để giúp gọi ajax lấy danh sách Quận huyện khi chọn đc thành phố trên form
+     */
+    @ResponseBody
+    @RequestMapping("ds-quanhuyen-theo-tp")
+    public String dsQuanHuyenTheoThanhPho(@RequestParam("id") Integer id) {
+        return new Gson().toJson(quanHuyenService.layDanhSachTenTheoThanhPho(id));
+    }
+
+    /**
+     * Để giúp gọi ajax lấy danh sách phường xã khi chọn đc quận huyện trên form
+     */
+    @ResponseBody
+    @RequestMapping("ds-phuongxa-theo-quanhuyen")
+    public String dsPhuongXaTheoQuanHuyen(@RequestParam("id") Integer id) {
+        return new Gson().toJson(phuongXaService.layDanhSachTenTheoQuanHuyen(id));
     }
 }

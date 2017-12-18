@@ -11,6 +11,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -30,17 +31,25 @@ public class QuanHuyenBusiness {
     }
 
     public List<QuanHuyen> layDanhSachTheoThanhPho(Integer id) {
-        String hql = "FROM QuanHuyen q WHERE q.idThanhPho.id = :id ORDER BY q.tenQuanHuyen";
-        Query query = em.createQuery(hql);
-        query.setParameter("id", id);
-        return query.getResultList();
-    }   
-    
+        try {
+            String hql = "FROM QuanHuyen q WHERE q.idThanhPho.id = :id ORDER BY q.tenQuanHuyen";
+            Query query = em.createQuery(hql);
+            query.setParameter("id", id);
+            return query.getResultList();
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
+
     public List<QuanHuyen> layDanhSachTheoThanhPho(ThanhPho thanhpho) {
-        String hql = "FROM QuanHuyen q WHERE q.idThanhPho = :thanhpho ORDER BY q.tenQuanHuyen";
-        Query query = em.createQuery(hql);
-        query.setParameter("thanhpho",thanhpho );
-        return query.getResultList();
-    } 
-    
+        try {
+            String hql = "FROM QuanHuyen q WHERE q.idThanhPho = :thanhpho ORDER BY q.tenQuanHuyen";
+            Query query = em.createQuery(hql);
+            query.setParameter("thanhpho", thanhpho);
+            return query.getResultList();
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
+
 }
