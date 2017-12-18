@@ -25,6 +25,7 @@ public class CustomerHomeController {
     @RequestMapping("chi-tiet/{id}")
     public String chiTiet(Model model, @PathVariable Integer id) {
         SanPham sp = sanPhamService.timSanPhamTheoId(id);
+        sp.setSoLanXem(sp.getSoLanXem()+1);
         model.addAttribute("sp", sp);
         return "customer/home/chi-tiet";
     }
@@ -32,5 +33,20 @@ public class CustomerHomeController {
     @ModelAttribute("dsSanPham")
     public List<SanPham> layTatCaSanPham() {
         return sanPhamService.layTatCaSanPham();
+    }
+    
+    @ModelAttribute("dsSanPhammoi")
+    public List<SanPham> SanPhammoi() {
+        return sanPhamService.danhsachspmoi();
+    }
+    
+    @ModelAttribute("dsSanPhambanchay")
+    public List<SanPham> SanPhambanchay() {
+        return sanPhamService.danhsachspbanchay();
+    }
+    
+    @ModelAttribute("dsSanPhamxemnhieu")
+    public List<SanPham> SanPhamxemnhieu() {
+        return sanPhamService.danhsachspxemnhieu();
     }
 }

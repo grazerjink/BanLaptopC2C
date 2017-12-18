@@ -129,7 +129,7 @@ public class NguoiMuaService {
         NguoiMua nguoiMua = (NguoiMua) httpSession.getAttribute("customer");
         String matKhau = nguoiMua.getMatKhau();
         if (matKhauMoi.equals(matKhauXacNhan)) {
-            if (EncryptHelper.matches(matKhau, EncryptHelper.encrypt(matKhauCu))) {
+            if (EncryptHelper.matches(matKhau, matKhauCu)) {
                 nguoiMua.setMatKhau(EncryptHelper.encrypt(matKhauMoi));
                 nguoiMuaFacade.edit(nguoiMua);
                 httpSession.setAttribute("customer", nguoiMua);

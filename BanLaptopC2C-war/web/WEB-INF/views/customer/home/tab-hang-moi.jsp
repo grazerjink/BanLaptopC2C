@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="tab-1 resp-tab-content" aria-labelledby="tab_hang-moi">
-    <c:forEach items="${dsSanPham}" var="sp">
+    <c:forEach items="${dsSanPhammoi}" var="sp">
         <div class="col-md-3 product-men" style="margin-bottom: 20px;">
             <div class="men-pro-item simpleCart_shelfItem">
                 <div class="men-thumb-item">
