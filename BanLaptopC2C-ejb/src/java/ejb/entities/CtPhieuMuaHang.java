@@ -7,7 +7,9 @@ package ejb.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,11 +20,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -58,8 +62,6 @@ public class CtPhieuMuaHang implements Serializable {
     @NotNull
     @Column(name = "thanh_tien")
     private float thanhTien;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "ngay_giao_hang")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayGiaoHang;
@@ -75,6 +77,8 @@ public class CtPhieuMuaHang implements Serializable {
     @JoinColumn(name = "id_tinh_trang", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TinhTrang idTinhTrang;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDonHang", fetch = FetchType.LAZY)
+    private List<DanhGia> danhGiaList;
 
     public CtPhieuMuaHang() {
     }
@@ -83,12 +87,11 @@ public class CtPhieuMuaHang implements Serializable {
         this.id = id;
     }
 
-    public CtPhieuMuaHang(Integer id, float giaBan, int soLuongMua, float thanhTien, Date ngayGiaoHang) {
+    public CtPhieuMuaHang(Integer id, float giaBan, int soLuongMua, float thanhTien) {
         this.id = id;
         this.giaBan = giaBan;
         this.soLuongMua = soLuongMua;
         this.thanhTien = thanhTien;
-        this.ngayGiaoHang = ngayGiaoHang;
     }
 
     public Integer getId() {
@@ -161,6 +164,15 @@ public class CtPhieuMuaHang implements Serializable {
 
     public void setIdTinhTrang(TinhTrang idTinhTrang) {
         this.idTinhTrang = idTinhTrang;
+    }
+
+    @XmlTransient
+    public List<DanhGia> getDanhGiaList() {
+        return danhGiaList;
+    }
+
+    public void setDanhGiaList(List<DanhGia> danhGiaList) {
+        this.danhGiaList = danhGiaList;
     }
 
     @Override

@@ -5,8 +5,11 @@
  */
 package ejb.business;
 
+import ejb.entities.PhieuMuaTin;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,6 +19,17 @@ import javax.ejb.LocalBean;
 @LocalBean
 public class PhieuMuaTinBusiness {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @PersistenceContext(unitName = "BanLaptopC2C-ejbPU")
+    private EntityManager em;
+
+    public void persist(Object object) {
+        em.persist(object);
+    }
+    
+    public int taoPhieuMuaTin(PhieuMuaTin phieuMuaTin) {
+        em.persist(phieuMuaTin);
+        em.flush();
+        return phieuMuaTin.getId();
+    }
+    
 }

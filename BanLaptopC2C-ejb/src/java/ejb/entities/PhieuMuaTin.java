@@ -7,6 +7,7 @@ package ejb.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,12 +19,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -76,6 +79,8 @@ public class PhieuMuaTin implements Serializable {
     @JoinColumn(name = "id_tinh_trang", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TinhTrang idTinhTrang;
+    @OneToMany(mappedBy = "idPhieuMuaTin", fetch = FetchType.LAZY)
+    private List<SoTinTon> soTinTonList;
 
     public PhieuMuaTin() {
     }
@@ -161,6 +166,15 @@ public class PhieuMuaTin implements Serializable {
 
     public void setIdTinhTrang(TinhTrang idTinhTrang) {
         this.idTinhTrang = idTinhTrang;
+    }
+
+    @XmlTransient
+    public List<SoTinTon> getSoTinTonList() {
+        return soTinTonList;
+    }
+
+    public void setSoTinTonList(List<SoTinTon> soTinTonList) {
+        this.soTinTonList = soTinTonList;
     }
 
     @Override

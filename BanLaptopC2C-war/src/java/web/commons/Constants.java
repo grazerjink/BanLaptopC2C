@@ -16,7 +16,7 @@ public class Constants {
     public static int GD_PAYPAL = 1;
     public static int GD_TRUC_TIEP = 0;
     
-    public static String TT_DA_GIAO = "DG";
+    public static String TT_DANG_GIAO = "DG";
     public static String TT_DA_HUY = "DH";
     public static String TT_THAT_BAI = "TB";
     public static String TT_THANH_CONG = "TC";

@@ -10,6 +10,7 @@ import com.paypal.api.payments.Payment;
 import ejb.entities.NguoiBan;
 import ejb.entities.PhuongXa;
 import ejb.entities.QuanHuyen;
+import ejb.entities.SoTinTon;
 import ejb.entities.ThanhPho;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -99,7 +100,7 @@ public class MerchantAccountController {
     }
 
     /**
-     * Khi giao dịch thành công ở trang paypal, sẽ chuyển tới trang này rùi lưu
+     * Khi giao dịch thành công ở trang PAYPAL, sẽ chuyển tới trang này rùi lưu
      * lại id liên quan đến hóa đơn giao dịch đó
      */
     @RequestMapping("xac-nhan-thanh-toan")
@@ -113,11 +114,7 @@ public class MerchantAccountController {
         } else {
             Payment hoaDonPaypal = paymentService.completePaymentProcess(paymentId, payerId);
             String idGoiTin = hoaDonPaypal.getTransactions().get(0).getItemList().getItems().get(0).getSku();
-            /// Cập nhật số tin            
-            soTinTonService.capNhatSoTinDang(goiTinService.timGoiTinTheoId(idGoiTin), httpSession);
-            /// Tạo phiếu mua tin
-            phieuMuaTinService.taoPhieuMuaTinQuaPayPal((NguoiBan) httpSession.getAttribute("merchant"),
-                    goiTinService.timGoiTinTheoId(idGoiTin), paymentId, payerId);
+            nguoiBanService.muaTinQuaPayPal(goiTinService.timGoiTinTheoId(idGoiTin), paymentId, payerId,httpSession);
             return "redirect:/merchant/xu-ly-du-lieu/";
         }
     }
@@ -162,7 +159,7 @@ public class MerchantAccountController {
     public String xacNhanGoiTinThanhToanTrucTiep(ModelMap model,
             @PathVariable("id") String id,
             HttpSession httpSession) {
-        phieuMuaTinService.taoPhieuMuaTinTrucTiep(
+        nguoiBanService.muaTinTrucTiep(
                 (NguoiBan) httpSession.getAttribute("merchant"), goiTinService.timGoiTinTheoId(id));
         return "redirect:/merchant/xac-nhan-thanh-cong/";
     }
@@ -189,6 +186,11 @@ public class MerchantAccountController {
         model.addAttribute("nguoiBan", new NguoiBanViewModel());
         model.addAttribute("dsQuanHuyen", dsQuanHuyen);
         model.addAttribute("dsPhuongXa", dsPhuongXa);
+        
+        // Lich su mua va su dung tin
+        List<SoTinTon> lsTinDang = soTinTonService.layLichSuTinDang(nguoiBan.getId());
+        model.addAttribute("lsTinDang", lsTinDang);
+        
         return "merchant/dashboard/account/trang-thong-tin-ca-nhan";
     }
     
@@ -198,7 +200,7 @@ public class MerchantAccountController {
     @RequestMapping(value="cap-nhat-thong-tin", method = RequestMethod.POST)
     public String capNhatThongTinCaNhan(ModelMap model,
             HttpSession httpSession,            
-            @ModelAttribute("nguoiBan") @Valid NguoiBanViewModel nguoiBanVM,
+            @Valid @ModelAttribute("nguoiBan") NguoiBanViewModel nguoiBanVM,
             BindingResult errors) {
         if (errors.hasErrors()) { 
             model.addAttribute("serverErrors", "Thông tin thay đổi không hợp lệ.");

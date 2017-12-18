@@ -52,7 +52,9 @@
         <script src="assets/merchant/template/libs/jscrollpane/jquery.jscrollpane.min.js"></script>
         <script src="assets/merchant/template/libs/jscrollpane/jquery.mousewheel.js"></script>
         <script src="assets/merchant/template/libs/flexibility/flexibility.js"></script>
+        <script src="assets/merchant/template/libs/noty/noty.min.js"></script>
         <!-- END PAGE LEVEL PLUGINS -->
+
 
         <script src="assets/merchant/template/libs/d3/d3.min.js"></script>
         <script src="assets/merchant/template/libs/c3js/c3.min.js"></script>

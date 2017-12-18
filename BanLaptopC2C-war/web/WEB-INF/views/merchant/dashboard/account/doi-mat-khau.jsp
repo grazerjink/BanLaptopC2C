@@ -25,7 +25,7 @@
             <label class="col-sm-2 form-control-label ">Mật khẩu xác nhận: </label>
             <div class="col-sm-6 v2q-input-wrapper">
                 <span class="icon-addon"><span class="la la-home"></span></span>
-                <input type="password" id="matKhauXacNhan" name="matKhauXacNhan" class="form-control ks-rounded v2q-input"/>
+                <input type="password" id="matKhauXN" name="matKhauXacNhan" class="form-control ks-rounded v2q-input"/>
             </div>
         </div> 
         <div class="form-group row">
@@ -40,6 +40,10 @@
     $(function () {
         $("#form-doi-mat-khau").validate({
             rules: {
+                matKhauCu: {
+                    required: true,
+                    pattern: /^[a-zA-Z0-9]{4,20}$/
+                }, 
                 matKhauMoi: {
                     required: true,
                     pattern: /^[a-zA-Z0-9]{4,20}$/
@@ -49,6 +53,10 @@
                 }
             },
             messages: {
+                matKhauCu: {
+                    required: "Vui lòng nhập mật khẩu.",
+                    pattern: "Độ dài ít nhất 4 đến 20 ký tự."
+                }, 
                 matKhauMoi: {
                     required: "Vui lòng nhập mật khẩu.",
                     pattern: "Độ dài ít nhất 4 đến 20 ký tự."

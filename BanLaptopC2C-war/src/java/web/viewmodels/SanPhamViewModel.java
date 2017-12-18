@@ -5,7 +5,6 @@
  */
 package web.viewmodels;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -35,6 +34,8 @@ public class SanPhamViewModel {
     @NotNull
     private Integer thoiLuongPin; 
     @NotNull
+    private Integer baoHanh; 
+    @NotNull
     private Integer idCpu;
     @NotNull
     private Integer idDoPhanGiai;
@@ -49,6 +50,14 @@ public class SanPhamViewModel {
     @NotNull
     private Integer idCardManHinh;
 
+    public Integer getBaoHanh() {
+        return baoHanh;
+    }
+
+    public void setBaoHanh(Integer baoHanh) {
+        this.baoHanh = baoHanh;
+    }
+    
     public Integer getThoiLuongPin() {
         return thoiLuongPin;
     }

@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "SoTinTon.findAll", query = "SELECT s FROM SoTinTon s")
     , @NamedQuery(name = "SoTinTon.findById", query = "SELECT s FROM SoTinTon s WHERE s.id = :id")
     , @NamedQuery(name = "SoTinTon.findBySoTinTon", query = "SELECT s FROM SoTinTon s WHERE s.soTinTon = :soTinTon")
-    , @NamedQuery(name = "SoTinTon.findBySoTinDaDung", query = "SELECT s FROM SoTinTon s WHERE s.soTinDaDung = :soTinDaDung")
+    , @NamedQuery(name = "SoTinTon.findBySoTinThayDoi", query = "SELECT s FROM SoTinTon s WHERE s.soTinThayDoi = :soTinThayDoi")
     , @NamedQuery(name = "SoTinTon.findByNgayCapNhat", query = "SELECT s FROM SoTinTon s WHERE s.ngayCapNhat = :ngayCapNhat")})
 public class SoTinTon implements Serializable {
 
@@ -51,8 +51,8 @@ public class SoTinTon implements Serializable {
     private int soTinTon;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "so_tin_da_dung")
-    private int soTinDaDung;
+    @Column(name = "so_tin_thay_doi")
+    private int soTinThayDoi;
     @Basic(optional = false)
     @NotNull
     @Column(name = "ngay_cap_nhat")
@@ -61,6 +61,9 @@ public class SoTinTon implements Serializable {
     @JoinColumn(name = "id_nguoi_ban", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private NguoiBan idNguoiBan;
+    @JoinColumn(name = "id_phieu_mua_tin", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private PhieuMuaTin idPhieuMuaTin;
 
     public SoTinTon() {
     }
@@ -69,10 +72,10 @@ public class SoTinTon implements Serializable {
         this.id = id;
     }
 
-    public SoTinTon(Integer id, int soTinTon, int soTinDaDung, Date ngayCapNhat) {
+    public SoTinTon(Integer id, int soTinTon, int soTinThayDoi, Date ngayCapNhat) {
         this.id = id;
         this.soTinTon = soTinTon;
-        this.soTinDaDung = soTinDaDung;
+        this.soTinThayDoi = soTinThayDoi;
         this.ngayCapNhat = ngayCapNhat;
     }
 
@@ -92,12 +95,12 @@ public class SoTinTon implements Serializable {
         this.soTinTon = soTinTon;
     }
 
-    public int getSoTinDaDung() {
-        return soTinDaDung;
+    public int getSoTinThayDoi() {
+        return soTinThayDoi;
     }
 
-    public void setSoTinDaDung(int soTinDaDung) {
-        this.soTinDaDung = soTinDaDung;
+    public void setSoTinThayDoi(int soTinThayDoi) {
+        this.soTinThayDoi = soTinThayDoi;
     }
 
     public Date getNgayCapNhat() {
@@ -114,6 +117,14 @@ public class SoTinTon implements Serializable {
 
     public void setIdNguoiBan(NguoiBan idNguoiBan) {
         this.idNguoiBan = idNguoiBan;
+    }
+
+    public PhieuMuaTin getIdPhieuMuaTin() {
+        return idPhieuMuaTin;
+    }
+
+    public void setIdPhieuMuaTin(PhieuMuaTin idPhieuMuaTin) {
+        this.idPhieuMuaTin = idPhieuMuaTin;
     }
 
     @Override

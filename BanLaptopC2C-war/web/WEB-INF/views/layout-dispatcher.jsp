@@ -4,13 +4,12 @@
     if (view.startsWith("customer/")) {
         pageContext.include("customer-layout.jsp");
     }
-    if (view.startsWith("admin/landing/")) {
+    else if (view.startsWith("admin/landing/")) {
         pageContext.include("admin-layout-dangnhap.jsp");
     }
     else if (view.startsWith("admin/")) {
         pageContext.include("admin-layout.jsp");
-    }
-    
+    }    
     else if (view.startsWith("merchant/landing/")) {
         pageContext.include("merchant-landing-layout.jsp");
     } 
