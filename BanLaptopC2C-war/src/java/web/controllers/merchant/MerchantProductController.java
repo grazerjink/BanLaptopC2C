@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import web.services.CardManHinhService;
 import web.services.CpuService;
@@ -81,7 +82,7 @@ public class MerchantProductController {
     public String danhSachSanPham(Model model, HttpSession httpSession) {
         NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
         List<SanPham> list = sanPhamService.layDanhSachSanPhamTheoNguoiBan(nguoiBan.getId());
-        for(SanPham s : list) {     
+        for (SanPham s : list) {
             List<HinhAnhSanPham> listHinh = hinhAnhSanPhamService.layDanhSachHinhAnhTheoIdSanPham(s.getId());
             s.setHinhAnhSanPhamList(listHinh);
         }
@@ -116,6 +117,29 @@ public class MerchantProductController {
             model.addAttribute("serverErrors", "Thông tin sản phẩm không hợp lệ.<br>Xin vui lòng kiểm tra lại.");
         }
         return "merchant/dashboard/product/trang-dang-tin-san-pham";
+    }
+
+    @RequestMapping("tai-trang")
+    public String taiTrangTheoViTri(
+            Model model,
+            HttpSession httpSession,
+            @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "8") int pageSize) {
+        NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
+        List<SanPham> items = sanPhamService.taiTrangTheoViTri(nguoiBan.getId(), pageNo, pageSize);
+        model.addAttribute("items", items);
+        return "merchant/blank/phan-trang";
+    }
+
+    @ResponseBody
+    @RequestMapping("lay-so-trang")
+    public String layTongSoTrang(Model model,
+            HttpSession httpSession,
+            @RequestParam(value = "pageSize", defaultValue = "8") int pageSize) {
+        NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
+        int rowCount = sanPhamService.layDanhSachSanPhamTheoNguoiBan(nguoiBan.getId()).size();
+        int pageCount = (int) Math.ceil(1.0 * rowCount / pageSize);
+        return String.valueOf(pageCount);
     }
 
     @ModelAttribute("dsHangSanXuat")

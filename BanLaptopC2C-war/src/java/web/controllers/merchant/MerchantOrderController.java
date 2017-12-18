@@ -60,7 +60,7 @@ public class MerchantOrderController {
             @RequestParam("ketThuc") Date ketThuc) {
         NguoiBan ng = (NguoiBan) httpSession.getAttribute("merchant");
         model.addAttribute("dsDonHang", phieuMuaHangService.layDanhSachDonHangDangGiaoTheoKhoangThoiGian(ng.getId(), batDau, ketThuc));
-        return "merchant/dashboard/order/trang-don-hang-moi";
+        return "merchant/dashboard/order/trang-don-hang-dang-giao";
     }
 
     @RequestMapping("thanh-cong")
@@ -77,14 +77,14 @@ public class MerchantOrderController {
             @RequestParam("ketThuc") Date ketThuc) {
         NguoiBan ng = (NguoiBan) httpSession.getAttribute("merchant");
         model.addAttribute("dsDonHang", phieuMuaHangService.layDanhSachDonHangThanhCongTheoKhoangThoiGian(ng.getId(), batDau, ketThuc));
-        return "merchant/dashboard/order/trang-don-hang-moi";
+        return "merchant/dashboard/order/trang-don-hang-thanh-cong";
     }
 
     @RequestMapping("huy")
     public String donDatHangHuy(Model model, HttpSession httpSession) {
         NguoiBan ng = (NguoiBan) httpSession.getAttribute("merchant");
         model.addAttribute("dsDonHang", phieuMuaHangService.layDanhSachDonHangHuy(ng.getId()));
-        return "merchant/dashboard/order/trang-don-hang-huy";
+        return "merchant/dashboard/order/trang-don-hang-da-huy";
     }
 
     @RequestMapping("huy/loc-du-lieu")
@@ -94,7 +94,7 @@ public class MerchantOrderController {
             @RequestParam("ketThuc") Date ketThuc) {
         NguoiBan ng = (NguoiBan) httpSession.getAttribute("merchant");
         model.addAttribute("dsDonHang", phieuMuaHangService.layDanhSachDonHangDaHuyTheoKhoangThoiGian(ng.getId(), batDau, ketThuc));
-        return "merchant/dashboard/order/trang-don-hang-moi";
+        return "merchant/dashboard/order/trang-don-hang-da-huy";
     }
 
     @RequestMapping("moi/cap-nhat-tinh-trang")

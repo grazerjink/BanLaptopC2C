@@ -85,8 +85,8 @@
             $(".v2q-popup-dienthoai").html(soDienThoai);
             $(".v2q-popup-diachi").html(diaChi);
             $('#tinhTrang').prop("checked", true);
-            
-            $("#btn-update-status").attr("data-id-dh",idDonHang);
+
+            $("#btn-update-status").attr("data-id-dh", idDonHang);
             // Get the modal
             var modal = document.getElementById('myModal');
             modal.style.display = "block";
@@ -127,11 +127,9 @@
                     minimumResultsForSearch: Infinity
                 });
             }
-        });
-
+        });        
+        
         $('.ks-daterange').daterangepicker({
-            startDate: new Date(),
-            endDate: new Date(),
             locale: {
                 format: 'DD/MM/YYYY',
                 separator: " - ",
@@ -162,23 +160,29 @@
                     "Tháng 10",
                     "Tháng 11",
                     "Tháng 12"
-                ]                
+                ]
             }
         });
         
-        $(".applyBtn").click(function() {
+        <c:if test="${param.batDau != null && param.ketThuc != null}">
+            $('.ks-daterange').data('daterangepicker').setStartDate('${param.batDau}');
+            $('.ks-daterange').data('daterangepicker').setEndDate('${param.ketThuc}');
+        </c:if>
+        
+
+        $(".applyBtn").click(function () {
             var batDau = $("input[name=daterangepicker_start]").val();
             var ketThuc = $("input[name=daterangepicker_end]").val();
-            document.location.href = 'merchant/don-dat-hang/huy/loc-du-lieu?batDau='+batDau+'&ketThuc='+ketThuc;
+            document.location.href = 'merchant/don-dat-hang/huy/loc-du-lieu?batDau=' + batDau + '&ketThuc=' + ketThuc;
         });
-        $(".v2q-order-filter").click(function() {
+        $(".v2q-order-filter").click(function () {
             document.location.href = 'merchant/don-dat-hang/huy/';
         });
     });
 </script>
 <div class="ks-header">
     <section class="ks-title">
-        <h3>Danh sách đơn đặt hàng</h3>
+        <h3>Danh sách đơn đặt hàng đã bị hủy</h3>
     </section>
 </div>
 <div class="ks-content">    

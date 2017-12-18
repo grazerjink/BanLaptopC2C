@@ -17,9 +17,9 @@ import web.commons.LookupFactory;
  */
 @Component
 public class SanPhamService {
-    
+
     SanPhamBusiness sanPhamBusiness = (SanPhamBusiness) LookupFactory.lookupBeanBusiness("SanPhamBusiness");
-    
+
     public List<SanPham> layDanhSachSanPhamTheoNguoiBan(int idNguoiBan) {
         return sanPhamBusiness.layDanhSachSanPhamTheoNguoiBan(idNguoiBan);
     }
@@ -27,8 +27,13 @@ public class SanPhamService {
     public List<SanPham> layTatCaSanPham() {
         return sanPhamBusiness.layTatCaSanPham();
     }
-    
+
     public SanPham timSanPhamTheoId(Integer id) {
         return sanPhamBusiness.timSanPhamTheoId(id);
     }
+
+    public List<SanPham> taiTrangTheoViTri(int idNguoiBan, int pageNo, int pageSize) {
+        return sanPhamBusiness.laySanPhamTheoViTri(idNguoiBan, pageSize, pageNo);
+    }
+
 }

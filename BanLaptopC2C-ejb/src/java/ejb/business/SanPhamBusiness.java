@@ -40,7 +40,7 @@ public class SanPhamBusiness {
         try {
             Query q = em.createQuery("SELECT s FROM SanPham s WHERE s.idNguoiBan.id = :id");
             q.setParameter("id", idNguoiBan);
-            List<SanPham> list = q.getResultList();            
+            List<SanPham> list = q.getResultList();
             return list;
         } catch (NoResultException e) {
             return null;
@@ -55,7 +55,7 @@ public class SanPhamBusiness {
             sp.forEach(x -> {
                 x.getHinhAnhSanPhamList().size();
             });
-            Collections.shuffle(sp);            
+            Collections.shuffle(sp);
             return sp;
         } catch (NoResultException e) {
             return null;
@@ -70,6 +70,18 @@ public class SanPhamBusiness {
             sp.getHinhAnhSanPhamList().size();
             sp.getThongSoKiThuatList().size();
             return sp;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<SanPham> laySanPhamTheoViTri(int idNguoiBan, int pageSize, int pageNo) {
+        try {
+            Query q = em.createQuery("SELECT s FROM SanPham s WHERE s.idNguoiBan.id = :id");
+            q.setMaxResults(pageSize);
+            q.setFirstResult(pageNo * pageSize);
+            List<SanPham> list = q.getResultList();
+            return list;
         } catch (NoResultException e) {
             return null;
         }

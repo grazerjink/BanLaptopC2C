@@ -130,8 +130,6 @@
         });
 
         $('.ks-daterange').daterangepicker({
-            startDate: new Date(),
-            endDate: new Date(),
             locale: {
                 format: 'DD/MM/YYYY',
                 separator: " - ",
@@ -165,20 +163,24 @@
                 ]                
             }
         });
-        
+        <c:if test="${param.batDau != null && param.ketThuc != null}">
+            $('.ks-daterange').data('daterangepicker').setStartDate('${param.batDau}');
+            $('.ks-daterange').data('daterangepicker').setEndDate('${param.ketThuc}');
+        </c:if>
+            
         $(".applyBtn").click(function() {
             var batDau = $("input[name=daterangepicker_start]").val();
             var ketThuc = $("input[name=daterangepicker_end]").val();
-            document.location.href = 'merchant/don-dat-hang/moi/loc-du-lieu?batDau='+batDau+'&ketThuc='+ketThuc;
+            document.location.href = 'merchant/don-dat-hang/dang-giao/loc-du-lieu?batDau='+batDau+'&ketThuc='+ketThuc;
         });
         $(".v2q-order-filter").click(function() {
-            document.location.href = 'merchant/don-dat-hang/moi/';
+            document.location.href = 'merchant/don-dat-hang/dang-giao/';
         });
     });
 </script>
 <div class="ks-header">
     <section class="ks-title">
-        <h3>Danh sách đơn đặt hàng</h3>
+        <h3>Danh sách đơn đặt hàng đang giao</h3>
     </section>
 </div>
 <div class="ks-content">    
