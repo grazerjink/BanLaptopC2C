@@ -28,39 +28,37 @@ import web.commons.LookupFactory;
 @Component
 public class DanhGiaService {
 
-     DanhGiaFacade danhGiaFacade = (DanhGiaFacade) LookupFactory.lookupBeanFacade("DanhGiaFacade");
-     NguoiBanFacade nguoiBanFacade = (NguoiBanFacade) LookupFactory.lookupBeanFacade("NguoiBanFacade");
+    DanhGiaFacade danhGiaFacade = (DanhGiaFacade) LookupFactory.lookupBeanFacade("DanhGiaFacade");
+    NguoiBanFacade nguoiBanFacade = (NguoiBanFacade) LookupFactory.lookupBeanFacade("NguoiBanFacade");
 
-    public List<DanhGia> layDSThongKeDanhGia(int id_customer) {
+    public List<DanhGia> layDSThongKeDanhGia() {
         return danhGiaFacade.findAll();
     }
 
-    public void danhGia(int id_Danhgia, int rating)
-    {
+    public void danhGia(int id_Danhgia, int rating) {
         //update tb DanhGia
         DanhGia danhgia = danhGiaFacade.find(id_Danhgia);
         danhgia.setSoDiem(rating);
         danhgia.setSuDung(false);
-        
+
         danhGiaFacade.edit(danhgia);
-        
+
         //update tb Merchant
         NguoiBan nguoiban = danhgia.getIdNguoiBan();
-        
-        int tonglanrating = nguoiban.getSoLanDanhGia()+1;
-        int tongdiemrating = nguoiban.getTongDiemDanhGia()+rating;
-        int trungbinhrating = tongdiemrating/tonglanrating;
-        
+
+        int tonglanrating = nguoiban.getSoLanDanhGia() + 1;
+        int tongdiemrating = nguoiban.getTongDiemDanhGia() + rating;
+        int trungbinhrating = tongdiemrating / tonglanrating;
+
         nguoiban.setSoLanDanhGia(tonglanrating);
         nguoiban.setTongDiemDanhGia(tongdiemrating);
         nguoiban.setDiemTrungBinh(trungbinhrating);
-        
+
         nguoiBanFacade.edit(nguoiban);
     }
+
     private DanhGiaFacade lookupDanhGiaFacadeBean() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-     
-    
+
 }

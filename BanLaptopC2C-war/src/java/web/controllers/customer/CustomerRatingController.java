@@ -30,7 +30,7 @@ DanhGiaService danhGiaService;
     public String danhgiasanpham(Model model, HttpSession session)
     {
         NguoiMua ngmua = (NguoiMua) session.getAttribute("customer");
-        List<DanhGia> danhgias= danhGiaService.layDSThongKeDanhGia(ngmua.getId());
+        List<DanhGia> danhgias= danhGiaService.layDSThongKeDanhGia();
         
        model.addAttribute("danhgias",danhgias);
        return "customer/account/danh-gia-nguoi-ban";
