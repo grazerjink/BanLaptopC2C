@@ -21,18 +21,16 @@
                         <a class="dropdown-item" href="merchant/don-dat-hang/hoan-tat/">Đơn hàng đã hoàn tất</a>
                         <a class="dropdown-item" href="merchant/don-dat-hang/huy/">Đơn hàng đã hủy</a>
                     </div>
-                </li>  
-                <li class="nav-item">
-                    <a class="nav-link v2q-link" href="merchant/danh-sach-san-pham/">
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link v2q-link dropdown-toggle"  href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="ks-icon la la-laptop"></span> 
-                        <span>Danh sách sản phẩm</span>
+                        <span>Quản lí sản phẩm</span>
                     </a>
-                </li>                
-                <li class="nav-item">
-                    <a class="nav-link v2q-link" href="calendar.html">
-                        <span class="ks-icon la la-calendar-o"></span>
-                        <span></span>
-                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="merchant/danh-sach-san-pham/">Danh sách sản phẩm</a>
+                        <a class="dropdown-item" href="merchant/dang-tin-san-pham/">Đăng tin sản phẩm</a>
+                    </div>
                 </li>
             </ul>
         </section>

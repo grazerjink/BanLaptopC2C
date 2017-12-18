@@ -27,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,6 +102,13 @@ public class MerchantProductController {
         return "merchant/dashboard/product/trang-dang-tin-san-pham";
     }
 
+    @RequestMapping("thong-tin-san-pham/{idSanPham}")
+    public String thongTinSanPham(Model model, @PathVariable Integer idSanPham) {
+        model.addAttribute("sanPham", sanPhamService.timSanPhamTheoId(idSanPham)); 
+        model.addAttribute("thongSo", sanPhamService.layThongSoKiThuatTheoSanPhamId(idSanPham));
+        return "merchant/dashboard/product/trang-thong-tin-san-pham";
+    }
+    
     @RequestMapping(value = "dang-tin-san-pham", method = RequestMethod.POST)
     public String dangTinSanPham(Model model,
             HttpSession httpSession,
@@ -124,10 +132,10 @@ public class MerchantProductController {
             Model model,
             HttpSession httpSession,
             @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
-            @RequestParam(value = "pageSize", defaultValue = "8") int pageSize) {
+            @RequestParam(value = "pageSize", defaultValue = "11") int pageSize) {
         NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
         List<SanPham> items = sanPhamService.taiTrangTheoViTri(nguoiBan.getId(), pageNo, pageSize);
-        model.addAttribute("items", items);
+        model.addAttribute("dsSanPham", items);
         return "merchant/blank/phan-trang";
     }
 

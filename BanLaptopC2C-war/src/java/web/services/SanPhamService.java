@@ -6,7 +6,9 @@
 package web.services;
 
 import ejb.business.SanPhamBusiness;
+import ejb.business.ThongSoKiThuatBusiness;
 import ejb.entities.SanPham;
+import ejb.entities.ThongSoKiThuat;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import web.commons.LookupFactory;
@@ -19,6 +21,7 @@ import web.commons.LookupFactory;
 public class SanPhamService {
 
     SanPhamBusiness sanPhamBusiness = (SanPhamBusiness) LookupFactory.lookupBeanBusiness("SanPhamBusiness");
+    ThongSoKiThuatBusiness thongSoKiThuatBusiness = (ThongSoKiThuatBusiness) LookupFactory.lookupBeanBusiness("ThongSoKiThuatBusiness");
 
     public List<SanPham> layDanhSachSanPhamTheoNguoiBan(int idNguoiBan) {
         return sanPhamBusiness.layDanhSachSanPhamTheoNguoiBan(idNguoiBan);
@@ -30,6 +33,10 @@ public class SanPhamService {
 
     public SanPham timSanPhamTheoId(Integer id) {
         return sanPhamBusiness.timSanPhamTheoId(id);
+    }
+    
+    public ThongSoKiThuat layThongSoKiThuatTheoSanPhamId(Integer id) {
+        return thongSoKiThuatBusiness.layThongSoKiThuatTheoSanPham(id);
     }
 
     public List<SanPham> taiTrangTheoViTri(int idNguoiBan, int pageNo, int pageSize) {

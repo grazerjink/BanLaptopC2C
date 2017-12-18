@@ -78,6 +78,7 @@ public class SanPhamBusiness {
     public List<SanPham> laySanPhamTheoViTri(int idNguoiBan, int pageSize, int pageNo) {
         try {
             Query q = em.createQuery("SELECT s FROM SanPham s WHERE s.idNguoiBan.id = :id");
+            q.setParameter("id", idNguoiBan);
             q.setMaxResults(pageSize);
             q.setFirstResult(pageNo * pageSize);
             List<SanPham> list = q.getResultList();

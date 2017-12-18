@@ -10,8 +10,8 @@
     <div class="col-lg-3" style="margin-bottom: 20px;">
         <div class="card v2q-card">    
             <div class="card-block">
-                <img class="v2q-item-image" src="assets/merchant/images/products/${sp.hinhAnhSanPhamList[0].tenHinh}">
-                <p class="v2q-item-title overflow ellipsis">${sp.tenMay}</p>
+                <a href="merchant/thong-tin-san-pham/${sp.id}"><img class="v2q-item-image" src="assets/merchant/images/products/${sp.hinhAnhSanPhamList[0].tenHinh}"></a>
+                <a href="merchant/thong-tin-san-pham/${sp.id}"><p class="v2q-item-title overflow ellipsis">${sp.tenMay}</p></a>
                 <span>Ngày đăng: <fmt:formatDate value="${sp.ngayDang}" pattern="dd / MM / yyyy"/></span><br>
                 <span>Số lượng còn: <span style="font-weight: bolder; font-size: 15px;">${sp.tonKho}</span> (máy)</span>
             </div>
@@ -24,8 +24,14 @@
                         <span style="color: red; font-weight: 500;">Sản phẩm hiện bị khóa.</span>
                     </c:otherwise>
                 </c:choose>
-
             </div>
         </div>
     </div>
 </c:forEach>
+<div class="col-lg-3">
+    <div class="card v2q-card v2q-card-add">   
+        <img class="v2q-image embed-responsive" src="assets/merchant/images/products/placeholder.png">
+        <span>Thêm sản phẩm mới</span>
+        <a href="merchant/dang-tin-san-pham/" class="btn btn-flat btn-warning-outline"></a>
+    </div>
+</div>   

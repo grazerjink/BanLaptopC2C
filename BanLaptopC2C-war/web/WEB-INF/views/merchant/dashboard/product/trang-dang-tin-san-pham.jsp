@@ -85,7 +85,7 @@
                         <h4 class="ks-main-title">Thông số kĩ thuật</h4>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Kích thước màn hình: </label>
-                            <div class="col-sm-4 v2q-input-wrapper">
+                            <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
                                     <form:select path="idKichThuocManHinh" cssClass="form-control ks-rounded v2q-input">
                                     <option selected disabled>Chọn kích thước màn hình</option>
@@ -98,7 +98,7 @@
                         </div>   
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Loại màn hình: </label>
-                            <div class="col-sm-4 v2q-input-wrapper">
+                            <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
                                     <form:select path="idLoaiManHinh" cssClass="form-control ks-rounded v2q-input">
                                     <option selected disabled>Chọn loại màn hình</option>
@@ -111,7 +111,7 @@
                         </div>   
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Độ phân giải: </label>
-                            <div class="col-sm-4 v2q-input-wrapper">
+                            <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
                                     <form:select path="idDoPhanGiai" cssClass="form-control ks-rounded v2q-input">
                                     <option selected disabled>Chọn độ phân giải</option>
@@ -124,7 +124,7 @@
                         </div>   
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Bộ vi xử lí: </label>
-                            <div class="col-sm-4 v2q-input-wrapper">
+                            <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
                                     <form:select path="idCpu" cssClass="form-control ks-rounded v2q-input">
                                     <option selected disabled>Chọn loại cpu</option>
@@ -137,7 +137,7 @@
                         </div>     
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Dung lượng ổ cứng: </label>
-                            <div class="col-sm-4 v2q-input-wrapper">
+                            <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
                                     <form:select path="idOCung" cssClass="form-control ks-rounded v2q-input">
                                     <option selected disabled>Chọn loại ổ cứng</option>
@@ -150,7 +150,7 @@
                         </div>    
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Ram: </label>
-                            <div class="col-sm-4 v2q-input-wrapper">
+                            <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
                                     <form:select path="idRam" cssClass="form-control ks-rounded v2q-input">
                                     <option selected disabled>Chọn loại ram</option>
@@ -163,7 +163,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label">Card màn hình: </label>
-                            <div class="col-sm-4 v2q-input-wrapper">
+                            <div class="col-sm-6 v2q-input-wrapper">
                                 <span class="icon-addon"><span class="la la-home"></span></span>
                                     <form:select path="idCardManHinh" cssClass="form-control ks-rounded v2q-input">
                                     <option selected disabled>Chọn card màn hình</option>
