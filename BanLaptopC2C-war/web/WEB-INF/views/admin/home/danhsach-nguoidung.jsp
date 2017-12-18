@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <h2> Danh sách người dùng</h2>
 
@@ -13,7 +14,7 @@
         <h5><a href="admin/dang-ky/" >Thêm người dùng</a></h5>
     </header>
     <div id="borderedTable" class="body collapse in">
-        <table class="table table-bordered responsive-table">
+        <table id="ks-datatable" class="table table-bordered responsive-table">
             <thead>
                 <tr>
                     <th>#</th>

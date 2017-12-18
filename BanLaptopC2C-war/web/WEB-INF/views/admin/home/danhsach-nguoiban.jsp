@@ -4,12 +4,18 @@
     Author     : Vivi
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<style>
+        #capnhat{
+            cursor: pointer;
+        }
+</style>
 <h2> Danh sách người bán hàng </h2>
 
 <div id="borderedTable" class="body collapse in">
-    <table class="table table-bordered responsive-table">
+    <table id="ks-datatable" class="table table-bordered responsive-table">
         <thead>
             <tr>
                 <th>#</th>
@@ -21,6 +27,7 @@
                 <th>Ngày đăng kí</th>
                  <th>Kích hoạt</th>
                 <th>Tình trạng</th>
+                 <th></th>
             </tr>
         </thead>
         <tbody>
@@ -32,12 +39,18 @@
                 <td>${nb.cmnd}</td>
                 <td>${nb.soDienThoai}</td>
                 <td>${nb.diaChi}</td>
-                <td>${nb.ngayDangKy}</td>
+                <td><fmt:formatDate value="${nb.ngayDangKy}" pattern="dd / MM / yyyy"/></td>
                  <td>${pm.trangThai == true ? "Đã kích hoạt" : "Chưa kích hoạt"}</td>
                 <td>${pm.trangThai == true ? "Đang hoạt động" : "Đang khóa"}</td>
+                <td><a id="capnhat" href="admin/capnhat-nguoiban/${nb.id}" >Cập nhật</a></td>
+
+          
                  
             </tr>
         </c:forEach>
         </tbody>               
     </table>
+   
 </div>
+
+

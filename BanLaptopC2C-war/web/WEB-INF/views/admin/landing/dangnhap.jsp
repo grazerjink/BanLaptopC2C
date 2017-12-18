@@ -3,7 +3,8 @@
     Created on : Dec 7, 2017, 9:51:12 AM
     Author     : Vivi
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
  <div class="form-signin">
     <div class="text-center">
@@ -28,29 +29,21 @@
             </form>
         </div>
         <div id="forgot" class="tab-pane">
-            <form action="index.html">
-                <p class="text-muted text-center">Enter your valid e-mail</p>
+            <form id="quen-mat-khau" action="admin/dangnhap/" method="POST">
+                <p class="text-muted text-center">Nhập email của bạn: </p>
                 <input type="email" placeholder="mail@domain.com" class="form-control">
                 <br>
-                <button class="btn btn-lg btn-danger btn-block" type="submit">Recover Password</button>
+                <button class="btn btn-lg btn-danger btn-block" type="submit">Xác nhận </button>
             </form>
         </div>
-        <div id="signup" class="tab-pane">
-            <form action="index.html">
-                <input type="text" placeholder="username" class="form-control top">
-                <input type="email" placeholder="mail@domain.com" class="form-control middle">
-                <input type="password" placeholder="password" class="form-control middle">
-                <input type="password" placeholder="re-password" class="form-control bottom">
-                <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
-            </form>
-        </div>
+        
     </div>
     <hr>
     <div class="text-center">
         <ul class="list-inline">
-            <li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
-            <li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
-            <li><a class="text-muted" href="#signup" data-toggle="tab">Signup</a></li>
+            <li><a class="text-muted" href="#login" data-toggle="tab">Đăng nhập</a></li>
+            <li><a class="text-muted" href="#forgot" data-toggle="tab">Quên mật khẩu</a></li>
+            
         </ul>
     </div>
   </div>
@@ -78,3 +71,23 @@
             });
         })(jQuery);
     </script>
+<script>
+    $(function () {
+        $("#quen-mat-khau").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                email: {
+                    required: "Vui lòng nhập email.",
+                    email: "Chưa đúng định dạng email."
+                }
+            }
+        });
+   
+    });
+</script>  
+

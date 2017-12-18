@@ -8,6 +8,7 @@ package web.services;
 import ejb.business.NguoiBanBusiness;
 import ejb.business.SanPhamBusiness;
 import ejb.business.SoTinTonBusiness;
+import ejb.entities.Admin;
 import ejb.entities.HinhAnhSanPham;
 import ejb.entities.NguoiBan;
 import ejb.entities.SanPham;
@@ -58,8 +59,6 @@ import web.viewmodels.SanPhamViewModel;
  *
  * @author Winson Mac
  */
-
-
 @Component
 public class NguoiBanService {
 
@@ -249,7 +248,7 @@ public class NguoiBanService {
                     SoTinTon newSoTin = new SoTinTon();
                     newSoTin.setIdNguoiBan(nguoiBan);
                     newSoTin.setNgayCapNhat(hienTai);
-                    newSoTin.setSoTinDaDung(1);
+                    newSoTin.setSoTinThayDoi(1);
                     newSoTin.setSoTinTon(soTinTon - 1);
                     soTinTonFacade.create(newSoTin);
                     SanPham sp = new SanPham();
@@ -309,4 +308,29 @@ public class NguoiBanService {
             return false;
         }
     }
+        //         public Admin timNguoiDung(int id) {
+        //            try {
+        //                return adminFacade.find(id);
+        //            } catch (Exception e) {
+        //                return null;
+        //            }
+        //        }
+
+    public NguoiBan timNguoiBan(Integer id) {
+        try {
+            return nguoiBanFacade.find(id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public boolean capNhatNguoiBan(NguoiBan nguoiban) {
+        try {
+            nguoiBanFacade.edit(nguoiban);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

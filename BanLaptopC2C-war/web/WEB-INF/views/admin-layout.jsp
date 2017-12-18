@@ -8,6 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
+        
         <base href="${pageContext.request.contextPath}/"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -42,8 +44,36 @@
 
         <!-- animate.css stylesheet -->
         <link rel="stylesheet" href="assets/admin/lib/animate.css/animate.css">
-
-
+         <!-- Thư viện DataTable -->
+        <link rel="stylesheet" type="text/css" href="assets/merchant/template/libs/datatables-net/media/css/dataTables.bootstrap4.min.css"> <!-- original -->
+        <link rel="stylesheet" type="text/css" href="assets/merchant/template/styles/libs/datatables-net/datatables.min.css"> <!-- customization -->
+        <link rel="stylesheet" type="text/css" href="assets/merchant/template/libs/select2/css/select2.min.css"> <!-- Original -->
+        <link rel="stylesheet" type="text/css" href="assets/merchant/template/styles/libs/select2/select2.min.css"> <!-- Customization -->
+        
+      
+        <!--jQuery -->
+        <script src="assets/admin/lib/jquery/jquery.js"></script>
+        <!--Bootstrap -->
+        <script src="assets/admin/lib/bootstrap/js/bootstrap.js"></script>
+        <!-- MetisMenu -->
+        <script src="assets/admin/lib/metismenu/metisMenu.js"></script>
+        <!-- onoffcanvas -->
+        <script src="assets/admin/lib/onoffcanvas/onoffcanvas.js"></script>
+        <!-- Screenfull -->
+        <script src="assets/admin/lib/screenfull/screenfull.js"></script>
+        <!-- Metis core scripts -->
+        <script src="assets/admin/js/core.js"></script>
+        <!-- Metis demo scripts -->
+        <script src="assets/admin/js/app.js"></script>
+        <script src="assets/admin/js/style-switcher.js"></script>
+        
+        <!-- Thư viện DataTable -->
+        <script src="assets/merchant/template/libs/datatables-net/media/js/jquery.dataTables.min.js"></script>
+        <script src="assets/merchant/template/libs/datatables-net/media/js/dataTables.bootstrap4.min.js"></script>
+        <script src="assets/merchant/template/libs/select2/js/select2.min.js"></script>
+        
+        
+        
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -175,20 +205,35 @@
         </div>
         <!-- /.modal -->
         <!-- /#helpModal -->
-        <!--jQuery -->
-        <script src="assets/admin/lib/jquery/jquery.js"></script>
-        <!--Bootstrap -->
-        <script src="assets/admin/lib/bootstrap/js/bootstrap.js"></script>
-        <!-- MetisMenu -->
-        <script src="assets/admin/lib/metismenu/metisMenu.js"></script>
-        <!-- onoffcanvas -->
-        <script src="assets/admin/lib/onoffcanvas/onoffcanvas.js"></script>
-        <!-- Screenfull -->
-        <script src="assets/admin/lib/screenfull/screenfull.js"></script>
-        <!-- Metis core scripts -->
-        <script src="assets/admin/js/core.js"></script>
-        <!-- Metis demo scripts -->
-        <script src="assets/admin/js/app.js"></script>
-        <script src="assets/admin/js/style-switcher.js"></script>
     </body>
 </html>
+<script>
+    $(function() {
+         $('#ks-datatable').DataTable({
+            pagingType: "full_numbers",
+            language: {
+                info: "Đang hiển thị trang _PAGE_ trong tổng _PAGES_ trang",
+                infoFiltered: " (trong tổng số _MAX_ kết quả)",
+                infoEmpty: "Không có dữ liệu để hiển thị",
+                emptyTable: "Không có dữ liệu để hiển thị",
+                lengthMenu: "Hiển thị _MENU_ kết quả",
+                search: "Tìm kiếm",
+                searchPlaceholder: "Nhập nội dung cần tìm...",
+                zeroRecords: "Không tìm thấy dữ liệu cần tìm",
+                paginate: {
+                    first:      "Đầu tiên",
+                    last:       "Cuối cùng",
+                    next:       "Tiếp",
+                    previous:   "Trước"
+                }                
+            },
+            initComplete: function () {
+                $('.dataTables_wrapper select').select2({
+                    minimumResultsForSearch: Infinity
+                });
+            }
+        });
+    });
+    
+   
+</script>

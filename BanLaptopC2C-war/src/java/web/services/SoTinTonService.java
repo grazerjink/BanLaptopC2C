@@ -45,7 +45,7 @@ public class SoTinTonService {
         SoTinTon soTinTon = new SoTinTon();
         soTinTon.setIdNguoiBan(nguoiBan);
         soTinTon.setNgayCapNhat(new Date());
-        soTinTon.setSoTinDaDung(0);
+        soTinTon.setSoTinThayDoi(0);
         soTinTon.setSoTinTon(soTinHienTai);
         soTinTonFacade.create(soTinTon);
     }

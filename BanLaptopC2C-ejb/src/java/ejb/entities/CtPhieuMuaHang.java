@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
 @Entity
 @Table(name = "ct_phieu_mua_hang")
@@ -58,8 +58,6 @@ public class CtPhieuMuaHang implements Serializable {
     @NotNull
     @Column(name = "thanh_tien")
     private float thanhTien;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "ngay_giao_hang")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayGiaoHang;
@@ -83,12 +81,11 @@ public class CtPhieuMuaHang implements Serializable {
         this.id = id;
     }
 
-    public CtPhieuMuaHang(Integer id, float giaBan, int soLuongMua, float thanhTien, Date ngayGiaoHang) {
+    public CtPhieuMuaHang(Integer id, float giaBan, int soLuongMua, float thanhTien) {
         this.id = id;
         this.giaBan = giaBan;
         this.soLuongMua = soLuongMua;
         this.thanhTien = thanhTien;
-        this.ngayGiaoHang = ngayGiaoHang;
     }
 
     public Integer getId() {

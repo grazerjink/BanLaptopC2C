@@ -7,6 +7,7 @@ package web.controllers.admin;
 
 import ejb.entities.Admin;
 import ejb.entities.DanhGia;
+import ejb.entities.NguoiBan;
 import ejb.entities.PhieuMuaHang;
 import ejb.entities.PhieuMuaTin;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.services.AdminService;
 import web.services.DanhGiaService;
+import web.services.NguoiBanService;
 import web.services.PhieuMuaHangService;
 import web.services.PhieuMuaTinService;
 
@@ -40,6 +42,8 @@ public class AdminController {
     PhieuMuaHangService phieuMuaHangService;
     @Autowired
     DanhGiaService danhGiaService;
+    @Autowired
+    NguoiBanService nguoibanService;
 
     // Đăng nhập 
     @RequestMapping("dangnhap")
@@ -92,7 +96,8 @@ public class AdminController {
             @PathVariable("id") Integer id) {
         model.addAttribute("admin", adminService.timNguoiDung(id));
         return "admin/home/sua-nguoi-dung";
-    }
+    } 
+
 
     @RequestMapping(value = "cap-nhat", method = RequestMethod.POST)
     public String capNhat(Model model,
@@ -137,11 +142,19 @@ public class AdminController {
     public String layDanhSachHoaDon(Model model) {
         return "admin/home/danhsach-phieumuahang";
     }
-
+     // lay danh sach phieu mua hang
     @ModelAttribute("dsPhieuMuaHang")
     public List<PhieuMuaHang> layDanhSachPhieuMuaHang() {
         return phieuMuaHangService.layDanhSachPhieuMuaHang();
     }
+    // Danh sach phieu mua hang
+    @RequestMapping("chitiet-phieumuahang/{mapm}")
+    public String layDanhSachChiTietHoaDontheoMa(Model model, @PathVariable("mapm") Integer mapm ) {
+        model.addAttribute("ctPhieuMuaHang", phieuMuaHangService.layChiTiet_PhieuMuaHang(mapm));
+        return "admin/home/chitiet-phieumuahang";
+    }
+     
+    
 
     // Thong ke danh gia cua Merchant
     @RequestMapping("thongke-danhgia")
@@ -152,6 +165,35 @@ public class AdminController {
     @ModelAttribute("dsThongKeDanhGia")
     public List<DanhGia> layDSThongKeDanhGia() {
         return danhGiaService.layDSThongKeDanhGia();
+    }
+    
+    // Cập nhật tài khoản người bán
+    
+//    @RequestMapping("chitiet-phieumuahang/{mapm}")
+//    public String layDanhSachChiTietHoaDontheoMa(Model model, @PathVariable("mapm") Integer mapm ) {
+//        model.addAttribute("ctPhieuMuaHang", phieuMuaHangService.layChiTiet_PhieuMuaHang(mapm));
+//        return "admin/home/chitiet-phieumuahang";
+//    }
+    
+    @RequestMapping("capnhat-nguoiban/{manb}")
+    public String capNhatNguoiBan(Model model, @PathVariable("manb") Integer manb) {
+        model.addAttribute("nguoiBan", nguoibanService.timNguoiBan(manb));
+        return "admin/home/capnhat-nguoiban";
+    }
+   
+    @RequestMapping(value="nguoiBan", method = RequestMethod.POST)
+    public String capNhatNguoiBan(Model model, @ModelAttribute() NguoiBan nguoiban)
+    {
+        // goi phuong thuc service 1 phan
+        boolean daSua = nguoibanService.capNhatNguoiBan(nguoiban);
+        if (daSua) {
+            model.addAttribute("message", "Cập nhật tình trạng thành công");
+            return "redirect:/admin/capnhat-nguoiban/";
+        } else {
+            model.addAttribute("message", "Cập nhật thất bại");
+            return "admin/home/capnhat-nguoiban";
+        }
+        
     }
 
 }

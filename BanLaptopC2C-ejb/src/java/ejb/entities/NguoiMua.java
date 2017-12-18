@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
 @Entity
 @Table(name = "nguoi_mua")
