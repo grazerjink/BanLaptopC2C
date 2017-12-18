@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="tab-1 resp-tab-content" aria-labelledby="tab_hang-moi">
-    <c:forEach items="${dsSanPham}" var="sp">
+    <c:forEach items="${dsSanPhammoi}" var="sp">
         <div class="col-md-3 product-men" style="margin-bottom: 20px;">
             <div class="men-pro-item simpleCart_shelfItem">
                 <div class="men-thumb-item">
@@ -27,11 +27,9 @@
                     </div>
                     <span class="v2q-product-shop" style="font-size: 1em">${sp.idNguoiBan.tenGianHang}</span>
                     <div class="v2q-rating">
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
-                        <span class="v2q-star fa fa-star"></span>
+                        <c:forEach var="i" begin="1" end="${sp.idNguoiBan.diemTrungBinh}">
+                         <span class="v2q-star fa fa-star"></span>   
+                        </c:forEach>
                     </div>
                     <a class="item_add single-item hvr-outline-out button2 v2q-btn-buy" data-prod-id="${sp.id}">Thêm giỏ hàng</a>									
                 </div>

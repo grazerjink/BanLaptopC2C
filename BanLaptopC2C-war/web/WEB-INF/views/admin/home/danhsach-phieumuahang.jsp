@@ -29,6 +29,12 @@
             </nav>
         </div>           
         <!-- /.toolbar -->
+        
+        <style>
+            #capnhat{
+                cursor: pointer;
+            }
+        </style>
     </header>
     <div id="div-1" class="body">
         <form class="form-horizontal">
@@ -63,16 +69,15 @@
     </div>
 </div>
 <div id="borderedTable" class="body collapse in">
-    <table class="table table-bordered responsive-table">
+    <table id="ks-datatable" class="table table-bordered responsive-table">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Ngày đặt hàng</th>
-                <th>Tên người bán</th>
+                <th>Tên người mua</th>
                 <th>Số điện thoại</th>
                 <th>Tên Người Nhận</th>
                 <th>Số điện thoại</th>
-                <th>Tình trạng</th>
                 <th></th>
 
             </tr>
@@ -86,10 +91,7 @@
                     <td>${pmh.soDienThoai}</td>
                     <td>${pmh.tenNguoiNhan}</td>
                     <td>${pmh.soDienThoai} </td>
-                    <td>
-                        111111
-                    </td>
-                    <td><a>Xem chi tiết </a></td>
+                    <td><a href="admin/chitiet-phieumuahang/${pmh.id}" target="_blank" id="capnhat">Xem chi tiết </a></td>
                 </tr>
             </c:forEach>
         </tbody>            

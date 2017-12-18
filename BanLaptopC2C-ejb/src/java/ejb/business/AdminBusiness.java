@@ -6,10 +6,12 @@
 package ejb.business;
 
 import ejb.entities.Admin;
+import ejb.entities.NguoiBan;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -58,6 +60,26 @@ public class AdminBusiness {
             
         }
         return admin;
+    }
+//    public NguoiBan timTheoEmail(String email) {
+//        try {
+//            Query q = em.createNamedQuery("NguoiBan.findByEmail");
+//            q.setParameter("email", email);
+//            return (NguoiBan) q.getSingleResult();
+//        } catch (NoResultException e) {
+//            return null;
+//        }
+//    }
+    
+    public Admin timtheoEmail(String email)
+    {
+        try {
+            Query q = em.createNamedQuery("Admin.findByEmail");
+            q.setParameter("email", email);
+            return (Admin) q.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
     

@@ -70,7 +70,7 @@ import web.viewmodels.SanPhamViewModel;
 public class NguoiBanService {
 
     @Autowired
-    MailerService mailerService;            
+    MailerService mailerService;
 
     UserTransaction tx = LookupFactory.lookupUserTransaction();
     PhieuMuaTinFacade phieuMuaTinFacade = (PhieuMuaTinFacade) LookupFactory.lookupBeanFacade("PhieuMuaTinFacade");
@@ -337,9 +337,9 @@ public class NguoiBanService {
             phieuMuaTin.setPhuongThucThanhToan(Constants.GD_TRUC_TIEP);
             phieuMuaTin.setGiaBan(goiTin.getGiaBan());
             int idPhieuMuaTin = phieuMuaTinBusiness.taoPhieuMuaTin(phieuMuaTin);
-         
+
             int soTinHienTai = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), new Date());
-            SoTinTon soTinTon = new SoTinTon();   
+            SoTinTon soTinTon = new SoTinTon();
             soTinTon.setIdNguoiBan(nguoiBan);
             soTinTon.setNgayCapNhat(new Date());
             soTinTon.setSoTinThayDoi(0);
@@ -354,7 +354,7 @@ public class NguoiBanService {
             } catch (IllegalStateException | SecurityException | SystemException ex1) {
                 Logger.getLogger(NguoiBanService.class.getName()).log(Level.SEVERE, null, ex1);
             }
-        } 
+        }
     }
 
     public void muaTinQuaPayPal(GoiTin goiTin, String paymentId, String payerId, HttpSession httpSession) {
@@ -371,16 +371,15 @@ public class NguoiBanService {
             phieuMuaTin.setPayerId(payerId);
             phieuMuaTin.setGiaBan(goiTin.getGiaBan());
             int idPhieuMuaTin = phieuMuaTinBusiness.taoPhieuMuaTin(phieuMuaTin);
-            
-            SoTinTon soTinTon = new SoTinTon();            
+
+            SoTinTon soTinTon = new SoTinTon();
             int soTinHienTai = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), new Date());
-            if(nguoiBan.getLanDauMuaTin()) {
+            if (nguoiBan.getLanDauMuaTin()) {
                 soTinHienTai += goiTin.getSoTin() + 5;
-                soTinTon.setSoTinThayDoi(goiTin.getSoTin()+5);
-                nguoiBan.setLanDauMuaTin(false);      
+                soTinTon.setSoTinThayDoi(goiTin.getSoTin() + 5);
+                nguoiBan.setLanDauMuaTin(false);
                 nguoiBanFacade.edit(nguoiBan);
-            }
-            else {
+            } else {
                 soTinTon.setSoTinThayDoi(goiTin.getSoTin());
                 soTinHienTai += goiTin.getSoTin();
             }
@@ -399,6 +398,32 @@ public class NguoiBanService {
                 Logger.getLogger(NguoiBanService.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
-        
+
+    }
+    //         public Admin timNguoiDung(int id) {
+    //            try {
+    //                return adminFacade.find(id);
+    //            } catch (Exception e) {
+    //                return null;
+    //            }
+    //        }
+
+    public NguoiBan timNguoiBan(Integer id) {
+        try {
+            return nguoiBanFacade.find(id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public boolean capNhatNguoiBan(NguoiBan nguoiban) {
+        try {
+            NguoiBan ng = nguoiBanFacade.find(nguoiban.getId());
+            ng.setTrangThai(nguoiban.getTrangThai());
+            nguoiBanFacade.edit(ng);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

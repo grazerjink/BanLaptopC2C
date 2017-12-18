@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
 @Entity
 @Table(name = "ct_phieu_mua_hang")

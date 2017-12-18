@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 17, 2017 at 06:41 PM
+-- Generation Time: Dec 18, 2017 at 09:06 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -12925,7 +12925,7 @@ CREATE TABLE IF NOT EXISTS `san_pham` (
   PRIMARY KEY (`id`),
   KEY `fk_sanpham_hangsanxuat` (`id_hang_san_xuat`),
   KEY `fk_sanpham_nguoiban` (`id_nguoi_ban`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `san_pham`
@@ -12939,7 +12939,18 @@ INSERT INTO `san_pham` (`id`, `ten_may`, `gia_ban`, `id_hang_san_xuat`, `mo_ta`,
 (5, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
 (6, 'Máy tính ASUS Gaming GX150', 27000000, 'AS', 'Máy tính ASUS Gaming GX150', 10, 1, '2017-12-10 14:51:12', 0, 0, b'1', b'1'),
 (7, 'Macbook air 13 inch 2017', 21000000, 'AP', 'Macbook air 13 inch 2017', 10, 2, '2017-12-10 15:00:57', 0, 0, b'1', b'1'),
-(9, 'ABCDEdsadasdasda', 231321000000, 'DE', 'sadasdasdasdasd', 123, 1, '2017-12-17 12:28:10', 0, 0, b'1', b'1');
+(9, 'ABCDEdsadasdasda', 231321000000, 'DE', 'sadasdasdasdasd', 123, 1, '2017-12-17 12:28:10', 0, 0, b'1', b'1'),
+(10, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(11, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(12, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(13, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(14, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(15, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(16, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(17, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(18, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(19, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1'),
+(20, 'Dell XPS 13\"', 31000000, 'DE', 'Dell XPS 13\"', 20, 1, '2017-12-08 22:54:12', 0, 0, b'1', b'1');
 
 -- --------------------------------------------------------
 

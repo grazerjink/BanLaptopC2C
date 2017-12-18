@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
 @Entity
 @Table(name = "hinh_anh_san_pham")

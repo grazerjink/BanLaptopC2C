@@ -5,10 +5,8 @@
  */
 package web.viewmodels;
 
-import ejb.entities.PhuongXa;
-import ejb.entities.QuanHuyen;
-import ejb.entities.ThanhPho;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -27,14 +25,19 @@ public class NguoiMuaViewModel {
     private String matKhau;
     @NotEmpty
     private String matKhauXacNhan;
+    @NotEmpty
     @Pattern(regexp = "[0-9]{10,11}")
-    private String soDienThoai;
-    private String hoTen;
-    private Date ngaySinh;
-    private String diaChi;
-    PhuongXa idPhuongXa;
-    QuanHuyen idQuanHuyen;
-    ThanhPho idThanhPho;
+    String soDienThoai;
+    @NotEmpty
+    String hoTen;
+    @NotEmpty
+    String diaChi;
+    @NotNull
+    Integer idPhuongXa;
+    @NotNull
+    Integer idQuanHuyen;
+    @NotNull
+    Integer idThanhPho;
 
     public String getEmail() {
         return email;
@@ -52,21 +55,13 @@ public class NguoiMuaViewModel {
         this.matKhau = matKhau;
     }
 
-    public String getHoTen() {
-        return hoTen;
+    public String getMatKhauXacNhan() {
+        return matKhauXacNhan;
     }
 
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
-    }
-
-    public Date getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh(Date ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
+    public void setMatKhauXacNhan(String matKhauXacNhan) {
+        this.matKhauXacNhan = matKhauXacNhan;
+    }   
 
     public String getSoDienThoai() {
         return soDienThoai;
@@ -76,6 +71,14 @@ public class NguoiMuaViewModel {
         this.soDienThoai = soDienThoai;
     }
 
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+    
     public String getDiaChi() {
         return diaChi;
     }
@@ -84,35 +87,27 @@ public class NguoiMuaViewModel {
         this.diaChi = diaChi;
     }
 
-    public String getMatKhauXacNhan() {
-        return matKhauXacNhan;
-    }
-
-    public void setMatKhauXacNhan(String matKhauXacNhan) {
-        this.matKhauXacNhan = matKhauXacNhan;
-    }
-
-    public PhuongXa getIdPhuongXa() {
+    public Integer getIdPhuongXa() {
         return idPhuongXa;
     }
 
-    public void setIdPhuongXa(PhuongXa idPhuongXa) {
+    public void setIdPhuongXa(Integer idPhuongXa) {
         this.idPhuongXa = idPhuongXa;
     }
 
-    public QuanHuyen getIdQuanHuyen() {
+    public Integer getIdQuanHuyen() {
         return idQuanHuyen;
     }
 
-    public void setIdQuanHuyen(QuanHuyen idQuanHuyen) {
+    public void setIdQuanHuyen(Integer idQuanHuyen) {
         this.idQuanHuyen = idQuanHuyen;
     }
 
-    public ThanhPho getIdThanhPho() {
+    public Integer getIdThanhPho() {
         return idThanhPho;
     }
 
-    public void setIdThanhPho(ThanhPho idThanhPho) {
+    public void setIdThanhPho(Integer idThanhPho) {
         this.idThanhPho = idThanhPho;
     }
 

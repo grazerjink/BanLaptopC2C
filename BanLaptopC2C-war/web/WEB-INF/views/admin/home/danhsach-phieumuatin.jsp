@@ -53,7 +53,7 @@
     </div>
 </div>
 <div id="borderedTable" class="body collapse in">
-    <table class="table table-bordered responsive-table">
+    <table id="ks-datatable" class="table table-bordered responsive-table">
         <thead>
             <tr>
                 <th>#</th>

@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Winson Mac
+ * @author Vivi
  */
 @Stateless
 public class CtPhieuMuaHangFacade extends AbstractFacade<CtPhieuMuaHang> {
