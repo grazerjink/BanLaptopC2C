@@ -418,7 +418,9 @@ public class NguoiBanService {
 
     public boolean capNhatNguoiBan(NguoiBan nguoiban) {
         try {
-            nguoiBanFacade.edit(nguoiban);
+            NguoiBan ng = nguoiBanFacade.find(nguoiban.getId());
+            ng.setTrangThai(nguoiban.getTrangThai());
+            nguoiBanFacade.edit(ng);
             return true;
         } catch (Exception e) {
             return false;

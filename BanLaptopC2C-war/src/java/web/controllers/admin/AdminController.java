@@ -51,6 +51,12 @@ public class AdminController {
     public String dangNhap() {
         return "admin/landing/dangnhap";
     }
+    
+    @RequestMapping("dangxuat")
+    public String dangXuat(HttpSession httpSession) {
+        httpSession.removeAttribute("admin");
+        return "admin/landing/dangnhap";
+    }
 
     @RequestMapping(value = "dangnhap", method = RequestMethod.POST)
     public String login(Model model,
@@ -193,18 +199,15 @@ public class AdminController {
         return "admin/home/capnhat-nguoiban";
     }
 
-    @RequestMapping(value = "nguoiBan", method = RequestMethod.POST)
-    public String capNhatNguoiBan(Model model, @ModelAttribute() NguoiBan nguoiban) {
+    @RequestMapping(value = "capnhat-nguoiban", method = RequestMethod.POST)
+    public String capNhatNguoiBan(Model model, @ModelAttribute("nguoiBan") NguoiBan nguoiban) {
         // goi phuong thuc service 1 phan
-        boolean daSua = nguoibanService.capNhatNguoiBan(nguoiban);
-        if (daSua) {
-            model.addAttribute("message", "Cập nhật tình trạng thành công");
-            return "redirect:/admin/capnhat-nguoiban/";
+        if (nguoibanService.capNhatNguoiBan(nguoiban)) {
+            model.addAttribute("message", "Cập nhật tình trạng thành công");            
         } else {
             model.addAttribute("message", "Cập nhật thất bại");
-            return "admin/home/capnhat-nguoiban";
         }
-
+        return "redirect:/admin/capnhat-nguoiban/"+nguoiban.getId();
     }
 
     // Hien danh sach nguoi ban 
