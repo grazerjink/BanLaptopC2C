@@ -11,8 +11,7 @@
         <a href="cap-nhat-thong-tin/" class="list-group-item">Cập nhật thông tin</a>
         <a href="xem-phieu-mua/" class="list-group-item list-group-item-action">Lịch sử giao dịch</a>
         <a href="danh-gia-nguoi-ban/" class="list-group-item list-group-item-action">Đánh giá người bán</a>
-        <a href="doi-mat-khau/" class="list-group-item list-group-item-action">Đổi mật khẩu</a>
-        <a href="lien-he/" class="list-group-item list-group-item-action">Liên hệ</a>
+        <a href="doi-mat-khau/" class="list-group-item list-group-item-action">Đổi mật khẩu</a>   
         <a href="dang-xuat/" class="list-group-item list-group-item-action">Đăng xuất</a>
     </div>
 </div>
