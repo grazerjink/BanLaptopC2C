@@ -49,12 +49,12 @@ public class DanhGia implements Serializable {
     @NotNull
     @Column(name = "su_dung")
     private boolean suDung;
+    @JoinColumn(name = "id_don_hang", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private CtPhieuMuaHang idDonHang;
     @JoinColumn(name = "id_nguoi_ban", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private NguoiBan idNguoiBan;
-    @JoinColumn(name = "id_don_hang", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private PhieuMuaHang idDonHang;
 
     public DanhGia() {
     }
@@ -93,20 +93,20 @@ public class DanhGia implements Serializable {
         this.suDung = suDung;
     }
 
+    public CtPhieuMuaHang getIdDonHang() {
+        return idDonHang;
+    }
+
+    public void setIdDonHang(CtPhieuMuaHang idDonHang) {
+        this.idDonHang = idDonHang;
+    }
+
     public NguoiBan getIdNguoiBan() {
         return idNguoiBan;
     }
 
     public void setIdNguoiBan(NguoiBan idNguoiBan) {
         this.idNguoiBan = idNguoiBan;
-    }
-
-    public PhieuMuaHang getIdDonHang() {
-        return idDonHang;
-    }
-
-    public void setIdDonHang(PhieuMuaHang idDonHang) {
-        this.idDonHang = idDonHang;
     }
 
     @Override

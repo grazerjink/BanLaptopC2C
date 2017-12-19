@@ -38,14 +38,10 @@ public class SanPhamBusiness {
 
     public List<SanPham> layDanhSachSanPhamTheoNguoiBan(int idNguoiBan) {
         try {
-            em.flush();
             Query q = em.createQuery("SELECT s FROM SanPham s WHERE s.idNguoiBan.id = :id");
             q.setParameter("id", idNguoiBan);
-            List<SanPham> sp = q.getResultList();
-            sp.forEach(x -> {
-                x.getHinhAnhSanPhamList().size();
-            });
-            return sp;
+            List<SanPham> list = q.getResultList();
+            return list;
         } catch (NoResultException e) {
             return null;
         }
@@ -59,7 +55,7 @@ public class SanPhamBusiness {
             sp.forEach(x -> {
                 x.getHinhAnhSanPhamList().size();
             });
-            Collections.shuffle(sp);            
+            Collections.shuffle(sp);
             return sp;
         } catch (NoResultException e) {
             return null;
@@ -79,4 +75,54 @@ public class SanPhamBusiness {
         }
     }
 
+    public List<SanPham> laySanPhamTheoViTri(int idNguoiBan, int pageSize, int pageNo) {
+        try {
+            Query q = em.createQuery("SELECT s FROM SanPham s WHERE s.idNguoiBan.id = :id");
+            q.setParameter("id", idNguoiBan);
+            q.setMaxResults(pageSize);
+            q.setFirstResult(pageNo * pageSize);
+            List<SanPham> list = q.getResultList();
+            return list;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<SanPham> danhsachspmoi() {
+        try {
+            em.flush();
+            Query q = em.createQuery("SELECT s FROM SanPham s ORDER BY S.id DESC");
+
+            return q.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<SanPham> danhsachspxemnhieu() {
+        try {
+            em.flush();
+            Query q = em.createQuery("SELECT s FROM SanPham s ORDER BY S.soLanXem DESC");
+            return q.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<SanPham> danhsachspbanchay() {
+        try {
+            em.flush();
+            Query q = em.createQuery("SELECT s FROM SanPham s ORDER BY S.soLanMua DESC");
+
+            return q.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<SanPham> timkiemnangcao(String query) {
+        Query qr = em.createQuery(query);
+//        Query qr1 = em.createNativeQuery("select * from SanPham", SanPham.class);
+        return qr.getResultList();
+    }
 }

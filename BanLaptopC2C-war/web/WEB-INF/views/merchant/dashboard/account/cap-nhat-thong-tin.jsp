@@ -26,56 +26,9 @@
     .v2q-user-panel .ks-info .ks-name span {
         font-size: 22px;
     }
-    .v2q-save:hover {
-        background-color: #FFECB3;
-        color: #FDA30E;
+    .div-error {
+        margin-top: 32px;
     }
-    .v2q-save:active {
-        background-color: #FDA30E;
-        color: #FFF;
-    }
-    .v2q-item .v2q-amount span{
-        font-size: 1.5em;
-        color: #FDA30E;
-    }
-    .v2q-item .v2q-text span {
-        font-size: 1.2em;
-    }
-    .v2q-input-wrapper {
-        position: relative;
-    }
-    .v2q-input {
-        position: absolute;
-        left: 0;
-        top: -8px;
-        padding-left: 50px;
-        font-size: .98em;
-    }
-    .v2q-input-wrapper .icon-addon {
-        position: absolute;
-        left: 5px;
-        top: -4px;
-        z-index: 1;
-        border-radius: 15px;
-        width: 30px;
-        height: 30px;
-        text-align: center;        
-    }
-    .form-control:hover {
-        border-color: #FFC237;
-    }
-    .form-control:focus {
-        border-color: #FDA30E;
-    }
-    .form-control:focus:hover{
-        border-color: #FDA30E;
-        box-shadow: none;
-    }
-    .v2q-input-wrapper .icon-addon span {
-        font-size: 20px;
-        line-height: 30px;
-        color: #FDA30E;
-    } 
 </style>
 <div class="tab-pane active" id="chinhsua" role="tabpanel" aria-expanded="false">
     <form:form modelAttribute="nguoiBan" action="merchant/cap-nhat-thong-tin/" method="post">  
@@ -84,11 +37,19 @@
         <form:hidden path="matKhauXacNhan" value="notempty"/>
         <form:hidden path="cmnd" value="0123456789"/> 
         <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Tên gian hàng: </label>
+            <div class="col-sm-6 v2q-input-wrapper">
+                <span class="icon-addon"><span class="la la-home"></span></span>
+                <form:input path="tenGianHang" cssClass="form-control ks-rounded v2q-input" value="${merchant.tenGianHang}"/>
+                <form:errors path="tenGianHang" cssClass="serverError"/>
+            </div>
+        </div>   
+        <div class="form-group row">
             <label class="col-sm-2 form-control-label">Họ tên: </label>
             <div class="col-sm-6 v2q-input-wrapper">
                 <span class="icon-addon"><span class="la la-home"></span></span>
                     <form:input path="hoTen" cssClass="form-control ks-rounded v2q-input" value="${merchant.hoTen}"/>
-                    <form:errors path="hoTen" cssClass="serverError" />
+                    <form:errors path="hoTen" cssClass="serverError"/>
             </div>
         </div>    
         <div class="form-group row">
@@ -222,6 +183,9 @@
         });
         $("#nguoiBan").validate({
             rules: {
+                tenGianHang: {
+                    required: true
+                },
                 hoTen: {
                     required: true,
                     pattern: /^[^\d]+$/
@@ -235,6 +199,9 @@
                 }
             },
             messages: {
+                tenGianHang: {
+                    required: "Vui lòng nhập tên gian hàng."
+                },
                 hoTen: {
                     required: "Vui lòng nhập họ tên.",
                     pattern: "Tên không thể nhập ký tự số."

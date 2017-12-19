@@ -60,7 +60,7 @@
                     <a class="nav-link ${(param.tab==null || param.tab==1)?'active':''}" href="#" data-toggle="tab" data-target="#chinhsua" aria-expanded="true">Thông tin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link ${param.tab==2?'active':''}" href="#" data-toggle="tab" data-target="#lich-su-su-dung-tin" aria-expanded="false">Lịch sử sử dụng tin</a>
+                    <a class="nav-link ${param.tab==2?'active':''}" href="#" data-toggle="tab" data-target="#lich-su-su-dung-tin" aria-expanded="false">Lịch sử tin đăng</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link ${param.tab==3?'active':''}" href="#" data-toggle="tab" data-target="#doimatkhau" aria-expanded="false">Đổi mật khẩu</a>

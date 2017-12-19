@@ -40,8 +40,8 @@
                 <td>${nb.soDienThoai}</td>
                 <td>${nb.diaChi}</td>
                 <td><fmt:formatDate value="${nb.ngayDangKy}" pattern="dd / MM / yyyy"/></td>
-                 <td>${pm.trangThai == true ? "Đã kích hoạt" : "Chưa kích hoạt"}</td>
-                <td>${pm.trangThai == true ? "Đang hoạt động" : "Đang khóa"}</td>
+                 <td>${nb.kichHoat == true ? "Đã kích hoạt" : "Chưa kích hoạt"}</td>
+                <td>${nb.trangThai == true ? "Đang hoạt động" : "Đang khóa"}</td>
                 <td><a id="capnhat" href="admin/capnhat-nguoiban/${nb.id}" >Cập nhật</a></td>
 
           

@@ -6,14 +6,17 @@
 package web.services;
 
 import ejb.business.NguoiBanBusiness;
+import ejb.business.PhieuMuaTinBusiness;
 import ejb.business.SanPhamBusiness;
 import ejb.business.SoTinTonBusiness;
-import ejb.entities.Admin;
+import ejb.entities.GoiTin;
 import ejb.entities.HinhAnhSanPham;
 import ejb.entities.NguoiBan;
+import ejb.entities.PhieuMuaTin;
 import ejb.entities.SanPham;
 import ejb.entities.SoTinTon;
 import ejb.entities.ThongSoKiThuat;
+import ejb.entities.TinhTrang;
 import ejb.sessions.CardManHinhFacade;
 import ejb.sessions.CpuFacade;
 import ejb.sessions.DoPhanGiaiFacade;
@@ -23,6 +26,7 @@ import ejb.sessions.KichThuocManHinhFacade;
 import ejb.sessions.LoaiManHinhFacade;
 import ejb.sessions.NguoiBanFacade;
 import ejb.sessions.OCungFacade;
+import ejb.sessions.PhieuMuaTinFacade;
 import ejb.sessions.PhuongXaFacade;
 import ejb.sessions.QuanHuyenFacade;
 import ejb.sessions.RamFacade;
@@ -35,6 +39,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.HeuristicMixedException;
@@ -48,6 +54,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartFile;
+import web.commons.Constants;
 import web.commons.EncryptHelper;
 import web.commons.ImageUtils;
 import web.commons.LookupFactory;
@@ -66,6 +73,8 @@ public class NguoiBanService {
     MailerService mailerService;
 
     UserTransaction tx = LookupFactory.lookupUserTransaction();
+    PhieuMuaTinFacade phieuMuaTinFacade = (PhieuMuaTinFacade) LookupFactory.lookupBeanFacade("PhieuMuaTinFacade");
+    PhieuMuaTinBusiness phieuMuaTinBusiness = (PhieuMuaTinBusiness) LookupFactory.lookupBeanBusiness("PhieuMuaTinBusiness");
     SoTinTonFacade soTinTonFacade = (SoTinTonFacade) LookupFactory.lookupBeanFacade("SoTinTonFacade");
     SoTinTonBusiness soTinTonBusiness = (SoTinTonBusiness) LookupFactory.lookupBeanBusiness("SoTinTonBusiness");
     HinhAnhSanPhamFacade hinhAnhSanPhamFacade = (HinhAnhSanPhamFacade) LookupFactory.lookupBeanFacade("HinhAnhSanPhamFacade");
@@ -176,6 +185,7 @@ public class NguoiBanService {
     public void capNhatThongTin(NguoiBanViewModel nguoiBanVM, ModelMap model, HttpSession httpSession) {
         try {
             NguoiBan ngBan = (NguoiBan) httpSession.getAttribute("merchant");
+            ngBan.setTenGianHang(nguoiBanVM.getTenGianHang());
             ngBan.setHoTen(nguoiBanVM.getHoTen());
             ngBan.setSoDienThoai(nguoiBanVM.getSoDienThoai());
             ngBan.setDiaChi(nguoiBanVM.getDiaChi());
@@ -248,9 +258,10 @@ public class NguoiBanService {
                     SoTinTon newSoTin = new SoTinTon();
                     newSoTin.setIdNguoiBan(nguoiBan);
                     newSoTin.setNgayCapNhat(hienTai);
-                    newSoTin.setSoTinThayDoi(1);
+                    newSoTin.setSoTinThayDoi(-1);
                     newSoTin.setSoTinTon(soTinTon - 1);
                     soTinTonFacade.create(newSoTin);
+
                     SanPham sp = new SanPham();
                     sp.setAnHien(true);
                     sp.setTenMay(sanPhamVM.getTenMay());
@@ -267,13 +278,14 @@ public class NguoiBanService {
                     sp.setId(id);
                     for (MultipartFile f : fileUploads) {
                         if (f.getSize() > 0) {
+                            String imagePath = path + "/" + f.getOriginalFilename();
+                            File file = new File(imagePath);
+                            ImageUtils.resizeAndTransferTo(f.getInputStream(), 480, 480, file);
+
                             HinhAnhSanPham hinhAnhSanPham = new HinhAnhSanPham();
                             hinhAnhSanPham.setIdSanPham(sp);
                             hinhAnhSanPham.setTenHinh(f.getOriginalFilename());
                             hinhAnhSanPhamFacade.create(hinhAnhSanPham);
-                            String imagePath = path + "\\" + hinhAnhSanPham.getTenHinh();
-                            File file = new File(imagePath);
-                            ImageUtils.resizeAndTransferTo(f.getInputStream(), 480, 480, file);
                         }
                     }
                     ThongSoKiThuat ts = new ThongSoKiThuat();
@@ -287,7 +299,12 @@ public class NguoiBanService {
                     ts.setIdSanPham(sp);
                     ts.setThoiLuongPin(sanPhamVM.getThoiLuongPin());
                     thongSoKiThuatFacade.create(ts);
+                    /// Cap nhat so lan dang tin cua merchant
+                    NguoiBan ngBan = nguoiBanFacade.find(nguoiBan.getId());
+                    ngBan.setSoLanDangTin(nguoiBan.getSoLanDangTin() + 1);
+                    nguoiBanFacade.edit(ngBan);
                     tx.commit();
+                    httpSession.setAttribute("merchant", ngBan);
                     model.addAttribute("success", "Thêm sản phẩm thành công.<br>Thiết lập hiển thị ngay.");
                     return true;
                 } else {
@@ -308,13 +325,88 @@ public class NguoiBanService {
             return false;
         }
     }
-        //         public Admin timNguoiDung(int id) {
-        //            try {
-        //                return adminFacade.find(id);
-        //            } catch (Exception e) {
-        //                return null;
-        //            }
-        //        }
+
+    public void muaTinTrucTiep(NguoiBan nguoiBan, GoiTin goiTin) {
+        try {
+            tx.begin();
+            PhieuMuaTin phieuMuaTin = new PhieuMuaTin();
+            phieuMuaTin.setIdGoiTin(goiTin);
+            phieuMuaTin.setIdNguoiBan(nguoiBan);
+            phieuMuaTin.setIdTinhTrang(new TinhTrang(Constants.TT_DANG_XU_LY));
+            phieuMuaTin.setNgayGiaoDich(new Date());
+            phieuMuaTin.setPhuongThucThanhToan(Constants.GD_TRUC_TIEP);
+            phieuMuaTin.setGiaBan(goiTin.getGiaBan());
+            int idPhieuMuaTin = phieuMuaTinBusiness.taoPhieuMuaTin(phieuMuaTin);
+
+            int soTinHienTai = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), new Date());
+            SoTinTon soTinTon = new SoTinTon();
+            soTinTon.setIdNguoiBan(nguoiBan);
+            soTinTon.setNgayCapNhat(new Date());
+            soTinTon.setSoTinThayDoi(0);
+            soTinTon.setIdPhieuMuaTin(phieuMuaTinFacade.find(idPhieuMuaTin));
+            soTinTon.setSoTinTon(soTinHienTai);
+            soTinTonFacade.create(soTinTon);
+            tx.commit();
+        } catch (RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException | SystemException | NotSupportedException ex) {
+            try {
+                tx.rollback();
+                Logger.getLogger(NguoiBanService.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalStateException | SecurityException | SystemException ex1) {
+                Logger.getLogger(NguoiBanService.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+    }
+
+    public void muaTinQuaPayPal(GoiTin goiTin, String paymentId, String payerId, HttpSession httpSession) {
+        NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
+        try {
+            tx.begin();
+            PhieuMuaTin phieuMuaTin = new PhieuMuaTin();
+            phieuMuaTin.setIdGoiTin(goiTin);
+            phieuMuaTin.setIdNguoiBan(nguoiBan);
+            phieuMuaTin.setIdTinhTrang(new TinhTrang(Constants.TT_THANH_CONG));
+            phieuMuaTin.setNgayGiaoDich(new Date());
+            phieuMuaTin.setPhuongThucThanhToan(Constants.GD_PAYPAL);
+            phieuMuaTin.setPaymentId(paymentId);
+            phieuMuaTin.setPayerId(payerId);
+            phieuMuaTin.setGiaBan(goiTin.getGiaBan());
+            int idPhieuMuaTin = phieuMuaTinBusiness.taoPhieuMuaTin(phieuMuaTin);
+
+            SoTinTon soTinTon = new SoTinTon();
+            int soTinHienTai = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), new Date());
+            if (nguoiBan.getLanDauMuaTin()) {
+                soTinHienTai += goiTin.getSoTin() + 5;
+                soTinTon.setSoTinThayDoi(goiTin.getSoTin() + 5);
+                nguoiBan.setLanDauMuaTin(false);
+                nguoiBanFacade.edit(nguoiBan);
+            } else {
+                soTinTon.setSoTinThayDoi(goiTin.getSoTin());
+                soTinHienTai += goiTin.getSoTin();
+            }
+            soTinTon.setIdNguoiBan(nguoiBan);
+            soTinTon.setNgayCapNhat(new Date());
+            soTinTon.setIdPhieuMuaTin(phieuMuaTinFacade.find(idPhieuMuaTin));
+            soTinTon.setSoTinTon(soTinHienTai);
+            soTinTonFacade.create(soTinTon);
+            tx.commit();
+            httpSession.setAttribute("merchant", nguoiBan);
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            try {
+                tx.rollback();
+                Logger.getLogger(NguoiBanService.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalStateException | SecurityException | SystemException ex1) {
+                Logger.getLogger(NguoiBanService.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+
+    }
+    //         public Admin timNguoiDung(int id) {
+    //            try {
+    //                return adminFacade.find(id);
+    //            } catch (Exception e) {
+    //                return null;
+    //            }
+    //        }
 
     public NguoiBan timNguoiBan(Integer id) {
         try {
@@ -326,11 +418,12 @@ public class NguoiBanService {
 
     public boolean capNhatNguoiBan(NguoiBan nguoiban) {
         try {
-            nguoiBanFacade.edit(nguoiban);
+            NguoiBan ng = nguoiBanFacade.find(nguoiban.getId());
+            ng.setTrangThai(nguoiban.getTrangThai());
+            nguoiBanFacade.edit(ng);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
-
 }

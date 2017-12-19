@@ -7,6 +7,7 @@ package web.services;
 
 import ejb.business.PhuongXaBusiness;
 import ejb.entities.PhuongXa;
+import ejb.entities.QuanHuyen;
 import ejb.sessions.PhuongXaFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,16 @@ public class PhuongXaService {
         return dsTenPhuongXa;
     }
     
+    public List<String> layDanhSachTenTheoQuanHuyen(QuanHuyen quanhuyen) {
+        List<String> dsTenPhuongXa = new ArrayList<>();
+        dsTenPhuongXa.add("<option disabled selected>Chọn Phường/Xã</option>");
+
+        List<PhuongXa> dsPhuongXa = phuongXaBusiness.layDanhSachTheoQuanHuyen(quanhuyen);
+        dsPhuongXa.forEach(it -> {
+            dsTenPhuongXa.add("<option value='" + it.getId() + "'>" + it.getTenPhuongXa() + "</option>");
+        });
+        return dsTenPhuongXa;
+    }
     public List<PhuongXa> layDanhSachPhuongXaTheoQuanHuyen(Integer id) {
         return phuongXaBusiness.layDanhSachTheoQuanHuyen(id);
     }

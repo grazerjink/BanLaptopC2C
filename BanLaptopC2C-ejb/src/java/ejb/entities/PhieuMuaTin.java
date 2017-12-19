@@ -80,7 +80,7 @@ public class PhieuMuaTin implements Serializable {
     @JoinColumn(name = "id_tinh_trang", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TinhTrang idTinhTrang;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPhieuMuaTin", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idPhieuMuaTin", fetch = FetchType.LAZY)
     private List<SoTinTon> soTinTonList;
 
     public PhieuMuaTin() {

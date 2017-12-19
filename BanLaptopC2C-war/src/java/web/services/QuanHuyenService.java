@@ -7,6 +7,7 @@ package web.services;
 
 import ejb.business.QuanHuyenBusiness;
 import ejb.entities.QuanHuyen;
+import ejb.entities.ThanhPho;
 import ejb.sessions.QuanHuyenFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,16 @@ public class QuanHuyenService {
         dsTenQuanHuyen.add("<option disabled selected>Chọn Quận/Huyện</option>");
 
         List<QuanHuyen> dsQuanHuyen = quanHuyenBusiness.layDanhSachTheoThanhPho(id);
+        dsQuanHuyen.forEach(it -> {
+            dsTenQuanHuyen.add("<option value='" + it.getId() + "'>" + it.getTenQuanHuyen() + "</option>");
+        });
+        return dsTenQuanHuyen;
+    }
+    public List<String> layDanhSachTenTheoThanhPho(ThanhPho thanhpho) {
+        List<String> dsTenQuanHuyen = new ArrayList<>();
+        dsTenQuanHuyen.add("<option disabled selected>Chọn Quận/Huyện</option>");
+
+        List<QuanHuyen> dsQuanHuyen = quanHuyenBusiness.layDanhSachTheoThanhPho(thanhpho);
         dsQuanHuyen.forEach(it -> {
             dsTenQuanHuyen.add("<option value='" + it.getId() + "'>" + it.getTenQuanHuyen() + "</option>");
         });

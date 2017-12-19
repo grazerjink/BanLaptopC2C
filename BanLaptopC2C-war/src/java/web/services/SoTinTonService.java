@@ -12,6 +12,7 @@ import ejb.entities.SoTinTon;
 import ejb.sessions.NguoiBanFacade;
 import ejb.sessions.SoTinTonFacade;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import web.commons.LookupFactory;
@@ -22,32 +23,37 @@ import web.commons.LookupFactory;
  */
 @Component
 public class SoTinTonService {
-
-    NguoiBanFacade nguoiBanFacade = (NguoiBanFacade) LookupFactory.lookupBeanFacade("NguoiBanFacade");
+    
     SoTinTonBusiness soTinTonBusiness = (SoTinTonBusiness) LookupFactory.lookupBeanBusiness("SoTinTonBusiness");
     SoTinTonFacade soTinTonFacade = (SoTinTonFacade) LookupFactory.lookupBeanFacade("SoTinTonFacade");
 
     public int laySoTinTheoNguoiBanVaThoiGian(NguoiBan nguoiBan, Date thoiGian) {
         return soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), thoiGian);
     }
-
-    public void capNhatSoTinDang(GoiTin goiTin, HttpSession httpSession) {
-        NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
-        int soTinHienTai = laySoTinTheoNguoiBanVaThoiGian(nguoiBan, new Date());
-        if(nguoiBan.getLanDauMuaTin()) {
-            soTinHienTai += goiTin.getSoTin() + 5;
-            nguoiBan.setLanDauMuaTin(false);
-            nguoiBanFacade.edit(nguoiBan);      
-        }
-        else {
-            soTinHienTai += goiTin.getSoTin();
-        }
-        SoTinTon soTinTon = new SoTinTon();
-        soTinTon.setIdNguoiBan(nguoiBan);
-        soTinTon.setNgayCapNhat(new Date());
-        soTinTon.setSoTinThayDoi(0);
-        soTinTon.setSoTinTon(soTinHienTai);
-        soTinTonFacade.create(soTinTon);
+    
+    public List<SoTinTon> layLichSuTinDang(Integer id) {
+        List<SoTinTon> list = soTinTonBusiness.layLichSuTinDangTheoIdNguoiBan(id);
+        return list;
     }
+
+//    public void capNhatSoTinDang(GoiTin goiTin, HttpSession httpSession) {
+//        SoTinTon soTinTon = new SoTinTon();
+//        NguoiBan nguoiBan = (NguoiBan) httpSession.getAttribute("merchant");
+//        int soTinHienTai = laySoTinTheoNguoiBanVaThoiGian(nguoiBan, new Date());
+//        if(nguoiBan.getLanDauMuaTin()) {
+//            soTinHienTai += goiTin.getSoTin() + 5;
+//            soTinTon.setSoTinThayDoi(goiTin.getSoTin()+5);
+//            nguoiBan.setLanDauMuaTin(false);
+//            nguoiBanFacade.edit(nguoiBan);      
+//        }
+//        else {
+//            soTinTon.setSoTinThayDoi(goiTin.getSoTin());
+//            soTinHienTai += goiTin.getSoTin();
+//        }        
+//        soTinTon.setIdNguoiBan(nguoiBan);
+//        soTinTon.setNgayCapNhat(new Date());        
+//        soTinTon.setSoTinTon(soTinHienTai);
+//        soTinTonFacade.create(soTinTon);
+//    }
 
 }

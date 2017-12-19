@@ -125,7 +125,7 @@ public class NguoiBan implements Serializable {
     @NotNull
     @Column(name = "trang_thai")
     private boolean trangThai;
-    @Size(max = 200)
+    @Size(max = 250)
     @Column(name = "ly_do")
     private String lyDo;
     @JoinColumn(name = "id_phuong_xa", referencedColumnName = "id")

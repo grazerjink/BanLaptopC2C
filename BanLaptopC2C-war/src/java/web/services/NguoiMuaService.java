@@ -6,7 +6,6 @@
 package web.services;
 
 import ejb.business.NguoiMuaBusiness;
-import ejb.entities.NguoiBan;
 import ejb.entities.NguoiMua;
 import ejb.sessions.NguoiMuaFacade;
 import ejb.sessions.PhuongXaFacade;
@@ -23,7 +22,6 @@ import org.springframework.ui.ModelMap;
 import web.commons.EncryptHelper;
 import web.commons.LookupFactory;
 import web.commons.RandomString;
-import web.viewmodels.NguoiBanViewModel;
 import web.viewmodels.NguoiMuaViewModel;
 
 /**
@@ -104,19 +102,20 @@ public class NguoiMuaService {
 
     public void capNhatThongTinCaNhan(NguoiMuaViewModel nguoiMuaVM, Model model, HttpSession httpSession) {
         try {
-            if (nguoiMuaBusiness.timTheoSoDienThoai(nguoiMuaVM.getSoDienThoai()) != null) {
+            NguoiMua ngMua = (NguoiMua) httpSession.getAttribute("customer");
+            NguoiMua tmp = nguoiMuaBusiness.timTheoSoDienThoai(nguoiMuaVM.getSoDienThoai());
+            if (tmp != null && tmp.getId() != ngMua.getId()) {
                 model.addAttribute("error", "Số điện thoại đã được sử dụng rồi.");
-            } else {
-                NguoiMua ngMua = (NguoiMua) httpSession.getAttribute("customer");
-                ngMua.setHoTen(nguoiMuaVM.getHoTen());
-                ngMua.setNgaySinh(nguoiMuaVM.getNgaySinh());
-                ngMua.setSoDienThoai(nguoiMuaVM.getSoDienThoai());
-                ngMua.setDiaChi(nguoiMuaVM.getDiaChi());
-                ngMua.setIdThanhPho(thanhPhoFacade.find(nguoiMuaVM.getIdThanhPho().getId()));
-                ngMua.setIdQuanHuyen(quanHuyenFacade.find(nguoiMuaVM.getIdQuanHuyen().getId()));
-                ngMua.setIdPhuongXa(phuongXaFacade.find(nguoiMuaVM.getIdPhuongXa().getId()));
-                nguoiMuaFacade.edit(ngMua);
-                httpSession.setAttribute("customer", ngMua);
+            } else {                
+                NguoiMua nguoiMua = nguoiMuaFacade.find(ngMua.getId());
+                nguoiMua.setHoTen(nguoiMuaVM.getHoTen());
+                nguoiMua.setSoDienThoai(nguoiMuaVM.getSoDienThoai());
+                nguoiMua.setDiaChi(nguoiMuaVM.getDiaChi());
+                nguoiMua.setIdThanhPho(thanhPhoFacade.find(nguoiMuaVM.getIdThanhPho()));
+                nguoiMua.setIdQuanHuyen(quanHuyenFacade.find(nguoiMuaVM.getIdQuanHuyen()));
+                nguoiMua.setIdPhuongXa(phuongXaFacade.find(nguoiMuaVM.getIdPhuongXa()));
+                nguoiMuaFacade.edit(nguoiMua);
+                httpSession.setAttribute("customer", nguoiMua);
                 model.addAttribute("success", "Cập nhật thông tin thành công.");
             }
         } catch (Exception ex) {
@@ -129,7 +128,7 @@ public class NguoiMuaService {
         NguoiMua nguoiMua = (NguoiMua) httpSession.getAttribute("customer");
         String matKhau = nguoiMua.getMatKhau();
         if (matKhauMoi.equals(matKhauXacNhan)) {
-            if (EncryptHelper.matches(matKhau, EncryptHelper.encrypt(matKhauCu))) {
+            if (EncryptHelper.matches(matKhau, matKhauCu)) {
                 nguoiMua.setMatKhau(EncryptHelper.encrypt(matKhauMoi));
                 nguoiMuaFacade.edit(nguoiMua);
                 httpSession.setAttribute("customer", nguoiMua);

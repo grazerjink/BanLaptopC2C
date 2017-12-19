@@ -15,21 +15,16 @@
                 <th>#</th>
                 <th>Mã Đơn Hàng</th>
                 <th>Tên người bán</th>
-                <th>Số điểm</th>
-                
-                
-                
+                <th>Số điểm</th>               
             </tr>
         </thead>
         <tbody>
             <c:forEach var="tkdg" items ="${dsThongKeDanhGia}" varStatus="i" >
                 <tr>
                     <td>${i.count}</td>
-                    <td>${tkdg.idDonHang}</td>
+                    <td>${tkdg.idDonHang.id}</td>
                     <td>${tkdg.idNguoiBan.hoTen}</td>
-                    <td>${tkdg.soDiem}</td>
-                    
-                   
+                    <td>${tkdg.soDiem}</td>   
                 </tr>
             </c:forEach>
         </tbody>            
