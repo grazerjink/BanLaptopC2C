@@ -62,7 +62,7 @@
                 <h5>Storage: SSD 256GB</h5>
             </div>
             <div class="v2q-item-price">
-                <span class="item_price">Giá: <fmt:formatNumber value="${sp.giaBan}" pattern="###,###"/></span>
+                <span class="item_price">Giá: <fmt:formatNumber value="${sp.giaBan}" pattern="###,###"/> VNĐ</span>
             </div>
             <div class="color-quality">
                 <div class="v2q-item-quantity color-quality-right">

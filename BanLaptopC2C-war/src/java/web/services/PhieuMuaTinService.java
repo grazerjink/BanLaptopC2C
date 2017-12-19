@@ -1,4 +1,4 @@
-﻿/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,7 +8,6 @@ package web.services;
 import ejb.business.SoTinTonBusiness;
 import ejb.entities.GoiTin;
 import ejb.entities.NguoiBan;
-import ejb.entities.TinhTrang;
 import java.util.Date;
 import ejb.entities.PhieuMuaTin;
 import ejb.entities.SoTinTon;
@@ -28,7 +27,7 @@ import web.commons.LookupFactory;
  */
 @Component
 public class PhieuMuaTinService {
-    
+
     PhieuMuaTinFacade phieuMuaTinFacade = (PhieuMuaTinFacade) LookupFactory.lookupBeanFacade("PhieuMuaTinFacade");
     NguoiBanFacade nguoiBanFacade = (NguoiBanFacade) LookupFactory.lookupBeanFacade("NguoiBanFacade");
     SoTinTonFacade soTinTonFacade = (SoTinTonFacade) LookupFactory.lookupBeanFacade("SoTinTonFacade");
@@ -51,7 +50,7 @@ public class PhieuMuaTinService {
                 PhieuMuaTin pm = phieuMuaTinFacade.find(phieumuatin.getId());
                 GoiTin goiTin = goiTinFacade.find(phieumuatin.getIdGoiTin().getId());
                 NguoiBan nguoiBan = nguoiBanFacade.find(phieumuatin.getIdNguoiBan().getId());
-                
+
                 pm.setIdTinhTrang(tinhTrangFacade.find(Constants.TT_THANH_CONG));
                 phieuMuaTinFacade.edit(pm);
                 SoTinTon soTinTon = new SoTinTon();

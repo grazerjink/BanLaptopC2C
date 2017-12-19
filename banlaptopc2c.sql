@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 18, 2017 at 09:06 AM
+-- Generation Time: Dec 19, 2017 at 04:22 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -41,14 +41,15 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `dia_chi` varchar(250) NOT NULL,
   `trang_thai` bit(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `email`, `mat_khau`, `ho_ten`, `so_dien_thoai`, `so_tai_khoan`, `dia_chi`, `trang_thai`) VALUES
-(1, 'admin@gmail.com', 'admin', 'Administrator', '0933678123', '013944898282', '05 An Dương Vương, Phường 3, Quận 5, TP HCM', b'1');
+(1, 'admin@gmail.com', 'admin', 'Administrator', '0933678123', '013944898282', '05 An Dương Vương, Phường 3, Quận 5, TP HCM', b'1'),
+(2, 'grazerjink@gmail.com', 'BB79937DEF510D3859C8329523E1031F', '123456', '123456789', '12345678911', '1234156456', b'1');
 
 -- --------------------------------------------------------
 
@@ -779,7 +780,7 @@ CREATE TABLE IF NOT EXISTS `nguoi_ban` (
 
 INSERT INTO `nguoi_ban` (`id`, `email`, `mat_khau`, `ten_gian_hang`, `ho_ten`, `cmnd`, `so_dien_thoai`, `dia_chi`, `id_quan_huyen`, `id_phuong_xa`, `id_thanh_pho`, `ngay_dang_ky`, `lan_dau_mua_tin`, `so_lan_dang_tin`, `so_lan_canh_cao`, `so_lan_danh_gia`, `tong_diem_danh_gia`, `diem_trung_binh`, `kich_hoat`, `trang_thai`, `ly_do`) VALUES
 (1, 'grazerjink@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Cửa hàng ViEvolution™', 'Mạc Khải Quân', '025659100', '0905209926', '46A Đoàn Hồng Phước', 563, 9322, 50, '2017-12-05 11:42:31', b'0', 1, 0, 0, 0, 0, b'1', b'1', NULL),
-(2, 'freetimes196@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Cửa hàng MacBook Tân Việt', 'Lý Thế Khang', '029928456', '0912345651', '125 Bà Thím', 572, 9448, 50, '2017-12-08 20:56:17', b'0', 0, 0, 0, 0, 0, b'1', b'1', NULL);
+(2, 'freetimes196@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Cửa hàng MacBook Tân Việt', 'Lý Thế Khang', '029928456', '0912345651', '125 Bà Thím', 572, 9448, 50, '2017-12-08 20:56:17', b'0', 0, 0, 0, 0, 0, b'1', b'0', NULL);
 
 -- --------------------------------------------------------
 
@@ -814,7 +815,7 @@ CREATE TABLE IF NOT EXISTS `nguoi_mua` (
 
 INSERT INTO `nguoi_mua` (`id`, `email`, `mat_khau`, `ho_ten`, `ngay_sinh`, `so_dien_thoai`, `dia_chi`, `id_quan_huyen`, `id_phuong_xa`, `id_thanh_pho`, `ngay_dang_ki`, `kich_hoat`, `trang_thai`) VALUES
 (2, 'freetimes196@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-12-09 11:10:27', b'1', b'1'),
-(3, 'grazerjink@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-12-09 14:18:09', b'1', b'1');
+(3, 'grazerjink@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'Mạc Khải Quân', NULL, '0905209926', '46A Đoàn Hồng Phước ', 568, 9386, 50, '2017-12-09 14:18:09', b'1', b'1');
 
 -- --------------------------------------------------------
 

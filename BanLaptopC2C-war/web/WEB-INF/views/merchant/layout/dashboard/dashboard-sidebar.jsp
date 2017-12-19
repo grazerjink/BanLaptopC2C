@@ -18,7 +18,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="merchant/don-dat-hang/moi/">Đơn hàng mới</a>
                         <a class="dropdown-item" href="merchant/don-dat-hang/dang-giao/">Đơn hàng đang giao</a>
-                        <a class="dropdown-item" href="merchant/don-dat-hang/hoan-tat/">Đơn hàng đã hoàn tất</a>
+                        <a class="dropdown-item" href="merchant/don-dat-hang/thanh-cong/">Đơn hàng đã hoàn tất</a>
                         <a class="dropdown-item" href="merchant/don-dat-hang/huy/">Đơn hàng đã hủy</a>
                     </div>
                 </li>

@@ -78,10 +78,11 @@
 <c:if test="${success != null}">
     <script type="text/javascript">
         alert('${ success}');
-        </script>
+    </script>
 </c:if>
 
 <div class="">
+    <h3>Đánh giá người bán</h3>
     <form id="form-doi-mat-khau" action="doi-mat-khau-customer" method="post">  
         <div class="form-group row">
             <label class="col-sm-2 form-control-label">Mật khẩu hiện tại: </label>
@@ -121,7 +122,7 @@
                 matKhauMoi: {
                     required: true,
                     pattern: /^[a-zA-Z0-9]{4,20}$/
-                }, 
+                },
                 matKhauXacNhan: {
                     equalTo: "#matKhauMoi"
                 }

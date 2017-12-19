@@ -82,7 +82,7 @@ public class NguoiMuaService {
                         String body = "<p>Chúc mừng bạn đã đăng ký tài khoản thành công tại V2Q MALL !!! <br>"
                                 + "Xin vui lòng nhấn vào link dưới đây để kích hoạt tài khoản và tiến hành cập nhật thông tin để tiện cho việc giao dịch sau này.<br>"
                                 + "<a href='"+ url +"'>Nhấn vào đây để kích hoạt</a></p>";
-                        mailerService.send(to, subject, body);
+                        mailerService.send(to, subject, body); 
                     } catch (Exception e) {
                         model.addAttribute("error", "Lỗi hệ thống xin vui lòng thử lại sau.");
                         return false;

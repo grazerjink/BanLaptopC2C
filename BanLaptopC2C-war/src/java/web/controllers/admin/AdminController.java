@@ -1,4 +1,4 @@
-﻿/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -29,7 +29,7 @@ import web.services.PhieuMuaTinService;
 
 /**
  *
- * @author Vivi
+ * @author Winson Mac
  */
 @Controller
 @RequestMapping("admin")
@@ -49,12 +49,6 @@ public class AdminController {
     // Đăng nhập 
     @RequestMapping("dangnhap")
     public String dangNhap() {
-        return "admin/landing/dangnhap";
-    }
-    
-    @RequestMapping("dangxuat")
-    public String dangXuat(HttpSession httpSession) {
-        httpSession.removeAttribute("admin");
         return "admin/landing/dangnhap";
     }
 
@@ -142,7 +136,7 @@ public class AdminController {
     // danh sach nguoi dung
     @RequestMapping("danhsach-nguoidung")
     public String layDanhSachND(Model model) {
-        return "admin/home/danhsach-nguoidung"; 
+        return "admin/home/danhsach-nguoidung";
     }
 
     // Hàm lấy danh sách người dùng
@@ -239,5 +233,4 @@ public class AdminController {
     public List<NguoiBan> layDSNguoiBan() {
         return nguoibanService.layDanhSachNguoiBan();
     }
-
 }
