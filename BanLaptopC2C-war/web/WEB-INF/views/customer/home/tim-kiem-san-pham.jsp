@@ -9,38 +9,56 @@
 <div class="">
     
     <div class="container">
-        <div>
+         <div id="div-1" class="body">
             <label>Tìm kiếm nâng cao</label>
-            <form:form action="tim-kiem-san-pham-nang-cao" method="post" modelAttribute="sanphamVM">
-                <label>Tên Sản phẩm</label>
-                <form:input path="ten" ></form:input>
-                <label>Giá</label>
-                <form:select path="gia">
-                    <form:option value="0">Tất cả giá</form:option>
-                    <form:option value="1">Dưới 20.000.000</form:option>
-                    <form:option value="2">Từ 20.000.000 Đến 25.000.000</form:option>
-                    <form:option value="3">Từ 25.000.000 Đến 30.000.000</form:option>
-                    <form:option value="4">trên 30.000.000</form:option>
-                </form:select>
-                <label>Hãng sản xuất</label>
-                <form:select path="hang">
-                        <form:option value="">Tất cả hãng</form:option>
-                    <c:forEach items="${dsHangSanXuat}" var="hsx">
-                        <form:option value="${hsx.id}">${hsx.tenHang}</form:option>
-                    </c:forEach>
-                </form:select>
-                <label>Người bán</label>
-                <form:select path="nguoiBan">
-                        <form:option value="0">Tất cả người bán</form:option>
-                    <c:forEach items="${dsnguoiban}" var="nb">                       
-                        <form:option value="${nb.id}">${nb.tenGianHang}</form:option>
-                    </c:forEach>
-                </form:select>
-                <div class="">
-                <form:button  value="Tìm kiếm">Tìm kiếm</form:button>
+            <form:form class="form-horizontal" action="tim-kiem-san-pham-nang-cao" method="post" modelAttribute="sanphamVM">
+                <div class="form-group">
+                    <label class="control-label col-lg-4">Tên Sản phẩm</label>
+                    <div class="col-lg-8">
+                       <form:input path="ten" ></form:input>
+                    </div>
                 </div>
-            </form:form>
-                
+               <div class="form-group">
+                    <label class="control-label col-lg-4"> Giá </label>
+                    <div class="col-lg-8">
+                        <form:select path="gia">
+                            <form:option value="0">Tất cả giá</form:option>
+                            <form:option value="1">Dưới 20.000.000</form:option>
+                            <form:option value="2">Từ 20.000.000 Đến 25.000.000</form:option>
+                            <form:option value="3">Từ 25.000.000 Đến 30.000.000</form:option>
+                            <form:option value="4">trên 30.000.000</form:option>
+                        </form:select>
+                    </div>
+                            
+                            
+               </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4">Hãng sản xuất</label>
+                     <div class="col-lg-8">
+                        <form:select path="hang">
+                                <form:option value="">Tất cả hãng</form:option>
+                            <c:forEach items="${dsHangSanXuat}" var="hsx">
+                                <form:option value="${hsx.id}">${hsx.tenHang}</form:option>
+                            </c:forEach>
+                        </form:select>
+                     </div>      
+                            
+                            
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4">Người bán</label>
+                    <form:select path="nguoiBan">
+                            <form:option value="0">Tất cả người bán</form:option>
+                        <c:forEach items="${dsnguoiban}" var="nb">                       
+                            <form:option value="${nb.id}">${nb.tenGianHang}</form:option>
+                        </c:forEach>
+                    </form:select>
+                </div>
+               
+                           <center> <form:button class="btn btn-metis-5" value="Tìm kiếm">Tìm kiếm</form:button> </center>
+              
+        </form:form>
+                           <hr> 
         </div>
         
         <c:if test="${dssanphamkt != null}">

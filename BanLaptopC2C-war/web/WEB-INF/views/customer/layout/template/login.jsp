@@ -17,6 +17,8 @@
                         <div class="login-bottom">
                             <h3>Đăng ký nhanh</h3>
                             <form:form modelAttribute="nguoiMua" method="post" action="dang-ky" id="dangKyForm">
+                                <form:hidden id="2" path="soDienThoai" value="mail@gmail.com" />
+                                
                                 <div class="sign-up v2q-field">
                                     <h4>Email: </h4>
                                     <form:input path="email" type="text" placeholder="Email đăng ký" cssClass="v2q-input"/>
@@ -35,7 +37,6 @@
                                 <div class="sign-up">
                                     <input type="submit" value="ĐĂNG KÝ" >
                                 </div>
-
                             </form:form>
                         </div>
                         <div class="login-right">
