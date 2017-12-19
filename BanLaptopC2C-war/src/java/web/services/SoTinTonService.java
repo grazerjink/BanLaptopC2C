@@ -8,8 +8,10 @@ package web.services;
 import ejb.business.SoTinTonBusiness;
 import ejb.entities.GoiTin;
 import ejb.entities.NguoiBan;
+import ejb.entities.PhieuMuaTin;
 import ejb.entities.SoTinTon;
 import ejb.sessions.NguoiBanFacade;
+import ejb.sessions.PhieuMuaTinFacade;
 import ejb.sessions.SoTinTonFacade;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +28,7 @@ public class SoTinTonService {
     
     SoTinTonBusiness soTinTonBusiness = (SoTinTonBusiness) LookupFactory.lookupBeanBusiness("SoTinTonBusiness");
     SoTinTonFacade soTinTonFacade = (SoTinTonFacade) LookupFactory.lookupBeanFacade("SoTinTonFacade");
+   
 
     public int laySoTinTheoNguoiBanVaThoiGian(NguoiBan nguoiBan, Date thoiGian) {
         return soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), thoiGian);

@@ -29,3 +29,5 @@ BanLaptopC2C-war/dist/**
 hs_err_pid*
 /build/
 /dist/
+/BanLaptopC2C-ejb/nbproject/private/
+/BanLaptopC2C-war/nbproject/private/
