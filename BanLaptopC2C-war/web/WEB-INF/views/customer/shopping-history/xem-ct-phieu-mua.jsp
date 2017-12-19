@@ -16,6 +16,7 @@
             <tr style="padding-bottom: 10px ; font-size: x-large">
                 <td style=" width:5%;  text-align: center; margin-bottom: 15px"><strong>ID</strong></td>
                 <td style=" width:auto;  text-align: center"><strong>Tên sản phẩm</strong></td>
+                <td style=" width:auto;  text-align: center"><strong>Người bán</strong></td>
                 <td style=" width:20%;  text-align: center"><strong>Số lượng mua</strong></td>
                 <td style=" width:auto;  text-align: center"><strong>Đơn giá</strong></td>
                 <td style=" width:auto;  text-align: center"><strong>Ngày giao</strong></td>
@@ -28,6 +29,9 @@
                     </td>
                     <td>
                         ${p.idSanPham.tenMay}
+                    </td>
+                    <td>
+                        ${p.idNguoiBan.tenGianHang}
                     </td>
                     <td>
                         ${p.soLuongMua}
