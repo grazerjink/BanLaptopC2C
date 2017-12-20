@@ -63,6 +63,7 @@
                 <th>Giá bán</th>
                 <th>Phương thức thanh toán</th>
                 <th>Tình trạng</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -73,17 +74,17 @@
                     <td>${pm.idNguoiBan.hoTen}</td>
                     <td>${pm.idGoiTin.tenGoiTin}</td>
                     <td><fmt:formatNumber value="${pm.giaBan}" pattern="#,###.00" /> VNĐ</td>
-                    <td>${pm.phuongThucThanhToan} </td>
-                    <td>
-
-                        <div class="col-lg-10" >
-                            <select class="form-control">
-                                <option>Đang xử lí</option>
-                                <option>Thành công </option>
-                                <option>Đã hủy </option>
-                            </select>
-                        </div>
-                    </td>
+                    <td>${pm.phuongThucThanhToan == 1 ? "Paypal nha" : "Trực tiếp"} </td>
+                    <c:choose>
+                        <c:when test='${pm.idTinhTrang.id == "XL"}'>
+                            <td>${pm.idTinhTrang.tenMoTa}</td>
+                            <td><a href="admin/capnhat-phieumuatin/${pm.id}" >Cập nhật </a></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>${pm.idTinhTrang.tenMoTa}</td>
+                            <td>-</td>
+                        </c:otherwise>
+                    </c:choose>
                 </tr>
             </c:forEach>
         </tbody>            

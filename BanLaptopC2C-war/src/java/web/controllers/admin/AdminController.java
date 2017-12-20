@@ -51,7 +51,7 @@ public class AdminController {
     public String dangNhap() {
         return "admin/landing/dangnhap";
     }
-    
+
     @RequestMapping("dangxuat")
     public String dangXuat(HttpSession httpSession) {
         httpSession.removeAttribute("admin");
@@ -136,7 +136,7 @@ public class AdminController {
     // danh sach nguoi dung
     @RequestMapping("danhsach-nguoidung")
     public String layDanhSachND(Model model) {
-        return "admin/home/danhsach-nguoidung"; 
+        return "admin/home/danhsach-nguoidung";
     }
 
     // Hàm lấy danh sách người dùng
@@ -152,6 +152,25 @@ public class AdminController {
         return "admin/home/danhsach-phieumuatin";
     }
 
+    // Cập nhật phiếu mua tin
+    @RequestMapping("capnhat-phieumuatin/{mapmt}")
+    public String capNhatPhieuMuaTin(Model model, @PathVariable("mapmt") Integer mapmt) {
+        model.addAttribute("phieuMuaTin", phieuMuaTinService.timPhieuMuaTin(mapmt));
+        return "admin/home/capnhat-phieumuatin";
+    }
+
+    // Cập nhật phiếu mua tin
+    @RequestMapping(value = "capnhat-phieumuatin", method = RequestMethod.POST)
+    public String capNhatPhieuMuaTin(Model model, @ModelAttribute("phieuMuaTin") PhieuMuaTin phieumuatin) {
+        if (phieuMuaTinService.capNhatPhieuMuaTin(phieumuatin)) {
+            model.addAttribute("message", "Cập nhật tình trạng phiếu mua tin thành công");
+        } else {
+            model.addAttribute("message", "Cập nhật thất bại");
+        }
+
+        return "redirect:/admin/danhsach-phieumuatin";
+    }
+
     @ModelAttribute("dsPhieuMua")
     public List<PhieuMuaTin> layDanhSachPhieuMua() {
         return phieuMuaTinService.layDanhSachPhieuMua();
@@ -162,7 +181,7 @@ public class AdminController {
     public String layDanhSachHoaDon(Model model) {
         return "admin/home/danhsach-phieumuahang";
     }
-    
+
     // lay danh sach phieu mua hang
     @ModelAttribute("dsPhieuMuaHang")
     public List<PhieuMuaHang> layDanhSachPhieuMuaHang() {
@@ -187,12 +206,6 @@ public class AdminController {
         return danhGiaService.layDSThongKeDanhGia();
     }
 
-    // Cập nhật tài khoản người bán
-//    @RequestMapping("chitiet-phieumuahang/{mapm}")
-//    public String layDanhSachChiTietHoaDontheoMa(Model model, @PathVariable("mapm") Integer mapm ) {
-//        model.addAttribute("ctPhieuMuaHang", phieuMuaHangService.layChiTiet_PhieuMuaHang(mapm));
-//        return "admin/home/chitiet-phieumuahang";
-//    }
     @RequestMapping("capnhat-nguoiban/{manb}")
     public String capNhatNguoiBan(Model model, @PathVariable("manb") Integer manb) {
         model.addAttribute("nguoiBan", nguoibanService.timNguoiBan(manb));
@@ -203,11 +216,11 @@ public class AdminController {
     public String capNhatNguoiBan(Model model, @ModelAttribute("nguoiBan") NguoiBan nguoiban) {
         // goi phuong thuc service 1 phan
         if (nguoibanService.capNhatNguoiBan(nguoiban)) {
-            model.addAttribute("message", "Cập nhật tình trạng thành công");            
+            model.addAttribute("message", "Cập nhật tình trạng thành công");
         } else {
             model.addAttribute("message", "Cập nhật thất bại");
         }
-        return "redirect:/admin/capnhat-nguoiban/"+nguoiban.getId();
+        return "redirect:/admin/capnhat-nguoiban/" + nguoiban.getId();
     }
 
     // Hien danh sach nguoi ban 

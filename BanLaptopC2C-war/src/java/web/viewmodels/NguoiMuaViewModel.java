@@ -28,15 +28,10 @@ public class NguoiMuaViewModel {
     @NotEmpty
     @Pattern(regexp = "[0-9]{10,11}")
     String soDienThoai;
-    @NotEmpty
     String hoTen;
-    @NotEmpty
     String diaChi;
-    @NotNull
     Integer idPhuongXa;
-    @NotNull
     Integer idQuanHuyen;
-    @NotNull
     Integer idThanhPho;
 
     public String getEmail() {

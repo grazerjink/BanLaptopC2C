@@ -371,7 +371,7 @@ public class NguoiBanService {
             phieuMuaTin.setPayerId(payerId);
             phieuMuaTin.setGiaBan(goiTin.getGiaBan());
             int idPhieuMuaTin = phieuMuaTinBusiness.taoPhieuMuaTin(phieuMuaTin);
-
+            // Thêm tin nha
             SoTinTon soTinTon = new SoTinTon();
             int soTinHienTai = soTinTonBusiness.laySoTinTheoNguoiBanVaThoiGian(nguoiBan.getId(), new Date());
             if (nguoiBan.getLanDauMuaTin()) {
@@ -400,13 +400,10 @@ public class NguoiBanService {
         }
 
     }
-    //         public Admin timNguoiDung(int id) {
-    //            try {
-    //                return adminFacade.find(id);
-    //            } catch (Exception e) {
-    //                return null;
-    //            }
-    //        }
+    
+    // Cập nhật số tin bên admin
+    
+         
 
     public NguoiBan timNguoiBan(Integer id) {
         try {

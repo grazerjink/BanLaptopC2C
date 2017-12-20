@@ -84,10 +84,6 @@
 <div class="container">
     <div class="tab-pane active" id="chinhsua" role="tabpanel" aria-expanded="false">
         <form:form modelAttribute="nguoiMua" action="cap-nhat-thong-tin" method="post">  
-            <form:hidden id="2" path="email" value="mail@gmail.com" />
-            <form:hidden id="3" path="matKhau" value="123456789" />
-            <form:hidden id="4" path="matKhauXacNhan" value="123456789"/>
-
             <div class="form-group row">
                 <label class="col-sm-2 form-control-label">Họ tên: </label>
                 <div class="col-sm-6 v2q-input-wrapper">
