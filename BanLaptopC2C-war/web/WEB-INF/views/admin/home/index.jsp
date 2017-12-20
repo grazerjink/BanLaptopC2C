@@ -4,6 +4,6 @@
     Author     : Vivi
 --%>
 <%@page pageEncoding="UTF-8" %>
-
+<h2> Chào mừng bạn đến trang Admin ^-^ <h2>
 
 
